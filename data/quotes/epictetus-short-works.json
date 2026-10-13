@@ -21,7 +21,7 @@
       "text": "Men are disturbed not by the things which happen, but by the opinions about the things.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter V",
-      "tags": ["philosophy", "self-development"],
+      "tags": ["philosophy", "self-development", "resilience"],
       "translations": {
         "pl": {
           "text": "Ludzi niepokoją nie rzeczy, które się dzieją, lecz ich mniemania o tych rzeczach.",
@@ -63,7 +63,7 @@
       "text": "Never say about anything, I have lost it, but say I have restored it.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter XI",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "resilience"],
       "translations": {
         "pl": {
           "text": "O niczym nie mów nigdy: straciłem to, lecz mów: oddałem to.",
@@ -161,7 +161,7 @@
       "text": "Practise saying to every harsh appearance, You are an appearance, and in no manner what you appear to be.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter I",
-      "tags": ["self-development"],
+      "tags": ["self-development", "resilience"],
       "translations": {
         "pl": {
           "text": "Ćwicz się w mówieniu każdemu przykremu wrażeniu: jesteś tylko wrażeniem, a wcale nie tym, czym się wydajesz.",
