@@ -15,6 +15,8 @@ export interface Preferences {
   notify: boolean;
   /** Local hour of the daily notification, 0–23. */
   notifyHour: number;
+  /** The reader has swiped once or dismissed the first-launch swipe hint. */
+  swipeHintSeen: boolean;
 }
 
 export const STORAGE_KEY = 'verbeapp:preferences:v1';
@@ -29,6 +31,7 @@ export function defaultPreferences(browserLanguage = ''): Preferences {
     translation: true,
     notify: false,
     notifyHour: 8,
+    swipeHintSeen: false,
   };
 }
 
@@ -56,6 +59,9 @@ export function parsePreferences(raw: string | null, fallback: Preferences): Pre
       translation: data.translation !== false,
       notify: data.notify === true,
       notifyHour: isHour(data.notifyHour) ? data.notifyHour : fallback.notifyHour,
+      // Preferences saved before the hint existed belong to readers who
+      // already know how to swipe, so only an explicit false shows it.
+      swipeHintSeen: data.swipeHintSeen !== false,
     };
   } catch {
     return fallback;

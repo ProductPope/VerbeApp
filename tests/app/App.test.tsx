@@ -133,6 +133,56 @@ describe('feed', () => {
   });
 });
 
+describe('swipe hint', () => {
+  function hint() {
+    return screen.queryByTestId('swipe-hint');
+  }
+
+  it('explains swiping and the arrow key on first launch', () => {
+    renderApp();
+    expect(hint()).toHaveTextContent('Swipe left for the next quote');
+    expect(hint()).toHaveTextContent('Press → for the next quote');
+    expect(screen.getByRole('feed')).toHaveClass('feed-hinting');
+  });
+
+  it('goes away for good after the first move to another quote', async () => {
+    const { user, store, unmount } = renderApp();
+    articles()[0]!.focus();
+    await user.keyboard('{ArrowRight}');
+    expect(hint()).not.toBeInTheDocument();
+    expect(screen.getByRole('feed')).not.toHaveClass('feed-hinting');
+    expect(store.get().swipeHintSeen).toBe(true);
+    unmount();
+    renderApp();
+    expect(hint()).not.toBeInTheDocument();
+  });
+
+  it('can be dismissed with a button, leaving focus on the quote', async () => {
+    const { user, store } = renderApp();
+    await user.click(screen.getByRole('button', { name: 'Got it' }));
+    expect(hint()).not.toBeInTheDocument();
+    expect(articles()[0]).toHaveFocus();
+    expect(store.get().swipeHintSeen).toBe(true);
+  });
+
+  it('speaks Polish', () => {
+    renderApp('pl-PL');
+    expect(hint()).toHaveTextContent('Przesuń w lewo, aby zobaczyć kolejny cytat');
+    expect(screen.getByRole('button', { name: 'Rozumiem' })).toBeInTheDocument();
+  });
+
+  it('is not shown to readers who saved preferences before it existed', () => {
+    localStorage.setItem('verbeapp:preferences:v1', JSON.stringify({ favorites: ['alpha'] }));
+    renderApp();
+    expect(hint()).not.toBeInTheDocument();
+  });
+
+  it('is not shown with an empty feed', () => {
+    renderApp('en', { catalog: { ...testCatalog(), cards: [] } });
+    expect(hint()).not.toBeInTheDocument();
+  });
+});
+
 describe('favourites and hidden quotes', () => {
   it('saves a favourite, lists it in the profile and removes it again', async () => {
     const { user, store } = renderApp();
