@@ -407,6 +407,48 @@
           "license": "CC0-1.0"
         }
       }
+    },
+    {
+      "id": "think-of-what-thou-hast",
+      "text": "Think not so much of what thou hast not as of what thou hast: but of the things which thou hast select the best, and then reflect how eagerly they would have been sought, if thou hadst them not.",
+      "section": "book-7",
+      "locator": "Book VII",
+      "tags": ["happiness"],
+      "translations": {
+        "pl": {
+          "text": "Myśl nie tyle o tym, czego nie masz, ile o tym, co masz; z tego, co masz, wybierz to, co najlepsze, i pomyśl, jak gorliwie byś tego szukał, gdybyś tego nie miał.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "very-little-happy-life",
+      "text": "Very little indeed is necessary for living a happy life.",
+      "section": "book-7",
+      "locator": "Book VII",
+      "tags": ["happiness", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Do szczęśliwego życia potrzeba naprawdę bardzo niewiele.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "equable-flow-of-happiness",
+      "text": "Thou canst pass thy life in an equable flow of happiness, if thou canst go by the right way, and think and act in the right way.",
+      "section": "book-5",
+      "locator": "Book V",
+      "tags": ["happiness"],
+      "translations": {
+        "pl": {
+          "text": "Możesz przeżyć życie w równym nurcie szczęścia, jeśli potrafisz iść właściwą drogą oraz myśleć i działać właściwie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

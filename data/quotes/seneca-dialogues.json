@@ -147,7 +147,7 @@
       "text": "He is happy who in his present circumstances, whatever they may be, is satisfied and on friendly terms with the conditions of his life.",
       "section": "on-a-happy-life",
       "locator": "On a Happy Life",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "happiness"],
       "translations": {
         "pl": {
           "text": "Szczęśliwy jest ten, kto w obecnym położeniu, jakiekolwiek ono jest, jest zadowolony i żyje w zgodzie z warunkami swojego życia.",
@@ -347,6 +347,76 @@
       "translations": {
         "pl": {
           "text": "Jeśli chcesz, by ci, których zobowiązujesz, byli ci wdzięczni, nie wystarczy wyświadczać im dobrodziejstw: musisz ich też kochać.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "receives-benefit-with-gratitude",
+      "text": "He who receives a benefit with gratitude, repays the first instalment of it.",
+      "section": "on-benefits",
+      "locator": "On Benefits",
+      "tags": ["happiness", "relationships"],
+      "translations": {
+        "pl": {
+          "text": "Kto przyjmuje dobrodziejstwo z wdzięcznością, spłaca jego pierwszą ratę.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "jealous-and-grateful",
+      "text": "No one can at the same time be both jealous and grateful, because those who are jealous are querulous and sad, while the grateful are joyous.",
+      "section": "on-benefits",
+      "locator": "On Benefits",
+      "tags": ["happiness"],
+      "translations": {
+        "pl": {
+          "text": "Nikt nie może być jednocześnie zazdrosny i wdzięczny, bo zazdrośni są zgryźliwi i smutni, a wdzięczni radośni.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "remembrance-makes-grateful",
+      "text": "It is remembrance that makes men grateful; and the more men hope, the less they remember.",
+      "section": "on-benefits",
+      "locator": "On Benefits",
+      "tags": ["happiness"],
+      "translations": {
+        "pl": {
+          "text": "To pamięć czyni ludzi wdzięcznymi; a im więcej ludzie oczekują, tym mniej pamiętają.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "thankfulness-in-countenances",
+      "text": "No words need be used; if we only feel as we ought, our thankfulness will be shown in our countenances.",
+      "section": "on-benefits",
+      "locator": "On Benefits",
+      "tags": ["happiness", "relationships"],
+      "translations": {
+        "pl": {
+          "text": "Słowa nie są potrzebne; jeśli tylko czujemy to, co powinniśmy, wdzięczność będzie widać na naszych twarzach.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "regulate-joys-stifle-sorrows",
+      "text": "I prefer to have to regulate joys than to stifle sorrows.",
+      "section": "on-a-happy-life",
+      "locator": "On a Happy Life",
+      "tags": ["happiness"],
+      "translations": {
+        "pl": {
+          "text": "Wolę musieć miarkować radości niż tłumić smutki.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }

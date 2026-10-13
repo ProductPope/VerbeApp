@@ -48,6 +48,14 @@
         "en": "Friendship, love, kindness and getting along with other people.",
         "pl": "Przyjaźń, miłość, życzliwość i dobre życie z innymi ludźmi."
       }
+    },
+    {
+      "id": "happiness",
+      "label": { "en": "Happiness & gratitude", "pl": "Szczęście i wdzięczność" },
+      "description": {
+        "en": "Contentment, cheerfulness and appreciating what you already have.",
+        "pl": "Zadowolenie, pogoda ducha i docenianie tego, co już masz."
+      }
     }
   ]
 }
