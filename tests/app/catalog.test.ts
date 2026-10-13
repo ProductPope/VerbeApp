@@ -26,10 +26,15 @@ describe('buildCatalog', () => {
     };
     const quote = dataset.collections[0]!.collection.quotes[0]!;
     delete quote.section;
-    quote.translations = { pl: { text: 'Strata to zmiana.', translator: 'X', license: 'CC0-1.0' } };
+    quote.translations = {
+      pl: { text: 'Strata to zmiana.', translator: 'X', license: 'CC0-1.0', status: 'ai-draft' },
+    };
     const [card] = buildCatalog(dataset).cards;
     expect(card?.link).toBe('https://www.gutenberg.org/ebooks/2680');
     expect(card?.translations).toEqual({ pl: 'Strata to zmiana.' });
+    expect(card?.draftTranslations).toEqual(['pl']);
+    quote.translations.pl!.status = 'reviewed';
+    expect(buildCatalog(dataset).cards[0]?.draftTranslations).toEqual([]);
   });
 
   it('skips collections whose source is missing and falls back to the author id', () => {

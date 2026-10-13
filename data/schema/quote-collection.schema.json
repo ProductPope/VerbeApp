@@ -68,7 +68,7 @@
     },
     "translation": {
       "type": "object",
-      "required": ["text", "translator", "license"],
+      "required": ["text", "translator", "license", "status"],
       "additionalProperties": false,
       "properties": {
         "text": {
@@ -83,6 +83,10 @@
         },
         "license": {
           "enum": ["public-domain", "CC0-1.0"]
+        },
+        "status": {
+          "description": "ai-draft: machine-assisted and not yet checked by a person, shown with a label in the app. reviewed: checked against the original by a person fluent in both languages.",
+          "enum": ["ai-draft", "reviewed"]
         }
       }
     }

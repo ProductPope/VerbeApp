@@ -33,6 +33,9 @@ export function QuoteCard({
   const textId = `quote-${String(position)}-text`;
   const captionId = `quote-${String(position)}-caption`;
   const translationId = `quote-${String(position)}-translation`;
+  const draftId = `quote-${String(position)}-draft`;
+  const draft =
+    translationLanguage !== undefined && card.draftTranslations.includes(translationLanguage);
   const author = localized(card.author, language);
 
   return (
@@ -45,7 +48,11 @@ export function QuoteCard({
       aria-posinset={position}
       aria-setsize={-1}
       aria-labelledby={textId}
-      aria-describedby={translation === undefined ? captionId : `${captionId} ${translationId}`}
+      aria-describedby={
+        translation === undefined
+          ? captionId
+          : `${captionId} ${translationId}${draft ? ` ${draftId}` : ''}`
+      }
       data-card-id={card.id}
     >
       <figure className="card-figure">
@@ -71,6 +78,11 @@ export function QuoteCard({
       {translation !== undefined && (
         <p className="card-translation" id={translationId} lang={translationLanguage}>
           {translation}
+        </p>
+      )}
+      {translation !== undefined && draft && (
+        <p className="card-translation-note" id={draftId}>
+          {strings.aiDraftTranslation}
         </p>
       )}
       <div className="card-actions">

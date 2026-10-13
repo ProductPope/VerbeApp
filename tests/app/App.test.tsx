@@ -249,6 +249,16 @@ describe('translation', () => {
     expect(beta).not.toHaveAccessibleDescription(/Tekst/);
   });
 
+  it('labels an AI draft translation and leaves a reviewed one unlabelled', () => {
+    renderApp();
+    const alpha = articles().find((a) => a.dataset.cardId === 'alpha')!;
+    expect(within(alpha).getByText('AI draft translation, not yet reviewed')).toBeInTheDocument();
+    expect(alpha).toHaveAccessibleDescription(/AI draft translation/);
+    const gamma = articles().find((a) => a.dataset.cardId === 'gamma')!;
+    expect(within(gamma).getByText('Tekst gamma.')).toBeInTheDocument();
+    expect(within(gamma).queryByText(/AI draft/)).not.toBeInTheDocument();
+  });
+
   it('can be switched off in the profile preferences', async () => {
     const { user, store } = renderApp();
     const preferences = await openPreferences(user);

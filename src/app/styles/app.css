@@ -400,6 +400,14 @@ main:focus {
   border-top: var(--border-width) solid var(--color-border);
 }
 
+.card-translation-note {
+  width: 100%;
+  max-width: 38rem;
+  margin: calc(var(--space-2) - var(--space-5)) auto 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
 .card-badge {
   align-self: flex-start;
   margin: 0;

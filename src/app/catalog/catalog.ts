@@ -8,6 +8,8 @@ export interface Card {
   text: string;
   /** Translations keyed by language code. */
   translations: Record<string, string>;
+  /** Languages whose translation is an AI draft no person has checked yet. */
+  draftTranslations: string[];
   tags: string[];
   /** Author name per language, or the contributor for community sayings. */
   author: LocalizedString;
@@ -31,12 +33,18 @@ function chapterUrl(source: Source, section: string | undefined): string {
   return edition.url;
 }
 
-function translationTexts(
-  translations: Record<string, { text: string }> | undefined,
-): Record<string, string> {
+type Translations = Record<string, { text: string; status: string }> | undefined;
+
+function translationTexts(translations: Translations): Record<string, string> {
   return Object.fromEntries(
     Object.entries(translations ?? {}).map(([language, { text }]) => [language, text]),
   );
+}
+
+function draftLanguages(translations: Translations): string[] {
+  return Object.entries(translations ?? {})
+    .filter(([, { status }]) => status !== 'reviewed')
+    .map(([language]) => language);
 }
 
 /** Flattens a validated dataset into the cards the app displays. */
@@ -55,6 +63,7 @@ export function buildCatalog(dataset: Dataset): Catalog {
         kind: 'quote',
         text: quote.text,
         translations: translationTexts(quote.translations),
+        draftTranslations: draftLanguages(quote.translations),
         tags: quote.tags,
         author,
         work: source.title,
@@ -71,6 +80,7 @@ export function buildCatalog(dataset: Dataset): Catalog {
         kind: 'community',
         text: item.text,
         translations: translationTexts(item.translations),
+        draftTranslations: draftLanguages(item.translations),
         tags: item.tags,
         author: { en: collection.contributor },
         work: '',

@@ -18,7 +18,9 @@ Thank you for helping. The most valuable contribution is a good quote, correctly
 
    You may shorten a passage: start or end mid-sentence, or mark omitted words with `…`. Do not
    change, modernise or reorder words. Typographic differences (straight or curly quotes, dash
-   styles, letter case) are fine.
+   styles, letter case) are fine. An ellipsis may leave out at most 200 characters, and never the
+   words that say someone else is speaking (`says`, `said`, a quotation mark): if the author is
+   quoting another writer, the quote belongs to that writer. `npm run data:verify` checks both.
 
 3. Add an entry to `data/quotes/<source>.json`:
 
@@ -73,10 +75,15 @@ public domain or your own work released under CC0:
   "pl": {
     "text": "Większość ludzi wiedzie życie w cichej rozpaczy.",
     "translator": "VerbeApp contributors",
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "status": "reviewed"
   }
 }
 ```
+
+`status` is `ai-draft` for a machine-assisted translation nobody has checked yet (the app labels
+it as such) and `reviewed` once a person fluent in both languages has compared it with the English.
+Reviewing a draft means correcting it where needed and changing its status to `reviewed`.
 
 ## Code changes
 
