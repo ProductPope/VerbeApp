@@ -144,6 +144,15 @@
       },
       "born": 1533,
       "died": 1592
+    },
+    {
+      "id": "arthur-schopenhauer",
+      "name": {
+        "en": "Arthur Schopenhauer",
+        "pl": "Arthur Schopenhauer"
+      },
+      "born": 1788,
+      "died": 1860
     }
   ]
 }
