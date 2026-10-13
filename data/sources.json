@@ -260,6 +260,22 @@
         "url": "https://www.gutenberg.org/ebooks/3600",
         "text": "https://www.gutenberg.org/cache/epub/3600/pg3600.txt"
       }
+    },
+    {
+      "id": "wisdom-of-life",
+      "title": "The Wisdom of Life",
+      "author": "arthur-schopenhauer",
+      "translator": {
+        "name": "T. Bailey Saunders",
+        "died": 1928
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Project Gutenberg",
+        "url": "https://www.gutenberg.org/ebooks/10741",
+        "text": "https://www.gutenberg.org/cache/epub/10741/pg10741.txt"
+      }
     }
   ]
 }
