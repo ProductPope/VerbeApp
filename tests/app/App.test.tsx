@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../src/app/App.js';
 import { readingTimeMs, seededRandom } from '../../src/app/feed/queue.js';
 import { NotificationsBlockedError, type PushService } from '../../src/app/notifications/push.js';
+import { createPersonalStore } from '../../src/app/personal/personal.js';
 import { createPreferencesStore } from '../../src/app/prefs/store.js';
 import { createStreakStore, dayOf, previousDay } from '../../src/app/streak/streak.js';
 import { testCatalog } from './fixtures.js';
@@ -11,18 +12,24 @@ import { testCatalog } from './fixtures.js';
 function renderApp(language = 'en', extra: { push?: PushService; initialCardId?: string } = {}) {
   const store = createPreferencesStore(localStorage, language);
   const streakStore = createStreakStore(localStorage);
+  const personalStore = createPersonalStore(localStorage);
+  const saveFile = vi.fn<(name: string, contents: string) => void>();
+  const persistStorage = vi.fn<() => void>();
   const user = userEvent.setup();
   const view = render(
     <App
       catalog={testCatalog()}
       store={store}
       streakStore={streakStore}
+      personalStore={personalStore}
+      saveFile={saveFile}
+      persistStorage={persistStorage}
       random={seededRandom(1)}
       reducedMotion={false}
       {...extra}
     />,
   );
-  return { store, streakStore, user, ...view };
+  return { store, streakStore, personalStore, saveFile, persistStorage, user, ...view };
 }
 
 async function openSettings(user: ReturnType<typeof userEvent.setup>) {
@@ -506,6 +513,170 @@ describe('reading streak', () => {
     expect(streakStore.get()).toMatchObject({ count: 0, activeMs: 29_000 });
     advanceBy(1_000);
     expect(streakStore.get().count).toBe(1);
+  });
+});
+
+describe('your own quotes', () => {
+  async function openAddForm(user: ReturnType<typeof userEvent.setup>) {
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    const section = screen.getByRole('region', { name: 'Your quotes' });
+    await user.click(within(section).getByRole('button', { name: 'Add a quote' }));
+    return screen.getByRole('dialog', { name: 'Add a quote' });
+  }
+
+  it('adds a quote that shows in the feed with its own label', async () => {
+    const { user, personalStore, persistStorage } = renderApp();
+    const dialog = await openAddForm(user);
+    expect(within(dialog).getByRole('textbox', { name: 'Quote' })).toHaveAccessibleDescription(
+      'Up to 1000 characters.',
+    );
+    await user.type(within(dialog).getByRole('textbox', { name: 'Quote' }), 'Mind the  gap.');
+    await user.type(within(dialog).getByRole('textbox', { name: 'Author (optional)' }), 'Me');
+    await user.type(
+      within(dialog).getByRole('textbox', { name: 'Book or source (optional)' }),
+      'Notebook, p. 3',
+    );
+    await user.click(within(dialog).getByRole('checkbox', { name: 'Philosophy' }));
+    await user.click(within(dialog).getByRole('button', { name: 'Save' }));
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(screen.getByRole('status')).toHaveTextContent('Quote saved.');
+    expect(persistStorage).toHaveBeenCalledOnce();
+    const [saved] = personalStore.get();
+    expect(saved).toMatchObject({
+      text: 'Mind the gap.',
+      author: 'Me',
+      source: 'Notebook, p. 3',
+      language: 'en',
+      tags: ['philosophy'],
+    });
+    const section = screen.getByRole('region', { name: 'Your quotes' });
+    expect(within(section).getByText('Mind the gap.')).toBeInTheDocument();
+    expect(within(section).getByText('Me, Notebook, p. 3')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    const card = articles().find((a) => a.dataset.cardId === saved!.id)!;
+    expect(within(card).getByText('Your quote')).toBeInTheDocument();
+    expect(within(card).getByText('Notebook, p. 3')).toBeInTheDocument();
+    expect(within(card).queryByRole('link')).not.toBeInTheDocument();
+  });
+
+  it('requires the text and says why', async () => {
+    const { user, personalStore } = renderApp();
+    const dialog = await openAddForm(user);
+    await user.click(within(dialog).getByRole('button', { name: 'Save' }));
+    const field = within(dialog).getByRole('textbox', { name: 'Quote' });
+    expect(field).toHaveAttribute('aria-invalid', 'true');
+    expect(field).toHaveAccessibleDescription('Enter the quote. Up to 1000 characters.');
+    expect(field).toHaveFocus();
+    expect(personalStore.get()).toEqual([]);
+  });
+
+  it('marks the language of a Polish quote and closes without saving on Cancel', async () => {
+    const { user, personalStore } = renderApp('pl');
+    await user.click(screen.getByRole('button', { name: 'Twój profil' }));
+    await user.click(screen.getByRole('button', { name: 'Dodaj cytat' }));
+    const dialog = screen.getByRole('dialog', { name: 'Dodaj cytat' });
+    expect(within(dialog).getByRole('combobox', { name: 'Język cytatu' })).toHaveValue('pl');
+    const field = within(dialog).getByRole('textbox', { name: 'Cytat' });
+    await user.type(field, 'Nie wszystko złoto.');
+    expect(field).toHaveAttribute('lang', 'pl');
+    await user.click(within(dialog).getByRole('button', { name: 'Anuluj' }));
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(personalStore.get()).toEqual([]);
+  });
+
+  it('edits and deletes a quote, with undo', async () => {
+    const { user, personalStore } = renderApp();
+    const original = {
+      id: 'mine-1',
+      text: 'First draft.',
+      author: '',
+      source: '',
+      language: 'en' as const,
+      tags: [],
+      added: '2026-10-13T10:00:00.000Z',
+    };
+    personalStore.update(() => [original]);
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    const section = screen.getByRole('region', { name: 'Your quotes' });
+    const edit = within(section).getByRole('button', { name: 'Edit' });
+    expect(edit).toHaveAccessibleDescription('First draft.');
+    await user.click(edit);
+
+    const dialog = screen.getByRole('dialog', { name: 'Edit quote' });
+    const field = within(dialog).getByRole('textbox', { name: 'Quote' });
+    expect(field).toHaveValue('First draft.');
+    await user.clear(field);
+    await user.type(field, 'Second draft.');
+    await user.click(within(dialog).getByRole('button', { name: 'Save' }));
+    expect(personalStore.get()).toEqual([{ ...original, text: 'Second draft.' }]);
+
+    await user.click(within(section).getByRole('button', { name: 'Delete' }));
+    expect(personalStore.get()).toEqual([]);
+    const status = screen.getByRole('status');
+    expect(status).toHaveTextContent('Quote deleted.');
+    await user.click(within(status).getByRole('button', { name: 'Undo' }));
+    expect(personalStore.get()).toEqual([{ ...original, text: 'Second draft.' }]);
+  });
+
+  it('downloads a backup and restores it, skipping quotes already here', async () => {
+    const { user, personalStore, saveFile } = renderApp();
+    const quote = {
+      id: 'mine-1',
+      text: 'Keep me.',
+      author: '',
+      source: '',
+      language: 'en' as const,
+      tags: [],
+      added: '2026-10-13T10:00:00.000Z',
+    };
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    const section = screen.getByRole('region', { name: 'Your quotes' });
+    expect(within(section).getByRole('button', { name: 'Download backup' })).toBeDisabled();
+
+    act(() => {
+      personalStore.update(() => [quote]);
+    });
+    await user.click(within(section).getByRole('button', { name: 'Download backup' }));
+    expect(saveFile).toHaveBeenCalledWith(
+      expect.stringMatching(/^verbeapp-my-quotes-\d{4}-\d{2}-\d{2}\.json$/),
+      expect.any(String),
+    );
+    const backup = saveFile.mock.calls[0]![1];
+
+    const input = screen.getByTestId('import-file');
+    const other = { ...quote, id: 'mine-2', text: 'And me.' };
+    const file = new File(
+      [backup.replace('"quotes": [', `"quotes": [${JSON.stringify(other)},`)],
+      'backup.json',
+      { type: 'application/json' },
+    );
+    await user.upload(input, file);
+    await vi.waitFor(() => {
+      expect(screen.getByRole('status')).toHaveTextContent('Added 1 quote from the backup.');
+    });
+    expect(personalStore.get()).toEqual([quote, other]);
+
+    await user.upload(input, new File(['nope'], 'x.json', { type: 'application/json' }));
+    await vi.waitFor(() => {
+      expect(screen.getByRole('status')).toHaveTextContent('This file is not a VerbeApp backup.');
+    });
+  });
+
+  it('shows saved notices only for a while', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const user = userEvent.setup({ advanceTimers: (ms) => vi.advanceTimersByTime(ms) });
+    renderApp();
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    await user.click(screen.getByRole('button', { name: 'Add a quote' }));
+    await user.type(screen.getByRole('textbox', { name: 'Quote' }), 'Brief.');
+    await user.click(screen.getByRole('button', { name: 'Save' }));
+    expect(screen.getByRole('status')).toHaveTextContent('Quote saved.');
+    act(() => {
+      vi.advanceTimersByTime(5_000);
+    });
+    expect(screen.getByRole('status')).toBeEmptyDOMElement();
   });
 });
 

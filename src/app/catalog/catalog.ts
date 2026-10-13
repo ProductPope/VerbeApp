@@ -1,17 +1,19 @@
 import type { Dataset, LocalizedString, Source, Tag } from '../../data/model.js';
 
-/** One item the feed can show: a sourced quote or a community saying. */
+/** One item the feed can show: a sourced quote, a community saying or the reader's own quote. */
 export interface Card {
   id: string;
-  kind: 'quote' | 'community';
-  /** English text, always present. */
+  kind: 'quote' | 'community' | 'personal';
+  /** The quote itself, in English unless `language` says otherwise. */
   text: string;
+  /** Language of `text` when it is not English; only the reader's own quotes set it. */
+  language?: string;
   /** Translations keyed by language code. */
   translations: Record<string, string>;
   tags: string[];
-  /** Author name per language, or the contributor for community sayings. */
+  /** Author name per language, the contributor for community sayings, or empty when unknown. */
   author: LocalizedString;
-  /** Title of the work; empty for community sayings. */
+  /** Title of the work; empty for community sayings and unknown sources. */
   work: string;
   locator: string;
   /** Where to read the quote in context, or what inspired a community saying. */

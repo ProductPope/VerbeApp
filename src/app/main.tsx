@@ -5,6 +5,7 @@ import { App } from './App.js';
 import { catalog } from './catalog/load.js';
 import { PUSH_API_URL } from './notifications/config.js';
 import { createPushService, isPushSupported } from './notifications/push.js';
+import { createPersonalStore } from './personal/personal.js';
 import { createPreferencesStore } from './prefs/store.js';
 import { createStreakStore } from './streak/streak.js';
 import './styles/tokens.css';
@@ -45,6 +46,7 @@ if (root) {
         catalog={catalog}
         store={createPreferencesStore(storage, navigator.language)}
         streakStore={createStreakStore(storage)}
+        personalStore={createPersonalStore(storage)}
         random={Math.random}
         reducedMotion={window.matchMedia('(prefers-reduced-motion: reduce)').matches}
         push={push}

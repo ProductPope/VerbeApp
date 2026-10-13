@@ -18,6 +18,8 @@ interface ProfileViewProps {
   onTranslationChange: (translation: boolean) => void;
   /** The daily notification setting, when this build has a push server. */
   notification?: ReactNode;
+  /** The reader's own quotes. */
+  personal?: ReactNode;
 }
 
 function SavedList({
@@ -44,7 +46,7 @@ function SavedList({
           translationLanguage === undefined ? undefined : card.translations[translationLanguage];
         return (
           <li key={id} className="saved-item">
-            <blockquote lang="en">
+            <blockquote lang={card.language ?? 'en'}>
               <p>{card.text}</p>
             </blockquote>
             {translation !== undefined && (
@@ -133,7 +135,7 @@ function Preferences({
   );
 }
 
-/** Reading preferences, favourites to reread, and hidden quotes that can be restored. */
+/** Reading preferences, the reader's own quotes, favourites to reread, and hidden quotes. */
 export function ProfileView({
   cards,
   favorites,
@@ -147,6 +149,7 @@ export function ProfileView({
   onLanguageChange,
   onTranslationChange,
   notification,
+  personal,
 }: ProfileViewProps) {
   const byId = new Map(cards.map((card) => [card.id, card]));
   const knownFavorites = favorites.filter((id) => byId.has(id));
@@ -162,6 +165,7 @@ export function ProfileView({
         onTranslationChange={onTranslationChange}
         notification={notification}
       />
+      {personal}
       <section aria-labelledby="favorites-heading">
         <h2 id="favorites-heading">{strings.favoritesHeading}</h2>
         {knownFavorites.length === 0 ? (

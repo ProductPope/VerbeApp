@@ -27,16 +27,23 @@ with TalkBack on Android and a keyboard on desktop.
 - **Settings** (category filters) live in one native modal `<dialog>`: it traps focus, closes on
   Escape and returns focus to the Settings button.
 - **Profile** is a toggle button with `aria-pressed`. Its view has three labelled regions:
-  Preferences, Favourites and Hidden quotes. In Preferences the translation toggle is a checkbox
+  Preferences, Your quotes, Favourites and Hidden quotes. In Preferences the translation toggle is a checkbox
   with `role="switch"` and the app language is a native `<select>`.
 - **Daily notification** (in Preferences): a switch with its hint and any error in its accessible
   description; the error is also announced through a status region. The hour picker appears only
   when the switch is on.
-- **Language**: the page `lang` follows the chosen language. Quotes are always `lang="en"`, and the
+- **Language**: the page `lang` follows the chosen language. Quotes are `lang="en"` (a reader's own
+  quote carries the language they chose), and the
   translation under them carries `lang="pl"`, so screen readers pronounce each correctly. The
   translation is part of the article's description.
 - **Motion**: transitions and smooth scrolling are disabled under `prefers-reduced-motion`.
 - **Hiding a quote** is announced in a status region with an Undo button.
+- **Your own quotes**: the add and edit form is a native modal `<dialog>` that opens on the quote
+  field and closes on Escape. Every field has a visible label; hints and the error are in the
+  field's accessible description, the invalid field gets `aria-invalid` and focus, and categories
+  are native checkboxes in a `fieldset` with a `legend`. The text field carries the quote's
+  language. Edit and Delete buttons are described by the quote they act on. Saving, restoring a
+  backup and deleting are announced in the status region; deleting offers Undo.
 - **Reading streak**: the flame and number in the header are decorative; a visually hidden sentence
   gives the full count. When today joins the streak, a message appears in the same status region
   and leaves after a few seconds without needing any action.

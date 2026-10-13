@@ -16,6 +16,38 @@ interface QuoteCardProps {
   ref?: Ref<HTMLElement>;
 }
 
+function Caption({ card, author, strings }: { card: Card; author: string; strings: Strings }) {
+  switch (card.kind) {
+    case 'quote':
+      return (
+        <>
+          <span className="card-author">{author}</span>
+          <span className="card-source">
+            <cite>{card.work}</cite>, {card.locator}
+          </span>
+        </>
+      );
+    case 'community':
+      return (
+        <span className="card-author">
+          {strings.by} {author}
+        </span>
+      );
+    case 'personal':
+      // The reader typed these themselves, so either may be missing.
+      return (
+        <>
+          {author !== '' && <span className="card-author">{author}</span>}
+          {card.work !== '' && (
+            <span className="card-source">
+              <cite>{card.work}</cite>
+            </span>
+          )}
+        </>
+      );
+  }
+}
+
 /** One quote in the feed: an ARIA feed article with its own actions. */
 export function QuoteCard({
   card,
@@ -50,22 +82,12 @@ export function QuoteCard({
     >
       <figure className="card-figure">
         {card.kind === 'community' && <p className="card-badge">{strings.communitySaying}</p>}
-        <blockquote className="card-text" id={textId} lang="en">
+        {card.kind === 'personal' && <p className="card-badge">{strings.personalQuote}</p>}
+        <blockquote className="card-text" id={textId} lang={card.language ?? 'en'}>
           <p>{card.text}</p>
         </blockquote>
         <figcaption className="card-caption" id={captionId}>
-          {card.kind === 'quote' ? (
-            <>
-              <span className="card-author">{author}</span>
-              <span className="card-source">
-                <cite>{card.work}</cite>, {card.locator}
-              </span>
-            </>
-          ) : (
-            <span className="card-author">
-              {strings.by} {author}
-            </span>
-          )}
+          <Caption card={card} author={author} strings={strings} />
         </figcaption>
       </figure>
       {translation !== undefined && (

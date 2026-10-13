@@ -44,6 +44,38 @@ const en = {
   emptyFeed: 'No quotes match. Choose more categories or restore hidden quotes.',
   newTab: '(opens in a new tab)',
   by: 'by',
+  personalQuote: 'Your quote',
+  personalHeading: 'Your quotes',
+  personalHint:
+    'Quotes you add are kept only on this device and appear in the feed with the others.',
+  noPersonal: 'Nothing added yet. Copy a line from a book you are reading.',
+  addQuote: 'Add a quote',
+  editQuote: 'Edit quote',
+  edit: 'Edit',
+  delete: 'Delete',
+  save: 'Save',
+  cancel: 'Cancel',
+  quoteSaved: 'Quote saved.',
+  quoteDeleted: 'Quote deleted.',
+  quoteTextLabel: 'Quote',
+  quoteTextHint: (max: number) => `Up to ${String(max)} characters.`,
+  quoteAuthorLabel: 'Author (optional)',
+  quoteSourceLabel: 'Book or source (optional)',
+  quoteSourceHint: 'For example the title and page.',
+  quoteLanguageLabel: 'Language of the quote',
+  quoteTagsLabel: 'Categories (optional)',
+  quoteTagsHint: 'A quote without a category shows only while all categories are selected.',
+  textRequired: 'Enter the quote.',
+  textTooLong: (max: number) => `Shorten the quote to ${String(max)} characters or fewer.`,
+  backupHint:
+    'Clearing browser data deletes them. Download a backup to keep them safe or move them to another device.',
+  exportQuotes: 'Download backup',
+  importQuotes: 'Restore from backup',
+  imported: (count: number) =>
+    count === 0
+      ? 'No new quotes in this backup.'
+      : `Added ${String(count)} ${count === 1 ? 'quote' : 'quotes'} from the backup.`,
+  importFailed: 'This file is not a VerbeApp backup.',
   streak: (days: number) =>
     `Reading streak: ${String(days)} ${days === 1 ? 'day' : 'days'} in a row`,
   streakReached: (days: number) =>
@@ -53,6 +85,19 @@ const en = {
 };
 
 export type Strings = typeof en;
+
+/** "1 cytat", "3 cytaty", "5 cytatów", "22 cytaty", "12 cytatów". */
+function polishQuotes(count: number): string {
+  const lastDigit = count % 10;
+  const lastTwo = count % 100;
+  const form =
+    count === 1
+      ? 'cytat'
+      : lastDigit >= 2 && lastDigit <= 4 && (lastTwo < 12 || lastTwo > 14)
+        ? 'cytaty'
+        : 'cytatów';
+  return `${String(count)} ${form}`;
+}
 
 const pl: Strings = {
   appName: 'VerbeApp',
@@ -96,6 +141,36 @@ const pl: Strings = {
   emptyFeed: 'Brak pasujących cytatów. Wybierz więcej kategorii lub przywróć ukryte cytaty.',
   newTab: '(otwiera się w nowej karcie)',
   by: 'autor:',
+  personalQuote: 'Twój cytat',
+  personalHeading: 'Twoje cytaty',
+  personalHint:
+    'Dodane cytaty są zapisane tylko na tym urządzeniu i pojawiają się w feedzie razem z pozostałymi.',
+  noPersonal: 'Nic jeszcze nie dodano. Przepisz zdanie z książki, którą czytasz.',
+  addQuote: 'Dodaj cytat',
+  editQuote: 'Edytuj cytat',
+  edit: 'Edytuj',
+  delete: 'Usuń',
+  save: 'Zapisz',
+  cancel: 'Anuluj',
+  quoteSaved: 'Cytat zapisany.',
+  quoteDeleted: 'Cytat usunięty.',
+  quoteTextLabel: 'Cytat',
+  quoteTextHint: (max: number) => `Do ${String(max)} znaków.`,
+  quoteAuthorLabel: 'Autor (opcjonalnie)',
+  quoteSourceLabel: 'Książka lub źródło (opcjonalnie)',
+  quoteSourceHint: 'Na przykład tytuł i strona.',
+  quoteLanguageLabel: 'Język cytatu',
+  quoteTagsLabel: 'Kategorie (opcjonalnie)',
+  quoteTagsHint: 'Cytat bez kategorii pojawia się tylko wtedy, gdy wybrane są wszystkie kategorie.',
+  textRequired: 'Wpisz cytat.',
+  textTooLong: (max: number) => `Skróć cytat do najwyżej ${String(max)} znaków.`,
+  backupHint:
+    'Wyczyszczenie danych przeglądarki je usuwa. Pobierz kopię zapasową, aby je zabezpieczyć lub przenieść na inne urządzenie.',
+  exportQuotes: 'Pobierz kopię zapasową',
+  importQuotes: 'Przywróć z kopii',
+  imported: (count: number) =>
+    count === 0 ? 'W tej kopii nie ma nowych cytatów.' : `Dodano z kopii: ${polishQuotes(count)}.`,
+  importFailed: 'Ten plik nie jest kopią zapasową VerbeApp.',
   streak: (days: number) =>
     `Seria czytania: ${String(days)} ${days === 1 ? 'dzień' : 'dni'} z rzędu`,
   streakReached: (days: number) =>
