@@ -1,0 +1,19 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "principles-of-psychology",
+  "quotes": [
+    {
+      "id": "experience-what-agree-attend",
+      "text": "My experience is what I agree to attend to.",
+      "locator": "Chapter XI. Attention",
+      "tags": ["self-development", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "Moje doświadczenie to to, na co zgadzam się zwracać uwagę.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    }
+  ]
+}
