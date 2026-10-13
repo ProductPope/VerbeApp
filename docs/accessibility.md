@@ -30,6 +30,8 @@ with TalkBack on Android and a keyboard on desktop.
   closes it and focus returns to the Profile button. It has three labelled regions: Preferences,
   Favourites and Hidden quotes. Preferences is a native `<details>` disclosure, collapsed by default; inside it the translation toggle is a checkbox with
   `role="switch"`, drawn as a sliding switch (44 px tall touch area; native checkbox in forced-colors mode), and the app language is a native `<select>`.
+- **About** is the profile's last region, a `<details>` disclosure collapsed by default, so it
+  stays out of the way; its GitHub link opens in a new tab with `rel="noopener noreferrer"`.
 - **Daily notification** (in Preferences): a switch with its hint and any error in its accessible
   description; the error is also announced through a status region. The hour picker appears only
   when the switch is on.

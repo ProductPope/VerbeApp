@@ -3,6 +3,8 @@ import { localized, type Card } from '../catalog/catalog.js';
 import { isLanguage, LANGUAGES, type Language, type Strings } from '../i18n/strings.js';
 import { Icon } from './Icon.js';
 
+const REPOSITORY_URL = 'https://github.com/ProductPope/VerbeApp';
+
 const LANGUAGE_NAMES = { en: 'English', pl: 'Polski' } as const;
 
 interface ProfileDialogProps {
@@ -217,6 +219,19 @@ export function ProfileDialog({
               onAction={onRestore}
             />
           )}
+        </section>
+        {/* Last and collapsed, so it never competes with the reader's own content. */}
+        <section aria-labelledby="about-heading">
+          <details className="disclosure about">
+            <summary id="about-heading">{strings.aboutHeading}</summary>
+            <p>{strings.aboutText}</p>
+            <p>{strings.aboutSources}</p>
+            <p>
+              <a href={REPOSITORY_URL} target="_blank" rel="noopener noreferrer">
+                {strings.aboutLink}
+              </a>
+            </p>
+          </details>
         </section>
       </div>
     </dialog>

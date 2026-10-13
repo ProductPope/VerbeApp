@@ -45,6 +45,8 @@ test.describe('accessibility', () => {
 
       const profile = await openProfile(page);
       await expect(profile.getByRole('heading', { name: 'Favourites' })).toBeVisible();
+      await profile.getByText('About VerbeApp').click();
+      await expect(profile.getByRole('link', { name: 'Source code on GitHub' })).toBeVisible();
       await expectNoAxeViolations(page);
       await profile.getByRole('button', { name: 'Close' }).click();
       await expect(profile).toBeHidden();
