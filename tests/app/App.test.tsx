@@ -722,6 +722,16 @@ describe('reading streak', () => {
 });
 
 describe('your own quotes', () => {
+  it('starts collapsed, like Preferences', async () => {
+    const { user } = renderApp();
+    const profile = await openProfile(user);
+    const section = within(profile).getByRole('region', { name: 'Your quotes' });
+    const details = section.querySelector('details');
+    expect(details).not.toHaveAttribute('open');
+    await user.click(within(section).getByText('Your quotes', { selector: 'summary' }));
+    expect(details).toHaveAttribute('open');
+  });
+
   async function openAddForm(user: ReturnType<typeof userEvent.setup>) {
     await user.click(screen.getByRole('button', { name: 'Your profile' }));
     const section = screen.getByRole('region', { name: 'Your quotes' });
