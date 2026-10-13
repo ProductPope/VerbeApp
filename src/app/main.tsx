@@ -6,6 +6,7 @@ import { catalog } from './catalog/load.js';
 import { PUSH_API_URL } from './notifications/config.js';
 import { createPushService, isPushSupported } from './notifications/push.js';
 import { createPreferencesStore } from './prefs/store.js';
+import { createStreakStore } from './streak/streak.js';
 import './styles/tokens.css';
 import './styles/app.css';
 
@@ -37,11 +38,13 @@ if (initialCardId !== undefined) {
 
 const root = document.getElementById('root');
 if (root) {
+  const storage = localStorageOrUndefined();
   createRoot(root).render(
     <StrictMode>
       <App
         catalog={catalog}
-        store={createPreferencesStore(localStorageOrUndefined(), navigator.language)}
+        store={createPreferencesStore(storage, navigator.language)}
+        streakStore={createStreakStore(storage)}
         random={Math.random}
         reducedMotion={window.matchMedia('(prefers-reduced-motion: reduce)').matches}
         push={push}

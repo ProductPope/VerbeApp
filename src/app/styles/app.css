@@ -144,6 +144,21 @@ select {
   font-size: var(--font-size-title);
 }
 
+/* Reading streak: a quiet count of days in a row, next to the title. */
+.streak {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0 var(--space-2) 0 0;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.streak[data-active='true'] {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
 /* Settings */
 .settings {
   width: min(32rem, calc(100% - 2 * var(--space-4)));
@@ -471,6 +486,10 @@ main:focus {
   background: var(--color-surface);
   box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
   pointer-events: auto;
+}
+
+.toast-plain {
+  padding: var(--space-3) var(--space-4);
 }
 
 @media (prefers-reduced-motion: reduce) {

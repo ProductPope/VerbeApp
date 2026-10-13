@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Catalog } from './catalog/catalog.js';
 import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
+import { StreakBadge, StreakCelebration } from './components/ReadingStreak.js';
 import { SavedView } from './components/SavedView.js';
 import { NotificationSetting } from './components/NotificationSetting.js';
 import { SettingsDialog } from './components/SettingsDialog.js';
@@ -10,10 +11,13 @@ import { STRINGS, TRANSLATION_LANGUAGE } from './i18n/strings.js';
 import type { PushService } from './notifications/push.js';
 import { writeSharedPrefs } from './notifications/shared-prefs.js';
 import { toggle, usePreferences, type PreferencesStore } from './prefs/store.js';
+import type { StreakStore } from './streak/streak.js';
+import { trackActiveTime } from './streak/tracker.js';
 
 interface AppProps {
   catalog: Catalog;
   store: PreferencesStore;
+  streakStore: StreakStore;
   random: () => number;
   reducedMotion: boolean;
   /** Daily notifications; undefined when unsupported or not configured. */
@@ -24,7 +28,15 @@ interface AppProps {
 
 type View = 'feed' | 'saved';
 
-export function App({ catalog, store, random, reducedMotion, push, initialCardId }: AppProps) {
+export function App({
+  catalog,
+  store,
+  streakStore,
+  random,
+  reducedMotion,
+  push,
+  initialCardId,
+}: AppProps) {
   const prefs = usePreferences(store);
   const strings = STRINGS[prefs.language];
   const [view, setView] = useState<View>('feed');
@@ -35,6 +47,8 @@ export function App({ catalog, store, random, reducedMotion, push, initialCardId
     document.documentElement.lang = prefs.language;
     document.title = `${strings.appName}: ${strings.tagline}`;
   }, [prefs.language, strings]);
+
+  useEffect(() => trackActiveTime(streakStore), [streakStore]);
 
   // Let the service worker pick a notification quote that respects these choices.
   const { language, translation, hidden, tags, notifyHour } = prefs;
@@ -71,6 +85,7 @@ export function App({ catalog, store, random, reducedMotion, push, initialCardId
       </a>
       <header className="app-header">
         <h1 className="app-title">{strings.appName}</h1>
+        <StreakBadge store={streakStore} strings={strings} />
         {view === 'feed' && (
           <button
             type="button"
@@ -92,8 +107,8 @@ export function App({ catalog, store, random, reducedMotion, push, initialCardId
             setView(view === 'saved' ? 'feed' : 'saved');
           }}
         >
-          <Icon name="bookmark" filled={view === 'saved'} />
-          <span className="visually-hidden">{strings.saved}</span>
+          <Icon name="user" filled={view === 'saved'} />
+          <span className="visually-hidden">{strings.profile}</span>
         </button>
         <button
           type="button"
@@ -180,6 +195,7 @@ export function App({ catalog, store, random, reducedMotion, push, initialCardId
             </button>
           </p>
         )}
+        <StreakCelebration store={streakStore} strings={strings} suppressed={lastHidden !== null} />
       </div>
     </>
   );

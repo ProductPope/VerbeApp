@@ -1,0 +1,266 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "wisdom-of-life",
+  "quotes": [
+    {
+      "id": "think-too-much-about-opinion",
+      "text": "By a peculiar weakness of human nature, people generally think too much about the opinion which others form of them; although the slightest reflection will show that this opinion, whatever it may be, is not in itself essential to happiness.",
+      "locator": "Chapter IV. Position, Section 1: Reputation",
+      "tags": ["assertiveness", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Przez osobliwą słabość ludzkiej natury ludzie na ogół zbyt wiele myślą o opinii, jaką inni sobie o nich wyrabiają, choć najmniejsza refleksja pokazuje, że ta opinia, jakakolwiek by była, sama w sobie nie jest szczęściu niezbędna.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "slave-of-what-others-think",
+      "text": "A man is the slave of what other people are pleased to think.",
+      "locator": "Chapter IV. Position, Section 1: Reputation",
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Człowiek staje się niewolnikiem tego, co innym spodoba się o nim pomyśleć.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "too-much-honor-to-others",
+      "text": "To lay great value upon what other people say is to pay them too much honor.",
+      "locator": "Chapter IV. Position, Section 1: Reputation",
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Przywiązywać wielką wagę do tego, co mówią inni, to oddawać im zbyt wiele czci.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "existence-in-own-skin",
+      "text": "Every man's chief and real existence is in his own skin, and not in other people's opinions.",
+      "locator": "Chapter IV. Position, Section 1: Reputation",
+      "tags": ["assertiveness", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Główne i prawdziwe istnienie każdego człowieka toczy się w jego własnej skórze, a nie w cudzych opiniach.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "common-error-others-opinion",
+      "text": "To set much too high a value on other people's opinion is a common error everywhere.",
+      "locator": "Chapter IV. Position, Section 1: Reputation",
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Przeceniać cudzą opinię to błąd powszechny wszędzie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "what-will-people-say",
+      "text": "In all we do, almost the first thing we think about is, what will people say; and nearly half the troubles and bothers of life may be traced to our anxiety on this score.",
+      "locator": "Chapter IV. Position, Section 1: Reputation",
+      "tags": ["assertiveness", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Cokolwiek robimy, niemal pierwszą myślą jest: co ludzie powiedzą; a prawie połowę trosk i kłopotów życia można wywieść z tego właśnie niepokoju.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "firmer-more-confident-front",
+      "text": "If people were generally converted from this universal folly … people would present a firmer and more confident front to the world, and generally behave with less embarrassment and restraint.",
+      "locator": "Chapter IV. Position, Section 1: Reputation",
+      "tags": ["assertiveness", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Gdyby ludzie wyleczyli się z tego powszechnego szaleństwa, … stawialiby czoła światu pewniej i śmielej, a w ogóle zachowywaliby się z mniejszym zakłopotaniem i skrępowaniem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "worth-doing-is-hard",
+      "text": "What is worth doing is hard to do.",
+      "locator": "Chapter IV. Position, Section 1: Reputation",
+      "tags": ["self-development", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "To, co warte zrobienia, jest trudne do zrobienia.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "pride-within-vanity-without",
+      "text": "Pride works from within; it is the direct appreciation of oneself. Vanity is the desire to arrive at this appreciation indirectly, from without.",
+      "locator": "Chapter IV. Position, Section 2: Pride",
+      "tags": ["assertiveness", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Duma działa od wewnątrz; to bezpośrednie docenienie samego siebie. Próżność to pragnienie, by dojść do tego docenienia pośrednio, z zewnątrz.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "deserve-fame-not-fame",
+      "text": "Not fame, but that which deserves to be famous, is what a man should hold in esteem.",
+      "locator": "Chapter IV. Position, Section 5: Fame",
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Cenić należy nie sławę, lecz to, co na sławę zasługuje.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "others-heads-wretched-home",
+      "text": "Other people's heads are a wretched place to be the home of a man's true happiness.",
+      "locator": "Chapter IV. Position, Section 5: Fame",
+      "tags": ["assertiveness", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Cudze głowy to marne miejsce na dom dla prawdziwego szczęścia człowieka.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "value-depend-on-others",
+      "text": "It would be a miserable existence which should make its value or want of value depend upon what other people think.",
+      "locator": "Chapter IV. Position, Section 5: Fame",
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Nędzne byłoby istnienie, którego wartość lub jej brak zależałyby od tego, co myślą inni.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "more-in-himself-less-want",
+      "text": "The more a man has in himself, the less he will want from other people.",
+      "locator": "Chapter II. Personality, or What a Man Is",
+      "tags": ["assertiveness", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Im więcej człowiek ma w sobie, tym mniej będzie potrzebował od innych.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "expect-little-from-others",
+      "text": "No man ought to expect much from others, or, in general, from the external world.",
+      "locator": "Chapter II. Personality, or What a Man Is",
+      "tags": ["philosophy", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Nikt nie powinien oczekiwać wiele od innych ani w ogóle od świata zewnętrznego.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "riches-like-sea-water",
+      "text": "Riches, one may say, are like sea-water; the more you drink the thirstier you become; and the same is true of fame.",
+      "locator": "Chapter III. Property, or What a Man Has",
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Bogactwo jest jak woda morska: im więcej jej pijesz, tym większe masz pragnienie; i tak samo jest ze sławą.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "way-of-looking-makes-happy",
+      "text": "It is not what things are objectively and in themselves, but what they are for us, in our way of looking at them, that makes us happy or the reverse.",
+      "locator": "Chapter II. Personality, or What a Man Is",
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Szczęśliwymi lub nieszczęśliwymi czyni nas nie to, czym rzeczy są obiektywnie i same w sobie, lecz to, czym są dla nas, w naszym sposobie patrzenia na nie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "sacrifice-health-greatest-folly",
+      "text": "The greatest of follies is to sacrifice health for any other kind of happiness, whatever it may be, for gain, advancement, learning or fame.",
+      "locator": "Chapter II. Personality, or What a Man Is",
+      "tags": ["self-development", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "Największym z głupstw jest poświęcać zdrowie dla jakiegokolwiek innego szczęścia, czymkolwiek by ono było: zysku, awansu, wiedzy czy sławy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "cheerfulness-knocks-open-door",
+      "text": "If cheerfulness knocks at our door, we should throw it wide open, for it never comes inopportunely.",
+      "locator": "Chapter II. Personality, or What a Man Is",
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Gdy pogoda ducha puka do naszych drzwi, powinniśmy otworzyć je na oścież, bo nigdy nie przychodzi nie w porę.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "healthy-beggar-ailing-king",
+      "text": "A healthy beggar is happier than an ailing king.",
+      "locator": "Chapter I. Division of the Subject",
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Zdrowy żebrak jest szczęśliwszy niż chory król.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "what-no-one-can-take-away",
+      "text": "What a man is in himself, what accompanies him when he is alone, what no one can give or take away, is obviously more essential to him than everything he has in the way of possessions, or even what he may be in the eyes of the world.",
+      "locator": "Chapter I. Division of the Subject",
+      "tags": ["assertiveness", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "To, czym człowiek jest sam w sobie, co towarzyszy mu, gdy jest sam, czego nikt nie może mu dać ani odebrać, jest dla niego oczywiście ważniejsze niż wszystko, co posiada, a nawet niż to, kim jest w oczach świata.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # Daily quote notifications
 
 Readers can switch on one notification a day, at an hour they choose, in **Settings**. The design is
-explained in [ADR 0005](adr/0005-daily-quote-push-without-payload.md).
+explained in [ADR 0006](adr/0006-daily-quote-push-without-payload.md).
 
 ## How it works
 

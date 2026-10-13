@@ -27,7 +27,7 @@ test.describe('accessibility', () => {
       await expect(feed(page).getByRole('article').first()).toBeVisible();
       await expectNoAxeViolations(page);
 
-      await page.getByRole('button', { name: 'Saved quotes' }).click();
+      await page.getByRole('button', { name: 'Your profile' }).click();
       await expect(page.getByRole('heading', { name: 'Favourites' })).toBeVisible();
       await expectNoAxeViolations(page);
 
@@ -120,7 +120,7 @@ test.describe('feed', () => {
     await expect(page.getByRole('status')).toContainText('Quote hidden.');
 
     await page.reload();
-    await page.getByRole('button', { name: 'Saved quotes' }).click();
+    await page.getByRole('button', { name: 'Your profile' }).click();
     await expect(page.getByRole('region', { name: 'Favourites' })).toContainText(
       favoriteText.replace(/[“”]/g, ''),
     );
@@ -167,6 +167,22 @@ test.describe('feed', () => {
       'true',
     );
     await expect(feed(page).getByRole('article').first()).toBeVisible();
+  });
+});
+
+test.describe('reading streak', () => {
+  test('counts today after 30 seconds in the app and remembers it', async ({ page }) => {
+    await page.clock.install({ time: new Date(2026, 9, 13, 9, 0) });
+    await page.goto('./');
+    const badge = page.locator('.streak');
+    await expect(badge).toContainText('Reading streak: 0 days in a row');
+    await page.clock.runFor(31_000);
+    await expect(badge).toContainText('Reading streak: 1 day in a row');
+    await expect(page.getByRole('status')).toContainText('Day one of your reading streak.');
+    await expectNoAxeViolations(page);
+
+    await page.reload();
+    await expect(page.locator('.streak')).toContainText('Reading streak: 1 day in a row');
   });
 });
 

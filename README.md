@@ -23,8 +23,9 @@ Quote apps are full of misattributed and invented lines. Every quote in VerbeApp
 A full-screen deck of quote cards: swipe left for the next one, save favourites and hide quotes you
 don't want to see again. Each English quote shows its Polish translation underneath (switch it off
 in Settings, alongside category filters and the app language). Optional auto-advance turns the
-feed into a slideshow with a progress bar, and pauses whenever you interact. Everything you choose
-stays on your device, and the app works offline.
+feed into a slideshow with a progress bar, and pauses whenever you interact. A reading streak next
+to the title counts the days in a row you spent at least 30 seconds with the app. Everything you
+choose stays on your device, and the app works offline.
 
 It is built to WCAG 2.2 AA; see [docs/accessibility.md](docs/accessibility.md) for how that is
 tested.

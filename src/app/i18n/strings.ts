@@ -8,7 +8,7 @@ const en = {
   appName: 'VerbeApp',
   tagline: 'Wise words, one at a time',
   skipToContent: 'Skip to quotes',
-  saved: 'Saved quotes',
+  profile: 'Your profile',
   settings: 'Settings',
   close: 'Close',
   languageLabel: 'App language',
@@ -43,6 +43,12 @@ const en = {
   emptyFeed: 'No quotes match. Choose more categories or restore hidden quotes.',
   newTab: '(opens in a new tab)',
   by: 'by',
+  streak: (days: number) =>
+    `Reading streak: ${String(days)} ${days === 1 ? 'day' : 'days'} in a row`,
+  streakReached: (days: number) =>
+    days === 1
+      ? 'Day one of your reading streak. See you tomorrow!'
+      : `${String(days)} days in a row. Well done!`,
 };
 
 export type Strings = typeof en;
@@ -51,7 +57,7 @@ const pl: Strings = {
   appName: 'VerbeApp',
   tagline: 'Mądre słowa, jedno po drugim',
   skipToContent: 'Przejdź do cytatów',
-  saved: 'Zapisane cytaty',
+  profile: 'Twój profil',
   settings: 'Ustawienia',
   close: 'Zamknij',
   languageLabel: 'Język aplikacji',
@@ -88,6 +94,10 @@ const pl: Strings = {
   emptyFeed: 'Brak pasujących cytatów. Wybierz więcej kategorii lub przywróć ukryte cytaty.',
   newTab: '(otwiera się w nowej karcie)',
   by: 'autor:',
+  streak: (days: number) =>
+    `Seria czytania: ${String(days)} ${days === 1 ? 'dzień' : 'dni'} z rzędu`,
+  streakReached: (days: number) =>
+    days === 1 ? 'Pierwszy dzień serii czytania. Do jutra!' : `${String(days)} dni z rzędu. Brawo!`,
 };
 
 export const STRINGS: Record<Language, Strings> = { en, pl };
