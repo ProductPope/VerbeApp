@@ -136,6 +136,11 @@ const en = {
     'Habits shape who we become. A few quiet minutes with a good thought every day do more than a long read once in a while.',
   streakHow:
     'A day counts after 30 seconds in the app. Come back tomorrow to keep the flame alight.',
+  installHeading: 'Install VerbeApp',
+  installOffer: 'Keep VerbeApp on your home screen: a wise thought in one tap, even offline.',
+  installAccept: 'Install',
+  installLater: 'Not now',
+  installApp: 'Install the app',
 };
 
 export type Strings = typeof en;
@@ -280,6 +285,11 @@ const pl: Strings = {
   streakHabit:
     'To nawyki nas kształtują. Kilka spokojnych minut z dobrą myślą każdego dnia daje więcej niż długa lektura od święta.',
   streakHow: 'Dzień liczy się po 30 sekundach w aplikacji. Wróć jutro, żeby płomień nie zgasł.',
+  installHeading: 'Zainstaluj VerbeApp',
+  installOffer: 'Dodaj VerbeApp do ekranu głównego: mądra myśl jednym dotknięciem, także offline.',
+  installAccept: 'Zainstaluj',
+  installLater: 'Nie teraz',
+  installApp: 'Zainstaluj aplikację',
 };
 
 export const STRINGS: Record<Language, Strings> = { en, pl };

@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import type { Catalog } from './catalog/catalog.js';
 import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
+import { InstallOffer, useCanInstall } from './components/InstallOffer.js';
 import { HABIT_QUOTE_ID, StreakButton, StreakCelebration } from './components/ReadingStreak.js';
 import { NotificationSetting } from './components/NotificationSetting.js';
 import { CsvImportDialog } from './components/CsvImportDialog.js';
@@ -11,6 +12,7 @@ import { ProfileDialog } from './components/ProfileDialog.js';
 import { SettingsDialog } from './components/SettingsDialog.js';
 import { eligibleCards } from './feed/queue.js';
 import { STRINGS, TRANSLATION_LANGUAGE } from './i18n/strings.js';
+import { installOfferAllowed, type InstallService } from './install/install.js';
 import type { PushService } from './notifications/push.js';
 import { writeSharedPrefs } from './notifications/shared-prefs.js';
 import { csvTemplate, MAX_CSV_BYTES, readQuotesCsv, type CsvImport } from './personal/csv.js';
@@ -27,7 +29,7 @@ import {
 } from './personal/personal.js';
 import { toggle, usePreferences, type PreferencesStore } from './prefs/store.js';
 import { useLocalStore } from './storage/local-store.js';
-import type { StreakStore } from './streak/streak.js';
+import { dayOf, type StreakStore } from './streak/streak.js';
 import { trackActiveTime } from './streak/tracker.js';
 
 /** How long an offer to undo stays on screen. */
@@ -42,6 +44,18 @@ interface Notice {
   undo?: () => void;
   /** The quote the notice is about, so restoring it elsewhere dismisses it. */
   cardId?: string;
+}
+
+/**
+ * A reader who has read on two days in a row and reached today's goal is
+ * coming back on purpose, which makes it a good moment to offer installing.
+ */
+function useReturningReader(streakStore: StreakStore): boolean {
+  const returning = () => {
+    const streak = streakStore.get();
+    return streak.count >= 2 && streak.lastDay === dayOf(new Date());
+  };
+  return useSyncExternalStore(streakStore.subscribe, returning, returning);
 }
 
 /** Which personal quote the form is open for: a new one or an existing one. */
@@ -62,6 +76,8 @@ interface AppProps {
   saveFile?: (name: string, contents: string) => void;
   /** Asks the browser to keep this site's data; replaceable in tests. */
   persistStorage?: () => void;
+  /** Installing to the home screen; undefined where the browser cannot. */
+  install?: InstallService | undefined;
 }
 
 export function App({
@@ -75,6 +91,7 @@ export function App({
   initialCardId,
   saveFile = downloadFile,
   persistStorage = requestPersistentStorage,
+  install,
 }: AppProps) {
   const prefs = usePreferences(store);
   const personal = useLocalStore(personalStore);
@@ -83,6 +100,11 @@ export function App({
   const [undoFocused, setUndoFocused] = useState(false);
   const [editing, setEditing] = useState<Editing>(null);
   const [csvImport, setCsvImport] = useState<CsvImport | null>(null);
+  const canInstall = useCanInstall(install);
+  const returningReader = useReturningReader(streakStore);
+  // Set when the reader shows the app is worth keeping: a favourite or a quote of their own.
+  const [engaged, setEngaged] = useState(false);
+  const [installAnswered, setInstallAnswered] = useState(false);
 
   // Notices leave after a while, but never while their Undo button has focus.
   // Hidden quotes can still be restored from the profile at any time.
@@ -127,7 +149,34 @@ export function App({
     );
   }, [store]);
 
+  // Offered only after a moment of value, never on a first look, and not on
+  // top of the swipe hint. Remembered refusals keep it from nagging.
+  const offerInstall =
+    canInstall &&
+    !installAnswered &&
+    prefs.swipeHintSeen &&
+    (engaged || returningReader) &&
+    installOfferAllowed(prefs.installDismissals, prefs.installDismissedAt, new Date());
+
+  function postponeInstall() {
+    setInstallAnswered(true);
+    store.update((current) => ({
+      ...current,
+      installDismissals: current.installDismissals + 1,
+      installDismissedAt: new Date().toISOString(),
+    }));
+  }
+
+  function startInstall(fromOffer: boolean) {
+    if (!install) return;
+    setInstallAnswered(true);
+    void install.install().then((outcome) => {
+      if (outcome === 'dismissed' && fromOffer) postponeInstall();
+    });
+  }
+
   function toggleFavorite(id: string) {
+    if (!prefs.favorites.includes(id)) setEngaged(true);
     store.update((current) => ({ ...current, favorites: toggle(current.favorites, id) }));
   }
 
@@ -160,7 +209,10 @@ export function App({
         ? quotes.map((quote) => (quote.id === existing.id ? { ...quote, ...clean } : quote))
         : [...quotes, { ...clean, id: newPersonalId(), added: new Date().toISOString() }],
     );
-    if (!existing) persistStorage();
+    if (!existing) {
+      persistStorage();
+      setEngaged(true);
+    }
     setNotice({ message: strings.quoteSaved });
   }
 
@@ -189,6 +241,7 @@ export function App({
       ...drafts.map((draft) => ({ ...draft, id: newPersonalId(), added })),
     ]);
     persistStorage();
+    setEngaged(true);
     setNotice({ message: strings.csvImported(drafts.length) });
   }
 
@@ -292,6 +345,13 @@ export function App({
         onTranslationChange={(translation) => {
           store.update((current) => ({ ...current, translation }));
         }}
+        onInstall={
+          canInstall
+            ? () => {
+                startInstall(false);
+              }
+            : undefined
+        }
         personal={
           <PersonalQuotes
             quotes={personal}
@@ -344,6 +404,16 @@ export function App({
           onHide={hide}
         />
       </main>
+      {/* In the page flow under the quotes, so it never covers a quote or its buttons. */}
+      {offerInstall && (
+        <InstallOffer
+          strings={strings}
+          onInstall={() => {
+            startInstall(true);
+          }}
+          onLater={postponeInstall}
+        />
+      )}
       {editing && (
         <PersonalQuoteDialog
           quote={editing.quote}

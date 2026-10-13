@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { registerSW } from 'virtual:pwa-register';
 import { App } from './App.js';
+import { createInstallService } from './install/install.js';
 import { catalog } from './catalog/load.js';
 import { PUSH_API_URL } from './notifications/config.js';
 import { createPushService, isPushSupported } from './notifications/push.js';
@@ -18,6 +19,9 @@ function localStorageOrUndefined(): Storage | undefined {
     return undefined;
   }
 }
+
+// Listen before rendering: the browser may offer installation straight away.
+const install = createInstallService(window);
 
 const push =
   PUSH_API_URL !== '' && isPushSupported()
@@ -51,6 +55,7 @@ if (root) {
         reducedMotion={window.matchMedia('(prefers-reduced-motion: reduce)').matches}
         push={push}
         initialCardId={initialCardId}
+        install={install}
       />
     </StrictMode>,
   );

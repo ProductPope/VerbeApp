@@ -17,6 +17,10 @@ export interface Preferences {
   notifyHour: number;
   /** The reader has swiped once or dismissed the first-launch swipe hint. */
   swipeHintSeen: boolean;
+  /** How often the reader said "Not now" to the offer to install the app. */
+  installDismissals: number;
+  /** When the reader last said "Not now" to it, as an ISO timestamp. */
+  installDismissedAt: string | null;
 }
 
 export const STORAGE_KEY = 'verbeapp:preferences:v1';
@@ -32,6 +36,8 @@ export function defaultPreferences(browserLanguage = ''): Preferences {
     notify: false,
     notifyHour: 8,
     swipeHintSeen: false,
+    installDismissals: 0,
+    installDismissedAt: null,
   };
 }
 
@@ -62,6 +68,14 @@ export function parsePreferences(raw: string | null, fallback: Preferences): Pre
       // Preferences saved before the hint existed belong to readers who
       // already know how to swipe, so only an explicit false shows it.
       swipeHintSeen: data.swipeHintSeen !== false,
+      installDismissals:
+        typeof data.installDismissals === 'number' &&
+        Number.isInteger(data.installDismissals) &&
+        data.installDismissals >= 0
+          ? data.installDismissals
+          : 0,
+      installDismissedAt:
+        typeof data.installDismissedAt === 'string' ? data.installDismissedAt : null,
     };
   } catch {
     return fallback;

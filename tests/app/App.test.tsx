@@ -8,12 +8,18 @@ import { createPersonalStore } from '../../src/app/personal/personal.js';
 import { createPreferencesStore } from '../../src/app/prefs/store.js';
 import { createStreakStore, dayOf, previousDay } from '../../src/app/streak/streak.js';
 import type { Catalog } from '../../src/app/catalog/catalog.js';
+import type { InstallOutcome, InstallService } from '../../src/app/install/install.js';
 import { HABIT_QUOTE_ID } from '../../src/app/components/ReadingStreak.js';
 import { card, testCatalog } from './fixtures.js';
 
 function renderApp(
   language = 'en',
-  extra: { push?: PushService; initialCardId?: string; catalog?: Catalog } = {},
+  extra: {
+    push?: PushService;
+    initialCardId?: string;
+    catalog?: Catalog;
+    install?: InstallService;
+  } = {},
 ) {
   const store = createPreferencesStore(localStorage, language);
   const streakStore = createStreakStore(localStorage);
@@ -940,5 +946,150 @@ describe('page', () => {
     renderApp();
     expect(screen.getByRole('link', { name: 'Skip to quotes' })).toHaveAttribute('href', '#main');
     expect(document.title).toBe('VerbeApp: Wise words, one at a time');
+  });
+});
+
+describe('offer to install', () => {
+  const DAY_MS = 24 * 60 * 60 * 1000;
+
+  /** A browser that can install the app once, answering the dialog with `outcome`. */
+  function fakeInstall(outcome: InstallOutcome = 'accepted') {
+    let available = true;
+    const listeners = new Set<() => void>();
+    return {
+      canInstall: () => available,
+      subscribe: (listener: () => void) => {
+        listeners.add(listener);
+        return () => listeners.delete(listener);
+      },
+      install: vi.fn(() => {
+        available = false;
+        for (const listener of listeners) listener();
+        return Promise.resolve(outcome);
+      }),
+    };
+  }
+
+  /** A returning reader who already knows how to swipe. */
+  function savePreferences(prefs: Record<string, unknown> = {}) {
+    localStorage.setItem('verbeapp:preferences:v1', JSON.stringify(prefs));
+  }
+
+  function offer() {
+    return screen.queryByRole('complementary', { name: 'Install VerbeApp' });
+  }
+
+  async function favouriteFirst(user: ReturnType<typeof userEvent.setup>) {
+    await user.click(within(articles()[0]!).getByRole('button', { name: 'Favourite' }));
+  }
+
+  it('waits for a moment of value instead of greeting a first visit', async () => {
+    savePreferences();
+    const install = fakeInstall();
+    const { user } = renderApp('en', { install });
+    expect(offer()).not.toBeInTheDocument();
+
+    await favouriteFirst(user);
+    expect(offer()).toHaveTextContent(/home screen/);
+    expect(offer()).not.toContainElement(document.activeElement as HTMLElement);
+
+    await user.click(within(offer()!).getByRole('button', { name: 'Install' }));
+    expect(install.install).toHaveBeenCalledOnce();
+    expect(offer()).not.toBeInTheDocument();
+  });
+
+  it('never competes with the swipe hint on the first launch', async () => {
+    const { user } = renderApp('en', { install: fakeInstall() });
+    await user.click(screen.getByRole('button', { name: 'Got it' }));
+    expect(offer()).not.toBeInTheDocument();
+    await favouriteFirst(user);
+    expect(offer()).toBeInTheDocument();
+  });
+
+  it('shows itself to a reader back for a second day in a row', () => {
+    savePreferences();
+    const today = dayOf(new Date());
+    localStorage.setItem(
+      'verbeapp:streak:v1',
+      JSON.stringify({ count: 2, lastDay: today, activeDay: today, activeMs: 30_000 }),
+    );
+    renderApp('en', { install: fakeInstall() });
+    expect(offer()).toBeInTheDocument();
+  });
+
+  it('appears after the reader saves a quote of their own', async () => {
+    savePreferences();
+    const { user } = renderApp('en', { install: fakeInstall() });
+    const profile = await openProfile(user);
+    await user.click(within(profile).getByRole('button', { name: 'Add a quote' }));
+    const form = screen.getByRole('dialog', { name: 'Add a quote' });
+    await user.type(within(form).getByRole('textbox', { name: 'Quote' }), 'Mine.');
+    await user.click(within(form).getByRole('button', { name: 'Save' }));
+    expect(offer()).toBeInTheDocument();
+  });
+
+  it('is not offered where the browser cannot install', async () => {
+    savePreferences();
+    const { user } = renderApp();
+    await favouriteFirst(user);
+    expect(offer()).not.toBeInTheDocument();
+  });
+
+  it('remembers "Not now" for a month, and stops asking after two refusals', async () => {
+    savePreferences();
+    const first = renderApp('en', { install: fakeInstall() });
+    await favouriteFirst(first.user);
+    await first.user.click(within(offer()!).getByRole('button', { name: 'Not now' }));
+    expect(offer()).not.toBeInTheDocument();
+    expect(first.store.get().installDismissals).toBe(1);
+    first.unmount();
+
+    const again = renderApp('en', { install: fakeInstall() });
+    await favouriteFirst(again.user);
+    expect(offer()).not.toBeInTheDocument();
+    again.unmount();
+
+    const monthAgo = new Date(Date.now() - 31 * DAY_MS).toISOString();
+    savePreferences({ installDismissals: 1, installDismissedAt: monthAgo });
+    const later = renderApp('en', { install: fakeInstall() });
+    await favouriteFirst(later.user);
+    expect(offer()).toBeInTheDocument();
+    await later.user.click(within(offer()!).getByRole('button', { name: 'Not now' }));
+    expect(later.store.get().installDismissals).toBe(2);
+    later.unmount();
+
+    savePreferences({ installDismissals: 2, installDismissedAt: monthAgo });
+    const last = renderApp('en', { install: fakeInstall() });
+    await favouriteFirst(last.user);
+    expect(offer()).not.toBeInTheDocument();
+  });
+
+  it('counts closing the browser dialog without installing as "Not now"', async () => {
+    savePreferences();
+    const { user, store } = renderApp('en', { install: fakeInstall('dismissed') });
+    await favouriteFirst(user);
+    await user.click(within(offer()!).getByRole('button', { name: 'Install' }));
+    expect(store.get().installDismissals).toBe(1);
+  });
+
+  it('stays available in the profile while the app can be installed', async () => {
+    savePreferences();
+    const install = fakeInstall();
+    const { user } = renderApp('en', { install });
+    const profile = await openProfile(user);
+    await user.click(within(profile).getByText('About VerbeApp'));
+    await user.click(within(profile).getByRole('button', { name: 'Install the app' }));
+    expect(install.install).toHaveBeenCalledOnce();
+    expect(
+      within(profile).queryByRole('button', { name: 'Install the app' }),
+    ).not.toBeInTheDocument();
+  });
+
+  it('speaks Polish', async () => {
+    savePreferences({ language: 'pl' });
+    const { user } = renderApp('pl-PL', { install: fakeInstall() });
+    await user.click(within(articles()[0]!).getByRole('button', { name: 'Ulubiony' }));
+    const polish = screen.getByRole('complementary', { name: 'Zainstaluj VerbeApp' });
+    expect(within(polish).getByRole('button', { name: 'Nie teraz' })).toBeInTheDocument();
   });
 });
