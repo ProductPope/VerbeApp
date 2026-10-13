@@ -7,21 +7,42 @@
       "text": "I do not wish them to have power over men; but over themselves.",
       "section": "chapter-4",
       "locator": "Chapter IV",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Nie chcę, by miały władzę nad mężczyznami, lecz nad sobą.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "independence-have-long-considered",
       "text": "Independence I have long considered as the grand blessing of life, the basis of every virtue.",
       "section": "dedication",
       "locator": "Dedication",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Niezależność od dawna uważam za największe błogosławieństwo życia, podstawę każdej cnoty.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "exercise-their-understanding-necessary",
       "text": "The exercise of their understanding is necessary, there is no other foundation for independence of character.",
       "section": "chapter-3",
       "locator": "Chapter III",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Ćwiczenie rozumu jest konieczne; nie ma innej podstawy niezależności charakteru.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

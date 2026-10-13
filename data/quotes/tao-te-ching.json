@@ -7,49 +7,98 @@
       "text": "He who knows other men is discerning; he who knows himself is intelligent.",
       "section": "tao-te-ching",
       "locator": "Chapter XXXIII",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Kto zna innych, jest przenikliwy; kto zna siebie, jest mądry.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "overcomes-others-strong-overcomes",
       "text": "He who overcomes others is strong; he who overcomes himself is mighty.",
       "section": "tao-te-ching",
       "locator": "Chapter XXXIII",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Kto pokonuje innych, jest silny; kto pokonuje siebie, jest potężny.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "tree-fills-arms-grew",
       "text": "The tree which fills the arms grew from the tiniest sprout; the tower of nine storeys rose from a (small) heap of earth; the journey of a thousand li commenced with a single step.",
       "section": "tao-te-ching",
       "locator": "Chapter LXIV",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Drzewo, którego nie obejmiesz ramionami, wyrosło z maleńkiego kiełka; wieża o dziewięciu piętrach wyrosła z małej kupki ziemi; podróż tysiąca li zaczęła się od jednego kroku.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "highest-excellence-like-water",
       "text": "The highest excellence is like (that of) water.",
       "section": "tao-te-ching",
       "locator": "Chapter VIII",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Najwyższa doskonałość jest jak woda.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "softest-thing-world-dashes",
       "text": "The softest thing in the world dashes against and overcomes the hardest.",
       "section": "tao-te-ching",
       "locator": "Chapter XLIII",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Najmiękkie na świecie uderza w to, co najtwardsze, i je pokonuje.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "there-no-guilt-greater",
       "text": "There is no guilt greater than to sanction ambition; no calamity greater than to be discontented with one’s lot; no fault greater than the wish to be getting.",
       "section": "tao-te-ching",
       "locator": "Chapter XLVI",
-      "tags": ["philosophy", "self-development"]
+      "tags": ["philosophy", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Nie ma większej winy niż przyzwalać na ambicję, większego nieszczęścia niż niezadowolenie z losu, większego błędu niż chęć posiadania.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "satisfied-with-lot-rich",
       "text": "He who is satisfied with his lot is rich; he who goes on acting with energy has a (firm) will.",
       "section": "tao-te-ching",
       "locator": "Chapter XXXIII",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Kto jest zadowolony ze swojego losu, jest bogaty; kto działa z energią, ma silną wolę.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

@@ -7,14 +7,28 @@
       "text": "Nothing is wretched, but thinking makes it so, and conversely every lot is happy if borne with equanimity.",
       "section": "chapter-2-4",
       "locator": "Book II, chapter IV",
-      "tags": ["philosophy", "self-development"]
+      "tags": ["philosophy", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Nic nie jest nędzne, dopóki myśl go takim nie uczyni; i odwrotnie, każdy los jest szczęśliwy, jeśli znosi się go ze spokojem ducha.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "wrong-involves-misery-doer",
       "text": "A wrong involves the misery of the doer, not of the sufferer.",
       "section": "chapter-4-4",
       "locator": "Book IV, chapter IV",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Krzywda niesie nieszczęście temu, kto ją wyrządza, nie temu, kto ją znosi.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

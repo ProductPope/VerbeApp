@@ -7,91 +7,182 @@
       "text": "Of things some are in our power, and others are not.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter I",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Spośród rzeczy jedne są w naszej mocy, inne nie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "men-disturbed-not-things",
       "text": "Men are disturbed not by the things which happen, but by the opinions about the things.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter V",
-      "tags": ["philosophy", "self-development"]
+      "tags": ["philosophy", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Ludzi niepokoją nie rzeczy, które się dzieją, lecz ich mniemania o tych rzeczach.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "would-improve-submit-considered",
       "text": "If you would improve, submit to be considered without sense and foolish with respect to externals.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter XIII",
-      "tags": ["self-development", "assertiveness"]
+      "tags": ["self-development", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Jeśli chcesz się doskonalić, pogódź się z tym, że w sprawach zewnętrznych będą cię uważać za nierozsądnego i głupiego.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "seek-not-things-happen",
       "text": "Seek not that the things which happen should happen as you wish; but wish the things which happen to be as they are, and you will have a tranquil flow of life.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter VIII",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Nie żądaj, by rzeczy działy się tak, jak chcesz; chciej, by działy się tak, jak się dzieją, a życie popłynie ci spokojnie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "never-say-about-anything",
       "text": "Never say about anything, I have lost it, but say I have restored it.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter XI",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "O niczym nie mów nigdy: straciłem to, lecz mów: oddałem to.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "how-long-will-then",
       "text": "How long will you then still defer thinking yourself worthy of the best things…",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter LI",
-      "tags": ["productivity", "self-development"]
+      "tags": ["productivity", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Jak długo jeszcze będziesz odkładać uznanie siebie za godnego tego, co najlepsze…",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "remember-not-reviles-or",
       "text": "Remember that it is not he who reviles you or strikes you, who insults you, but it is your opinion about these things as being insulting.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter XX",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Pamiętaj, że nie obraża cię ten, kto cię lży albo bije, lecz twoje mniemanie, że te rzeczy są obraźliwe.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "man-has-reported-certain",
       "text": "If a man has reported to you, that a certain person speaks ill of you, do not make any defence (answer) to what has been told you: but reply, The man did not know the rest of my faults, for he would not have mentioned these only.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter XXXIII",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Jeśli ktoś ci doniesie, że pewna osoba źle o tobie mówi, nie broń się przed tym, co ci powiedziano, lecz odpowiedz: nie znał reszty moich wad, bo nie wspomniałby tylko o tych.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "at-banquet-do-not",
       "text": "At a banquet do not say how a man ought to eat, but eat as you ought to eat.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter XLVI",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Na uczcie nie mów, jak człowiek powinien jeść, lecz jedz tak, jak należy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "remember-life-ought-behave",
       "text": "Remember that in life you ought to behave as at a banquet.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter XV",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Pamiętaj, że w życiu powinieneś zachowywać się jak na uczcie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "so-also-will-at",
       "text": "So you also will be at one time an athlete, at another a gladiator, then a rhetorician, then a philosopher, but with your whole soul you will be nothing at all.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter XXIX",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Tak i ty będziesz raz atletą, raz gladiatorem, potem retorem, potem filozofem, ale całą duszą nie będziesz niczym.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "practise-saying-every-harsh",
       "text": "Practise saying to every harsh appearance, You are an appearance, and in no manner what you appear to be.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter I",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Ćwicz się w mówieniu każdemu przykremu wrażeniu: jesteś tylko wrażeniem, a wcale nie tym, czym się wydajesz.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "when-any-person-treats",
       "text": "When any person treats you ill or speaks ill of you, remember that he does this or says this because he thinks that it is his duty.",
       "section": "the-enchiridion",
       "locator": "The Enchiridion, chapter XLII",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Gdy ktoś cię źle traktuje albo źle o tobie mówi, pamiętaj, że robi to lub mówi, bo uważa to za swój obowiązek.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

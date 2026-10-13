@@ -7,14 +7,28 @@
       "text": "Truth happens to an idea.",
       "section": "chapter-6",
       "locator": "Lecture VI: Pragmatism’s Conception of Truth",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Prawda przydarza się idei.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "must-bring-out-each",
       "text": "You must bring out of each word its practical cash-value, set it at work within the stream of your experience.",
       "section": "chapter-2",
       "locator": "Lecture II: What Pragmatism Means",
-      "tags": ["philosophy", "productivity"]
+      "tags": ["philosophy", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "Z każdego słowa musisz wydobyć jego praktyczną wartość i wprawić je w ruch w strumieniu swojego doświadczenia.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

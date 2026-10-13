@@ -7,49 +7,98 @@
       "text": "Learning without thought is labour lost; thought without learning is perilous.",
       "section": "chapter-2",
       "locator": "Book II: Wei Chang",
-      "tags": ["self-development", "philosophy"]
+      "tags": ["self-development", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Nauka bez myślenia to praca stracona; myślenie bez nauki jest niebezpieczne.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "when-know-thing-hold",
       "text": "When you know a thing, to hold that you know it; and when you do not know a thing, to allow that you do not know it;—this is knowledge.",
       "section": "chapter-2",
       "locator": "Book II: Wei Chang",
-      "tags": ["philosophy", "assertiveness"]
+      "tags": ["philosophy", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Gdy coś wiesz, przyznawać, że to wiesz; a gdy czegoś nie wiesz, przyznawać, że tego nie wiesz — oto wiedza.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "do-not-want-done",
       "text": "What you do not want done to yourself, do not do to others.",
       "section": "chapter-15",
       "locator": "Book XV: Wei Ling Kung",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Czego nie chcesz, by tobie czyniono, tego nie czyń innym.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "have-faults-not-reform",
       "text": "To have faults and not to reform them—this, indeed, should be pronounced having faults.",
       "section": "chapter-15",
       "locator": "Book XV: Wei Ling Kung",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Mieć wady i ich nie poprawiać — to dopiero należy nazwać posiadaniem wad.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "when-have-faults-do",
       "text": "When you have faults, do not fear to abandon them.",
       "section": "chapter-1",
       "locator": "Book I: Hsio R",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Gdy masz wady, nie bój się ich porzucić.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "am-not-concerned-am",
       "text": "I am not concerned that I am not known, I seek to be worthy to be known.",
       "section": "chapter-4",
       "locator": "Book IV: Le Jin",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Nie martwię się tym, że nikt mnie nie zna; staram się być godny tego, by mnie znano.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "man-should-say-am",
       "text": "A man should say, I am not concerned that I have no place, I am concerned how I may fit myself for one.",
       "section": "chapter-4",
       "locator": "Book IV: Le Jin",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Człowiek powinien mówić: nie martwię się tym, że nie mam stanowiska; martwię się tym, jak się do niego przygotować.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

@@ -7,49 +7,98 @@
       "text": "First say to yourself who you wish to be, then do accordingly what you are doing.",
       "section": "book-3",
       "locator": "Book III",
-      "tags": ["self-development", "productivity"]
+      "tags": ["self-development", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "Najpierw powiedz sobie, kim chcesz być, a potem rób to, co robisz, zgodnie z tym.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "every-habit-faculty-maintained",
       "text": "Every habit and faculty is maintained and increased by the corresponding actions: the habit of walking by walking, the habit of running by running.",
       "section": "book-2",
       "locator": "Book II",
-      "tags": ["productivity", "self-development"]
+      "tags": ["productivity", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Każdy nawyk i każda zdolność utrzymuje się i rośnie dzięki odpowiadającym im działaniom: nawyk chodzenia dzięki chodzeniu, nawyk biegania dzięki bieganiu.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "impossible-man-begin-learn",
       "text": "It is impossible for a man to begin to learn that which he thinks that he knows.",
       "section": "book-2",
       "locator": "Book II",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Człowiek nie może zacząć uczyć się tego, co, jak mu się zdaje, już wie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "nothing-great-said-epictetus",
       "text": "Nothing great, said Epictetus, is produced suddenly, since not even the grape or the fig is.",
       "section": "book-1",
       "locator": "Book I",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Nic wielkiego, mówił Epiktet, nie powstaje nagle, skoro nawet winogrono czy figa nie powstają nagle.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "good-man-invincible-does",
       "text": "The good man is invincible, for he does not enter the contest where he is not stronger.",
       "section": "book-3",
       "locator": "Book III",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Dobry człowiek jest niezwyciężony, bo nie staje do zawodów, w których nie jest silniejszy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "would-good-reader-read",
       "text": "If you would be a good reader, read; if a writer, write.",
       "section": "book-2",
       "locator": "Book II",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Jeśli chcesz być dobrym czytelnikiem, czytaj; jeśli pisarzem, pisz.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "whomsoever-then-power-another",
       "text": "Whomsoever then it is in the power of another to hinder and compel, declare that he is not free.",
       "section": "book-4",
       "locator": "Book IV",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Kogo zatem ktoś inny może powstrzymać i do czegoś zmusić, o tym powiedz, że nie jest wolny.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

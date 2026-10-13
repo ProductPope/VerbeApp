@@ -6,97 +6,209 @@
       "id": "all-we-are-result-thought",
       "text": "All that we are is the result of what we have thought: it is founded on our thoughts, it is made up of our thoughts.",
       "locator": "Chapter I. The Twin-Verses, verse 1",
-      "tags": ["philosophy", "self-development"]
+      "tags": ["philosophy", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Wszystko, czym jesteśmy, jest wynikiem tego, co myśleliśmy: opiera się na naszych myślach i z naszych myśli jest zbudowane.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "hatred-does-not-cease-hatred",
       "text": "For hatred does not cease by hatred at any time: hatred ceases by love, this is an old rule.",
       "locator": "Chapter I. The Twin-Verses, verse 5",
-      "tags": ["philosophy", "assertiveness"]
+      "tags": ["philosophy", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Nienawiść nigdy nie ustaje dzięki nienawiści: nienawiść ustaje dzięki miłości. To odwieczne prawo.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "earnestness-path-immortality",
       "text": "Earnestness is the path of immortality (Nirvana), thoughtlessness the path of death.",
       "locator": "Chapter II. On Earnestness, verse 21",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Gorliwość jest drogą nieśmiertelności (nirwany), bezmyślność drogą śmierci.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "good-tame-mind",
       "text": "It is good to tame the mind, which is difficult to hold in and flighty, rushing wherever it listeth; a tamed mind brings happiness.",
       "locator": "Chapter III. Thought, verse 35",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Dobrze jest okiełznać umysł, trudny do utrzymania i niestały, pędzący, dokąd zechce; okiełznany umysł przynosi szczęście.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "own-misdeeds-negligences",
       "text": "Not the perversities of others, not their sins of commission or omission, but his own misdeeds and negligences should a sage take notice of.",
       "locator": "Chapter IV. Flowers, verse 50",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Nie na przewrotność innych, nie na ich czyny i zaniedbania, lecz na własne przewinienia i zaniedbania powinien zważać mędrzec.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "wise-people-fashion-themselves",
       "text": "Well-makers lead the water (wherever they like); fletchers bend the arrow; carpenters bend a log of wood; wise people fashion themselves.",
       "locator": "Chapter VI. The Wise Man (Pandita), verse 80",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Budowniczowie kanałów prowadzą wodę, dokąd chcą; łucznicy wyginają strzały; cieśle wyginają drewno; mądrzy kształtują samych siebie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "solid-rock-not-shaken",
       "text": "As a solid rock is not shaken by the wind, wise people falter not amidst blame and praise.",
       "locator": "Chapter VI. The Wise Man (Pandita), verse 81",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Jak lita skała nie drgnie na wietrze, tak mądrzy nie chwieją się wśród nagany i pochwały.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "one-word-sense-better",
       "text": "Even though a speech be a thousand (of words), but made up of senseless words, one word of sense is better, which if a man hears, he becomes quiet.",
       "locator": "Chapter VIII. The Thousands, verse 100",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Choćby mowa liczyła tysiąc słów, lecz bezsensownych, lepsze jest jedno słowo z sensem, po którego usłyszeniu człowiek się uspokaja.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "conquer-himself-greatest",
       "text": "If one man conquer in battle a thousand times thousand men, and if another conquer himself, he is the greatest of conquerors.",
       "locator": "Chapter VIII. The Thousands, verse 103",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Jeśli jeden zwycięży w bitwie tysiąc razy tysiąc ludzi, a drugi zwycięży samego siebie, to ten drugi jest największym ze zwycięzców.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "water-drops-water-pot",
       "text": "Let no man think lightly of good, saying in his heart, It will not come nigh unto me. Even by the falling of water-drops a water-pot is filled; the wise man becomes full of good, even if he gather it little by little.",
       "locator": "Chapter IX. Evil, verse 122",
-      "tags": ["productivity", "self-development"]
+      "tags": ["productivity", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Niech nikt nie lekceważy dobra, mówiąc w sercu: nie przyjdzie do mnie. Nawet kroplami wody napełnia się dzban; mądry napełnia się dobrem, choćby zbierał je po trochu.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "self-lord-of-self",
       "text": "Self is the lord of self, who else could be the lord?",
       "locator": "Chapter XII. Self, verse 160",
-      "tags": ["self-development", "assertiveness"]
+      "tags": ["self-development", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Każdy sam jest swoim panem; któż inny mógłby nim być?",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "health-greatest-gifts",
       "text": "Health is the greatest of gifts, contentedness the best riches; trust is the best of relationships, Nirvana the highest happiness.",
       "locator": "Chapter XV. Happiness, verse 204",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Zdrowie jest największym darem, zadowolenie największym bogactwem, zaufanie najlepszą więzią, nirwana najwyższym szczęściem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "overcome-anger-by-love",
       "text": "Let a man overcome anger by love, let him overcome evil by good; let him overcome the greedy by liberality, the liar by truth!",
       "locator": "Chapter XVII. Anger, verse 223",
-      "tags": ["self-development", "assertiveness"]
+      "tags": ["self-development", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Niech człowiek pokonuje gniew miłością, zło dobrem, chciwca hojnością, a kłamcę prawdą!",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "speak-truth-not-yield-anger",
       "text": "Speak the truth, do not yield to anger; give, if thou art asked for little.",
       "locator": "Chapter XVII. Anger, verse 224",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Mów prawdę, nie poddawaj się gniewowi; dawaj, choćby proszono cię o niewiele.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "fault-others-easily-perceived",
       "text": "The fault of others is easily perceived, but that of oneself is difficult to perceive.",
       "locator": "Chapter XVIII. Impurity, verse 252",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Winę innych łatwo dostrzec, własną trudno.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "you-yourself-must-make-effort",
       "text": "You yourself must make an effort.",
       "locator": "Chapter XX. The Way, verse 276",
-      "tags": ["productivity", "self-development"]
+      "tags": ["productivity", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Sam musisz podjąć wysiłek.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

@@ -7,126 +7,252 @@
       "text": "Speak your latent conviction, and it shall be the universal sense.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Wypowiedz swoje ukryte przekonanie, a stanie się ono powszechnym odczuciem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "envy-ignorance-imitation-suicide",
       "text": "Envy is ignorance; that imitation is suicide; that he must take himself for better for worse as his portion.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Zazdrość jest niewiedzą, naśladownictwo samobójstwem; człowiek musi przyjąć siebie na dobre i na złe jako swój los.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "trust-thyself-every-heart",
       "text": "Trust thyself: every heart vibrates to that iron string.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["assertiveness", "self-development"]
+      "tags": ["assertiveness", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Zaufaj sobie: każde serce drga w odpowiedzi na tę żelazną strunę.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "whoso-would-man-must",
       "text": "Whoso would be a man, must be a nonconformist.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Kto chce być człowiekiem, musi być nonkonformistą.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "nothing-at-last-sacred",
       "text": "Nothing is at last sacred but the integrity of your own mind.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["assertiveness", "philosophy"]
+      "tags": ["assertiveness", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Ostatecznie nic nie jest święte poza integralnością twojego własnego umysłu.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "must-do-all-concerns",
       "text": "What I must do is all that concerns me, not what the people think.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Obchodzi mnie tylko to, co muszę zrobić, a nie to, co myślą ludzie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "great-man-midst-crowd",
       "text": "The great man is he who in the midst of the crowd keeps with perfect sweetness the independence of solitude.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Wielki człowiek to ten, kto pośród tłumu z doskonałą łagodnością zachowuje niezależność samotności.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "foolish-consistency-hobgoblin-little",
       "text": "A foolish consistency is the hobgoblin of little minds, adored by little statesmen and philosophers and divines.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Głupia konsekwencja to straszydło małych umysłów, czczone przez małych mężów stanu, filozofów i duchownych.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "speak-think-now-hard",
       "text": "Speak what you think now in hard words and tomorrow speak what tomorrow thinks in hard words again, though it contradict everything you said today.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Mów dziś twardymi słowami to, co myślisz teraz, a jutro twardymi słowami to, co pomyślisz jutro, nawet jeśli przeczy to wszystkiemu, co powiedziałeś dziś.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "great-misunderstood",
       "text": "To be great is to be misunderstood.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Być wielkim to być niezrozumianym.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "insist-on-yourself-never",
       "text": "Insist on yourself; never imitate.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["assertiveness", "self-development"]
+      "tags": ["assertiveness", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Obstawaj przy sobie; nigdy nie naśladuj.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "nothing-can-bring-peace",
       "text": "Nothing can bring you peace but yourself.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Nic poza tobą samym nie przyniesie ci spokoju.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "power-resides-him-new",
       "text": "The power which resides in him is new in nature, and none but he knows what that is which he can do, nor does he know until he has tried.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["self-development", "productivity"]
+      "tags": ["self-development", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "Moc, która w nim tkwi, jest nowa w przyrodzie i nikt poza nim nie wie, co potrafi zrobić; on sam też tego nie wie, dopóki nie spróbuje.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "nothing-great-was-ever",
       "text": "Nothing great was ever achieved without enthusiasm.",
       "section": "circles",
       "locator": "Circles",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Nic wielkiego nigdy nie zostało osiągnięte bez entuzjazmu.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "only-reward-virtue-virtue",
       "text": "The only reward of virtue is virtue; the only way to have a friend is to be one.",
       "section": "friendship",
       "locator": "Friendship",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Jedyną nagrodą cnoty jest cnota; jedynym sposobem, by mieć przyjaciela, jest być przyjacielem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "do-thing-shall-have",
       "text": "Do the thing, and you shall have the Power; but they who do not the thing have not the power.",
       "section": "compensation",
       "locator": "Compensation",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Zrób to, a będziesz miał moc; ci, którzy tego nie robią, mocy nie mają.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "reward-thing-well-done",
       "text": "The reward of a thing well done, is to have done it.",
       "section": "new-england-reformers",
       "locator": "New England Reformers",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Nagrodą za dobrze wykonaną rzecz jest to, że się ją wykonało.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "each-man-has-own",
       "text": "Each man has his own vocation.",
       "section": "spiritual-laws",
       "locator": "Spiritual Laws",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Każdy człowiek ma własne powołanie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }
