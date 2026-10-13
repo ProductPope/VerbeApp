@@ -32,7 +32,7 @@
       "id": "earnestness-path-immortality",
       "text": "Earnestness is the path of immortality (Nirvana), thoughtlessness the path of death.",
       "locator": "Chapter II. On Earnestness, verse 21",
-      "tags": ["productivity"],
+      "tags": ["productivity", "mortality"],
       "translations": {
         "pl": {
           "text": "Gorliwość jest drogą nieśmiertelności (nirwany), bezmyślność drogą śmierci.",
@@ -257,6 +257,19 @@
       "translations": {
         "pl": {
           "text": "Strzeż się gniewu umysłu i panuj nad swoim umysłem!",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "gathering-flowers-flood",
+      "text": "Death carries off a man who is gathering flowers and whose mind is distracted, as a flood carries off a sleeping village.",
+      "locator": "Chapter IV. Flowers, verse 47",
+      "tags": ["mortality", "mindfulness"],
+      "translations": {
+        "pl": {
+          "text": "Śmierć porywa człowieka, który zbiera kwiaty i ma rozproszony umysł, jak powódź porywa uśpioną wioskę.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }

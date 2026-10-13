@@ -7,7 +7,7 @@
       "text": "We do not have a very short time assigned to us, but we lose a great deal of it.",
       "section": "on-the-shortness-of-life",
       "locator": "On the Shortness of Life",
-      "tags": ["productivity"],
+      "tags": ["productivity", "mortality"],
       "translations": {
         "pl": {
           "text": "Nie dostaliśmy bardzo krótkiego czasu, lecz wiele z niego tracimy.",
@@ -21,7 +21,7 @@
       "text": "Life is long enough, if you know how to use it.",
       "section": "on-the-shortness-of-life",
       "locator": "On the Shortness of Life",
-      "tags": ["productivity"],
+      "tags": ["productivity", "mortality"],
       "translations": {
         "pl": {
           "text": "Życie jest dość długie, jeśli umiesz z niego korzystać.",
@@ -431,6 +431,34 @@
       "translations": {
         "pl": {
           "text": "Sternika poznasz w czasie burzy, żołnierza w bitwie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "learning-how-to-die",
+      "text": "One’s whole life must be spent in learning how to live, and, which may perhaps surprise you more, one’s whole life must be spent in learning how to die.",
+      "section": "on-the-shortness-of-life",
+      "locator": "On the Shortness of Life",
+      "tags": ["mortality", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Całe życie trzeba uczyć się żyć i, co może zdziwi cię bardziej, całe życie trzeba uczyć się umierać.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "life-is-hurrying-on",
+      "text": "You are busy, but life is hurrying on: death will be here some time or other, and you must attend to him, whether you will or no.",
+      "section": "on-the-shortness-of-life",
+      "locator": "On the Shortness of Life",
+      "tags": ["mortality", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "Jesteś zajęty, a życie pędzi: śmierć prędzej czy później nadejdzie i będziesz musiał się nią zająć, czy zechcesz, czy nie.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }

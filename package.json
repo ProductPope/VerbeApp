@@ -2,7 +2,7 @@
   "name": "verbeapp",
   "version": "0.1.0",
   "private": true,
-  "description": "Daily quotes on philosophy, self-development, productivity, assertiveness, resilience, relationships, happiness, courage and mindfulness, from verified public-domain sources.",
+  "description": "Daily quotes on philosophy, self-development, resilience, relationships, mindfulness and more, from verified public-domain sources.",
   "license": "MIT",
   "type": "module",
   "engines": {

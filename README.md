@@ -1,6 +1,6 @@
 # VerbeApp
 
-Short, wise quotes on philosophy, self-development, productivity, assertiveness, resilience, relationships, happiness, courage and mindfulness, delivered to
+Short, wise quotes on philosophy, self-development, resilience, relationships, mindfulness and more, delivered to
 your phone.
 
 **Open the app: <https://productpope.github.io/VerbeApp/>** and on Android choose _Install app_
