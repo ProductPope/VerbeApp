@@ -1,0 +1,97 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "seneca-dialogues",
+  "quotes": [
+    {
+      "id": "we-do-not-have",
+      "text": "We do not have a very short time assigned to us, but we lose a great deal of it.",
+      "section": "on-the-shortness-of-life",
+      "locator": "On the Shortness of Life",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "life-long-enough-know",
+      "text": "Life is long enough, if you know how to use it.",
+      "section": "on-the-shortness-of-life",
+      "locator": "On the Shortness of Life",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "no-one-lays-claim",
+      "text": "No one lays claim to his own self, everyone wastes his time over someone else.",
+      "section": "on-the-shortness-of-life",
+      "locator": "On the Shortness of Life",
+      "tags": ["assertiveness", "productivity"]
+    },
+    {
+      "id": "no-one-values-time",
+      "text": "No one values time: they give it much more freely, as though it cost nothing.",
+      "section": "on-the-shortness-of-life",
+      "locator": "On the Shortness of Life",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "postponement-greatest-waste-life",
+      "text": "Postponement is the greatest waste of life: it wrings day after day from us, and takes away the present by promising something hereafter.",
+      "section": "on-the-shortness-of-life",
+      "locator": "On the Shortness of Life",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "those-men-lead-shortest",
+      "text": "Those men lead the shortest and unhappiest lives who forget the past, neglect the present, and dread the future.",
+      "section": "on-the-shortness-of-life",
+      "locator": "On the Shortness of Life",
+      "tags": ["productivity", "philosophy"]
+    },
+    {
+      "id": "every-man-hurries-through",
+      "text": "Every man hurries through his life, and suffers from a yearning for the future, and a weariness of the present.",
+      "section": "on-the-shortness-of-life",
+      "locator": "On the Shortness of Life",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "disposes-all-time-own",
+      "text": "He who disposes of all his time for his own purposes, who arranges all his days as though he were arranging the plan of his life, neither wishes for nor fears the morrow.",
+      "section": "on-the-shortness-of-life",
+      "locator": "On the Shortness of Life",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "greatest-remedy-anger-delay",
+      "text": "The greatest remedy for anger is delay.",
+      "section": "on-anger",
+      "locator": "On Anger",
+      "tags": ["self-development", "assertiveness"]
+    },
+    {
+      "id": "wherever-there-human-being",
+      "text": "Wherever there is a human being, there is an opportunity for a benefit.",
+      "section": "on-a-happy-life",
+      "locator": "On a Happy Life",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "happy-present-circumstances-whatever",
+      "text": "He is happy who in his present circumstances, whatever they may be, is satisfied and on friendly terms with the conditions of his life.",
+      "section": "on-a-happy-life",
+      "locator": "On a Happy Life",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "at-present-time-am",
+      "text": "At the present time I am forming myself, moulding my character, and striving to rise myself to the height of a great example.",
+      "section": "on-a-happy-life",
+      "locator": "On a Happy Life",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "we-ought-move-not",
+      "text": "We ought to move and not to become frozen still by fear.",
+      "section": "on-peace-of-mind",
+      "locator": "On Peace of Mind",
+      "tags": ["assertiveness"]
+    }
+  ]
+}

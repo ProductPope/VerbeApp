@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "on-liberty",
+  "quotes": [
+    {
+      "id": "over-himself-over-own",
+      "text": "Over himself, over his own body and mind, the individual is sovereign.",
+      "section": "chapter-1",
+      "locator": "Chapter I: Introductory",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "only-freedom-deserves-name",
+      "text": "The only freedom which deserves the name, is that of pursuing our own good in our own way, so long as we do not attempt to deprive others of theirs, or impede their efforts to obtain it.",
+      "section": "chapter-1",
+      "locator": "Chapter I: Introductory",
+      "tags": ["assertiveness", "philosophy"]
+    },
+    {
+      "id": "knows-only-own-side",
+      "text": "He who knows only his own side of the case, knows little of that.",
+      "section": "chapter-2",
+      "locator": "Chapter II: Of the Liberty of Thought and Discussion",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "all-silencing-discussion-assumption",
+      "text": "All silencing of discussion is an assumption of infallibility.",
+      "section": "chapter-2",
+      "locator": "Chapter II: Of the Liberty of Thought and Discussion",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "all-mankind-minus-one",
+      "text": "If all mankind minus one, were of one opinion, and only one person were of the contrary opinion, mankind would be no more justified in silencing that one person, than he, if he had the power, would be justified in silencing mankind.",
+      "section": "chapter-2",
+      "locator": "Chapter II: Of the Liberty of Thought and Discussion",
+      "tags": ["assertiveness", "philosophy"]
+    },
+    {
+      "id": "human-nature-not-machine",
+      "text": "Human nature is not a machine to be built after a model, and set to do exactly the work prescribed for it, but a tree, which requires to grow and develop itself on all sides.",
+      "section": "chapter-3",
+      "locator": "Chapter III: Of Individuality, as One of the Elements of Well-Being",
+      "tags": ["self-development"]
+    }
+  ]
+}

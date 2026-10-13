@@ -1,0 +1,133 @@
+{
+  "$schema": "./schema/authors.schema.json",
+  "authors": [
+    {
+      "id": "plato",
+      "name": {
+        "en": "Plato",
+        "pl": "Platon"
+      },
+      "born": -428,
+      "died": -348,
+      "circa": true
+    },
+    {
+      "id": "confucius",
+      "name": {
+        "en": "Confucius",
+        "pl": "Konfucjusz"
+      },
+      "born": -551,
+      "died": -479
+    },
+    {
+      "id": "laozi",
+      "name": {
+        "en": "Laozi",
+        "pl": "Laozi"
+      }
+    },
+    {
+      "id": "seneca",
+      "name": {
+        "en": "Seneca",
+        "pl": "Seneka"
+      },
+      "born": -4,
+      "died": 65,
+      "circa": true
+    },
+    {
+      "id": "epictetus",
+      "name": {
+        "en": "Epictetus",
+        "pl": "Epiktet"
+      },
+      "born": 50,
+      "died": 135,
+      "circa": true
+    },
+    {
+      "id": "marcus-aurelius",
+      "name": {
+        "en": "Marcus Aurelius",
+        "pl": "Marek Aureliusz"
+      },
+      "born": 121,
+      "died": 180
+    },
+    {
+      "id": "boethius",
+      "name": {
+        "en": "Boethius",
+        "pl": "Boecjusz"
+      },
+      "born": 477,
+      "died": 524,
+      "circa": true
+    },
+    {
+      "id": "benjamin-franklin",
+      "name": {
+        "en": "Benjamin Franklin",
+        "pl": "Benjamin Franklin"
+      },
+      "born": 1706,
+      "died": 1790
+    },
+    {
+      "id": "mary-wollstonecraft",
+      "name": {
+        "en": "Mary Wollstonecraft",
+        "pl": "Mary Wollstonecraft"
+      },
+      "born": 1759,
+      "died": 1797
+    },
+    {
+      "id": "ralph-waldo-emerson",
+      "name": {
+        "en": "Ralph Waldo Emerson",
+        "pl": "Ralph Waldo Emerson"
+      },
+      "born": 1803,
+      "died": 1882
+    },
+    {
+      "id": "john-stuart-mill",
+      "name": {
+        "en": "John Stuart Mill",
+        "pl": "John Stuart Mill"
+      },
+      "born": 1806,
+      "died": 1873
+    },
+    {
+      "id": "henry-david-thoreau",
+      "name": {
+        "en": "Henry David Thoreau",
+        "pl": "Henry David Thoreau"
+      },
+      "born": 1817,
+      "died": 1862
+    },
+    {
+      "id": "friedrich-nietzsche",
+      "name": {
+        "en": "Friedrich Nietzsche",
+        "pl": "Fryderyk Nietzsche"
+      },
+      "born": 1844,
+      "died": 1900
+    },
+    {
+      "id": "william-james",
+      "name": {
+        "en": "William James",
+        "pl": "William James"
+      },
+      "born": 1842,
+      "died": 1910
+    }
+  ]
+}

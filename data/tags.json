@@ -1,0 +1,37 @@
+{
+  "$schema": "./schema/tags.schema.json",
+  "tags": [
+    {
+      "id": "philosophy",
+      "label": { "en": "Philosophy", "pl": "Filozofia" },
+      "description": {
+        "en": "How to see the world, what is in our control, and what makes a good life.",
+        "pl": "Jak patrzeć na świat, co od nas zależy i czym jest dobre życie."
+      }
+    },
+    {
+      "id": "self-development",
+      "label": { "en": "Self-development", "pl": "Samorozwój" },
+      "description": {
+        "en": "Character, habits, learning and working on oneself.",
+        "pl": "Charakter, nawyki, nauka i praca nad sobą."
+      }
+    },
+    {
+      "id": "productivity",
+      "label": { "en": "Productivity", "pl": "Produktywność" },
+      "description": {
+        "en": "Time, focus, action and getting things done.",
+        "pl": "Czas, skupienie, działanie i doprowadzanie spraw do końca."
+      }
+    },
+    {
+      "id": "assertiveness",
+      "label": { "en": "Assertiveness", "pl": "Asertywność" },
+      "description": {
+        "en": "Standing by your own judgement, speaking honestly and not living by others' opinions.",
+        "pl": "Trzymanie się własnego zdania, szczera mowa i niezależność od cudzych opinii."
+      }
+    }
+  ]
+}

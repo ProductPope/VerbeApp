@@ -1,0 +1,195 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "meditations",
+  "quotes": [
+    {
+      "id": "begin-morning-saying-thyself",
+      "text": "Begin the morning by saying to thyself, I shall meet with the busybody, the ungrateful, arrogant, deceitful, envious, unsocial.",
+      "section": "book-2",
+      "locator": "Book II",
+      "tags": ["philosophy", "self-development"]
+    },
+    {
+      "id": "mind-converts-changes-every",
+      "text": "The mind converts and changes every hindrance to its activity into an aid; and so that which is a hindrance is made a furtherance to an act; and that which is an obstacle on the road helps us on this road.",
+      "section": "book-5",
+      "locator": "Book V",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "best-way-avenging-thyself",
+      "text": "The best way of avenging thyself is not to become like the wrong doer.",
+      "section": "book-6",
+      "locator": "Book VI",
+      "tags": ["philosophy", "assertiveness"]
+    },
+    {
+      "id": "not-right-do-not",
+      "text": "If it is not right, do not do it: if it is not true, do not say it.",
+      "section": "book-12",
+      "locator": "Book XII",
+      "tags": ["philosophy", "assertiveness"]
+    },
+    {
+      "id": "such-habitual-thoughts-such",
+      "text": "Such as are thy habitual thoughts, such also will be the character of thy mind; for the soul is dyed by the thoughts.",
+      "section": "book-5",
+      "locator": "Book V",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "wilt-give-thyself-relief",
+      "text": "Thou wilt give thyself relief, if thou doest every act of thy life as if it were the last…",
+      "section": "book-2",
+      "locator": "Book II",
+      "tags": ["productivity", "philosophy"]
+    },
+    {
+      "id": "loss-nothing-else-than",
+      "text": "Loss is nothing else than change.",
+      "section": "book-9",
+      "locator": "Book IX",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "how-much-trouble-avoids",
+      "text": "How much trouble he avoids who does not look to see what his neighbour says or does or thinks, but only to what he does himself, that it may be just and pure.",
+      "section": "book-4",
+      "locator": "Book IV",
+      "tags": ["assertiveness", "self-development"]
+    },
+    {
+      "id": "do-not-act-wert",
+      "text": "Do not act as if thou wert going to live ten thousand years.",
+      "section": "book-4",
+      "locator": "Book IV",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "how-ridiculous-stranger-surprised",
+      "text": "How ridiculous and what a stranger he is who is surprised at anything which happens in life.",
+      "section": "book-12",
+      "locator": "Book XII",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "art-life-more-like",
+      "text": "The art of life is more like the wrestler’s art than the dancer’s, in respect of this, that it should stand ready and firm to meet onsets which are sudden and unexpected.",
+      "section": "book-7",
+      "locator": "Book VII",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "confine-thyself-present",
+      "text": "Confine thyself to the present.",
+      "section": "book-7",
+      "locator": "Book VII",
+      "tags": ["productivity", "philosophy"]
+    },
+    {
+      "id": "morning-when-risest-unwillingly",
+      "text": "In the morning when thou risest unwillingly, let this thought be present—I am rising to the work of a human being.",
+      "section": "book-5",
+      "locator": "Book V",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "consider-everything-opinion-opinion",
+      "text": "Consider that everything is opinion, and opinion is in thy power.",
+      "section": "book-12",
+      "locator": "Book XII",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "while-livest-while-power",
+      "text": "While thou livest, while it is in thy power, be good.",
+      "section": "book-4",
+      "locator": "Book IV",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "recover-life-power",
+      "text": "To recover thy life is in thy power.",
+      "section": "book-7",
+      "locator": "Book VII",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "power-live-free-from",
+      "text": "It is in thy power to live free from all compulsion in the greatest tranquility of mind, even if all the world cry out against thee as much as they choose.",
+      "section": "book-7",
+      "locator": "Book VII",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "set-thyself-motion-power",
+      "text": "Set thyself in motion, if it is in thy power, and do not look about thee to see if anyone will observe it… but be content if the smallest thing goes on well, and consider such an event to be no small matter.",
+      "section": "book-9",
+      "locator": "Book IX",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "our-power-have-no",
+      "text": "It is in our power to have no opinion about a thing, and not to be disturbed in our soul; for things themselves have no natural power to form our judgements.",
+      "section": "book-6",
+      "locator": "Book VI",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "why-dost-not-rather",
+      "text": "Why dost thou not rather act than complain?",
+      "section": "book-8",
+      "locator": "Book VIII",
+      "tags": ["productivity", "assertiveness"]
+    },
+    {
+      "id": "power-do-or-say",
+      "text": "It is in thy power to do it or to say it, and do not make excuses that thou art hindered.",
+      "section": "book-10",
+      "locator": "Book X",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "we-made-cooperation-like",
+      "text": "For we are made for cooperation, like feet, like hands, like eyelids, like the rows of the upper and lower teeth.",
+      "section": "book-2",
+      "locator": "Book II",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "throwing-away-idle-hopes",
+      "text": "Throwing away idle hopes, come to thy own aid, if thou carest at all for thyself, while it is in thy power.",
+      "section": "book-3",
+      "locator": "Book III",
+      "tags": ["self-development", "productivity"]
+    },
+    {
+      "id": "need-there-suspicious-fear",
+      "text": "What need is there of suspicious fear, since it is in thy power to inquire what ought to be done?",
+      "section": "book-10",
+      "locator": "Book X",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "short-lived-both-praiser",
+      "text": "Short-lived are both the praiser and the praised, and the rememberer and the remembered.",
+      "section": "book-8",
+      "locator": "Book VIII",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "constantly-then-give-thyself",
+      "text": "Constantly then give to thyself this retreat, and renew thyself; and let thy principles be brief and fundamental.",
+      "section": "book-4",
+      "locator": "Book IV",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "not-better-use-power",
+      "text": "Is it not better to use what is in thy power like a free man than to desire in a slavish and abject way what is not in thy power?",
+      "section": "book-9",
+      "locator": "Book IX",
+      "tags": ["philosophy", "self-development"]
+    }
+  ]
+}

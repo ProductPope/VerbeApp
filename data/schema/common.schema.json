@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ProductPope/VerbeApp/data/schema/common.schema.json",
+  "title": "Shared definitions",
+  "$defs": {
+    "slug": {
+      "description": "Lowercase kebab-case identifier, stable once published.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "maxLength": 80
+    },
+    "languageCode": {
+      "description": "BCP 47 primary language subtag, e.g. en or pl.",
+      "type": "string",
+      "pattern": "^[a-z]{2,3}$"
+    },
+    "localizedString": {
+      "description": "Text keyed by language code. English is required as the fallback language.",
+      "type": "object",
+      "required": ["en"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/languageCode"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "year": {
+      "description": "Calendar year; negative numbers are BCE.",
+      "type": "integer",
+      "minimum": -3000,
+      "maximum": 2100
+    }
+  }
+}

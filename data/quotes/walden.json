@@ -1,0 +1,118 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "walden",
+  "quotes": [
+    {
+      "id": "have-built-castles-air",
+      "text": "If you have built castles in the air, your work need not be lost; that is where they should be.",
+      "section": "conclusion",
+      "locator": "Conclusion",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "man-does-not-keep",
+      "text": "If a man does not keep pace with his companions, perhaps it is because he hears a different drummer.",
+      "section": "conclusion",
+      "locator": "Conclusion",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "rather-than-love-than",
+      "text": "Rather than love, than money, than fame, give me truth.",
+      "section": "conclusion",
+      "locator": "Conclusion",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "mass-men-lead-lives",
+      "text": "The mass of men lead lives of quiet desperation.",
+      "section": "economy",
+      "locator": "Economy",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "cost-thing-amount-will",
+      "text": "The cost of a thing is the amount of what I will call life which is required to be exchanged for it, immediately or in the long run.",
+      "section": "economy",
+      "locator": "Economy",
+      "tags": ["productivity", "philosophy"]
+    },
+    {
+      "id": "could-kill-time-without",
+      "text": "As if you could kill time without injuring eternity.",
+      "section": "economy",
+      "locator": "Economy",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "morning-when-am-awake",
+      "text": "Morning is when I am awake and there is a dawn in me.",
+      "section": "where-i-lived-and-what-i-lived-for",
+      "locator": "Where I Lived, and What I Lived For",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "went-woods-because-wished",
+      "text": "I went to the woods because I wished to live deliberately, to front only the essential facts of life, and see if I could not learn what it had to teach, and not, when I came to die, discover that I had not lived.",
+      "section": "where-i-lived-and-what-i-lived-for",
+      "locator": "Where I Lived, and What I Lived For",
+      "tags": ["philosophy", "self-development"]
+    },
+    {
+      "id": "our-life-frittered-away",
+      "text": "Our life is frittered away by detail.",
+      "section": "where-i-lived-and-what-i-lived-for",
+      "locator": "Where I Lived, and What I Lived For",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "simplicity-simplicity-simplicity",
+      "text": "Simplicity, simplicity, simplicity!",
+      "section": "where-i-lived-and-what-i-lived-for",
+      "locator": "Where I Lived, and What I Lived For",
+      "tags": ["productivity", "philosophy"]
+    },
+    {
+      "id": "time-but-stream-go",
+      "text": "Time is but the stream I go a-fishing in.",
+      "section": "where-i-lived-and-what-i-lived-for",
+      "locator": "Where I Lived, and What I Lived For",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "man-rich-proportion-number",
+      "text": "A man is rich in proportion to the number of things which he can afford to let alone.",
+      "section": "where-i-lived-and-what-i-lived-for",
+      "locator": "Where I Lived, and What I Lived For",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "one-advances-confidently-direction",
+      "text": "If one advances confidently in the direction of his dreams, and endeavors to live the life which he has imagined, he will meet with a success unexpected in common hours.",
+      "section": "conclusion",
+      "locator": "Conclusion",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "proportion-simplifies-life-laws",
+      "text": "In proportion as he simplifies his life, the laws of the universe will appear less complex.",
+      "section": "conclusion",
+      "locator": "Conclusion",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "love-life-poor",
+      "text": "Love your life, poor as it is.",
+      "section": "conclusion",
+      "locator": "Conclusion",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "things-do-not-change",
+      "text": "Things do not change; we change.",
+      "section": "conclusion",
+      "locator": "Conclusion",
+      "tags": ["self-development"]
+    }
+  ]
+}

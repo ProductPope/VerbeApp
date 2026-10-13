@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "thus-spake-zarathustra",
+  "quotes": [
+    {
+      "id": "one-must-still-have",
+      "text": "One must still have chaos in one, to give birth to a dancing star.",
+      "section": "prologue",
+      "locator": "Zarathustra’s Prologue",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "great-man-bridge-not",
+      "text": "What is great in man is that he is a bridge and not a goal.",
+      "section": "prologue",
+      "locator": "Zarathustra’s Prologue",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "become-art",
+      "text": "Become what thou art!",
+      "section": "chapter-61",
+      "locator": "Chapter LXI: The Honey Sacrifice",
+      "tags": ["self-development"]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "vindication-of-the-rights-of-woman",
+  "quotes": [
+    {
+      "id": "do-not-wish-them",
+      "text": "I do not wish them to have power over men; but over themselves.",
+      "section": "chapter-4",
+      "locator": "Chapter IV",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "independence-have-long-considered",
+      "text": "Independence I have long considered as the grand blessing of life, the basis of every virtue.",
+      "section": "dedication",
+      "locator": "Dedication",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "exercise-their-understanding-necessary",
+      "text": "The exercise of their understanding is necessary, there is no other foundation for independence of character.",
+      "section": "chapter-3",
+      "locator": "Chapter III",
+      "tags": ["self-development"]
+    }
+  ]
+}

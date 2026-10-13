@@ -1,0 +1,27 @@
+name: Verify quotes against sources
+
+on:
+  push:
+    branches: [main]
+    paths: ['data/**', 'src/sources/**', 'scripts/**']
+  pull_request:
+    paths: ['data/**', 'src/sources/**', 'scripts/**']
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Every quote appears in its source
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run data:verify

@@ -1,0 +1,132 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "emerson-essays",
+  "quotes": [
+    {
+      "id": "speak-latent-conviction-shall",
+      "text": "Speak your latent conviction, and it shall be the universal sense.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "envy-ignorance-imitation-suicide",
+      "text": "Envy is ignorance; that imitation is suicide; that he must take himself for better for worse as his portion.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "trust-thyself-every-heart",
+      "text": "Trust thyself: every heart vibrates to that iron string.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["assertiveness", "self-development"]
+    },
+    {
+      "id": "whoso-would-man-must",
+      "text": "Whoso would be a man, must be a nonconformist.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "nothing-at-last-sacred",
+      "text": "Nothing is at last sacred but the integrity of your own mind.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["assertiveness", "philosophy"]
+    },
+    {
+      "id": "must-do-all-concerns",
+      "text": "What I must do is all that concerns me, not what the people think.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "great-man-midst-crowd",
+      "text": "The great man is he who in the midst of the crowd keeps with perfect sweetness the independence of solitude.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "foolish-consistency-hobgoblin-little",
+      "text": "A foolish consistency is the hobgoblin of little minds, adored by little statesmen and philosophers and divines.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "speak-think-now-hard",
+      "text": "Speak what you think now in hard words and tomorrow speak what tomorrow thinks in hard words again, though it contradict everything you said today.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "great-misunderstood",
+      "text": "To be great is to be misunderstood.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "insist-on-yourself-never",
+      "text": "Insist on yourself; never imitate.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["assertiveness", "self-development"]
+    },
+    {
+      "id": "nothing-can-bring-peace",
+      "text": "Nothing can bring you peace but yourself.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "power-resides-him-new",
+      "text": "The power which resides in him is new in nature, and none but he knows what that is which he can do, nor does he know until he has tried.",
+      "section": "self-reliance",
+      "locator": "Self-Reliance",
+      "tags": ["self-development", "productivity"]
+    },
+    {
+      "id": "nothing-great-was-ever",
+      "text": "Nothing great was ever achieved without enthusiasm.",
+      "section": "circles",
+      "locator": "Circles",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "only-reward-virtue-virtue",
+      "text": "The only reward of virtue is virtue; the only way to have a friend is to be one.",
+      "section": "friendship",
+      "locator": "Friendship",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "do-thing-shall-have",
+      "text": "Do the thing, and you shall have the Power; but they who do not the thing have not the power.",
+      "section": "compensation",
+      "locator": "Compensation",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "reward-thing-well-done",
+      "text": "The reward of a thing well done, is to have done it.",
+      "section": "new-england-reformers",
+      "locator": "New England Reformers",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "each-man-has-own",
+      "text": "Each man has his own vocation.",
+      "section": "spiritual-laws",
+      "locator": "Spiritual Laws",
+      "tags": ["self-development"]
+    }
+  ]
+}

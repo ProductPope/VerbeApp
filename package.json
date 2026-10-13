@@ -1,0 +1,36 @@
+{
+  "name": "verbeapp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Daily quotes on philosophy, self-development, productivity and assertiveness, from verified public-domain sources.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "data:validate": "tsx scripts/validate-data.ts",
+    "data:verify": "tsx scripts/verify-sources.ts",
+    "data:text": "tsx scripts/source-text.ts",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run data:validate",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.5",
+    "@vitest/coverage-v8": "^5.0.4",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "eslint": "^10.12.0",
+    "prettier": "^3.9.10",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.2",
+    "vitest": "^5.0.4"
+  }
+}
