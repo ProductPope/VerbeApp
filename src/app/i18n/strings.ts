@@ -45,6 +45,12 @@ const en = {
   noFavorites: 'No favourites yet. Tap the heart on a quote to keep it here.',
   noHidden: 'Nothing hidden.',
   restore: 'Show again',
+  aboutHeading: 'About VerbeApp',
+  aboutText:
+    'A free, open-source app for self-development: one wise thought at a time, to reflect on and put into practice.',
+  aboutSources:
+    'Quotes come from public-domain books, each checked word for word against its source edition. Community sayings are original and free to reuse.',
+  aboutLink: 'Source code on GitHub',
   emptyFeed: 'No quotes match. Choose more categories or restore hidden quotes.',
   newTab: '(opens in a new tab)',
   by: 'by',
@@ -107,6 +113,12 @@ const pl: Strings = {
   noFavorites: 'Brak ulubionych. Stuknij serce przy cytacie, aby go tu zachować.',
   noHidden: 'Nic nie jest ukryte.',
   restore: 'Pokaż ponownie',
+  aboutHeading: 'O VerbeApp',
+  aboutText:
+    'Darmowa aplikacja open source do samorozwoju: jedna mądra myśl naraz, do przemyślenia i zastosowania w praktyce.',
+  aboutSources:
+    'Cytaty pochodzą z książek w domenie publicznej i każdy jest sprawdzony słowo w słowo z wydaniem źródłowym. Sentencje społeczności są autorskie i wolne do ponownego użycia.',
+  aboutLink: 'Kod źródłowy na GitHubie',
   emptyFeed: 'Brak pasujących cytatów. Wybierz więcej kategorii lub przywróć ukryte cytaty.',
   newTab: '(otwiera się w nowej karcie)',
   by: 'autor:',

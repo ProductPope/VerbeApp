@@ -613,6 +613,27 @@ main:focus {
   transform: rotate(45deg);
 }
 
+.about summary {
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.about p {
+  margin: var(--space-2) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.about a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-size);
+  color: var(--color-accent);
+  text-underline-offset: 0.2em;
+}
+
 .preferences {
   display: grid;
   gap: var(--space-5);

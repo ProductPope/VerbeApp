@@ -305,6 +305,22 @@ describe('profile', () => {
     await user.click(within(profile).getByRole('button', { name: 'Close' }));
     expect(profile).not.toHaveAttribute('open');
   });
+
+  it('keeps a collapsed About section last, with a link to the source code', async () => {
+    const { user } = renderApp();
+    const profile = await openProfile(user);
+    const regions = within(profile).getAllByRole('region');
+    const about = regions.at(-1)!;
+    expect(about).toHaveAccessibleName('About VerbeApp');
+    expect(about.querySelector('details')).not.toHaveAttribute('open');
+    await user.click(within(about).getByText('About VerbeApp'));
+    expect(about.querySelector('details')).toHaveAttribute('open');
+    expect(about).toHaveTextContent(/open-source/);
+    expect(about).toHaveTextContent(/public-domain/);
+    const link = within(about).getByRole('link', { name: 'Source code on GitHub' });
+    expect(link).toHaveAttribute('href', 'https://github.com/ProductPope/VerbeApp');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  });
 });
 
 describe('settings', () => {
