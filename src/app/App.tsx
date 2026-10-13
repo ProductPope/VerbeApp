@@ -352,6 +352,7 @@ export function App({
               }
             : undefined
         }
+        personalCount={personal.length}
         personal={
           <PersonalQuotes
             quotes={personal}

@@ -94,123 +94,119 @@ export function PersonalQuotes({
   const csvInput = useRef<HTMLInputElement>(null);
 
   return (
-    // Collapsed by default like Preferences, so favourites stay in view when
-    // the profile opens.
-    <section aria-labelledby="personal-heading" aria-describedby="personal-hint">
-      <details className="disclosure">
-        <summary id="personal-heading">{strings.personalHeading}</summary>
-        <p className="muted" id="personal-hint">
-          {strings.personalHint}
-        </p>
-        <p>
-          <button type="button" className="text-button primary-button" onClick={onAdd}>
-            {strings.addQuote}
-          </button>
-        </p>
-        {quotes.length === 0 ? (
-          <p className="muted">{strings.noPersonal}</p>
-        ) : (
-          <ul className="saved-list">
-            {quotes.map((quote) => (
-              <li key={quote.id} className="saved-item">
-                <blockquote id={`${quote.id}-text`} lang={quote.language}>
-                  <p>{quote.text}</p>
-                </blockquote>
-                {(quote.author !== '' || quote.source !== '') && (
-                  <p className="saved-author">
-                    {[quote.author, quote.source].filter((part) => part !== '').join(', ')}
-                  </p>
-                )}
-                <div className="item-actions">
-                  <button
-                    type="button"
-                    className="text-button"
-                    aria-describedby={`${quote.id}-text`}
-                    onClick={() => {
-                      onEdit(quote);
-                    }}
-                  >
-                    {strings.edit}
-                  </button>
-                  <button
-                    type="button"
-                    className="text-button"
-                    aria-describedby={`${quote.id}-text`}
-                    onClick={() => {
-                      onDelete(quote);
-                    }}
-                  >
-                    {strings.delete}
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-        <p className="muted">{strings.backupHint}</p>
-        <div className="item-actions">
-          <button
-            type="button"
-            className="text-button"
-            disabled={quotes.length === 0}
-            onClick={onExport}
-          >
-            {strings.exportQuotes}
-          </button>
-          <button
-            type="button"
-            className="text-button"
-            onClick={() => {
-              fileInput.current?.click();
-            }}
-          >
-            {strings.importQuotes}
-          </button>
-          <input
-            ref={fileInput}
-            type="file"
-            accept="application/json,.json"
-            hidden
-            data-testid="import-file"
-            onChange={(event) => {
-              const input = event.currentTarget;
-              const file = input.files?.[0];
-              if (!file) return;
-              void file.text().then(onImport);
-              // Picking the same file again should import it again.
-              input.value = '';
-            }}
-          />
-          <button
-            type="button"
-            className="text-button"
-            onClick={() => {
-              csvInput.current?.click();
-            }}
-          >
-            {strings.csvImport}
-          </button>
-          <input
-            ref={csvInput}
-            type="file"
-            accept=".csv,text/csv"
-            hidden
-            data-testid="import-csv"
-            onChange={(event) => {
-              const input = event.currentTarget;
-              const file = input.files?.[0];
-              if (file) onImportCsv(file);
-              input.value = '';
-            }}
-          />
-        </div>
-        <CsvHelp
-          tags={tags}
-          language={language}
-          strings={strings}
-          onDownloadTemplate={onDownloadTemplate}
+    // Shown in its own view of the profile, which supplies the heading.
+    <>
+      <p className="muted">{strings.personalHint}</p>
+      <p>
+        <button type="button" className="text-button primary-button" onClick={onAdd}>
+          {strings.addQuote}
+        </button>
+      </p>
+      {quotes.length === 0 ? (
+        <p className="muted">{strings.noPersonal}</p>
+      ) : (
+        <ul className="saved-list">
+          {quotes.map((quote) => (
+            <li key={quote.id} className="saved-item">
+              <blockquote id={`${quote.id}-text`} lang={quote.language}>
+                <p>{quote.text}</p>
+              </blockquote>
+              {(quote.author !== '' || quote.source !== '') && (
+                <p className="saved-author">
+                  {quote.author !== '' && <span className="saved-author-name">{quote.author}</span>}
+                  {quote.author !== '' && quote.source !== '' && ', '}
+                  {quote.source}
+                </p>
+              )}
+              <div className="item-actions">
+                <button
+                  type="button"
+                  className="text-button"
+                  aria-describedby={`${quote.id}-text`}
+                  onClick={() => {
+                    onEdit(quote);
+                  }}
+                >
+                  {strings.edit}
+                </button>
+                <button
+                  type="button"
+                  className="text-button"
+                  aria-describedby={`${quote.id}-text`}
+                  onClick={() => {
+                    onDelete(quote);
+                  }}
+                >
+                  {strings.delete}
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+      <p className="muted">{strings.backupHint}</p>
+      <div className="item-actions">
+        <button
+          type="button"
+          className="text-button"
+          disabled={quotes.length === 0}
+          onClick={onExport}
+        >
+          {strings.exportQuotes}
+        </button>
+        <button
+          type="button"
+          className="text-button"
+          onClick={() => {
+            fileInput.current?.click();
+          }}
+        >
+          {strings.importQuotes}
+        </button>
+        <input
+          ref={fileInput}
+          type="file"
+          accept="application/json,.json"
+          hidden
+          data-testid="import-file"
+          onChange={(event) => {
+            const input = event.currentTarget;
+            const file = input.files?.[0];
+            if (!file) return;
+            void file.text().then(onImport);
+            // Picking the same file again should import it again.
+            input.value = '';
+          }}
         />
-      </details>
-    </section>
+        <button
+          type="button"
+          className="text-button"
+          onClick={() => {
+            csvInput.current?.click();
+          }}
+        >
+          {strings.csvImport}
+        </button>
+        <input
+          ref={csvInput}
+          type="file"
+          accept=".csv,text/csv"
+          hidden
+          data-testid="import-csv"
+          onChange={(event) => {
+            const input = event.currentTarget;
+            const file = input.files?.[0];
+            if (file) onImportCsv(file);
+            input.value = '';
+          }}
+        />
+      </div>
+      <CsvHelp
+        tags={tags}
+        language={language}
+        strings={strings}
+        onDownloadTemplate={onDownloadTemplate}
+      />
+    </>
   );
 }

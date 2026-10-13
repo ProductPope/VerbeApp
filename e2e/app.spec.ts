@@ -28,9 +28,9 @@ async function openProfile(page: Page) {
 
 async function openYourQuotes(page: Page) {
   const profile = await openProfile(page);
+  await profile.getByRole('button', { name: /^Your quotes/ }).click();
   const section = profile.getByRole('region', { name: 'Your quotes' });
-  await expect(section.getByRole('button', { name: 'Add a quote' })).toBeHidden();
-  await section.getByText('Your quotes', { exact: true }).click();
+  await expect(section.getByRole('heading', { name: 'Your quotes' })).toBeFocused();
   return section;
 }
 
@@ -52,9 +52,12 @@ test.describe('accessibility', () => {
       await expectNoAxeViolations(page);
 
       const profile = await openProfile(page);
-      await expect(profile.getByRole('heading', { name: 'Favourites' })).toBeVisible();
+      await expect(profile.getByRole('button', { name: /^Favourites/ })).toBeVisible();
       await profile.getByText('About Verbe').click();
       await expect(profile.getByRole('link', { name: 'Source code on GitHub' })).toBeVisible();
+      await expectNoAxeViolations(page);
+      await profile.getByRole('button', { name: /^Favourites/ }).click();
+      await expect(profile.getByRole('heading', { name: 'Favourites' })).toBeFocused();
       await expectNoAxeViolations(page);
       await profile.getByRole('button', { name: 'Close' }).click();
       await expect(profile).toBeHidden();
@@ -123,10 +126,8 @@ test.describe('accessibility', () => {
     await page.keyboard.press('Escape');
     await openPreferences(page);
     await expectLargeTargets();
-    await page
-      .getByRole('region', { name: 'Your quotes' })
-      .getByText('Your quotes', { exact: true })
-      .click();
+    await page.getByRole('button', { name: /^Your quotes/ }).click();
+    await expectLargeTargets();
     await page.getByRole('button', { name: 'Add a quote' }).click();
     await expect(page.getByRole('dialog', { name: 'Add a quote' })).toBeVisible();
     await expectLargeTargets();
@@ -154,7 +155,7 @@ test.describe('layout', () => {
       expect(await fits()).toEqual({ overflow: 0, scrollY: 0 });
 
       await page.getByRole('button', { name: 'Your profile' }).click();
-      await expect(page.getByRole('heading', { name: 'Favourites' })).toBeVisible();
+      await expect(page.getByRole('button', { name: /^Favourites/ })).toBeVisible();
       expect(await fits()).toEqual({ overflow: 0, scrollY: 0 });
     });
   }
@@ -231,10 +232,14 @@ test.describe('feed', () => {
     await expect(page.getByRole('status')).toContainText('Quote hidden.');
 
     await page.reload();
-    await page.getByRole('button', { name: 'Your profile' }).click();
+    const profile = await openProfile(page);
+    await profile.getByRole('button', { name: /^Favourites 1/ }).click();
     await expect(page.getByRole('region', { name: 'Favourites' })).toContainText(
       favoriteText.replace(/[“”]/g, ''),
     );
+    await profile.getByRole('button', { name: 'Back to your profile' }).click();
+    await expect(profile.getByRole('button', { name: /^Favourites/ })).toBeFocused();
+    await profile.getByRole('button', { name: /^Hidden quotes 1/ }).click();
     await expect(page.getByRole('region', { name: 'Hidden quotes' })).toContainText(
       hiddenText.replace(/[“”]/g, ''),
     );

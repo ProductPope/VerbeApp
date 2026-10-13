@@ -749,6 +749,72 @@ main:focus {
   color: var(--color-text-muted);
 }
 
+/* The author stands out from the source, as on the quote cards. */
+.saved-author-name {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* Rows that lead into the profile's lists, one view each. */
+.profile-links {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-links li + li {
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: calc(var(--target-size) + var(--space-3));
+  padding: var(--space-2) 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.profile-link-label {
+  flex: 1;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-title);
+  font-weight: 700;
+}
+
+.profile-link-count {
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* A chevron pointing into the view; currentColor keeps it themed. */
+.profile-link::after {
+  width: 0.5em;
+  height: 0.5em;
+  border-top: var(--border-width) solid var(--color-text-muted);
+  border-right: var(--border-width) solid var(--color-text-muted);
+  content: '';
+  transform: rotate(45deg);
+}
+
+.profile-view-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: calc(-1 * var(--space-3));
+}
+
+.saved .profile-view-header h3 {
+  margin: 0;
+}
+
 /* Status */
 .status {
   position: fixed;

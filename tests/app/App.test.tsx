@@ -53,6 +53,13 @@ async function openProfile(user: ReturnType<typeof userEvent.setup>) {
   return screen.getByRole('dialog', { name: 'Your profile' });
 }
 
+/** Opens the profile and one of its lists, which shows in its own view. */
+async function openView(user: ReturnType<typeof userEvent.setup>, name: string) {
+  const profile = await openProfile(user);
+  await user.click(within(profile).getByRole('button', { name: new RegExp(`^${name}`) }));
+  return within(profile).getByRole('region', { name });
+}
+
 async function openPreferences(user: ReturnType<typeof userEvent.setup>) {
   const profile = await openProfile(user);
   const preferences = within(profile).getByRole('region', { name: 'Preferences' });
@@ -206,8 +213,7 @@ describe('favourites and hidden quotes', () => {
     expect(button).toHaveAttribute('aria-pressed', 'true');
     expect(store.get().favorites).toEqual([id]);
 
-    const profile = await openProfile(user);
-    const favorites = within(profile).getByRole('region', { name: 'Favourites' });
+    const favorites = await openView(user, 'Favourites');
     expect(within(favorites).getByText(`Text of ${id}.`)).toBeInTheDocument();
     await user.click(within(favorites).getByRole('button', { name: 'Remove from favourites' }));
     expect(within(favorites).getByText(/No favourites yet/)).toBeInTheDocument();
@@ -264,12 +270,11 @@ describe('favourites and hidden quotes', () => {
   it('restores hidden quotes from the profile', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, hidden: ['beta', 'unknown-id'] }));
-    const profile = await openProfile(user);
-    const hidden = within(profile).getByRole('region', { name: 'Hidden quotes' });
+    const hidden = await openView(user, 'Hidden quotes');
     expect(within(hidden).getAllByRole('listitem')).toHaveLength(1);
     await user.click(within(hidden).getByRole('button', { name: 'Show again' }));
     expect(within(hidden).getByText('Nothing hidden.')).toBeInTheDocument();
-    await user.click(within(profile).getByRole('button', { name: 'Close' }));
+    await user.click(screen.getByRole('button', { name: 'Close' }));
     expect(cardIds()).toContain('beta');
   });
 
@@ -317,6 +322,33 @@ describe('profile', () => {
     );
     await user.click(within(profile).getByRole('button', { name: 'Close' }));
     expect(profile).not.toHaveAttribute('open');
+  });
+
+  it('opens each list in its own view, with counts, and goes back to the same row', async () => {
+    const { user, store } = renderApp();
+    store.update((current) => ({ ...current, favorites: ['alpha', 'beta'], hidden: ['gamma'] }));
+    const profile = await openProfile(user);
+    const lists = within(profile).getByRole('navigation', { name: 'Your lists' });
+    expect(
+      within(lists)
+        .getAllByRole('button')
+        .map((button) => button.textContent),
+    ).toEqual(['Your quotes 0', 'Favourites 2', 'Hidden quotes 1']);
+    expect(within(profile).queryByRole('region', { name: 'Favourites' })).not.toBeInTheDocument();
+
+    await user.click(within(lists).getByRole('button', { name: /^Favourites/ }));
+    const favorites = within(profile).getByRole('region', { name: 'Favourites' });
+    expect(within(favorites).getByRole('heading', { name: 'Favourites' })).toHaveFocus();
+    expect(within(favorites).getAllByRole('listitem')).toHaveLength(2);
+    expect(within(profile).queryByRole('region', { name: 'Preferences' })).not.toBeInTheDocument();
+
+    await user.click(within(profile).getByRole('button', { name: 'Back to your profile' }));
+    expect(within(profile).getByRole('button', { name: /^Favourites/ })).toHaveFocus();
+
+    await user.click(within(profile).getByRole('button', { name: /^Hidden quotes/ }));
+    await user.click(within(profile).getByRole('button', { name: 'Close' }));
+    await openProfile(user);
+    expect(within(profile).getByRole('region', { name: 'Preferences' })).toBeInTheDocument();
   });
 
   it('keeps a collapsed About section last, with a link to the source code', async () => {
@@ -387,8 +419,7 @@ describe('translation', () => {
   it('also appears in the profile', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, favorites: ['alpha'] }));
-    const profile = await openProfile(user);
-    const favorites = within(profile).getByRole('region', { name: 'Favourites' });
+    const favorites = await openView(user, 'Favourites');
     expect(within(favorites).getByText('Tekst alfa.')).toHaveAttribute('lang', 'pl');
   });
 });
@@ -722,19 +753,29 @@ describe('reading streak', () => {
 });
 
 describe('your own quotes', () => {
-  it('starts collapsed, like Preferences', async () => {
-    const { user } = renderApp();
-    const profile = await openProfile(user);
-    const section = within(profile).getByRole('region', { name: 'Your quotes' });
-    const details = section.querySelector('details');
-    expect(details).not.toHaveAttribute('open');
-    await user.click(within(section).getByText('Your quotes', { selector: 'summary' }));
-    expect(details).toHaveAttribute('open');
+  it('bolds the author, apart from the source', async () => {
+    const { user, personalStore } = renderApp();
+    act(() => {
+      personalStore.update(() => [
+        {
+          id: 'mine-1',
+          text: 'Keep me.',
+          author: 'Me',
+          source: 'Notebook',
+          language: 'en',
+          tags: [],
+          added: '2026-10-13T10:00:00.000Z',
+        },
+      ]);
+    });
+    const section = await openView(user, 'Your quotes');
+    const author = within(section).getByText('Me');
+    expect(author).toHaveClass('saved-author-name');
+    expect(author.parentElement).toHaveTextContent(/^Me, Notebook$/);
   });
 
   async function openAddForm(user: ReturnType<typeof userEvent.setup>) {
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
-    const section = screen.getByRole('region', { name: 'Your quotes' });
+    const section = await openView(user, 'Your quotes');
     await user.click(within(section).getByRole('button', { name: 'Add a quote' }));
     return screen.getByRole('dialog', { name: 'Add a quote' });
   }
@@ -767,7 +808,9 @@ describe('your own quotes', () => {
     });
     const section = screen.getByRole('region', { name: 'Your quotes' });
     expect(within(section).getByText('Mind the gap.')).toBeInTheDocument();
-    expect(within(section).getByText('Me, Notebook, p. 3')).toBeInTheDocument();
+    expect(within(section).getByText('Me').parentElement).toHaveTextContent(
+      /^Me, Notebook, p\. 3$/,
+    );
 
     const card = articles().find((a) => a.dataset.cardId === saved!.id)!;
     expect(within(card).getByText('Your quote')).toBeInTheDocument();
@@ -789,6 +832,7 @@ describe('your own quotes', () => {
   it('marks the language of a Polish quote and closes without saving on Cancel', async () => {
     const { user, personalStore } = renderApp('pl');
     await user.click(screen.getByRole('button', { name: 'Twój profil' }));
+    await user.click(screen.getByRole('button', { name: /^Twoje cytaty/ }));
     await user.click(screen.getByRole('button', { name: 'Dodaj cytat' }));
     const dialog = screen.getByRole('dialog', { name: 'Dodaj cytat' });
     expect(within(dialog).getByRole('combobox', { name: 'Język cytatu' })).toHaveValue('pl');
@@ -812,8 +856,7 @@ describe('your own quotes', () => {
       added: '2026-10-13T10:00:00.000Z',
     };
     personalStore.update(() => [original]);
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
-    const section = screen.getByRole('region', { name: 'Your quotes' });
+    const section = await openView(user, 'Your quotes');
     const edit = within(section).getByRole('button', { name: 'Edit' });
     expect(edit).toHaveAccessibleDescription('First draft.');
     await user.click(edit);
@@ -845,8 +888,7 @@ describe('your own quotes', () => {
       tags: [],
       added: '2026-10-13T10:00:00.000Z',
     };
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
-    const section = screen.getByRole('region', { name: 'Your quotes' });
+    const section = await openView(user, 'Your quotes');
     expect(within(section).getByRole('button', { name: 'Download backup' })).toBeDisabled();
 
     act(() => {
@@ -880,7 +922,7 @@ describe('your own quotes', () => {
 
   it('previews a CSV file, explains skipped rows and imports on confirmation', async () => {
     const { user, personalStore, persistStorage } = renderApp();
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    await openView(user, 'Your quotes');
     const csv = 'text;author;categories\nFirst.;Me;Philosophy\n;Nobody;\nSecond.;;Cooking\n';
     await user.upload(
       screen.getByTestId('import-csv'),
@@ -908,7 +950,7 @@ describe('your own quotes', () => {
 
   it('explains a CSV file it cannot read, without importing anything', async () => {
     const { user, personalStore } = renderApp();
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    await openView(user, 'Your quotes');
     await user.upload(
       screen.getByTestId('import-csv'),
       new File(['author\nMe\n'], 'quotes.csv', { type: 'text/csv' }),
@@ -923,7 +965,7 @@ describe('your own quotes', () => {
 
   it('explains the CSV format and offers a template', async () => {
     const { user, saveFile } = renderApp();
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    await openView(user, 'Your quotes');
     await user.click(screen.getByText('How to prepare a CSV file'));
     const table = screen.getByRole('table');
     expect(within(table).getByRole('rowheader', { name: 'categories' })).toBeInTheDocument();
@@ -939,7 +981,7 @@ describe('your own quotes', () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     const user = userEvent.setup({ advanceTimers: (ms) => vi.advanceTimersByTime(ms) });
     renderApp();
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    await openView(user, 'Your quotes');
     await user.click(screen.getByRole('button', { name: 'Add a quote' }));
     await user.type(screen.getByRole('textbox', { name: 'Quote' }), 'Brief.');
     await user.click(screen.getByRole('button', { name: 'Save' }));
@@ -1030,8 +1072,8 @@ describe('offer to install', () => {
   it('appears after the reader saves a quote of their own', async () => {
     savePreferences();
     const { user } = renderApp('en', { install: fakeInstall() });
-    const profile = await openProfile(user);
-    await user.click(within(profile).getByRole('button', { name: 'Add a quote' }));
+    const section = await openView(user, 'Your quotes');
+    await user.click(within(section).getByRole('button', { name: 'Add a quote' }));
     const form = screen.getByRole('dialog', { name: 'Add a quote' });
     await user.type(within(form).getByRole('textbox', { name: 'Quote' }), 'Mine.');
     await user.click(within(form).getByRole('button', { name: 'Save' }));
