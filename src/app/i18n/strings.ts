@@ -5,7 +5,7 @@ export type Language = (typeof LANGUAGES)[number];
 export const TRANSLATION_LANGUAGE: Language = 'pl';
 
 const en = {
-  appName: 'VerbeApp',
+  appName: 'Verbe',
   tagline: 'Wise words, one at a time',
   skipToContent: 'Skip to quotes',
   profile: 'Your profile',
@@ -45,7 +45,7 @@ const en = {
   noFavorites: 'No favourites yet. Tap the heart on a quote to keep it here.',
   noHidden: 'Nothing hidden.',
   restore: 'Show again',
-  aboutHeading: 'About VerbeApp',
+  aboutHeading: 'About Verbe',
   aboutText:
     'A free, open-source app for self-development: one wise thought at a time, to reflect on and put into practice.',
   aboutSources:
@@ -85,7 +85,7 @@ const en = {
     count === 0
       ? 'No new quotes in this backup.'
       : `Added ${String(count)} ${count === 1 ? 'quote' : 'quotes'} from the backup.`,
-  importFailed: 'This file is not a VerbeApp backup.',
+  importFailed: 'This file is not a Verbe backup.',
   csvImport: 'Import from CSV',
   csvHelpSummary: 'How to prepare a CSV file',
   csvHelpIntro:
@@ -136,6 +136,11 @@ const en = {
     'Habits shape who we become. A few quiet minutes with a good thought every day do more than a long read once in a while.',
   streakHow:
     'A day counts after 30 seconds in the app. Come back tomorrow to keep the flame alight.',
+  installHeading: 'Install Verbe',
+  installOffer: 'Keep Verbe on your home screen: a wise thought in one tap, even offline.',
+  installAccept: 'Install',
+  installLater: 'Not now',
+  installApp: 'Install the app',
 };
 
 export type Strings = typeof en;
@@ -154,7 +159,7 @@ function polishQuotes(count: number): string {
 }
 
 const pl: Strings = {
-  appName: 'VerbeApp',
+  appName: 'Verbe',
   tagline: 'Mądre słowa, jedno po drugim',
   skipToContent: 'Przejdź do cytatów',
   profile: 'Twój profil',
@@ -196,7 +201,7 @@ const pl: Strings = {
   noFavorites: 'Brak ulubionych. Stuknij serce przy cytacie, aby go tu zachować.',
   noHidden: 'Nic nie jest ukryte.',
   restore: 'Pokaż ponownie',
-  aboutHeading: 'O VerbeApp',
+  aboutHeading: 'O Verbe',
   aboutText:
     'Darmowa aplikacja open source do samorozwoju: jedna mądra myśl naraz, do przemyślenia i zastosowania w praktyce.',
   aboutSources:
@@ -234,7 +239,7 @@ const pl: Strings = {
   importQuotes: 'Przywróć z kopii',
   imported: (count: number) =>
     count === 0 ? 'W tej kopii nie ma nowych cytatów.' : `Dodano z kopii: ${polishQuotes(count)}.`,
-  importFailed: 'Ten plik nie jest kopią zapasową VerbeApp.',
+  importFailed: 'Ten plik nie jest kopią zapasową Verbe.',
   csvImport: 'Importuj z CSV',
   csvHelpSummary: 'Jak przygotować plik CSV',
   csvHelpIntro:
@@ -280,6 +285,11 @@ const pl: Strings = {
   streakHabit:
     'To nawyki nas kształtują. Kilka spokojnych minut z dobrą myślą każdego dnia daje więcej niż długa lektura od święta.',
   streakHow: 'Dzień liczy się po 30 sekundach w aplikacji. Wróć jutro, żeby płomień nie zgasł.',
+  installHeading: 'Zainstaluj Verbe',
+  installOffer: 'Dodaj Verbe do ekranu głównego: mądra myśl jednym dotknięciem, także offline.',
+  installAccept: 'Zainstaluj',
+  installLater: 'Nie teraz',
+  installApp: 'Zainstaluj aplikację',
 };
 
 export const STRINGS: Record<Language, Strings> = { en, pl };

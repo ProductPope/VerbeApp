@@ -75,7 +75,7 @@ export interface CollectionFile {
   collection: QuoteCollection;
 }
 
-/** An original saying or tip written for VerbeApp, not a quote from literature. */
+/** An original saying or tip written for Verbe, not a quote from literature. */
 export interface CommunityItem {
   id: string;
   text: string;

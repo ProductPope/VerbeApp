@@ -45,7 +45,7 @@ test.describe('accessibility', () => {
 
       const profile = await openProfile(page);
       await expect(profile.getByRole('heading', { name: 'Favourites' })).toBeVisible();
-      await profile.getByText('About VerbeApp').click();
+      await profile.getByText('About Verbe').click();
       await expect(profile.getByRole('link', { name: 'Source code on GitHub' })).toBeVisible();
       await expectNoAxeViolations(page);
       await profile.getByRole('button', { name: 'Close' }).click();
@@ -101,9 +101,11 @@ test.describe('accessibility', () => {
         }),
       );
       expect(sizes.length).toBeGreaterThan(3);
+      // Layout can land a hair under a whole pixel (43.999996), which is still 44 px on screen.
+      const minimum = 44 - 0.01;
       for (const size of sizes) {
-        expect(size.height, size.name).toBeGreaterThanOrEqual(44);
-        expect(size.width, size.name).toBeGreaterThanOrEqual(44);
+        expect(size.height, size.name).toBeGreaterThanOrEqual(minimum);
+        expect(size.width, size.name).toBeGreaterThanOrEqual(minimum);
       }
     }
     await page.goto('./');
@@ -443,7 +445,7 @@ test.describe('installable app', () => {
       orientation?: string;
       icons: { sizes: string; purpose?: string }[];
     };
-    expect(manifest).toMatchObject({ name: 'VerbeApp', display: 'standalone' });
+    expect(manifest).toMatchObject({ name: 'Verbe', display: 'standalone' });
     // WCAG 1.3.4: the app must not lock itself to portrait or landscape.
     expect(manifest.orientation).toBeUndefined();
     expect(manifest.icons.map((icon) => icon.sizes)).toEqual(
@@ -513,4 +515,41 @@ test.describe('installable app', () => {
     await expect(feed(page).getByRole('article').first()).toBeVisible();
     await context.setOffline(false);
   });
+});
+
+test.describe('offer to install', () => {
+  for (const colorScheme of ['light', 'dark'] as const) {
+    test(`appears after a favourite and is accessible in the ${colorScheme} theme`, async ({
+      page,
+    }) => {
+      await page.emulateMedia({ colorScheme });
+      await page.addInitScript(() => {
+        localStorage.setItem('verbeapp:preferences:v1', '{}');
+      });
+      await page.goto('./');
+      await expect(feed(page).getByRole('article').first()).toBeVisible();
+      // Stand in for Chrome deciding the app is installable.
+      await page.evaluate(() => {
+        const event = Object.assign(new Event('beforeinstallprompt', { cancelable: true }), {
+          prompt: () => Promise.resolve(),
+          userChoice: Promise.resolve({ outcome: 'accepted' }),
+        });
+        window.dispatchEvent(event);
+      });
+      const offer = page.getByRole('complementary', { name: 'Install Verbe' });
+      await expect(offer).toBeHidden();
+
+      await feed(page).getByRole('button', { name: 'Favourite' }).first().click();
+      await expect(offer).toBeVisible();
+      // Sits under the quotes rather than over them, so their buttons stay usable.
+      const favourite = feed(page).getByRole('button', { name: 'Favourite', pressed: true });
+      await expect(favourite).toBeInViewport({ ratio: 1 });
+      await favourite.click();
+      await expect(favourite).toBeHidden();
+      await expectNoAxeViolations(page);
+
+      await offer.getByRole('button', { name: 'Not now' }).click();
+      await expect(offer).toBeHidden();
+    });
+  }
 });

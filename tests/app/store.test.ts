@@ -41,6 +41,8 @@ describe('parsePreferences', () => {
       translation: 'no',
       notify: 'yes',
       notifyHour: 25,
+      installDismissals: -1,
+      installDismissedAt: 5,
     });
     expect(parsePreferences(raw, fallback)).toEqual({
       language: 'en',
@@ -52,6 +54,19 @@ describe('parsePreferences', () => {
       notify: false,
       notifyHour: 8,
       swipeHintSeen: true,
+      installDismissals: 0,
+      installDismissedAt: null,
+    });
+  });
+
+  it('remembers refusals of the offer to install', () => {
+    const raw = JSON.stringify({
+      installDismissals: 1,
+      installDismissedAt: '2026-10-01T10:00:00.000Z',
+    });
+    expect(parsePreferences(raw, fallback)).toMatchObject({
+      installDismissals: 1,
+      installDismissedAt: '2026-10-01T10:00:00.000Z',
     });
   });
 

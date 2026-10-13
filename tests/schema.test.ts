@@ -53,7 +53,7 @@ describe('JSON Schemas', () => {
           translations: {
             pl: {
               text: 'Strata to nic innego jak zmiana.',
-              translator: 'VerbeApp contributors',
+              translator: 'Verbe contributors',
               license: 'CC0-1.0',
               status: 'ai-draft',
             },

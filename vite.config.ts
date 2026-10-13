@@ -51,8 +51,8 @@ export default defineConfig({
       filename: 'sw.ts',
       includeAssets: ['icon.svg'],
       manifest: {
-        name: 'VerbeApp',
-        short_name: 'VerbeApp',
+        name: 'Verbe',
+        short_name: 'Verbe',
         description:
           'Wise quotes on philosophy, self-development, resilience, relationships, mindfulness and more, from verified sources.',
         lang: 'en',

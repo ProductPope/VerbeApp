@@ -23,6 +23,8 @@ interface ProfileDialogProps {
   notification?: ReactNode;
   /** The reader's own quotes. */
   personal?: ReactNode;
+  /** Opens the browser's install dialog; only while the app can be installed. */
+  onInstall?: (() => void) | undefined;
   ref?: Ref<HTMLDialogElement>;
 }
 
@@ -163,6 +165,7 @@ export function ProfileDialog({
   onTranslationChange,
   notification,
   personal,
+  onInstall,
   ref,
 }: ProfileDialogProps) {
   const byId = new Map(cards.map((card) => [card.id, card]));
@@ -230,6 +233,13 @@ export function ProfileDialog({
             <summary id="about-heading">{strings.aboutHeading}</summary>
             <p>{strings.aboutText}</p>
             <p>{strings.aboutSources}</p>
+            {onInstall && (
+              <p>
+                <button type="button" className="text-button" onClick={onInstall}>
+                  {strings.installApp}
+                </button>
+              </p>
+            )}
             <p>
               <a href={REPOSITORY_URL} target="_blank" rel="noopener noreferrer">
                 {strings.aboutLink}
