@@ -1,21 +1,25 @@
 export const LANGUAGES = ['en', 'pl'] as const;
 export type Language = (typeof LANGUAGES)[number];
 
+/** Quotes stay in English; this is the language of the optional translation under them. */
+export const TRANSLATION_LANGUAGE: Language = 'pl';
+
 const en = {
   appName: 'VerbeApp',
   tagline: 'Wise words, one at a time',
   skipToContent: 'Skip to quotes',
-  mainNavigation: 'Main',
-  feedTab: 'Quotes',
-  savedTab: 'Saved',
-  languageLabel: 'Language',
+  saved: 'Saved quotes',
+  settings: 'Settings',
+  close: 'Close',
+  languageLabel: 'App language',
+  translationLabel: 'Polish translation',
+  translationHint: 'Draft translations prepared with AI help. Corrections are welcome on GitHub.',
   categoriesLabel: 'Categories',
   allCategories: 'All',
   feedLabel: 'Quotes feed',
-  feedHint: 'Swipe up for the next quote. With a keyboard, use Page Down and Page Up.',
-  autoplayOn: 'Auto-advance on',
-  autoplayOff: 'Auto-advance off',
-  autoplayPausedReducedMotion: 'Auto-advance moves without animation because reduced motion is on.',
+  feedHint:
+    'Swipe left for the next quote. With a keyboard, use the arrow keys or Page Down and Page Up.',
+  autoplay: 'Auto-advance',
   favorite: 'Favourite',
   removeFavorite: 'Remove from favourites',
   hide: 'Don’t show again',
@@ -31,7 +35,6 @@ const en = {
   noHidden: 'Nothing hidden.',
   restore: 'Show again',
   emptyFeed: 'No quotes match. Choose more categories or restore hidden quotes.',
-  englishOnly: 'Not translated yet, shown in English.',
   newTab: '(opens in a new tab)',
   by: 'by',
 };
@@ -42,18 +45,19 @@ const pl: Strings = {
   appName: 'VerbeApp',
   tagline: 'Mądre słowa, jedno po drugim',
   skipToContent: 'Przejdź do cytatów',
-  mainNavigation: 'Główna',
-  feedTab: 'Cytaty',
-  savedTab: 'Zapisane',
-  languageLabel: 'Język',
+  saved: 'Zapisane cytaty',
+  settings: 'Ustawienia',
+  close: 'Zamknij',
+  languageLabel: 'Język aplikacji',
+  translationLabel: 'Tłumaczenie na polski',
+  translationHint:
+    'Robocze tłumaczenia przygotowane z pomocą AI. Poprawki mile widziane na GitHubie.',
   categoriesLabel: 'Kategorie',
   allCategories: 'Wszystkie',
   feedLabel: 'Lista cytatów',
-  feedHint: 'Przesuń w górę, aby zobaczyć następny cytat. Na klawiaturze użyj Page Down i Page Up.',
-  autoplayOn: 'Autoprzewijanie włączone',
-  autoplayOff: 'Autoprzewijanie wyłączone',
-  autoplayPausedReducedMotion:
-    'Autoprzewijanie działa bez animacji, bo włączone jest ograniczenie ruchu.',
+  feedHint:
+    'Przesuń w lewo, aby zobaczyć następny cytat. Na klawiaturze użyj strzałek lub Page Down i Page Up.',
+  autoplay: 'Autoprzewijanie',
   favorite: 'Ulubiony',
   removeFavorite: 'Usuń z ulubionych',
   hide: 'Nie pokazuj więcej',
@@ -69,7 +73,6 @@ const pl: Strings = {
   noHidden: 'Nic nie jest ukryte.',
   restore: 'Pokaż ponownie',
   emptyFeed: 'Brak pasujących cytatów. Wybierz więcej kategorii lub przywróć ukryte cytaty.',
-  englishOnly: 'Jeszcze bez tłumaczenia, pokazano po angielsku.',
   newTab: '(otwiera się w nowej karcie)',
   by: 'autor:',
 };

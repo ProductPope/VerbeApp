@@ -6,6 +6,9 @@ const PATHS = {
   book: 'M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5',
   play: 'M7 4.5v15l12-7.5z',
   pause: 'M7 4.5h3.5v15H7zM13.5 4.5H17v15h-3.5z',
+  bookmark: 'M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z',
+  settings: 'M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4',
+  close: 'M18 6 6 18M6 6l12 12',
 } as const;
 
 export type IconName = keyof typeof PATHS;

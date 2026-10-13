@@ -7,56 +7,112 @@
       "text": "Speak not but what may benefit others or yourself; avoid trifling conversation.",
       "section": "chapter-9",
       "locator": "Chapter IX: Plan for Attaining Moral Perfection",
-      "tags": ["assertiveness", "self-development"]
+      "tags": ["assertiveness", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Mów tylko to, co może przynieść korzyść innym lub tobie; unikaj błahych rozmów.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "let-all-things-have",
       "text": "Let all your things have their places; let each part of your business have its time.",
       "section": "chapter-9",
       "locator": "Chapter IX: Plan for Attaining Moral Perfection",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Niech wszystkie twoje rzeczy mają swoje miejsce; niech każda część twoich zajęć ma swój czas.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "resolve-perform-ought-perform",
       "text": "Resolve to perform what you ought; perform without fail what you resolve.",
       "section": "chapter-9",
       "locator": "Chapter IX: Plan for Attaining Moral Perfection",
-      "tags": ["productivity", "self-development"]
+      "tags": ["productivity", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Postanawiaj robić to, co powinieneś; rób bez zawodu to, co postanowisz.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "lose-no-time-always",
       "text": "Lose no time; be always employed in something useful; cut off all unnecessary actions.",
       "section": "chapter-9",
       "locator": "Chapter IX: Plan for Attaining Moral Perfection",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Nie trać czasu; zawsze zajmuj się czymś pożytecznym; odcinaj wszelkie zbędne działania.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "use-no-hurtful-deceit",
       "text": "Use no hurtful deceit; think innocently and justly; and, if you speak, speak accordingly.",
       "section": "chapter-9",
       "locator": "Chapter IX: Plan for Attaining Moral Perfection",
-      "tags": ["assertiveness"]
+      "tags": ["assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Nie używaj krzywdzącego podstępu; myśl niewinnie i sprawiedliwie, a jeśli mówisz, mów zgodnie z tym.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "avoid-extremes-forbear-resenting",
       "text": "Avoid extremes; forbear resenting injuries so much as you think they deserve.",
       "section": "chapter-9",
       "locator": "Chapter IX: Plan for Attaining Moral Perfection",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Unikaj skrajności; powstrzymuj się od urazy za krzywdy, nawet jeśli twoim zdaniem na nią zasługują.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "not-disturbed-at-trifles",
       "text": "Be not disturbed at trifles, or at accidents common or unavoidable.",
       "section": "chapter-9",
       "locator": "Chapter IX: Plan for Attaining Moral Perfection",
-      "tags": ["self-development"]
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Nie daj się wytrącić z równowagi drobiazgom ani wypadkom zwyczajnym lub nieuniknionym.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "good-shall-do-day",
       "text": "What good shall I do this day?",
       "section": "chapter-9",
       "locator": "Chapter IX: Plan for Attaining Moral Perfection",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Jakie dobro uczynię dzisiaj?",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

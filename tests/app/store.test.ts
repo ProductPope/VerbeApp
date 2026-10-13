@@ -17,6 +17,10 @@ describe('defaultPreferences', () => {
   it('keeps auto-advance off', () => {
     expect(defaultPreferences().autoplay).toBe(false);
   });
+
+  it('shows translations', () => {
+    expect(defaultPreferences().translation).toBe(true);
+  });
 });
 
 describe('parsePreferences', () => {
@@ -34,6 +38,7 @@ describe('parsePreferences', () => {
       hidden: 'nope',
       tags: ['philosophy'],
       autoplay: 'yes',
+      translation: 'no',
     });
     expect(parsePreferences(raw, fallback)).toEqual({
       language: 'en',
@@ -41,7 +46,15 @@ describe('parsePreferences', () => {
       hidden: [],
       tags: ['philosophy'],
       autoplay: false,
+      translation: true,
     });
+  });
+
+  it('turns translations off only when explicitly stored', () => {
+    expect(parsePreferences(JSON.stringify({ translation: false }), fallback).translation).toBe(
+      false,
+    );
+    expect(parsePreferences('{}', fallback).translation).toBe(true);
   });
 });
 

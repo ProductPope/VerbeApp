@@ -38,6 +38,7 @@
 
   /* Shape */
   --radius-small: 0.5rem;
+  --radius-medium: 1rem;
   --radius-pill: 999px;
   --border-width: 1px;
   --focus-width: 3px;

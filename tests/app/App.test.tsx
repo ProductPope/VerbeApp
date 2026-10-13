@@ -15,6 +15,11 @@ function renderApp(language = 'en') {
   return { store, user, ...view };
 }
 
+async function openSettings(user: ReturnType<typeof userEvent.setup>) {
+  await user.click(screen.getByRole('button', { name: 'Settings' }));
+  return screen.getByRole('dialog', { name: 'Settings' });
+}
+
 function articles() {
   return within(screen.getByRole('feed')).getAllByRole('article');
 }
@@ -73,6 +78,10 @@ describe('feed', () => {
     expect(list[0]).toHaveFocus();
     await user.keyboard('{PageUp}');
     expect(list[0]).toHaveFocus();
+    await user.keyboard('{ArrowRight}');
+    expect(list[1]).toHaveFocus();
+    await user.keyboard('{ArrowLeft}');
+    expect(list[0]).toHaveFocus();
   });
 
   it('inside an article only Page Down and Page Up move, so controls keep their keys', async () => {
@@ -81,6 +90,7 @@ describe('feed', () => {
     const favorite = within(list[0]!).getByRole('button', { name: 'Favourite' });
     favorite.focus();
     await user.keyboard('{ArrowDown}');
+    await user.keyboard('{ArrowRight}');
     expect(favorite).toHaveFocus();
     await user.keyboard('{PageDown}');
     expect(list[1]).toHaveFocus();
@@ -105,8 +115,12 @@ describe('favourites and hidden quotes', () => {
     expect(button).toHaveAttribute('aria-pressed', 'true');
     expect(store.get().favorites).toEqual([id]);
 
-    await user.click(screen.getByRole('button', { name: 'Saved' }));
-    expect(screen.getByRole('button', { name: 'Saved' })).toHaveAttribute('aria-current', 'page');
+    await user.click(screen.getByRole('button', { name: 'Saved quotes' }));
+    expect(screen.getByRole('button', { name: 'Saved quotes' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
+    expect(screen.queryByRole('button', { name: 'Auto-advance' })).not.toBeInTheDocument();
     const favorites = screen.getByRole('region', { name: 'Favourites' });
     expect(within(favorites).getByText(`Text of ${id}.`)).toBeInTheDocument();
     await user.click(within(favorites).getByRole('button', { name: 'Remove from favourites' }));
@@ -130,12 +144,12 @@ describe('favourites and hidden quotes', () => {
   it('restores hidden quotes from the Saved view', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, hidden: ['beta', 'unknown-id'] }));
-    await user.click(screen.getByRole('button', { name: 'Saved' }));
+    await user.click(screen.getByRole('button', { name: 'Saved quotes' }));
     const hidden = screen.getByRole('region', { name: 'Hidden quotes' });
     expect(within(hidden).getAllByRole('listitem')).toHaveLength(1);
     await user.click(within(hidden).getByRole('button', { name: 'Show again' }));
     expect(within(hidden).getByText('Nothing hidden.')).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Quotes' }));
+    await user.click(screen.getByRole('button', { name: 'Saved quotes' }));
     expect(cardIds()).toContain('beta');
   });
 
@@ -154,7 +168,8 @@ describe('favourites and hidden quotes', () => {
 describe('categories', () => {
   it('filters the feed by the selected categories', async () => {
     const { user } = renderApp();
-    const group = screen.getByRole('group', { name: 'Categories' });
+    const settings = await openSettings(user);
+    const group = within(settings).getByRole('group', { name: 'Categories' });
     await user.click(within(group).getByRole('button', { name: 'Productivity' }));
     expect(within(group).getByRole('button', { name: 'All' })).toHaveAttribute(
       'aria-pressed',
@@ -169,29 +184,70 @@ describe('categories', () => {
   });
 });
 
-describe('language', () => {
-  it('switches the interface and quotes to Polish, marking English fallbacks', async () => {
+describe('settings', () => {
+  it('opens as a modal dialog and closes again', async () => {
     const { user } = renderApp();
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Language' }), 'pl');
-    expect(document.documentElement.lang).toBe('pl');
-    expect(screen.getByRole('feed', { name: 'Lista cytatów' })).toBeInTheDocument();
+    const settings = await openSettings(user);
+    expect(settings).toHaveAttribute('open');
+    await user.click(within(settings).getByRole('button', { name: 'Close' }));
+    expect(settings).not.toHaveAttribute('open');
+  });
+});
+
+describe('translation', () => {
+  it('shows the Polish translation under the English quote by default', () => {
+    renderApp();
     const alpha = articles().find((a) => a.dataset.cardId === 'alpha')!;
-    expect(within(alpha).getByText('Tekst alfa.').closest('blockquote')).toHaveAttribute(
-      'lang',
-      'pl',
-    );
-    expect(within(alpha).getByText('Marek Aureliusz')).toBeInTheDocument();
-    const beta = articles().find((a) => a.dataset.cardId === 'beta')!;
-    expect(within(beta).getByText('Text of beta.').closest('blockquote')).toHaveAttribute(
+    expect(within(alpha).getByText('Text of alpha.').closest('blockquote')).toHaveAttribute(
       'lang',
       'en',
     );
-    expect(within(beta).getByText(/Jeszcze bez tłumaczenia/)).toBeInTheDocument();
+    const translation = within(alpha).getByText('Tekst alfa.');
+    expect(translation).toHaveAttribute('lang', 'pl');
+    expect(translation.closest('blockquote')).toBeNull();
+    expect(alpha).toHaveAccessibleDescription(/Tekst alfa\./);
+    const beta = articles().find((a) => a.dataset.cardId === 'beta')!;
+    expect(beta).not.toHaveAccessibleDescription(/Tekst/);
+  });
+
+  it('can be switched off in settings', async () => {
+    const { user, store } = renderApp();
+    const settings = await openSettings(user);
+    const toggle = within(settings).getByRole('switch', { name: 'Polish translation' });
+    expect(toggle).toBeChecked();
+    expect(toggle).toHaveAccessibleDescription(/AI/);
+    await user.click(toggle);
+    expect(store.get().translation).toBe(false);
+    expect(screen.queryByText('Tekst alfa.')).not.toBeInTheDocument();
+  });
+
+  it('also appears in the Saved view', async () => {
+    const { user, store } = renderApp();
+    store.update((current) => ({ ...current, favorites: ['alpha'] }));
+    await user.click(screen.getByRole('button', { name: 'Saved quotes' }));
+    const favorites = screen.getByRole('region', { name: 'Favourites' });
+    expect(within(favorites).getByText('Tekst alfa.')).toHaveAttribute('lang', 'pl');
+  });
+});
+
+describe('language', () => {
+  it('switches the interface to Polish and keeps quotes in English', async () => {
+    const { user } = renderApp();
+    const settings = await openSettings(user);
+    await user.selectOptions(
+      within(settings).getByRole('combobox', { name: 'App language' }),
+      'pl',
+    );
+    expect(document.documentElement.lang).toBe('pl');
+    expect(screen.getByRole('feed', { name: 'Lista cytatów' })).toBeInTheDocument();
+    const alpha = articles().find((a) => a.dataset.cardId === 'alpha')!;
+    expect(within(alpha).getByText('Text of alpha.')).toBeInTheDocument();
+    expect(within(alpha).getByText('Marek Aureliusz')).toBeInTheDocument();
   });
 
   it('starts in Polish for a Polish browser', () => {
     renderApp('pl-PL');
-    expect(screen.getByRole('button', { name: 'Cytaty' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Ustawienia' })).toBeInTheDocument();
   });
 });
 
@@ -205,10 +261,11 @@ describe('auto-advance', () => {
   it('is off by default and does nothing', () => {
     vi.useFakeTimers();
     renderApp();
-    expect(screen.getByRole('button', { name: 'Auto-advance off' })).toHaveAttribute(
+    expect(screen.getByRole('button', { name: 'Auto-advance' })).toHaveAttribute(
       'aria-pressed',
       'false',
     );
+    expect(screen.queryByTestId('autoplay-progress')).not.toBeInTheDocument();
     advanceBy(60_000);
     expect(articles()[1]!.dataset.scrolledTo).toBeUndefined();
   });
@@ -216,12 +273,16 @@ describe('auto-advance', () => {
   it('moves to the next quote after its reading time once switched on', () => {
     vi.useFakeTimers();
     renderApp();
-    fireEvent.click(screen.getByRole('button', { name: 'Auto-advance off' }));
-    expect(screen.getByRole('button', { name: 'Auto-advance on' })).toHaveAttribute(
+    fireEvent.click(screen.getByRole('button', { name: 'Auto-advance' }));
+    expect(screen.getByRole('button', { name: 'Auto-advance' })).toHaveAttribute(
       'aria-pressed',
       'true',
     );
-    const wait = readingTimeMs(articles()[0]!.querySelector('blockquote')!.textContent);
+    const first = articles()[0]!;
+    const translation = first.querySelector('.card-translation')?.textContent ?? '';
+    const wait = readingTimeMs(`${first.querySelector('blockquote')!.textContent} ${translation}`);
+    const bar = screen.getByTestId('autoplay-progress').firstElementChild as HTMLElement;
+    expect(bar.style.animationDuration).toBe(`${String(wait)}ms`);
     advanceBy(wait - 100);
     expect(articles()[1]!.dataset.scrolledTo).toBeUndefined();
     advanceBy(200);
@@ -232,9 +293,10 @@ describe('auto-advance', () => {
   it('pauses while a mouse is over the feed and while the page is hidden', () => {
     vi.useFakeTimers();
     renderApp();
-    fireEvent.click(screen.getByRole('button', { name: 'Auto-advance off' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Auto-advance' }));
     const feed = screen.getByRole('feed');
     fireEvent.pointerEnter(feed, { pointerType: 'mouse' });
+    expect(screen.queryByTestId('autoplay-progress')).not.toBeInTheDocument();
     advanceBy(60_000);
     expect(articles()[1]!.dataset.scrolledTo).toBeUndefined();
     fireEvent.pointerLeave(feed);
@@ -253,11 +315,13 @@ describe('auto-advance', () => {
   it('ignores touch hovering but restarts the timer on every touch', () => {
     vi.useFakeTimers();
     renderApp();
-    fireEvent.click(screen.getByRole('button', { name: 'Auto-advance off' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Auto-advance' }));
     const feed = screen.getByRole('feed');
     fireEvent.pointerEnter(feed, { pointerType: 'touch' });
     advanceBy(7_000);
+    const before = screen.getByTestId('autoplay-progress').firstElementChild;
     fireEvent.pointerDown(feed);
+    expect(screen.getByTestId('autoplay-progress').firstElementChild).not.toBe(before);
     advanceBy(7_000);
     expect(articles()[1]!.dataset.scrolledTo).toBeUndefined();
     advanceBy(24_000);
@@ -267,7 +331,7 @@ describe('auto-advance', () => {
   it('pauses while keyboard focus is in the feed', () => {
     vi.useFakeTimers();
     renderApp();
-    fireEvent.click(screen.getByRole('button', { name: 'Auto-advance off' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Auto-advance' }));
     const first = articles()[0]!;
     // jsdom never reports :focus-visible; pretend this focus came from a keyboard.
     const realMatches = Object.getOwnPropertyDescriptor(Element.prototype, 'matches')!.value as (

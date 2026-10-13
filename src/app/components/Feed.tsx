@@ -14,6 +14,7 @@ interface FeedProps {
   cards: Card[];
   strings: Strings;
   language: Language;
+  translationLanguage: Language | undefined;
   favorites: string[];
   autoplay: boolean;
   reducedMotion: boolean;
@@ -25,8 +26,8 @@ interface FeedProps {
 /** How many cards must remain below the current one before another round is added. */
 const LOOKAHEAD = 3;
 
-const NEXT_KEYS = new Set(['PageDown', 'ArrowDown', 'j']);
-const PREVIOUS_KEYS = new Set(['PageUp', 'ArrowUp', 'k']);
+const NEXT_KEYS = new Set(['PageDown', 'ArrowRight', 'ArrowDown', 'j']);
+const PREVIOUS_KEYS = new Set(['PageUp', 'ArrowLeft', 'ArrowUp', 'k']);
 
 let roundCounter = 0;
 
@@ -53,6 +54,7 @@ export function Feed({
   cards,
   strings,
   language,
+  translationLanguage,
   favorites,
   autoplay,
   reducedMotion,
@@ -66,7 +68,7 @@ export function Feed({
   const [interacting, setInteracting] = useState(false);
   const [pageHidden, setPageHidden] = useState(false);
   // Bumped on every touch so that auto-advance restarts its timer.
-  const [, setTouches] = useState(0);
+  const [touches, setTouches] = useState(0);
   const articles = useRef(new Map<string, HTMLElement>());
 
   // Keep the feed in step with the eligible cards. Hiding a card removes it
@@ -97,7 +99,11 @@ export function Feed({
     const item = items[index];
     const element = item && articles.current.get(item.key);
     if (!element) return;
-    element.scrollIntoView({ block: 'start', behavior: reducedMotion ? 'auto' : 'smooth' });
+    element.scrollIntoView({
+      block: 'nearest',
+      inline: 'start',
+      behavior: reducedMotion ? 'auto' : 'smooth',
+    });
     if (moveFocus) element.focus({ preventScroll: true });
     setActive(index);
     extendFrom(index);
@@ -139,12 +145,19 @@ export function Feed({
 
   // Auto-advance (WCAG 2.2.2): off by default, toggled by a visible control,
   // and paused while the reader points at, focuses or touches the feed.
+  const current = items[active];
+  const advancing = autoplay && !interacting && !pageHidden && current !== undefined;
+  const translation =
+    current && translationLanguage !== undefined
+      ? current.card.translations[translationLanguage]
+      : undefined;
+  const delay = current ? readingTimeMs(`${current.card.text} ${translation ?? ''}`) : 0;
+
   useEffect(() => {
-    const card = items[active]?.card;
-    if (!autoplay || interacting || pageHidden || !card) return;
+    if (!advancing) return;
     const timer = setTimeout(() => {
       goTo(active + 1, false);
-    }, readingTimeMs(card.text));
+    }, delay);
     return () => {
       clearTimeout(timer);
     };
@@ -174,54 +187,68 @@ export function Feed({
   }
 
   return (
-    // The ARIA feed pattern puts keyboard handling on the feed itself.
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-    <div
-      className="feed"
-      role="feed"
-      aria-label={strings.feedLabel}
-      aria-describedby="feed-hint"
-      aria-busy={false}
-      onKeyDown={onKeyDown}
-      onPointerEnter={onPointerEnter}
-      onPointerLeave={() => {
-        setInteracting(false);
-      }}
-      onPointerDown={() => {
-        setTouches((count) => count + 1);
-      }}
-      onFocus={(event) => {
-        let keyboard = true;
-        try {
-          keyboard = event.target.matches(':focus-visible');
-        } catch {
-          // Older engines: treat any focus as interaction.
-        }
-        if (keyboard) setInteracting(true);
-      }}
-      onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setInteracting(false);
-      }}
-    >
-      <p id="feed-hint" className="visually-hidden">
-        {strings.feedHint}
-      </p>
-      {items.map((item, index) => (
-        <QuoteCard
-          key={item.key}
-          ref={(element) => {
-            if (element) articles.current.set(item.key, element);
-            else articles.current.delete(item.key);
-          }}
-          card={item.card}
-          position={index + 1}
-          language={language}
-          strings={strings}
-          favorite={favorites.includes(item.card.id)}
-          onToggleFavorite={onToggleFavorite}
-          onHide={onHide}
-        />
-      ))}
+    <div className="feed-frame">
+      {advancing && (
+        // Decorative: the play button already says whether auto-advance is on.
+        // A new key restarts the animation whenever the timer restarts.
+        <div className="autoplay-progress" aria-hidden="true" data-testid="autoplay-progress">
+          <div
+            key={`${current.key}:${String(touches)}`}
+            className="autoplay-progress-bar"
+            style={{ animationDuration: `${String(delay)}ms` }}
+          />
+        </div>
+      )}
+      {/* The ARIA feed pattern puts keyboard handling on the feed itself. */}
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+      <div
+        className="feed"
+        role="feed"
+        aria-label={strings.feedLabel}
+        aria-describedby="feed-hint"
+        aria-busy={false}
+        onKeyDown={onKeyDown}
+        onPointerEnter={onPointerEnter}
+        onPointerLeave={() => {
+          setInteracting(false);
+        }}
+        onPointerDown={() => {
+          setTouches((count) => count + 1);
+        }}
+        onFocus={(event) => {
+          let keyboard = true;
+          try {
+            keyboard = event.target.matches(':focus-visible');
+          } catch {
+            // Older engines: treat any focus as interaction.
+          }
+          if (keyboard) setInteracting(true);
+        }}
+        onBlur={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) setInteracting(false);
+        }}
+      >
+        <p id="feed-hint" className="visually-hidden">
+          {strings.feedHint}
+        </p>
+        {items.map((item, index) => (
+          <QuoteCard
+            key={item.key}
+            ref={(element) => {
+              if (element) articles.current.set(item.key, element);
+              else articles.current.delete(item.key);
+            }}
+            card={item.card}
+            position={index + 1}
+            language={language}
+            strings={strings}
+            favorite={favorites.includes(item.card.id)}
+            translationLanguage={translationLanguage}
+            onToggleFavorite={onToggleFavorite}
+            onHide={onHide}
+          />
+        ))}
+      </div>
     </div>
   );
 }

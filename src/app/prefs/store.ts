@@ -9,6 +9,8 @@ export interface Preferences {
   /** Selected category ids; empty means all categories. */
   tags: string[];
   autoplay: boolean;
+  /** Show the Polish translation under each quote. */
+  translation: boolean;
 }
 
 export const STORAGE_KEY = 'verbeapp:preferences:v1';
@@ -20,6 +22,7 @@ export function defaultPreferences(browserLanguage = ''): Preferences {
     hidden: [],
     tags: [],
     autoplay: false,
+    translation: true,
   };
 }
 
@@ -40,6 +43,7 @@ export function parsePreferences(raw: string | null, fallback: Preferences): Pre
       hidden: stringArray(data.hidden),
       tags: stringArray(data.tags),
       autoplay: data.autoplay === true,
+      translation: data.translation !== false,
     };
   } catch {
     return fallback;

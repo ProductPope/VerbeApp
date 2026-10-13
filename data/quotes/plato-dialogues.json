@@ -7,21 +7,42 @@
       "text": "The unexamined life is not worth living.",
       "section": "apology",
       "locator": "Apology",
-      "tags": ["philosophy", "self-development"]
+      "tags": ["philosophy", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Życie niezbadane nie jest warte życia.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "neither-know-nor-think",
       "text": "I neither know nor think that I know.",
       "section": "apology",
       "locator": "Apology",
-      "tags": ["philosophy"]
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Ani nie wiem, ani nie myślę, że wiem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     },
     {
       "id": "beginning-most-important-part",
       "text": "The beginning is the most important part of any work.",
       "section": "republic",
       "locator": "Republic",
-      "tags": ["productivity"]
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Początek jest najważniejszą częścią każdej pracy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }
