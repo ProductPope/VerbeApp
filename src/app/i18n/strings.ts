@@ -26,6 +26,9 @@ const en = {
   feedLabel: 'Quotes feed',
   feedHint:
     'Swipe left for the next quote. With a keyboard, use the arrow keys or Page Down and Page Up.',
+  swipeHint: 'Swipe left for the next quote',
+  keyboardHint: 'Press → for the next quote',
+  dismissHint: 'Got it',
   autoplay: 'Auto-advance',
   favorite: 'Favourite',
   removeFavorite: 'Remove from favourites',
@@ -85,6 +88,9 @@ const pl: Strings = {
   feedLabel: 'Lista cytatów',
   feedHint:
     'Przesuń w lewo, aby zobaczyć następny cytat. Na klawiaturze użyj strzałek lub Page Down i Page Up.',
+  swipeHint: 'Przesuń w lewo, aby zobaczyć kolejny cytat',
+  keyboardHint: 'Naciśnij →, aby zobaczyć kolejny cytat',
+  dismissHint: 'Rozumiem',
   autoplay: 'Autoprzewijanie',
   favorite: 'Ulubiony',
   removeFavorite: 'Usuń z ulubionych',

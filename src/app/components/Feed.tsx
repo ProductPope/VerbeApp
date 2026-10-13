@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } fr
 import type { Card } from '../catalog/catalog.js';
 import { nextBatch, readingTimeMs } from '../feed/queue.js';
 import type { Language, Strings } from '../i18n/strings.js';
+import { Icon } from './Icon.js';
 import { QuoteCard } from './QuoteCard.js';
 
 interface FeedItem {
@@ -23,6 +24,10 @@ interface FeedProps {
   random: () => number;
   /** Card to put first when the feed opens. */
   initialCardId?: string | undefined;
+  /** Show how to move between quotes until the reader first does it. */
+  swipeHint?: boolean;
+  /** Called once the reader moves to another quote or dismisses the hint. */
+  onSwipeHintDone?: () => void;
   onToggleFavorite: (id: string) => void;
   onHide: (id: string) => void;
 }
@@ -83,6 +88,8 @@ export function Feed({
   reducedMotion,
   random,
   initialCardId,
+  swipeHint = false,
+  onSwipeHintDone,
   onToggleFavorite,
   onHide,
 }: FeedProps) {
@@ -159,6 +166,12 @@ export function Feed({
     };
   }, [items, cards, random]);
 
+  // The first move to another quote, by swipe, keyboard or auto-advance,
+  // shows the reader has found how the feed works.
+  useEffect(() => {
+    if (swipeHint && active > 0) onSwipeHintDone?.();
+  }, [swipeHint, active, onSwipeHintDone]);
+
   useEffect(() => {
     const onVisibility = () => {
       setPageHidden(document.hidden);
@@ -228,7 +241,7 @@ export function Feed({
       {/* The ARIA feed pattern puts keyboard handling on the feed itself. */}
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
       <div
-        className="feed"
+        className={swipeHint ? 'feed feed-hinting' : 'feed'}
         role="feed"
         aria-label={strings.feedLabel}
         aria-describedby="feed-hint"
@@ -275,6 +288,29 @@ export function Feed({
           />
         ))}
       </div>
+      {swipeHint && (
+        <div className="swipe-hint" data-testid="swipe-hint">
+          <span className="swipe-hint-arrow">
+            <Icon name="arrowLeft" />
+          </span>
+          <p className="swipe-hint-text">
+            <span className="swipe-hint-touch">{strings.swipeHint}</span>
+            <span className="swipe-hint-keys">{strings.keyboardHint}</span>
+          </p>
+          <button
+            type="button"
+            className="text-button"
+            onClick={() => {
+              onSwipeHintDone?.();
+              // The button disappears; keep focus where the reader is.
+              const element = current && articles.current.get(current.key);
+              element?.focus({ preventScroll: true });
+            }}
+          >
+            {strings.dismissHint}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

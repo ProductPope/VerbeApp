@@ -386,6 +386,77 @@ main:focus {
   scrollbar-width: none;
 }
 
+/*
+ * First-launch hint: a bar under the cards that names the gesture, while the
+ * first card nudges sideways to show it. Touch screens get the swipe wording,
+ * mouse and keyboard screens the arrow key. Motion stops within five seconds
+ * (WCAG 2.2.2) and is left out for reduced motion. Gone after the first move.
+ */
+.swipe-hint {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0 var(--space-4) max(var(--space-3), env(safe-area-inset-bottom));
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-surface);
+}
+
+.swipe-hint-arrow {
+  display: inline-grid;
+  color: var(--color-accent);
+  animation: swipe-hint-arrow 1.4s ease-in-out 0.6s 3;
+}
+
+.swipe-hint-text {
+  flex: 1;
+  margin: 0;
+  font-size: var(--font-size-small);
+}
+
+.swipe-hint-keys {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .swipe-hint-touch {
+    display: none;
+  }
+
+  .swipe-hint-keys {
+    display: inline;
+  }
+}
+
+.feed-hinting > .card:first-of-type {
+  animation: swipe-hint-nudge 1.4s ease-in-out 0.6s 3;
+}
+
+@keyframes swipe-hint-arrow {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(calc(-1 * var(--space-2)));
+  }
+}
+
+@keyframes swipe-hint-nudge {
+  0%,
+  60%,
+  100% {
+    transform: translateX(0);
+  }
+
+  30% {
+    transform: translateX(calc(-1 * var(--space-7)));
+  }
+}
+
 .feed-empty {
   margin: var(--space-6) var(--space-4);
   color: var(--color-text-muted);
@@ -622,5 +693,10 @@ main:focus {
 
   .icon-button {
     transition: none;
+  }
+
+  .swipe-hint-arrow,
+  .feed-hinting > .card:first-of-type {
+    animation: none;
   }
 }

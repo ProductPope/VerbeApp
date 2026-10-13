@@ -161,6 +161,45 @@ test.describe('feed', () => {
     await expect.poll(() => articles.count()).toBeGreaterThan(initial);
   });
 
+  test('shows a swipe hint on first launch until the first swipe', async ({ page }) => {
+    await page.goto('./');
+    const hint = page.getByTestId('swipe-hint');
+    await expect(hint).toHaveText(/Swipe left for the next quote/);
+    // A touch screen gets the swipe wording, not the keyboard one.
+    await expect(hint.getByText('Press → for the next quote')).toBeHidden();
+    const nudge = await feed(page)
+      .getByRole('article')
+      .first()
+      .evaluate((element) => getComputedStyle(element).animationName);
+    expect(nudge).toBe('swipe-hint-nudge');
+
+    await feed(page).evaluate((element) => {
+      element.scrollBy({ left: element.clientWidth, behavior: 'instant' });
+    });
+    await expect(hint).toBeHidden();
+    await page.reload();
+    await expect(feed(page).getByRole('article').first()).toBeVisible();
+    await expect(hint).toBeHidden();
+  });
+
+  test('keeps the swipe hint still for reduced motion and closes it with a button', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('./');
+    const hint = page.getByTestId('swipe-hint');
+    await expect(hint).toBeVisible();
+    const animations = await page.evaluate(() =>
+      [...document.querySelectorAll('.swipe-hint-arrow, .feed > article')].map(
+        (element) => getComputedStyle(element).animationName,
+      ),
+    );
+    expect(new Set(animations)).toEqual(new Set(['none']));
+    await hint.getByRole('button', { name: 'Got it' }).click();
+    await expect(hint).toBeHidden();
+    await expect(feed(page).getByRole('article').first()).toBeFocused();
+  });
+
   test('remembers favourites and hidden quotes after a reload', async ({ page }) => {
     await page.goto('./');
     const first = feed(page).getByRole('article').first();

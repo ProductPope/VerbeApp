@@ -51,6 +51,7 @@ describe('parsePreferences', () => {
       translation: true,
       notify: false,
       notifyHour: 8,
+      swipeHintSeen: true,
     });
   });
 
@@ -64,6 +65,19 @@ describe('parsePreferences', () => {
       false,
     );
     expect(parsePreferences('{}', fallback).translation).toBe(true);
+  });
+});
+
+describe('swipe hint', () => {
+  it('is unseen for a new reader', () => {
+    expect(defaultPreferences().swipeHintSeen).toBe(false);
+    expect(parsePreferences(null, defaultPreferences()).swipeHintSeen).toBe(false);
+  });
+
+  it('counts as seen for readers who saved preferences before it existed', () => {
+    const fallback = defaultPreferences();
+    expect(parsePreferences('{}', fallback).swipeHintSeen).toBe(true);
+    expect(parsePreferences('{"swipeHintSeen":false}', fallback).swipeHintSeen).toBe(false);
   });
 });
 

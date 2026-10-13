@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Catalog } from './catalog/catalog.js';
 import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
@@ -75,6 +75,12 @@ export function App({
   const eligible = eligibleCards(catalog.cards, prefs.hidden, prefs.tags);
   const translationLanguage = prefs.translation ? TRANSLATION_LANGUAGE : undefined;
   const habitQuote = catalog.cards.find((card) => card.id === HABIT_QUOTE_ID);
+
+  const markSwipeHintSeen = useCallback(() => {
+    store.update((current) =>
+      current.swipeHintSeen ? current : { ...current, swipeHintSeen: true },
+    );
+  }, [store]);
 
   function toggleFavorite(id: string) {
     store.update((current) => ({ ...current, favorites: toggle(current.favorites, id) }));
@@ -193,6 +199,8 @@ export function App({
           reducedMotion={reducedMotion}
           random={random}
           initialCardId={initialCardId}
+          swipeHint={!prefs.swipeHintSeen}
+          onSwipeHintDone={markSwipeHintSeen}
           onToggleFavorite={toggleFavorite}
           onHide={hide}
         />
