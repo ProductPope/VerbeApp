@@ -5,10 +5,19 @@
   box-sizing: border-box;
 }
 
+/*
+ * The app fills exactly one screen and scrolls only inside its own regions
+ * (cards, saved list, settings). Sizing from the initial containing block
+ * (height: 100%) rather than 100dvh keeps it within the visible area on
+ * Android: when Chrome's toolbar hides, 100dvh grows past the containing
+ * block and the whole page could be nudged up and down by a few pixels.
+ */
 html,
 body {
   margin: 0;
   height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 body {
@@ -23,7 +32,7 @@ body {
 #root {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
+  height: 100%;
 }
 
 :focus-visible {

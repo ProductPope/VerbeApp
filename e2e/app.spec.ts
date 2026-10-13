@@ -88,6 +88,33 @@ test.describe('accessibility', () => {
   });
 });
 
+test.describe('layout', () => {
+  // 839 px is the Pixel 7 viewport as an installed app; 740 px leaves room for Chrome's toolbars.
+  for (const height of [839, 740]) {
+    test(`fits one ${String(height)} px high phone screen without page scrolling`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: 412, height });
+      await page.goto('./');
+      await expect(feed(page).getByRole('article').first()).toBeVisible();
+
+      const fits = () =>
+        page.evaluate(() => {
+          window.scrollTo(0, 100);
+          return {
+            overflow: document.documentElement.scrollHeight - window.innerHeight,
+            scrollY: window.scrollY,
+          };
+        });
+      expect(await fits()).toEqual({ overflow: 0, scrollY: 0 });
+
+      await page.getByRole('button', { name: 'Your profile' }).click();
+      await expect(page.getByRole('heading', { name: 'Favourites' })).toBeVisible();
+      expect(await fits()).toEqual({ overflow: 0, scrollY: 0 });
+    });
+  }
+});
+
 test.describe('feed', () => {
   test('flips to the next quote on a sideways swipe and keeps adding quotes', async ({ page }) => {
     await page.goto('./');
