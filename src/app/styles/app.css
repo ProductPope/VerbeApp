@@ -419,13 +419,8 @@ main:focus {
   gap: var(--space-5);
 }
 
-.saved {
-  overflow-y: auto;
-  padding: var(--space-4);
-  padding-bottom: var(--space-7);
-}
-
-.saved h2 {
+.saved h3 {
+  margin: 0 0 var(--space-3);
   font-family: var(--font-serif);
   font-size: var(--font-size-title);
 }

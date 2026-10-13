@@ -26,9 +26,10 @@ with TalkBack on Android and a keyboard on desktop.
   (`aria-hidden`), since the button already conveys the state, and it disappears while paused.
 - **Settings** (category filters) live in one native modal `<dialog>`: it traps focus, closes on
   Escape and returns focus to the Settings button.
-- **Profile** is a toggle button with `aria-pressed`. Its view has three labelled regions:
-  Preferences, Favourites and Hidden quotes. In Preferences the translation toggle is a checkbox
-  with `role="switch"` and the app language is a native `<select>`.
+- **Profile** opens a native modal `<dialog>` that works like Settings: an X button or Escape
+  closes it and focus returns to the Profile button. It has three labelled regions: Preferences,
+  Favourites and Hidden quotes. In Preferences the translation toggle is a checkbox with
+  `role="switch"` and the app language is a native `<select>`.
 - **Language**: the page `lang` follows the chosen language. Quotes are always `lang="en"`, and the
   translation under them carries `lang="pl"`, so screen readers pronounce each correctly. The
   translation is part of the article's description.

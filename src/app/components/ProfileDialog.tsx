@@ -1,9 +1,11 @@
+import type { Ref } from 'react';
 import { localized, type Card } from '../catalog/catalog.js';
 import { isLanguage, LANGUAGES, type Language, type Strings } from '../i18n/strings.js';
+import { Icon } from './Icon.js';
 
 const LANGUAGE_NAMES = { en: 'English', pl: 'Polski' } as const;
 
-interface ProfileViewProps {
+interface ProfileDialogProps {
   cards: Card[];
   favorites: string[];
   hidden: string[];
@@ -15,6 +17,7 @@ interface ProfileViewProps {
   onRestore: (id: string) => void;
   onLanguageChange: (language: Language) => void;
   onTranslationChange: (translation: boolean) => void;
+  ref?: Ref<HTMLDialogElement>;
 }
 
 function SavedList({
@@ -73,12 +76,12 @@ function Preferences({
   onLanguageChange,
   onTranslationChange,
 }: Pick<
-  ProfileViewProps,
+  ProfileDialogProps,
   'language' | 'translation' | 'strings' | 'onLanguageChange' | 'onTranslationChange'
 >) {
   return (
     <section aria-labelledby="preferences-heading">
-      <h2 id="preferences-heading">{strings.preferencesHeading}</h2>
+      <h3 id="preferences-heading">{strings.preferencesHeading}</h3>
       <div className="preferences">
         <div className="setting setting-row">
           <label className="setting-label" htmlFor="setting-translation">
@@ -123,8 +126,12 @@ function Preferences({
   );
 }
 
-/** Reading preferences, favourites to reread, and hidden quotes that can be restored. */
-export function ProfileView({
+/**
+ * Reading preferences, favourites to reread, and hidden quotes that can be
+ * restored, in a modal dialog that works like the settings one: it traps
+ * focus, closes with the X button or Escape and returns focus to its opener.
+ */
+export function ProfileDialog({
   cards,
   favorites,
   hidden,
@@ -136,50 +143,66 @@ export function ProfileView({
   onRestore,
   onLanguageChange,
   onTranslationChange,
-}: ProfileViewProps) {
+  ref,
+}: ProfileDialogProps) {
   const byId = new Map(cards.map((card) => [card.id, card]));
   const knownFavorites = favorites.filter((id) => byId.has(id));
   const knownHidden = hidden.filter((id) => byId.has(id));
 
   return (
-    <div className="saved">
-      <Preferences
-        language={language}
-        translation={translation}
-        strings={strings}
-        onLanguageChange={onLanguageChange}
-        onTranslationChange={onTranslationChange}
-      />
-      <section aria-labelledby="favorites-heading">
-        <h2 id="favorites-heading">{strings.favoritesHeading}</h2>
-        {knownFavorites.length === 0 ? (
-          <p className="muted">{strings.noFavorites}</p>
-        ) : (
-          <SavedList
-            ids={knownFavorites}
-            cards={byId}
-            language={language}
-            translationLanguage={translationLanguage}
-            actionLabel={strings.removeFavorite}
-            onAction={onToggleFavorite}
-          />
-        )}
-      </section>
-      <section aria-labelledby="hidden-heading">
-        <h2 id="hidden-heading">{strings.hiddenHeading}</h2>
-        {knownHidden.length === 0 ? (
-          <p className="muted">{strings.noHidden}</p>
-        ) : (
-          <SavedList
-            ids={knownHidden}
-            cards={byId}
-            language={language}
-            translationLanguage={translationLanguage}
-            actionLabel={strings.restore}
-            onAction={onRestore}
-          />
-        )}
-      </section>
-    </div>
+    <dialog ref={ref} className="settings" aria-labelledby="profile-heading">
+      <div className="settings-header">
+        <h2 id="profile-heading">{strings.profile}</h2>
+        <button
+          type="button"
+          className="icon-button"
+          onClick={(event) => {
+            event.currentTarget.closest('dialog')?.close();
+          }}
+        >
+          <Icon name="close" />
+          <span className="visually-hidden">{strings.close}</span>
+        </button>
+      </div>
+      <div className="settings-body saved">
+        <Preferences
+          language={language}
+          translation={translation}
+          strings={strings}
+          onLanguageChange={onLanguageChange}
+          onTranslationChange={onTranslationChange}
+        />
+        <section aria-labelledby="favorites-heading">
+          <h3 id="favorites-heading">{strings.favoritesHeading}</h3>
+          {knownFavorites.length === 0 ? (
+            <p className="muted">{strings.noFavorites}</p>
+          ) : (
+            <SavedList
+              ids={knownFavorites}
+              cards={byId}
+              language={language}
+              translationLanguage={translationLanguage}
+              actionLabel={strings.removeFavorite}
+              onAction={onToggleFavorite}
+            />
+          )}
+        </section>
+        <section aria-labelledby="hidden-heading">
+          <h3 id="hidden-heading">{strings.hiddenHeading}</h3>
+          {knownHidden.length === 0 ? (
+            <p className="muted">{strings.noHidden}</p>
+          ) : (
+            <SavedList
+              ids={knownHidden}
+              cards={byId}
+              language={language}
+              translationLanguage={translationLanguage}
+              actionLabel={strings.restore}
+              onAction={onRestore}
+            />
+          )}
+        </section>
+      </div>
+    </dialog>
   );
 }
