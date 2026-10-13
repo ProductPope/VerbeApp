@@ -3,3 +3,7 @@ dist/
 coverage/
 .cache/
 package-lock.json
+dev-dist/
+test-results/
+playwright-report/
+public/*.png

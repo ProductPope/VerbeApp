@@ -1,5 +1,4 @@
 import { Ajv2020, type ErrorObject, type ValidateFunction } from 'ajv/dist/2020.js';
-import addFormatsModule from 'ajv-formats';
 import authorsSchema from '../../data/schema/authors.schema.json' with { type: 'json' };
 import communityCollectionSchema from '../../data/schema/community-collection.schema.json' with { type: 'json' };
 import commonSchema from '../../data/schema/common.schema.json' with { type: 'json' };
@@ -10,12 +9,8 @@ import tagsSchema from '../../data/schema/tags.schema.json' with { type: 'json' 
 export type SchemaName =
   'tags' | 'authors' | 'sources' | 'quote-collection' | 'community-collection';
 
-// ajv-formats ships CommonJS; under NodeNext its default import is the module object.
-const addFormats = addFormatsModule as unknown as typeof addFormatsModule.default;
-
 function createValidators(): Record<SchemaName, ValidateFunction> {
   const ajv = new Ajv2020({ allErrors: true, strict: true });
-  addFormats(ajv);
   ajv.addSchema(commonSchema);
   return {
     tags: ajv.compile(tagsSchema),
