@@ -11,6 +11,10 @@ export interface Preferences {
   autoplay: boolean;
   /** Show the Polish translation under each quote. */
   translation: boolean;
+  /** Daily quote notification; the subscription itself lives in the browser. */
+  notify: boolean;
+  /** Local hour of the daily notification, 0–23. */
+  notifyHour: number;
 }
 
 export const STORAGE_KEY = 'verbeapp:preferences:v1';
@@ -23,6 +27,8 @@ export function defaultPreferences(browserLanguage = ''): Preferences {
     tags: [],
     autoplay: false,
     translation: true,
+    notify: false,
+    notifyHour: 8,
   };
 }
 
@@ -30,6 +36,10 @@ function stringArray(value: unknown): string[] {
   return Array.isArray(value)
     ? value.filter((item): item is string => typeof item === 'string')
     : [];
+}
+
+function isHour(value: unknown): value is number {
+  return typeof value === 'number' && Number.isInteger(value) && value >= 0 && value <= 23;
 }
 
 /** Reads stored preferences, ignoring anything malformed rather than failing. */
@@ -44,6 +54,8 @@ export function parsePreferences(raw: string | null, fallback: Preferences): Pre
       tags: stringArray(data.tags),
       autoplay: data.autoplay === true,
       translation: data.translation !== false,
+      notify: data.notify === true,
+      notifyHour: isHour(data.notifyHour) ? data.notifyHour : fallback.notifyHour,
     };
   } catch {
     return fallback;

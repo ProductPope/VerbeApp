@@ -3,9 +3,12 @@ import type { Catalog } from './catalog/catalog.js';
 import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
 import { SavedView } from './components/SavedView.js';
+import { NotificationSetting } from './components/NotificationSetting.js';
 import { SettingsDialog } from './components/SettingsDialog.js';
 import { eligibleCards } from './feed/queue.js';
 import { STRINGS, TRANSLATION_LANGUAGE } from './i18n/strings.js';
+import type { PushService } from './notifications/push.js';
+import { writeSharedPrefs } from './notifications/shared-prefs.js';
 import { toggle, usePreferences, type PreferencesStore } from './prefs/store.js';
 
 interface AppProps {
@@ -13,11 +16,15 @@ interface AppProps {
   store: PreferencesStore;
   random: () => number;
   reducedMotion: boolean;
+  /** Daily notifications; undefined when unsupported or not configured. */
+  push?: PushService | undefined;
+  /** Card to show first, e.g. the one a notification was about. */
+  initialCardId?: string | undefined;
 }
 
 type View = 'feed' | 'saved';
 
-export function App({ catalog, store, random, reducedMotion }: AppProps) {
+export function App({ catalog, store, random, reducedMotion, push, initialCardId }: AppProps) {
   const prefs = usePreferences(store);
   const strings = STRINGS[prefs.language];
   const [view, setView] = useState<View>('feed');
@@ -28,6 +35,14 @@ export function App({ catalog, store, random, reducedMotion }: AppProps) {
     document.documentElement.lang = prefs.language;
     document.title = `${strings.appName}: ${strings.tagline}`;
   }, [prefs.language, strings]);
+
+  // Let the service worker pick a notification quote that respects these choices.
+  const { language, translation, hidden, tags, notifyHour } = prefs;
+  useEffect(() => {
+    void writeSharedPrefs({ language, translation, hidden, tags, hour: notifyHour }).catch(
+      () => undefined,
+    );
+  }, [language, translation, hidden, tags, notifyHour]);
 
   const eligible = eligibleCards(catalog.cards, prefs.hidden, prefs.tags);
   const translationLanguage = prefs.translation ? TRANSLATION_LANGUAGE : undefined;
@@ -108,6 +123,19 @@ export function App({ catalog, store, random, reducedMotion }: AppProps) {
         onTranslationChange={(translation) => {
           store.update((current) => ({ ...current, translation }));
         }}
+        notification={
+          push && (
+            <NotificationSetting
+              push={push}
+              enabled={prefs.notify}
+              hour={prefs.notifyHour}
+              strings={strings}
+              onChange={(change) => {
+                store.update((current) => ({ ...current, ...change }));
+              }}
+            />
+          )
+        }
       />
       <main id="main" tabIndex={-1}>
         {view === 'feed' ? (
@@ -120,6 +148,7 @@ export function App({ catalog, store, random, reducedMotion }: AppProps) {
             autoplay={prefs.autoplay}
             reducedMotion={reducedMotion}
             random={random}
+            initialCardId={initialCardId}
             onToggleFavorite={toggleFavorite}
             onHide={hide}
           />

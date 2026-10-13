@@ -1,4 +1,4 @@
-import type { Ref } from 'react';
+import type { ReactNode, Ref } from 'react';
 import type { Tag } from '../../data/model.js';
 import { isLanguage, LANGUAGES, type Language, type Strings } from '../i18n/strings.js';
 import { CategoryFilter } from './CategoryFilter.js';
@@ -15,6 +15,8 @@ interface SettingsDialogProps {
   onTagsChange: (tags: string[]) => void;
   onLanguageChange: (language: Language) => void;
   onTranslationChange: (translation: boolean) => void;
+  /** The notification setting, when this build has a push server. */
+  notification?: ReactNode;
   ref?: Ref<HTMLDialogElement>;
 }
 
@@ -31,6 +33,7 @@ export function SettingsDialog({
   onTagsChange,
   onLanguageChange,
   onTranslationChange,
+  notification,
   ref,
 }: SettingsDialogProps) {
   return (
@@ -81,6 +84,7 @@ export function SettingsDialog({
             {strings.translationHint}
           </p>
         </div>
+        {notification}
         <div className="setting setting-row">
           <label className="setting-label" htmlFor="setting-language">
             {strings.languageLabel}

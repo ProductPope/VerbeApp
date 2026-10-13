@@ -26,6 +26,9 @@ with TalkBack on Android and a keyboard on desktop.
   (`aria-hidden`), since the button already conveys the state, and it disappears while paused.
 - **Settings** live in one native modal `<dialog>`: it traps focus, closes on Escape and returns
   focus to the Settings button. The translation toggle is a checkbox with `role="switch"`.
+- **Daily notification**: a switch with its hint and any error in its accessible description; the
+  error is also announced through a status region. The hour picker appears only when the switch is
+  on.
 - **Language**: the page `lang` follows the chosen language. Quotes are always `lang="en"`, and the
   translation under them carries `lang="pl"`, so screen readers pronounce each correctly. The
   translation is part of the article's description.

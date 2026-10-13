@@ -14,6 +14,12 @@ const en = {
   languageLabel: 'App language',
   translationLabel: 'Polish translation',
   translationHint: 'Draft translations prepared with AI help. Corrections are welcome on GitHub.',
+  notificationLabel: 'Daily quote notification',
+  notificationTime: 'Time',
+  notificationHint: 'One quote a day at the time you choose. Only this device is notified.',
+  notificationBlocked:
+    'Notifications are blocked. Allow them for this site in your browser settings.',
+  notificationFailed: 'Could not change the notification. Check your connection and try again.',
   categoriesLabel: 'Categories',
   allCategories: 'All',
   feedLabel: 'Quotes feed',
@@ -52,6 +58,13 @@ const pl: Strings = {
   translationLabel: 'Tłumaczenie na polski',
   translationHint:
     'Robocze tłumaczenia przygotowane z pomocą AI. Poprawki mile widziane na GitHubie.',
+  notificationLabel: 'Codzienne powiadomienie z cytatem',
+  notificationTime: 'Godzina',
+  notificationHint:
+    'Jeden cytat dziennie o wybranej godzinie. Powiadomienie dostaje tylko to urządzenie.',
+  notificationBlocked:
+    'Powiadomienia są zablokowane. Zezwól na nie dla tej strony w ustawieniach przeglądarki.',
+  notificationFailed: 'Nie udało się zmienić powiadomienia. Sprawdź połączenie i spróbuj ponownie.',
   categoriesLabel: 'Kategorie',
   allCategories: 'Wszystkie',
   feedLabel: 'Lista cytatów',

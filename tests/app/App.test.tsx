@@ -3,14 +3,21 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../src/app/App.js';
 import { readingTimeMs, seededRandom } from '../../src/app/feed/queue.js';
+import { NotificationsBlockedError, type PushService } from '../../src/app/notifications/push.js';
 import { createPreferencesStore } from '../../src/app/prefs/store.js';
 import { testCatalog } from './fixtures.js';
 
-function renderApp(language = 'en') {
+function renderApp(language = 'en', extra: { push?: PushService; initialCardId?: string } = {}) {
   const store = createPreferencesStore(localStorage, language);
   const user = userEvent.setup();
   const view = render(
-    <App catalog={testCatalog()} store={store} random={seededRandom(1)} reducedMotion={false} />,
+    <App
+      catalog={testCatalog()}
+      store={store}
+      random={seededRandom(1)}
+      reducedMotion={false}
+      {...extra}
+    />,
   );
   return { store, user, ...view };
 }
@@ -351,6 +358,71 @@ describe('auto-advance', () => {
     });
     advanceBy(31_000);
     expect(articles()[1]!.dataset.scrolledTo).toBe('true');
+  });
+});
+
+describe('daily notification', () => {
+  function fakePush() {
+    return {
+      subscribe: vi.fn<(hour: number) => Promise<void>>(() => Promise.resolve()),
+      unsubscribe: vi.fn(() => Promise.resolve()),
+    };
+  }
+
+  it('is not offered when the build has no push server', async () => {
+    const { user } = renderApp();
+    const settings = await openSettings(user);
+    expect(within(settings).queryByRole('switch', { name: /Daily quote/ })).toBeNull();
+  });
+
+  it('subscribes at the chosen hour, moves the hour and unsubscribes', async () => {
+    const push = fakePush();
+    const { user, store } = renderApp('en', { push });
+    const settings = await openSettings(user);
+    const toggle = within(settings).getByRole('switch', { name: 'Daily quote notification' });
+    expect(toggle).not.toBeChecked();
+    expect(within(settings).queryByRole('combobox', { name: 'Time' })).toBeNull();
+
+    await user.click(toggle);
+    expect(push.subscribe).toHaveBeenCalledWith(8);
+    expect(toggle).toBeChecked();
+    expect(store.get().notify).toBe(true);
+
+    await user.selectOptions(within(settings).getByRole('combobox', { name: 'Time' }), '21');
+    expect(push.subscribe).toHaveBeenLastCalledWith(21);
+    expect(store.get().notifyHour).toBe(21);
+
+    await user.click(toggle);
+    expect(push.unsubscribe).toHaveBeenCalled();
+    expect(store.get()).toMatchObject({ notify: false, notifyHour: 21 });
+  });
+
+  it('explains blocked notifications and other failures', async () => {
+    const push = fakePush();
+    push.subscribe.mockRejectedValueOnce(new NotificationsBlockedError());
+    push.subscribe.mockRejectedValueOnce(new Error('offline'));
+    const { user, store } = renderApp('en', { push });
+    const settings = await openSettings(user);
+    const toggle = within(settings).getByRole('switch', { name: 'Daily quote notification' });
+
+    await user.click(toggle);
+    expect(toggle).not.toBeChecked();
+    expect(toggle).toHaveAccessibleDescription(/blocked/);
+    await user.click(toggle);
+    expect(toggle).toHaveAccessibleDescription(/Could not change/);
+    expect(store.get().notify).toBe(false);
+  });
+});
+
+describe('opening from a notification', () => {
+  it('shows the notified quote first', () => {
+    renderApp('en', { initialCardId: 'delta' });
+    expect(cardIds()[0]).toBe('delta');
+  });
+
+  it('ignores an unknown quote', () => {
+    renderApp('en', { initialCardId: 'missing' });
+    expect(cardIds()).toHaveLength(5);
   });
 });
 

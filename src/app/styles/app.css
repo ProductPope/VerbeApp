@@ -193,6 +193,21 @@ select {
   font-weight: 600;
 }
 
+.setting-sublabel {
+  color: var(--color-text-muted);
+}
+
+.setting-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.setting-error:empty {
+  display: none;
+}
+
 .setting-hint {
   grid-column: 1 / -1;
   margin: 0;

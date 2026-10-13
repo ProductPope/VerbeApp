@@ -187,6 +187,45 @@ test.describe('installable app', () => {
     expect(manifest.icons.some((icon) => icon.purpose === 'maskable')).toBe(true);
   });
 
+  test('shows the quote of the day when a push arrives and opens it on tap', async ({
+    page,
+    context,
+  }) => {
+    await context.grantPermissions(['notifications']);
+    await page.goto('./');
+    await page.evaluate(async () => {
+      await navigator.serviceWorker.ready;
+    });
+    const worker = context.serviceWorkers()[0] ?? (await context.waitForEvent('serviceworker'));
+    const notification = await worker.evaluate(async () => {
+      // Runs inside the service worker, whose types the DOM library lacks.
+      const scope = self as unknown as {
+        registration: ServiceWorkerRegistration;
+        dispatchEvent(event: Event): boolean;
+        PushEvent: new (type: string) => Event;
+      };
+      scope.dispatchEvent(new scope.PushEvent('push'));
+      for (let attempt = 0; attempt < 50; attempt++) {
+        const [shown] = await scope.registration.getNotifications({ tag: 'daily-quote' });
+        if (shown) {
+          return { title: shown.title, body: shown.body, data: shown.data as { quoteId: string } };
+        }
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+      return null;
+    });
+    expect(notification?.title).toBeTruthy();
+    expect(notification?.body.length).toBeGreaterThan(10);
+
+    // Opening the app the way a tap does shows that quote first.
+    await page.goto(`./?quote=${notification!.data.quoteId}`);
+    await expect(feed(page).getByRole('article').first()).toHaveAttribute(
+      'data-card-id',
+      notification!.data.quoteId,
+    );
+    await expect(page).not.toHaveURL(/quote=/);
+  });
+
   test('works offline after the first visit', async ({ page, context }) => {
     await page.goto('./');
     await page.evaluate(async () => {
