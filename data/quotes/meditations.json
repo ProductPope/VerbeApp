@@ -161,7 +161,7 @@
       "text": "Confine thyself to the present.",
       "section": "book-7",
       "locator": "Book VII",
-      "tags": ["productivity", "philosophy"],
+      "tags": ["productivity", "philosophy", "mindfulness"],
       "translations": {
         "pl": {
           "text": "Ogranicz się do teraźniejszości.",
@@ -357,7 +357,7 @@
       "text": "Constantly then give to thyself this retreat, and renew thyself; and let thy principles be brief and fundamental.",
       "section": "book-4",
       "locator": "Book IV",
-      "tags": ["self-development"],
+      "tags": ["self-development", "mindfulness"],
       "translations": {
         "pl": {
           "text": "Nieustannie więc zapewniaj sobie to schronienie i odnawiaj się; niech twoje zasady będą krótkie i podstawowe.",
@@ -445,6 +445,34 @@
       "translations": {
         "pl": {
           "text": "Możesz przeżyć życie w równym nurcie szczęścia, jeśli potrafisz iść właściwą drogą oraz myśleć i działać właściwie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "retire-into-thyself",
+      "text": "It is in thy power whenever thou shalt choose to retire into thyself.",
+      "section": "book-4",
+      "locator": "Book IV",
+      "tags": ["mindfulness"],
+      "translations": {
+        "pl": {
+          "text": "W twojej mocy jest, kiedy tylko zechcesz, wycofać się w głąb siebie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "lives-only-present-time",
+      "text": "Every man lives only this present time, which is an indivisible point.",
+      "section": "book-3",
+      "locator": "Book III",
+      "tags": ["mindfulness", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Każdy człowiek żyje tylko tą obecną chwilą, która jest niepodzielnym punktem.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }

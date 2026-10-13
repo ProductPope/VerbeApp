@@ -91,7 +91,7 @@
       "text": "Morning is when I am awake and there is a dawn in me.",
       "section": "where-i-lived-and-what-i-lived-for",
       "locator": "Where I Lived, and What I Lived For",
-      "tags": ["productivity"],
+      "tags": ["productivity", "mindfulness"],
       "translations": {
         "pl": {
           "text": "Poranek jest wtedy, gdy nie śpię i jest we mnie świt.",
@@ -221,6 +221,34 @@
       "translations": {
         "pl": {
           "text": "Rzeczy się nie zmieniają; to my się zmieniamy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "day-dawns-we-are-awake",
+      "text": "Only that day dawns to which we are awake.",
+      "section": "conclusion",
+      "locator": "Conclusion",
+      "tags": ["mindfulness"],
+      "translations": {
+        "pl": {
+          "text": "Świta tylko ten dzień, na który się przebudziliśmy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "bloom-of-present-moment",
+      "text": "There were times when I could not afford to sacrifice the bloom of the present moment to any work, whether of the head or hands.",
+      "section": "sounds",
+      "locator": "Sounds",
+      "tags": ["mindfulness"],
+      "translations": {
+        "pl": {
+          "text": "Bywały chwile, gdy nie mogłem sobie pozwolić na poświęcenie rozkwitu chwili obecnej jakiejkolwiek pracy, czy to głowy, czy rąk.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }
