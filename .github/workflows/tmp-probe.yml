@@ -8,11 +8,11 @@ jobs:
     steps:
       - run: |
           set -u
-          for id in 7213 57628 57634 16287 3600 2489; do
+          for id in 7213 57628 3600 4253 45988; do
             curl -sSL -m 60 -o $id.txt "https://www.gutenberg.org/cache/epub/$id/pg$id.txt" || true
-            echo "== $id: $(head -c 400 $id.txt | tr '\r\n' '  ' | grep -o 'Title:[^A]*' | head -1)"
+            echo "== $id: $(grep -m1 -a '^Title:' $id.txt) / $(grep -m1 -a '^Author:' $id.txt)"
           done
-          for p in "particularly hard" "agree to attend" "Acceptance of what has happened" "tormented with the opinions" "opinion we have of them" "something to be enthusiastic" "saying yes too" "first step to overcoming"; do
-            echo "### $p"
-            grep -n -i -B3 -A3 "$p" *.txt | head -30
-          done
+          echo "### Ford"; grep -n -i -a "small jobs\|into small\|divide it" 7213.txt 4253.txt 45988.txt | head
+          echo "### James chapter"; awk 'NR>=15900 && NR<=15996 && /^CHAPTER|^ *CHAPTER/' 57628.txt; grep -n -a "^CHAPTER XI" 57628.txt
+          echo "### Montaigne book"; awk 'NR<12434 && /^BOOK|^ *BOOK THE/' 3600.txt | tail -3
+          echo "### Montaigne url"; grep -m3 -n -a "Release date\|EBook #\|eBook #" 3600.txt 57628.txt
