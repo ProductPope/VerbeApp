@@ -238,6 +238,20 @@ test.describe('reading streak', () => {
     await page.reload();
     await expect(page.locator('.streak')).toContainText('Reading streak: 1 day in a row');
   });
+
+  test('explains the streak in a dialog opened from the flame', async ({ page }) => {
+    await page.goto('./');
+    const flame = page.getByRole('button', { name: /^Reading streak/ });
+    await flame.click();
+    const dialog = page.getByRole('dialog', { name: 'Your reading streak' });
+    await expect(dialog).toBeVisible();
+    await expect(dialog).toContainText('Habits shape who we become.');
+    await expect(dialog.locator('blockquote')).toContainText('Every habit and faculty');
+    await expectNoAxeViolations(page);
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await expect(flame).toBeFocused();
+  });
 });
 
 test.describe('installable app', () => {

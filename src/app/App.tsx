@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Catalog } from './catalog/catalog.js';
 import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
-import { StreakBadge, StreakCelebration } from './components/ReadingStreak.js';
+import { HABIT_QUOTE_ID, StreakButton, StreakCelebration } from './components/ReadingStreak.js';
 import { NotificationSetting } from './components/NotificationSetting.js';
 import { ProfileDialog } from './components/ProfileDialog.js';
 import { SettingsDialog } from './components/SettingsDialog.js';
@@ -58,6 +58,7 @@ export function App({
 
   const eligible = eligibleCards(catalog.cards, prefs.hidden, prefs.tags);
   const translationLanguage = prefs.translation ? TRANSLATION_LANGUAGE : undefined;
+  const habitQuote = catalog.cards.find((card) => card.id === HABIT_QUOTE_ID);
 
   function toggleFavorite(id: string) {
     store.update((current) => ({ ...current, favorites: toggle(current.favorites, id) }));
@@ -83,7 +84,13 @@ export function App({
       </a>
       <header className="app-header">
         <h1 className="app-title">{strings.appName}</h1>
-        <StreakBadge store={streakStore} strings={strings} />
+        <StreakButton
+          store={streakStore}
+          strings={strings}
+          language={prefs.language}
+          quote={habitQuote}
+          translationLanguage={translationLanguage}
+        />
         <button
           type="button"
           className="icon-button"

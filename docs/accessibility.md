@@ -38,7 +38,9 @@ with TalkBack on Android and a keyboard on desktop.
   translation is part of the article's description.
 - **Motion**: transitions and smooth scrolling are disabled under `prefers-reduced-motion`.
 - **Hiding a quote** is announced in a status region with an Undo button.
-- **Reading streak**: the flame and number in the header are decorative; a visually hidden sentence
-  gives the full count. When today joins the streak, a message appears in the same status region
+- **Reading streak**: the flame in the header is a button whose visible icon and number are
+  decorative; a visually hidden sentence gives its name with the full count. It opens a native modal
+  `<dialog>` about the streak (closes with its X button or Escape and returns focus to the flame); the
+  quote in it is `lang="en"` and its translation `lang="pl"`. When today joins the streak, a message appears in the same status region
   and leaves after a few seconds without needing any action.
 - **Links to sources** say that they open in a new tab.
