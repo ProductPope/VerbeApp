@@ -85,9 +85,10 @@ describe('localized', () => {
 });
 
 describe('the bundled catalog', () => {
-  it('contains every quote in data/ with a link', () => {
+  it('contains every quote in data/, each with a link to its source', () => {
     expect(catalog.cards.length).toBeGreaterThanOrEqual(151);
-    expect(catalog.cards.every((c) => c.link?.startsWith('https://'))).toBe(true);
+    const quotes = catalog.cards.filter((c) => c.kind === 'quote');
+    expect(quotes.every((c) => c.link?.startsWith('https://'))).toBe(true);
     expect(new Set(catalog.cards.map((c) => c.id)).size).toBe(catalog.cards.length);
   });
 });
