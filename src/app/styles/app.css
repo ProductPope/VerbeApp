@@ -74,7 +74,9 @@ body {
 
 /* Controls */
 button,
-select {
+select,
+input,
+textarea {
   font: inherit;
   color: inherit;
 }
@@ -135,6 +137,74 @@ select {
   border-radius: var(--radius-small);
   color: var(--color-accent);
   font-weight: 600;
+}
+
+.text-button:disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.primary-button {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+/* Form fields */
+.field {
+  width: 100%;
+  min-height: var(--target-size);
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-surface);
+}
+
+textarea.field {
+  resize: vertical;
+  line-height: var(--line-height-body);
+}
+
+.field[aria-invalid='true'] {
+  border-color: var(--color-favorite);
+  border-width: 2px;
+}
+
+.checks {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.checks legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--target-size);
+  cursor: pointer;
+}
+
+.check input {
+  width: var(--target-size);
+  height: var(--target-size);
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.form-actions,
+.item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.form-actions {
+  justify-content: flex-end;
 }
 
 /* Header */

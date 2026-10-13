@@ -21,6 +21,8 @@ interface ProfileDialogProps {
   onTranslationChange: (translation: boolean) => void;
   /** The daily notification setting, when this build has a push server. */
   notification?: ReactNode;
+  /** The reader's own quotes. */
+  personal?: ReactNode;
   ref?: Ref<HTMLDialogElement>;
 }
 
@@ -48,7 +50,7 @@ function SavedList({
           translationLanguage === undefined ? undefined : card.translations[translationLanguage];
         return (
           <li key={id} className="saved-item">
-            <blockquote lang="en">
+            <blockquote lang={card.language ?? 'en'}>
               <p>{card.text}</p>
             </blockquote>
             {translation !== undefined && (
@@ -143,8 +145,8 @@ function Preferences({
 }
 
 /**
- * Reading preferences, favourites to reread, and hidden quotes that can be
- * restored, in a modal dialog that works like the settings one: it traps
+ * Reading preferences, the reader's own quotes, favourites to reread, and
+ * hidden quotes that can be restored, in a modal dialog that works like the settings one: it traps
  * focus, closes with the X button or Escape and returns focus to its opener.
  */
 export function ProfileDialog({
@@ -160,6 +162,7 @@ export function ProfileDialog({
   onLanguageChange,
   onTranslationChange,
   notification,
+  personal,
   ref,
 }: ProfileDialogProps) {
   const byId = new Map(cards.map((card) => [card.id, card]));
@@ -190,6 +193,7 @@ export function ProfileDialog({
           onTranslationChange={onTranslationChange}
           notification={notification}
         />
+        {personal}
         <section aria-labelledby="favorites-heading">
           <h3 id="favorites-heading">{strings.favoritesHeading}</h3>
           {knownFavorites.length === 0 ? (

@@ -113,6 +113,9 @@ test.describe('accessibility', () => {
     await page.keyboard.press('Escape');
     await openPreferences(page);
     await expectLargeTargets();
+    await page.getByRole('button', { name: 'Add a quote' }).click();
+    await expect(page.getByRole('dialog', { name: 'Add a quote' })).toBeVisible();
+    await expectLargeTargets();
   });
 });
 
@@ -262,6 +265,55 @@ test.describe('feed', () => {
       'true',
     );
     await expect(feed(page).getByRole('article').first()).toBeVisible();
+  });
+});
+
+test.describe('your own quotes', () => {
+  test('adds a quote that joins the feed and survives a reload', async ({ page }) => {
+    await page.goto('./');
+    await page.getByRole('button', { name: 'Your profile' }).click();
+    const section = page.getByRole('region', { name: 'Your quotes' });
+    await section.getByRole('button', { name: 'Add a quote' }).click();
+    const dialog = page.getByRole('dialog', { name: 'Add a quote' });
+    await expect(dialog).toBeVisible();
+    await expectNoAxeViolations(page);
+
+    await dialog.getByRole('button', { name: 'Save' }).click();
+    await expect(dialog.getByText('Enter the quote.')).toBeVisible();
+    await expectNoAxeViolations(page);
+
+    await dialog.getByRole('textbox', { name: 'Quote' }).fill('Write it down before it fades.');
+    await dialog.getByRole('textbox', { name: 'Author (optional)' }).fill('A reader');
+    await dialog.getByRole('button', { name: 'Save' }).click();
+    await expect(dialog).toBeHidden();
+    await expect(section.getByText('Write it down before it fades.')).toBeVisible();
+    await expect(section.getByRole('button', { name: 'Edit' })).toBeVisible();
+
+    // The feed shows a few cards at a time; open it on the new quote, as a notification would.
+    const id = await page.evaluate(
+      () =>
+        (
+          JSON.parse(localStorage.getItem('verbeapp:personal-quotes:v1') ?? '[]') as {
+            id: string;
+          }[]
+        )[0]?.id,
+    );
+    expect(id).toMatch(/^mine-/);
+    await page.goto(`./?quote=${id!}`);
+    const card = feed(page).getByRole('article').first();
+    await expect(card).toContainText('Write it down before it fades.');
+    await expect(card.getByText('Your quote')).toBeVisible();
+  });
+
+  test('closes the form with Escape and returns focus', async ({ page }) => {
+    await page.goto('./');
+    await page.getByRole('button', { name: 'Your profile' }).click();
+    const add = page.getByRole('button', { name: 'Add a quote' });
+    await add.click();
+    await expect(page.getByRole('textbox', { name: 'Quote' })).toBeFocused();
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog', { name: 'Add a quote' })).toBeHidden();
+    await expect(add).toBeFocused();
   });
 });
 

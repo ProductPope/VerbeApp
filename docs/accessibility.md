@@ -27,21 +27,28 @@ with TalkBack on Android and a keyboard on desktop.
 - **Settings** (category filters) live in one native modal `<dialog>`: it traps focus, closes on
   Escape and returns focus to the Settings button.
 - **Profile** opens a native modal `<dialog>` that works like Settings: an X button or Escape
-  closes it and focus returns to the Profile button. It has three labelled regions: Preferences,
-  Favourites and Hidden quotes. Preferences is a native `<details>` disclosure, collapsed by default; inside it the translation toggle is a checkbox with
+  closes it and focus returns to the Profile button. It has four labelled regions: Preferences,
+  Your quotes, Favourites and Hidden quotes. Preferences is a native `<details>` disclosure, collapsed by default; inside it the translation toggle is a checkbox with
   `role="switch"`, drawn as a sliding switch (44 px tall touch area; native checkbox in forced-colors mode), and the app language is a native `<select>`.
 - **About** is the profile's last region, a `<details>` disclosure collapsed by default, so it
   stays out of the way; its GitHub link opens in a new tab with `rel="noopener noreferrer"`.
 - **Daily notification** (in Preferences): a switch with its hint and any error in its accessible
   description; the error is also announced through a status region. The hour picker appears only
   when the switch is on.
-- **Language**: the page `lang` follows the chosen language. Quotes are always `lang="en"`, and the
+- **Language**: the page `lang` follows the chosen language. Quotes are `lang="en"` (a reader's own
+  quote carries the language they chose), and the
   translation under them carries `lang="pl"`, so screen readers pronounce each correctly. The
   translation is part of the article's description.
 - **Motion**: transitions and smooth scrolling are disabled under `prefers-reduced-motion`.
 - **Hiding a quote** is announced in a status region with an Undo button. The offer leaves after
   8 seconds, but not while the Undo button has focus; hidden quotes can always be restored from
   the profile, so the time limit takes nothing away (WCAG 2.2.1).
+- **Your own quotes**: the add and edit form is a native modal `<dialog>` that opens on the quote
+  field and closes on Escape. Every field has a visible label; hints and the error are in the
+  field's accessible description, the invalid field gets `aria-invalid` and focus, and categories
+  are native checkboxes in a `fieldset` with a `legend`. The text field carries the quote's
+  language. Edit and Delete buttons are described by the quote they act on. Saving, restoring a
+  backup and deleting are announced in the status region; deleting offers Undo.
 - **Orientation**: the app works in portrait and landscape and does not lock either (WCAG 1.3.4).
 - **AI draft translations** say so in a short line under the translation, which is also part of
   the article's description.

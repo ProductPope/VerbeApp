@@ -12,3 +12,4 @@ never edited after acceptance; a new record supersedes an old one.
 | [0004](0004-react-pwa-with-local-preferences.md)         | A React PWA with on-device preferences             | Accepted |
 | [0005](0005-reading-streak-on-device.md)                 | A reading streak counted on the device             | Accepted |
 | [0006](0006-daily-quote-push-without-payload.md)         | Daily quote by an empty Web Push from a Worker     | Accepted |
+| [0007](0007-personal-quotes-on-device.md)                | The reader's own quotes, kept on the device        | Accepted |
