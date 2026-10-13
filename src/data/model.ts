@@ -29,11 +29,21 @@ export interface Source {
   translator?: { name: string; died: number };
   language: LanguageCode;
   license: 'public-domain';
-  edition: {
-    publisher: 'Standard Ebooks';
-    url: string;
-    repository: string;
-  };
+  edition: StandardEbooksEdition | GutenbergEdition;
+}
+
+/** Verified against the chapter files in the edition's Git repository. */
+export interface StandardEbooksEdition {
+  publisher: 'Standard Ebooks';
+  url: string;
+  repository: string;
+}
+
+/** Verified against the edition's plain-text file. */
+export interface GutenbergEdition {
+  publisher: 'Project Gutenberg';
+  url: string;
+  text: string;
 }
 
 export interface Translation {
@@ -45,7 +55,8 @@ export interface Translation {
 export interface Quote {
   id: string;
   text: string;
-  section: string;
+  /** Chapter file in a Standard Ebooks edition; absent for plain-text editions. */
+  section?: string;
   locator: string;
   tags: string[];
   translations?: Record<LanguageCode, Translation>;
@@ -62,9 +73,25 @@ export interface CollectionFile {
   collection: QuoteCollection;
 }
 
+/** An original saying or tip written for VerbeApp, not a quote from literature. */
+export interface CommunityItem {
+  id: string;
+  text: string;
+  tags: string[];
+  license: 'CC0-1.0';
+  inspiredBy?: { url: string; title?: string };
+  translations?: Record<LanguageCode, Translation>;
+}
+
+export interface CommunityFile {
+  path: string;
+  collection: { contributor: string; items: CommunityItem[] };
+}
+
 export interface Dataset {
   tags: Tag[];
   authors: Author[];
   sources: Source[];
   collections: CollectionFile[];
+  community: CommunityFile[];
 }

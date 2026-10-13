@@ -51,8 +51,17 @@ Quotes should be under 400 characters and make sense on their own, without the s
 
 A source must be in the public domain worldwide in practice: its author and, for translations, its
 translator must have died more than 70 years ago. Add the author to `data/authors.json` and the
-work to `data/sources.json`, pointing at its [Standard Ebooks](https://standardebooks.org) edition.
+work to `data/sources.json`, pointing at its [Standard Ebooks](https://standardebooks.org) edition,
+or at a [Project Gutenberg](https://www.gutenberg.org) plain-text file when Standard Ebooks has none
+(quotes from a plain-text edition have a `locator` but no `section`).
 The validation script rejects sources that are still under copyright.
+
+## Adding a community saying
+
+Original sayings and practical tips go in `data/community/`, one file per contributor. They must be
+in your own words and are released under CC0; see [data/community/README.md](data/community/README.md).
+Do not paste posts or quotes from websites (including Reddit): rewrite the idea and link to it with
+`inspiredBy`.
 
 ## Adding a translation
 

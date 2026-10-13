@@ -109,4 +109,39 @@ describe('checkIntegrity', () => {
       'quote "loss-nothing-else-change" has unknown tag "cooking"',
     ]);
   });
+
+  it('requires a section for quotes from chaptered editions only', () => {
+    const dataset = validDataset();
+    delete firstQuote(dataset).section;
+    expect(messages(dataset)).toEqual(['quote "loss-nothing-else-change" needs a section']);
+
+    dataset.sources[0]!.edition = {
+      publisher: 'Project Gutenberg',
+      url: 'https://www.gutenberg.org/ebooks/2680',
+      text: 'https://www.gutenberg.org/cache/epub/2680/pg2680.txt',
+    };
+    expect(messages(dataset)).toEqual([]);
+  });
+
+  it('checks community sayings for unknown tags and clashes with quotes', () => {
+    const dataset = validDataset();
+    dataset.community.push({
+      path: 'data/community/someone.json',
+      collection: {
+        contributor: 'someone',
+        items: [
+          {
+            id: 'loss-nothing-else-change',
+            text: 'Start before you feel ready.',
+            tags: ['cooking'],
+            license: 'CC0-1.0',
+          },
+        ],
+      },
+    });
+    expect(messages(dataset)).toEqual([
+      'duplicate quote id "loss-nothing-else-change"',
+      'quote "loss-nothing-else-change" has unknown tag "cooking"',
+    ]);
+  });
 });

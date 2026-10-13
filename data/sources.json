@@ -216,6 +216,22 @@
         "url": "https://standardebooks.org/ebooks/boethius/the-consolation-of-philosophy/h-r-james",
         "repository": "https://github.com/standardebooks/boethius_the-consolation-of-philosophy_h-r-james"
       }
+    },
+    {
+      "id": "dhammapada",
+      "title": "The Dhammapada",
+      "author": "the-buddha",
+      "translator": {
+        "name": "F. Max Müller",
+        "died": 1900
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Project Gutenberg",
+        "url": "https://www.gutenberg.org/ebooks/2017",
+        "text": "https://www.gutenberg.org/cache/epub/2017/pg2017.txt"
+      }
     }
   ]
 }

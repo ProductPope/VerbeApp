@@ -89,9 +89,14 @@ export function checkIntegrity(
     problems.push({ file: 'data/quotes', message: `more than one collection for source "${id}"` });
   }
 
-  const allQuotes = dataset.collections.flatMap(({ path, collection }) =>
-    collection.quotes.map((quote) => ({ path, quote })),
-  );
+  const allQuotes = [
+    ...dataset.collections.flatMap(({ path, collection }) =>
+      collection.quotes.map((quote) => ({ path, quote })),
+    ),
+    ...dataset.community.flatMap(({ path, collection }) =>
+      collection.items.map((quote) => ({ path, quote })),
+    ),
+  ];
   for (const id of duplicates(allQuotes, ({ quote }) => quote.id)) {
     problems.push({ file: 'data/quotes', message: `duplicate quote id "${id}"` });
   }
@@ -99,7 +104,10 @@ export function checkIntegrity(
     problems.push({ file: 'data/quotes', message: `duplicate quote text "${text}"` });
   }
 
+  const sourcesById = new Map(dataset.sources.map((source) => [source.id, source]));
   for (const { path, collection } of dataset.collections) {
+    const needsSection =
+      sourcesById.get(collection.source)?.edition.publisher === 'Standard Ebooks';
     if (baseName(path) !== collection.source) {
       problems.push({
         file: path,
@@ -110,10 +118,16 @@ export function checkIntegrity(
       problems.push({ file: path, message: `unknown source "${collection.source}"` });
     }
     for (const quote of collection.quotes) {
-      for (const tag of quote.tags) {
-        if (!tagIds.has(tag)) {
-          problems.push({ file: path, message: `quote "${quote.id}" has unknown tag "${tag}"` });
-        }
+      if (needsSection && quote.section === undefined) {
+        problems.push({ file: path, message: `quote "${quote.id}" needs a section` });
+      }
+    }
+  }
+
+  for (const { path, quote } of allQuotes) {
+    for (const tag of quote.tags) {
+      if (!tagIds.has(tag)) {
+        problems.push({ file: path, message: `quote "${quote.id}" has unknown tag "${tag}"` });
       }
     }
   }

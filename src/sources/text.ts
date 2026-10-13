@@ -44,6 +44,17 @@ export function xhtmlToText(xhtml: string): string {
     .join('\n');
 }
 
+/**
+ * Extracts the book from a Project Gutenberg plain-text file: drops the
+ * licence header and footer and the underscores that mark italics.
+ */
+export function gutenbergBody(text: string): string {
+  const start = /^\*\*\* ?START OF.*$/m.exec(text);
+  const end = /^\*\*\* ?END OF.*$/m.exec(text);
+  const body = text.slice(start ? start.index + start[0].length : 0, end ? end.index : text.length);
+  return body.replace(/_/g, '').trim();
+}
+
 /** Folds typographic variants so that equivalent wordings compare equal. */
 export function normalizeForMatch(text: string): string {
   return text

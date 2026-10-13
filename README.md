@@ -10,8 +10,8 @@ your phone.
 
 Quote apps are full of misattributed and invented lines. Every quote in VerbeApp is:
 
-- **verifiable**: it links to the exact chapter of a public-domain edition, and CI checks it
-  appears there word for word;
+- **verifiable**: it links to the exact chapter of a public-domain edition (Standard Ebooks or
+  Project Gutenberg), and CI checks it appears there word for word;
 - **free to use**: only works whose author and translator died more than 70 years ago;
 - **open**: plain JSON files with JSON Schemas, so anyone can add quotes through a pull request.
 

@@ -84,4 +84,42 @@ describe('JSON Schemas', () => {
     });
     expect(errors).toContain('/sources/0/license must be equal to constant');
   });
+
+  it('accept a Project Gutenberg edition and reject other hosts', () => {
+    const gutenberg = {
+      publisher: 'Project Gutenberg',
+      url: 'https://www.gutenberg.org/ebooks/2017',
+      text: 'https://www.gutenberg.org/cache/epub/2017/pg2017.txt',
+    };
+    expect(
+      validateAgainstSchema('sources', {
+        sources: [{ ...dataset.sources[0], edition: gutenberg }],
+      }),
+    ).toEqual([]);
+    const elsewhere = { ...gutenberg, text: 'https://example.com/pg2017.txt' };
+    expect(
+      validateAgainstSchema('sources', {
+        sources: [{ ...dataset.sources[0], edition: elsewhere }],
+      }),
+    ).toContain('/sources/0/edition must match exactly one schema in oneOf');
+  });
+
+  it('accept original community sayings released under CC0 only', () => {
+    const item = {
+      id: 'start-before-ready',
+      text: 'Start before you feel ready.',
+      tags: ['productivity'],
+      license: 'CC0-1.0',
+      inspiredBy: { url: 'https://www.reddit.com/r/LifeProTips/', title: 'r/LifeProTips' },
+    };
+    expect(
+      validateAgainstSchema('community-collection', { contributor: 'Marcin', items: [item] }),
+    ).toEqual([]);
+    expect(
+      validateAgainstSchema('community-collection', {
+        contributor: 'Marcin',
+        items: [{ ...item, license: 'CC-BY-SA-4.0' }],
+      }),
+    ).toContain('/items/0/license must be equal to constant');
+  });
 });
