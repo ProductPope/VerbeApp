@@ -28,7 +28,7 @@ with TalkBack on Android and a keyboard on desktop.
   Escape and returns focus to the Settings button.
 - **Profile** opens a native modal `<dialog>` that works like Settings: an X button or Escape
   closes it and focus returns to the Profile button. It has three labelled regions: Preferences,
-  Favourites and Hidden quotes. In Preferences the translation toggle is a checkbox with
+  Favourites and Hidden quotes. Preferences is a native `<details>` disclosure, collapsed by default; inside it the translation toggle is a checkbox with
   `role="switch"` and the app language is a native `<select>`.
 - **Daily notification** (in Preferences): a switch with its hint and any error in its accessible
   description; the error is also announced through a status region. The hour picker appears only

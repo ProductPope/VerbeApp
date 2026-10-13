@@ -37,7 +37,10 @@ async function openProfile(user: ReturnType<typeof userEvent.setup>) {
 
 async function openPreferences(user: ReturnType<typeof userEvent.setup>) {
   const profile = await openProfile(user);
-  return within(profile).getByRole('region', { name: 'Preferences' });
+  const preferences = within(profile).getByRole('region', { name: 'Preferences' });
+  await user.click(within(preferences).getByText('Preferences'));
+  expect(preferences.querySelector('details')).toHaveAttribute('open');
+  return preferences;
 }
 
 function articles() {
@@ -200,10 +203,12 @@ describe('categories', () => {
 });
 
 describe('profile', () => {
-  it('opens as a modal dialog and closes with the X button', async () => {
+  it('opens as a modal dialog with preferences collapsed and closes with the X button', async () => {
     const { user } = renderApp();
     const profile = await openProfile(user);
     expect(profile).toHaveAttribute('open');
+    const preferences = within(profile).getByRole('region', { name: 'Preferences' });
+    expect(preferences.querySelector('details')).not.toHaveAttribute('open');
     expect(screen.getByRole('button', { name: 'Your profile' })).toHaveAttribute(
       'aria-haspopup',
       'dialog',

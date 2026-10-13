@@ -29,6 +29,8 @@ async function openProfile(page: Page) {
 async function openPreferences(page: Page) {
   const profile = await openProfile(page);
   const preferences = profile.getByRole('region', { name: 'Preferences' });
+  await expect(preferences.getByRole('combobox', { name: 'App language' })).toBeHidden();
+  await preferences.getByText('Preferences').click();
   await expect(preferences).toBeVisible();
   return preferences;
 }

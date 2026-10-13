@@ -88,49 +88,54 @@ function Preferences({
   | 'notification'
 >) {
   return (
+    // Collapsed by default: favourites and hidden quotes are what the profile is
+    // mostly opened for. The native disclosure is keyboard and screen reader
+    // friendly and announces its expanded state.
     <section aria-labelledby="preferences-heading">
-      <h3 id="preferences-heading">{strings.preferencesHeading}</h3>
-      <div className="preferences">
-        <div className="setting setting-row">
-          <label className="setting-label" htmlFor="setting-translation">
-            {strings.translationLabel}
-          </label>
-          <input
-            id="setting-translation"
-            className="switch"
-            type="checkbox"
-            role="switch"
-            checked={translation}
-            aria-describedby="setting-translation-hint"
-            onChange={(event) => {
-              onTranslationChange(event.target.checked);
-            }}
-          />
-          <p className="setting-hint" id="setting-translation-hint">
-            {strings.translationHint}
-          </p>
+      <details className="disclosure">
+        <summary id="preferences-heading">{strings.preferencesHeading}</summary>
+        <div className="preferences">
+          <div className="setting setting-row">
+            <label className="setting-label" htmlFor="setting-translation">
+              {strings.translationLabel}
+            </label>
+            <input
+              id="setting-translation"
+              className="switch"
+              type="checkbox"
+              role="switch"
+              checked={translation}
+              aria-describedby="setting-translation-hint"
+              onChange={(event) => {
+                onTranslationChange(event.target.checked);
+              }}
+            />
+            <p className="setting-hint" id="setting-translation-hint">
+              {strings.translationHint}
+            </p>
+          </div>
+          {notification}
+          <div className="setting setting-row">
+            <label className="setting-label" htmlFor="setting-language">
+              {strings.languageLabel}
+            </label>
+            <select
+              id="setting-language"
+              value={language}
+              onChange={(event) => {
+                const value = event.target.value;
+                if (isLanguage(value)) onLanguageChange(value);
+              }}
+            >
+              {LANGUAGES.map((option) => (
+                <option key={option} value={option} lang={option}>
+                  {LANGUAGE_NAMES[option]}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        {notification}
-        <div className="setting setting-row">
-          <label className="setting-label" htmlFor="setting-language">
-            {strings.languageLabel}
-          </label>
-          <select
-            id="setting-language"
-            value={language}
-            onChange={(event) => {
-              const value = event.target.value;
-              if (isLanguage(value)) onLanguageChange(value);
-            }}
-          >
-            {LANGUAGES.map((option) => (
-              <option key={option} value={option} lang={option}>
-                {LANGUAGE_NAMES[option]}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+      </details>
     </section>
   );
 }
