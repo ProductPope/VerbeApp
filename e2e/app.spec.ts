@@ -26,6 +26,14 @@ async function openProfile(page: Page) {
   return dialog;
 }
 
+async function openYourQuotes(page: Page) {
+  const profile = await openProfile(page);
+  const section = profile.getByRole('region', { name: 'Your quotes' });
+  await expect(section.getByRole('button', { name: 'Add a quote' })).toBeHidden();
+  await section.getByText('Your quotes', { exact: true }).click();
+  return section;
+}
+
 async function openPreferences(page: Page) {
   const profile = await openProfile(page);
   const preferences = profile.getByRole('region', { name: 'Preferences' });
@@ -115,6 +123,10 @@ test.describe('accessibility', () => {
     await page.keyboard.press('Escape');
     await openPreferences(page);
     await expectLargeTargets();
+    await page
+      .getByRole('region', { name: 'Your quotes' })
+      .getByText('Your quotes', { exact: true })
+      .click();
     await page.getByRole('button', { name: 'Add a quote' }).click();
     await expect(page.getByRole('dialog', { name: 'Add a quote' })).toBeVisible();
     await expectLargeTargets();
@@ -273,8 +285,7 @@ test.describe('feed', () => {
 test.describe('your own quotes', () => {
   test('adds a quote that joins the feed and survives a reload', async ({ page }) => {
     await page.goto('./');
-    await page.getByRole('button', { name: 'Your profile' }).click();
-    const section = page.getByRole('region', { name: 'Your quotes' });
+    const section = await openYourQuotes(page);
     await section.getByRole('button', { name: 'Add a quote' }).click();
     const dialog = page.getByRole('dialog', { name: 'Add a quote' });
     await expect(dialog).toBeVisible();
@@ -309,7 +320,7 @@ test.describe('your own quotes', () => {
 
   test('imports quotes from a CSV file after a preview', async ({ page }) => {
     await page.goto('./');
-    await page.getByRole('button', { name: 'Your profile' }).click();
+    await openYourQuotes(page);
     await page.getByText('How to prepare a CSV file').click();
     await expect(page.getByRole('table')).toBeVisible();
     await expectNoAxeViolations(page);
@@ -331,8 +342,8 @@ test.describe('your own quotes', () => {
 
   test('closes the form with Escape and returns focus', async ({ page }) => {
     await page.goto('./');
-    await page.getByRole('button', { name: 'Your profile' }).click();
-    const add = page.getByRole('button', { name: 'Add a quote' });
+    const section = await openYourQuotes(page);
+    const add = section.getByRole('button', { name: 'Add a quote' });
     await add.click();
     await expect(page.getByRole('textbox', { name: 'Quote' })).toBeFocused();
     await page.keyboard.press('Escape');
