@@ -86,6 +86,44 @@ const en = {
       ? 'No new quotes in this backup.'
       : `Added ${String(count)} ${count === 1 ? 'quote' : 'quotes'} from the backup.`,
   importFailed: 'This file is not a VerbeApp backup.',
+  csvImport: 'Import from CSV',
+  csvHelpSummary: 'How to prepare a CSV file',
+  csvHelpIntro:
+    'Save a spreadsheet as CSV in UTF-8. The first row names the columns and only text is required. Commas and semicolons both work as separators.',
+  csvColumnHeader: 'Column',
+  csvMeaningHeader: 'What goes in it',
+  csvTextColumn: 'The quote. Required.',
+  csvAuthorColumn: 'Who said or wrote it.',
+  csvSourceColumn: 'Book, page or other source.',
+  csvLanguageColumn: 'en or pl. English when empty.',
+  csvCategoriesColumn: (names: string) =>
+    `Separate several with a vertical bar (|). Available: ${names}.`,
+  csvHelpQuotes:
+    'Put a cell in double quotes when it contains a comma, a semicolon or a line break, and write a quote mark inside it as two ("").',
+  csvExample: 'Example',
+  csvTemplate: 'Download template',
+  csvReady: (count: number) =>
+    `${String(count)} ${count === 1 ? 'quote' : 'quotes'} ready to import.`,
+  csvDuplicates: (count: number) =>
+    `${String(count)} already saved or repeated in the file, skipped.`,
+  csvProblemsHeading: 'Rows that will be skipped',
+  csvMoreProblems: (count: number) => `And ${String(count)} more.`,
+  csvRow: (row: number) => `Row ${String(row)}`,
+  csvNoText: 'no quote text.',
+  csvTextTooLong: (max: number) => `the quote is longer than ${String(max)} characters.`,
+  csvUnknownLanguage: (value: string) => `unknown language “${value}”; use en or pl.`,
+  csvUnknownCategory: (value: string) => `unknown category “${value}”.`,
+  csvEmpty: 'The file is empty.',
+  csvNoTextColumn:
+    'The first row must name the columns, with at least one called text. Download the template to see how.',
+  csvUnclosedQuote: 'A double quote in the file is never closed, so it cannot be read.',
+  csvTooLarge: 'The file is larger than 1 MB. Split it into smaller files.',
+  csvTooManyRows: (max: number) => `The file has more than ${String(max)} quotes. Split it.`,
+  csvConfirm: (count: number) => `Import ${String(count)} ${count === 1 ? 'quote' : 'quotes'}`,
+  csvNothing: 'There is nothing new to import.',
+  csvImported: (count: number) =>
+    `Added ${String(count)} ${count === 1 ? 'quote' : 'quotes'} from the CSV file.`,
+  csvPreviewHeading: 'Preview',
   streak: (days: number) =>
     `Reading streak: ${String(days)} ${days === 1 ? 'day' : 'days'} in a row`,
   streakReached: (days: number) =>
@@ -197,6 +235,42 @@ const pl: Strings = {
   imported: (count: number) =>
     count === 0 ? 'W tej kopii nie ma nowych cytatów.' : `Dodano z kopii: ${polishQuotes(count)}.`,
   importFailed: 'Ten plik nie jest kopią zapasową VerbeApp.',
+  csvImport: 'Importuj z CSV',
+  csvHelpSummary: 'Jak przygotować plik CSV',
+  csvHelpIntro:
+    'Zapisz arkusz jako CSV w UTF-8. Pierwszy wiersz zawiera nazwy kolumn i wymagana jest tylko kolumna text. Separatorem może być przecinek albo średnik.',
+  csvColumnHeader: 'Kolumna',
+  csvMeaningHeader: 'Co wpisać',
+  csvTextColumn: 'Cytat. Wymagane.',
+  csvAuthorColumn: 'Kto to powiedział lub napisał.',
+  csvSourceColumn: 'Książka, strona lub inne źródło.',
+  csvLanguageColumn: 'en albo pl. Pusta komórka oznacza angielski.',
+  csvCategoriesColumn: (names: string) =>
+    `Kilka kategorii oddziel pionową kreską (|). Dostępne: ${names}.`,
+  csvHelpQuotes:
+    'Ujmij komórkę w cudzysłów, gdy zawiera przecinek, średnik lub nową linię, a cudzysłów w środku zapisz podwójnie ("").',
+  csvExample: 'Przykład',
+  csvTemplate: 'Pobierz szablon',
+  csvReady: (count: number) => `Gotowe do importu: ${polishQuotes(count)}.`,
+  csvDuplicates: (count: number) =>
+    `Pominięte, bo już zapisane lub powtórzone w pliku: ${String(count)}.`,
+  csvProblemsHeading: 'Wiersze, które zostaną pominięte',
+  csvMoreProblems: (count: number) => `I jeszcze ${String(count)}.`,
+  csvRow: (row: number) => `Wiersz ${String(row)}`,
+  csvNoText: 'brak tekstu cytatu.',
+  csvTextTooLong: (max: number) => `cytat jest dłuższy niż ${String(max)} znaków.`,
+  csvUnknownLanguage: (value: string) => `nieznany język „${value}”; wpisz en albo pl.`,
+  csvUnknownCategory: (value: string) => `nieznana kategoria „${value}”.`,
+  csvEmpty: 'Plik jest pusty.',
+  csvNoTextColumn:
+    'Pierwszy wiersz musi zawierać nazwy kolumn, w tym kolumnę text. Pobierz szablon, aby zobaczyć przykład.',
+  csvUnclosedQuote: 'W pliku jest niezamknięty cudzysłów, więc nie da się go odczytać.',
+  csvTooLarge: 'Plik jest większy niż 1 MB. Podziel go na mniejsze.',
+  csvTooManyRows: (max: number) => `Plik ma więcej niż ${String(max)} cytatów. Podziel go.`,
+  csvConfirm: (count: number) => `Importuj ${polishQuotes(count)}`,
+  csvNothing: 'Nie ma nic nowego do zaimportowania.',
+  csvImported: (count: number) => `Dodano z pliku CSV: ${polishQuotes(count)}.`,
+  csvPreviewHeading: 'Podgląd',
   streak: (days: number) =>
     `Seria czytania: ${String(days)} ${days === 1 ? 'dzień' : 'dni'} z rzędu`,
   streakReached: (days: number) =>

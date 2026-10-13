@@ -49,6 +49,10 @@ with TalkBack on Android and a keyboard on desktop.
   are native checkboxes in a `fieldset` with a `legend`. The text field carries the quote's
   language. Edit and Delete buttons are described by the quote they act on. Saving, restoring a
   backup and deleting are announced in the status region; deleting offers Undo.
+- **CSV import** never saves anything straight away: a modal `<dialog>` described by its summary
+  ("3 quotes ready to import") lists the first quotes and every skipped row with its row number and
+  reason, and only its Import button adds them. The format help is a native `<details>` disclosure
+  with a table whose column names are row headers; the example scrolls sideways and is focusable.
 - **Orientation**: the app works in portrait and landscape and does not lock either (WCAG 1.3.4).
 - **AI draft translations** say so in a short line under the translation, which is also part of
   the article's description.

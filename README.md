@@ -27,7 +27,8 @@ under Preferences in your profile, next to the app language; category filters ar
 feed into a slideshow with a progress bar, and pauses whenever you interact. A reading streak next
 to the title counts the days in a row you spent at least 30 seconds with the app. You can also add
 your own quotes in your profile; they join the feed labelled "Your quote" and can be backed up to a
-file. Everything you choose or add stays on your device, and the app works offline.
+file. Many quotes at once can come from a CSV file (columns `text`, `author`, `source`, `language`,
+`categories`; the app explains the format and offers a template). Everything you choose or add stays on your device, and the app works offline.
 
 It is built to WCAG 2.2 AA; see [docs/accessibility.md](docs/accessibility.md) for how that is
 tested.

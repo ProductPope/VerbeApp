@@ -305,6 +305,28 @@ test.describe('your own quotes', () => {
     await expect(card.getByText('Your quote')).toBeVisible();
   });
 
+  test('imports quotes from a CSV file after a preview', async ({ page }) => {
+    await page.goto('./');
+    await page.getByRole('button', { name: 'Your profile' }).click();
+    await page.getByText('How to prepare a CSV file').click();
+    await expect(page.getByRole('table')).toBeVisible();
+    await expectNoAxeViolations(page);
+
+    const csv = 'tekst;autor;kategorie\nZapisz to.;Ja;Filozofia\n;;\nBez kategorii.;;Gotowanie\n';
+    await page.getByTestId('import-csv').setInputFiles({
+      name: 'cytaty.csv',
+      mimeType: 'text/csv',
+      buffer: Buffer.from(csv, 'utf8'),
+    });
+    const dialog = page.getByRole('dialog', { name: 'Import from CSV' });
+    await expect(dialog).toContainText('1 quote ready to import.');
+    await expect(dialog).toContainText('Row 4: unknown category “Gotowanie”.');
+    await expectNoAxeViolations(page);
+    await dialog.getByRole('button', { name: 'Import 1 quote' }).click();
+    await expect(dialog).toBeHidden();
+    await expect(page.getByRole('region', { name: 'Your quotes' })).toContainText('Zapisz to.');
+  });
+
   test('closes the form with Escape and returns focus', async ({ page }) => {
     await page.goto('./');
     await page.getByRole('button', { name: 'Your profile' }).click();
