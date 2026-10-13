@@ -88,7 +88,7 @@ select {
 .icon-button,
 .chip,
 .text-button,
-.settings select {
+.setting select {
   min-height: var(--target-size);
   border: var(--border-width) solid var(--color-border);
   background: var(--color-surface);
@@ -224,7 +224,7 @@ select {
   font-size: var(--font-size-small);
 }
 
-.settings select {
+.setting select {
   padding: 0 var(--space-2);
   border-radius: var(--radius-small);
 }
@@ -413,7 +413,12 @@ main:focus {
   text-underline-offset: 0.2em;
 }
 
-/* Saved */
+/* Profile */
+.preferences {
+  display: grid;
+  gap: var(--space-5);
+}
+
 .saved {
   overflow-y: auto;
   padding: var(--space-4);

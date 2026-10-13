@@ -3,7 +3,7 @@ import type { Catalog } from './catalog/catalog.js';
 import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
 import { StreakBadge, StreakCelebration } from './components/ReadingStreak.js';
-import { SavedView } from './components/SavedView.js';
+import { ProfileView } from './components/ProfileView.js';
 import { SettingsDialog } from './components/SettingsDialog.js';
 import { eligibleCards } from './feed/queue.js';
 import { STRINGS, TRANSLATION_LANGUAGE } from './i18n/strings.js';
@@ -104,16 +104,9 @@ export function App({ catalog, store, streakStore, random, reducedMotion }: AppP
         tags={catalog.tags}
         selectedTags={prefs.tags}
         language={prefs.language}
-        translation={prefs.translation}
         strings={strings}
         onTagsChange={(tags) => {
           store.update((current) => ({ ...current, tags }));
-        }}
-        onLanguageChange={(language) => {
-          store.update((current) => ({ ...current, language }));
-        }}
-        onTranslationChange={(translation) => {
-          store.update((current) => ({ ...current, translation }));
         }}
       />
       <main id="main" tabIndex={-1}>
@@ -131,15 +124,22 @@ export function App({ catalog, store, streakStore, random, reducedMotion }: AppP
             onHide={hide}
           />
         ) : (
-          <SavedView
+          <ProfileView
             cards={catalog.cards}
             favorites={prefs.favorites}
             hidden={prefs.hidden}
             language={prefs.language}
+            translation={prefs.translation}
             translationLanguage={translationLanguage}
             strings={strings}
             onToggleFavorite={toggleFavorite}
             onRestore={restore}
+            onLanguageChange={(language) => {
+              store.update((current) => ({ ...current, language }));
+            }}
+            onTranslationChange={(translation) => {
+              store.update((current) => ({ ...current, translation }));
+            }}
           />
         )}
       </main>

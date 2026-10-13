@@ -19,6 +19,13 @@ async function openSettings(page: Page) {
   return dialog;
 }
 
+async function openPreferences(page: Page) {
+  await page.getByRole('button', { name: 'Your profile' }).click();
+  const preferences = page.getByRole('region', { name: 'Preferences' });
+  await expect(preferences).toBeVisible();
+  return preferences;
+}
+
 test.describe('accessibility', () => {
   for (const colorScheme of ['light', 'dark'] as const) {
     test(`has no WCAG 2.2 AA violations in the ${colorScheme} theme`, async ({ page }) => {
@@ -38,9 +45,12 @@ test.describe('accessibility', () => {
 
   test('has no violations in Polish', async ({ page }) => {
     await page.goto('./');
-    const settings = await openSettings(page);
-    await settings.getByRole('combobox', { name: 'App language' }).selectOption('pl');
+    const preferences = await openPreferences(page);
+    await preferences.getByRole('combobox', { name: 'App language' }).selectOption('pl');
     await expect(page.locator('html')).toHaveAttribute('lang', 'pl');
+    await expectNoAxeViolations(page);
+    await page.getByRole('button', { name: 'Ustawienia' }).click();
+    await expect(page.getByRole('dialog', { name: 'Ustawienia' })).toBeVisible();
     await expectNoAxeViolations(page);
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog')).toBeHidden();
@@ -84,6 +94,9 @@ test.describe('accessibility', () => {
     await page.goto('./');
     await expectLargeTargets();
     await openSettings(page);
+    await expectLargeTargets();
+    await page.keyboard.press('Escape');
+    await openPreferences(page);
     await expectLargeTargets();
   });
 });
@@ -166,10 +179,11 @@ test.describe('feed', () => {
     const translationBox = await translation.boundingBox();
     expect(translationBox!.y).toBeGreaterThan(quoteBox!.y + quoteBox!.height);
 
-    const settings = await openSettings(page);
-    await settings.getByRole('switch', { name: 'Polish translation' }).uncheck();
-    await page.keyboard.press('Escape');
-    await expect(first.locator('.card-translation')).toHaveCount(0);
+    const preferences = await openPreferences(page);
+    await preferences.getByRole('switch', { name: 'Polish translation' }).uncheck();
+    await page.getByRole('button', { name: 'Your profile' }).click();
+    await expect(feed(page).getByRole('article').first()).toBeVisible();
+    await expect(feed(page).locator('.card-translation')).toHaveCount(0);
   });
 
   test('shows a progress bar while auto-advancing', async ({ page }) => {

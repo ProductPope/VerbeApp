@@ -1,15 +1,20 @@
 import { localized, type Card } from '../catalog/catalog.js';
-import type { Language, Strings } from '../i18n/strings.js';
+import { isLanguage, LANGUAGES, type Language, type Strings } from '../i18n/strings.js';
 
-interface SavedViewProps {
+const LANGUAGE_NAMES = { en: 'English', pl: 'Polski' } as const;
+
+interface ProfileViewProps {
   cards: Card[];
   favorites: string[];
   hidden: string[];
   language: Language;
+  translation: boolean;
   translationLanguage: Language | undefined;
   strings: Strings;
   onToggleFavorite: (id: string) => void;
   onRestore: (id: string) => void;
+  onLanguageChange: (language: Language) => void;
+  onTranslationChange: (translation: boolean) => void;
 }
 
 function SavedList({
@@ -61,23 +66,90 @@ function SavedList({
   );
 }
 
-/** Favourites to reread, and hidden quotes that can be restored. */
-export function SavedView({
+function Preferences({
+  language,
+  translation,
+  strings,
+  onLanguageChange,
+  onTranslationChange,
+}: Pick<
+  ProfileViewProps,
+  'language' | 'translation' | 'strings' | 'onLanguageChange' | 'onTranslationChange'
+>) {
+  return (
+    <section aria-labelledby="preferences-heading">
+      <h2 id="preferences-heading">{strings.preferencesHeading}</h2>
+      <div className="preferences">
+        <div className="setting setting-row">
+          <label className="setting-label" htmlFor="setting-translation">
+            {strings.translationLabel}
+          </label>
+          <input
+            id="setting-translation"
+            className="switch"
+            type="checkbox"
+            role="switch"
+            checked={translation}
+            aria-describedby="setting-translation-hint"
+            onChange={(event) => {
+              onTranslationChange(event.target.checked);
+            }}
+          />
+          <p className="setting-hint" id="setting-translation-hint">
+            {strings.translationHint}
+          </p>
+        </div>
+        <div className="setting setting-row">
+          <label className="setting-label" htmlFor="setting-language">
+            {strings.languageLabel}
+          </label>
+          <select
+            id="setting-language"
+            value={language}
+            onChange={(event) => {
+              const value = event.target.value;
+              if (isLanguage(value)) onLanguageChange(value);
+            }}
+          >
+            {LANGUAGES.map((option) => (
+              <option key={option} value={option} lang={option}>
+                {LANGUAGE_NAMES[option]}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Reading preferences, favourites to reread, and hidden quotes that can be restored. */
+export function ProfileView({
   cards,
   favorites,
   hidden,
   language,
+  translation,
   translationLanguage,
   strings,
   onToggleFavorite,
   onRestore,
-}: SavedViewProps) {
+  onLanguageChange,
+  onTranslationChange,
+}: ProfileViewProps) {
   const byId = new Map(cards.map((card) => [card.id, card]));
   const knownFavorites = favorites.filter((id) => byId.has(id));
   const knownHidden = hidden.filter((id) => byId.has(id));
 
   return (
     <div className="saved">
+      <Preferences
+        language={language}
+        translation={translation}
+        strings={strings}
+        onLanguageChange={onLanguageChange}
+        onTranslationChange={onTranslationChange}
+      />
       <section aria-labelledby="favorites-heading">
         <h2 id="favorites-heading">{strings.favoritesHeading}</h2>
         {knownFavorites.length === 0 ? (

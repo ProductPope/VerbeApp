@@ -28,6 +28,11 @@ async function openSettings(user: ReturnType<typeof userEvent.setup>) {
   return screen.getByRole('dialog', { name: 'Settings' });
 }
 
+async function openPreferences(user: ReturnType<typeof userEvent.setup>) {
+  await user.click(screen.getByRole('button', { name: 'Your profile' }));
+  return screen.getByRole('region', { name: 'Preferences' });
+}
+
 function articles() {
   return within(screen.getByRole('feed')).getAllByRole('article');
 }
@@ -114,7 +119,7 @@ describe('feed', () => {
 });
 
 describe('favourites and hidden quotes', () => {
-  it('saves a favourite, lists it under Saved and removes it again', async () => {
+  it('saves a favourite, lists it in the profile and removes it again', async () => {
     const { user, store } = renderApp();
     const first = articles()[0]!;
     const id = first.dataset.cardId!;
@@ -149,7 +154,7 @@ describe('favourites and hidden quotes', () => {
     expect(status).toBeEmptyDOMElement();
   });
 
-  it('restores hidden quotes from the Saved view', async () => {
+  it('restores hidden quotes from the profile', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, hidden: ['beta', 'unknown-id'] }));
     await user.click(screen.getByRole('button', { name: 'Your profile' }));
@@ -218,18 +223,19 @@ describe('translation', () => {
     expect(beta).not.toHaveAccessibleDescription(/Tekst/);
   });
 
-  it('can be switched off in settings', async () => {
+  it('can be switched off in the profile preferences', async () => {
     const { user, store } = renderApp();
-    const settings = await openSettings(user);
-    const toggle = within(settings).getByRole('switch', { name: 'Polish translation' });
+    const preferences = await openPreferences(user);
+    const toggle = within(preferences).getByRole('switch', { name: 'Polish translation' });
     expect(toggle).toBeChecked();
     expect(toggle).toHaveAccessibleDescription(/AI/);
     await user.click(toggle);
     expect(store.get().translation).toBe(false);
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
     expect(screen.queryByText('Tekst alfa.')).not.toBeInTheDocument();
   });
 
-  it('also appears in the Saved view', async () => {
+  it('also appears in the profile', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, favorites: ['alpha'] }));
     await user.click(screen.getByRole('button', { name: 'Your profile' }));
@@ -241,12 +247,14 @@ describe('translation', () => {
 describe('language', () => {
   it('switches the interface to Polish and keeps quotes in English', async () => {
     const { user } = renderApp();
-    const settings = await openSettings(user);
+    const preferences = await openPreferences(user);
     await user.selectOptions(
-      within(settings).getByRole('combobox', { name: 'App language' }),
+      within(preferences).getByRole('combobox', { name: 'App language' }),
       'pl',
     );
     expect(document.documentElement.lang).toBe('pl');
+    expect(screen.getByRole('region', { name: 'Preferencje' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Twój profil' }));
     expect(screen.getByRole('feed', { name: 'Lista cytatów' })).toBeInTheDocument();
     const alpha = articles().find((a) => a.dataset.cardId === 'alpha')!;
     expect(within(alpha).getByText('Text of alpha.')).toBeInTheDocument();
