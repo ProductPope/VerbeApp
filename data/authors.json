@@ -135,6 +135,15 @@
       },
       "born": 1842,
       "died": 1910
+    },
+    {
+      "id": "michel-de-montaigne",
+      "name": {
+        "en": "Michel de Montaigne",
+        "pl": "Michel de Montaigne"
+      },
+      "born": 1533,
+      "died": 1592
     }
   ]
 }

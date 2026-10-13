@@ -232,6 +232,34 @@
         "url": "https://www.gutenberg.org/ebooks/2017",
         "text": "https://www.gutenberg.org/cache/epub/2017/pg2017.txt"
       }
+    },
+    {
+      "id": "principles-of-psychology",
+      "title": "The Principles of Psychology, Volume 1",
+      "author": "william-james",
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Project Gutenberg",
+        "url": "https://www.gutenberg.org/ebooks/57628",
+        "text": "https://www.gutenberg.org/cache/epub/57628/pg57628.txt"
+      }
+    },
+    {
+      "id": "montaigne-essays",
+      "title": "Essays",
+      "author": "michel-de-montaigne",
+      "translator": {
+        "name": "Charles Cotton",
+        "died": 1687
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Project Gutenberg",
+        "url": "https://www.gutenberg.org/ebooks/3600",
+        "text": "https://www.gutenberg.org/cache/epub/3600/pg3600.txt"
+      }
     }
   ]
 }
