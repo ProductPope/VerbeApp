@@ -471,6 +471,27 @@ describe('opening from a notification', () => {
     renderApp('en', { initialCardId: 'missing' });
     expect(cardIds()).toHaveLength(5);
   });
+  it('shows the notified quote first even when the catalogue is large', () => {
+    const catalog = testCatalog();
+    for (let i = 0; i < 40; i++) catalog.cards.push(card(`extra-${String(i)}`, ['philosophy']));
+    renderApp('en', { catalog, initialCardId: 'extra-39' });
+    expect(cardIds()[0]).toBe('extra-39');
+    expect(cardIds()).toHaveLength(8);
+  });
+});
+
+describe('a large catalogue', () => {
+  it('renders a few cards at a time and adds more as the reader moves on', async () => {
+    const catalog = testCatalog();
+    for (let i = 0; i < 40; i++) catalog.cards.push(card(`extra-${String(i)}`, ['philosophy']));
+    const { user } = renderApp('en', { catalog });
+    expect(articles()).toHaveLength(8);
+    articles()[0]!.focus();
+    for (let i = 0; i < 6; i++) await user.keyboard('{PageDown}');
+    expect(articles().length).toBeGreaterThan(8);
+    expect(articles().length).toBeLessThanOrEqual(16);
+    expect(new Set(cardIds()).size).toBe(cardIds().length);
+  });
 });
 
 describe('reading streak', () => {

@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
 import type { Card } from '../catalog/catalog.js';
-import { nextRound, readingTimeMs } from '../feed/queue.js';
+import { nextBatch, readingTimeMs } from '../feed/queue.js';
 import type { Language, Strings } from '../i18n/strings.js';
 import { QuoteCard } from './QuoteCard.js';
 
 interface FeedItem {
   key: string;
+  /** Which shuffled round of the eligible cards this item belongs to. */
+  round: number;
   card: Card;
 }
 
@@ -25,28 +27,41 @@ interface FeedProps {
   onHide: (id: string) => void;
 }
 
-/** How many cards must remain below the current one before another round is added. */
+/** How many cards must remain after the current one before more are added. */
 const LOOKAHEAD = 3;
+/** How many cards are added at a time. */
+const BATCH = 8;
 
 const NEXT_KEYS = new Set(['PageDown', 'ArrowRight', 'ArrowDown', 'j']);
 const PREVIOUS_KEYS = new Set(['PageUp', 'ArrowLeft', 'ArrowUp', 'k']);
 
 let roundCounter = 0;
 
-function withRound(items: FeedItem[], eligible: Card[], random: () => number): FeedItem[] {
-  const round = roundCounter++;
-  const cards = nextRound(
-    eligible,
-    items.map((item) => item.card),
-    random,
-  );
-  return [...items, ...cards.map((card) => ({ key: `${String(round)}:${card.id}`, card }))];
+function item(card: Card, round: number): FeedItem {
+  return { key: `${String(round)}:${card.id}`, round, card };
 }
 
-/** Moves the requested card to the front of the first round, if it is eligible. */
-function startingWith(items: FeedItem[], id: string | undefined): FeedItem[] {
-  const chosen = items.find((item) => item.card.id === id);
-  return chosen ? [chosen, ...items.filter((item) => item !== chosen)] : items;
+function withMore(items: FeedItem[], eligible: Card[], random: () => number): FeedItem[] {
+  const current = items.at(-1)?.round;
+  const { cards, newRound } = nextBatch(
+    eligible,
+    items.filter((entry) => entry.round === current).map((entry) => entry.card),
+    items.map((entry) => entry.card),
+    random,
+    BATCH,
+  );
+  const round = newRound || current === undefined ? roundCounter++ : current;
+  return [...items, ...cards.map((card) => item(card, round))];
+}
+
+/** Puts the requested card first, if it is eligible. */
+function startingWith(items: FeedItem[], eligible: Card[], id: string | undefined): FeedItem[] {
+  const first = items[0];
+  const chosen = eligible.find((card) => card.id === id);
+  if (!first || !chosen) return items;
+  const rest = items.filter((entry) => entry.card.id !== id);
+  // Keep the batch size: the card it displaces comes later in the round.
+  return [item(chosen, first.round), ...rest.slice(0, items.length - 1)];
 }
 
 function idsOf(cards: Card[]): string {
@@ -72,7 +87,7 @@ export function Feed({
   onHide,
 }: FeedProps) {
   const [items, setItems] = useState<FeedItem[]>(() =>
-    startingWith(withRound([], cards, random), initialCardId),
+    startingWith(withMore([], cards, random), cards, initialCardId),
   );
   const [eligibleIds, setEligibleIds] = useState(() => idsOf(cards));
   const [active, setActive] = useState(0);
@@ -92,17 +107,17 @@ export function Feed({
     if (onlyRemoved) {
       const remaining = new Set(cards.map((card) => card.id));
       const kept = items.filter((item) => remaining.has(item.card.id));
-      setItems(kept.length > LOOKAHEAD ? kept : withRound(kept, cards, random));
+      setItems(kept.length > LOOKAHEAD ? kept : withMore(kept, cards, random));
       setActive(Math.min(active, Math.max(0, kept.length - 1)));
     } else {
-      setItems(withRound([], cards, random));
+      setItems(withMore([], cards, random));
       setActive(0);
     }
   }
 
   function extendFrom(index: number) {
     if (index >= items.length - LOOKAHEAD) {
-      setItems((current) => withRound(current, cards, random));
+      setItems((current) => withMore(current, cards, random));
     }
   }
 
@@ -131,7 +146,7 @@ export function Feed({
           if (index >= 0) {
             setActive(index);
             if (index >= items.length - LOOKAHEAD) {
-              setItems((current) => withRound(current, cards, random));
+              setItems((current) => withMore(current, cards, random));
             }
           }
         }
