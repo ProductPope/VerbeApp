@@ -1,5 +1,6 @@
 /** Offers text to the reader as a file to save, without any server. */
-export function downloadFile(name: string, contents: string, type = 'application/json') {
+export function downloadFile(name: string, contents: string) {
+  const type = name.endsWith('.csv') ? 'text/csv;charset=utf-8' : 'application/json';
   const url = URL.createObjectURL(new Blob([contents], { type }));
   const link = document.createElement('a');
   link.href = url;

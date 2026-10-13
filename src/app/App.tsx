@@ -4,6 +4,7 @@ import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
 import { HABIT_QUOTE_ID, StreakButton, StreakCelebration } from './components/ReadingStreak.js';
 import { NotificationSetting } from './components/NotificationSetting.js';
+import { CsvImportDialog } from './components/CsvImportDialog.js';
 import { PersonalQuoteDialog } from './components/PersonalQuoteDialog.js';
 import { PersonalQuotes } from './components/PersonalQuotes.js';
 import { ProfileDialog } from './components/ProfileDialog.js';
@@ -12,6 +13,7 @@ import { eligibleCards } from './feed/queue.js';
 import { STRINGS, TRANSLATION_LANGUAGE } from './i18n/strings.js';
 import type { PushService } from './notifications/push.js';
 import { writeSharedPrefs } from './notifications/shared-prefs.js';
+import { csvTemplate, MAX_CSV_BYTES, readQuotesCsv, type CsvImport } from './personal/csv.js';
 import { downloadFile, requestPersistentStorage } from './personal/download.js';
 import {
   cleanDraft,
@@ -80,6 +82,7 @@ export function App({
   const [notice, setNotice] = useState<Notice | null>(null);
   const [undoFocused, setUndoFocused] = useState(false);
   const [editing, setEditing] = useState<Editing>(null);
+  const [csvImport, setCsvImport] = useState<CsvImport | null>(null);
 
   // Notices leave after a while, but never while their Undo button has focus.
   // Hidden quotes can still be restored from the profile at any time.
@@ -178,6 +181,27 @@ export function App({
     });
   }
 
+  function addPersonal(drafts: PersonalQuoteDraft[]) {
+    if (drafts.length === 0) return;
+    const added = new Date().toISOString();
+    personalStore.update((quotes) => [
+      ...quotes,
+      ...drafts.map((draft) => ({ ...draft, id: newPersonalId(), added })),
+    ]);
+    persistStorage();
+    setNotice({ message: strings.csvImported(drafts.length) });
+  }
+
+  function previewCsv(file: File) {
+    if (file.size > MAX_CSV_BYTES) {
+      setCsvImport({ ok: false, error: 'tooLarge' });
+      return;
+    }
+    void file.text().then((text) => {
+      setCsvImport(readQuotesCsv(text, personalStore.get(), catalog.tags));
+    });
+  }
+
   function exportPersonal() {
     const date = new Date().toISOString().slice(0, 10);
     saveFile(`verbeapp-my-quotes-${date}.json`, exportPersonalQuotes(personalStore.get()));
@@ -271,6 +295,8 @@ export function App({
         personal={
           <PersonalQuotes
             quotes={personal}
+            tags={catalog.tags}
+            language={prefs.language}
             strings={strings}
             onAdd={() => {
               setEditing({ quote: undefined });
@@ -281,6 +307,10 @@ export function App({
             onDelete={deletePersonal}
             onExport={exportPersonal}
             onImport={importPersonal}
+            onImportCsv={previewCsv}
+            onDownloadTemplate={() => {
+              saveFile('verbeapp-quotes-template.csv', csvTemplate(catalog.tags));
+            }}
           />
         }
         notification={
@@ -325,6 +355,18 @@ export function App({
           }}
           onClose={() => {
             setEditing(null);
+          }}
+        />
+      )}
+      {csvImport && (
+        <CsvImportDialog
+          result={csvImport}
+          strings={strings}
+          onConfirm={() => {
+            if (csvImport.ok) addPersonal(csvImport.drafts);
+          }}
+          onClose={() => {
+            setCsvImport(null);
           }}
         />
       )}

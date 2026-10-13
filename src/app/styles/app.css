@@ -791,3 +791,41 @@ main:focus {
     animation: none;
   }
 }
+
+/* Help for preparing a CSV file of one's own quotes */
+.help summary {
+  display: flex;
+  align-items: center;
+  min-height: var(--target-size);
+  color: var(--color-accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.help-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-small);
+}
+
+.help-table th,
+.help-table td {
+  padding: var(--space-2);
+  border-bottom: var(--border-width) solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.help-example {
+  overflow-x: auto;
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-surface);
+  font-size: var(--font-size-small);
+}
+
+.problems {
+  margin: 0;
+  padding-left: var(--space-5);
+}

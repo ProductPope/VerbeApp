@@ -862,6 +862,63 @@ describe('your own quotes', () => {
     });
   });
 
+  it('previews a CSV file, explains skipped rows and imports on confirmation', async () => {
+    const { user, personalStore, persistStorage } = renderApp();
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    const csv = 'text;author;categories\nFirst.;Me;Philosophy\n;Nobody;\nSecond.;;Cooking\n';
+    await user.upload(
+      screen.getByTestId('import-csv'),
+      new File([csv], 'quotes.csv', { type: 'text/csv' }),
+    );
+    const dialog = await screen.findByRole('dialog', { name: 'Import from CSV' });
+    expect(dialog).toHaveAccessibleDescription('1 quote ready to import.');
+    expect(within(dialog).getByText('First.')).toBeInTheDocument();
+    const problems = within(dialog).getByRole('region', { name: 'Rows that will be skipped' });
+    expect(
+      within(problems)
+        .getAllByRole('listitem')
+        .map((item) => item.textContent),
+    ).toEqual(['Row 3: no quote text.', 'Row 4: unknown category “Cooking”.']);
+    expect(personalStore.get()).toEqual([]);
+
+    await user.click(within(dialog).getByRole('button', { name: 'Import 1 quote' }));
+    expect(screen.queryByRole('dialog', { name: 'Import from CSV' })).not.toBeInTheDocument();
+    expect(personalStore.get()).toMatchObject([
+      { text: 'First.', author: 'Me', tags: ['philosophy'], language: 'en' },
+    ]);
+    expect(persistStorage).toHaveBeenCalledOnce();
+    expect(screen.getByRole('status')).toHaveTextContent('Added 1 quote from the CSV file.');
+  });
+
+  it('explains a CSV file it cannot read, without importing anything', async () => {
+    const { user, personalStore } = renderApp();
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    await user.upload(
+      screen.getByTestId('import-csv'),
+      new File(['author\nMe\n'], 'quotes.csv', { type: 'text/csv' }),
+    );
+    const dialog = await screen.findByRole('dialog', { name: 'Import from CSV' });
+    expect(dialog).toHaveAccessibleDescription(/at least one called text/);
+    expect(within(dialog).queryByRole('button', { name: /^Import / })).not.toBeInTheDocument();
+    await user.click(within(dialog).getAllByRole('button', { name: 'Close' }).at(-1)!);
+    expect(screen.queryByRole('dialog', { name: 'Import from CSV' })).not.toBeInTheDocument();
+    expect(personalStore.get()).toEqual([]);
+  });
+
+  it('explains the CSV format and offers a template', async () => {
+    const { user, saveFile } = renderApp();
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    await user.click(screen.getByText('How to prepare a CSV file'));
+    const table = screen.getByRole('table');
+    expect(within(table).getByRole('rowheader', { name: 'categories' })).toBeInTheDocument();
+    expect(within(table).getByText(/Available: Philosophy, Productivity\./)).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Download template' }));
+    expect(saveFile).toHaveBeenCalledWith(
+      'verbeapp-quotes-template.csv',
+      expect.stringMatching(/^\uFEFFtext,author,source,language,categories\r\n/),
+    );
+  });
+
   it('shows saved notices only for a while', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     const user = userEvent.setup({ advanceTimers: (ms) => vi.advanceTimersByTime(ms) });
