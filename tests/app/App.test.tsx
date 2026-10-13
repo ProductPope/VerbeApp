@@ -6,9 +6,14 @@ import { readingTimeMs, seededRandom } from '../../src/app/feed/queue.js';
 import { NotificationsBlockedError, type PushService } from '../../src/app/notifications/push.js';
 import { createPreferencesStore } from '../../src/app/prefs/store.js';
 import { createStreakStore, dayOf, previousDay } from '../../src/app/streak/streak.js';
-import { testCatalog } from './fixtures.js';
+import type { Catalog } from '../../src/app/catalog/catalog.js';
+import { HABIT_QUOTE_ID } from '../../src/app/components/ReadingStreak.js';
+import { card, testCatalog } from './fixtures.js';
 
-function renderApp(language = 'en', extra: { push?: PushService; initialCardId?: string } = {}) {
+function renderApp(
+  language = 'en',
+  extra: { push?: PushService; initialCardId?: string; catalog?: Catalog } = {},
+) {
   const store = createPreferencesStore(localStorage, language);
   const streakStore = createStreakStore(localStorage);
   const user = userEvent.setup();
@@ -477,7 +482,7 @@ describe('reading streak', () => {
   it('counts today after 30 seconds in the app and celebrates it once', () => {
     vi.useFakeTimers({ now: new Date(2026, 9, 13, 9, 0) });
     const { streakStore } = renderApp();
-    const badge = screen.getByText('Reading streak: 0 days in a row').parentElement!;
+    const badge = screen.getByRole('button', { name: 'Reading streak: 0 days in a row' });
     advanceBy(29_000);
     expect(streakStore.get().count).toBe(0);
     expect(within(badge).getByText(/Reading streak: 0/)).toBeInTheDocument();
@@ -527,6 +532,48 @@ describe('reading streak', () => {
     expect(streakStore.get()).toMatchObject({ count: 0, activeMs: 29_000 });
     advanceBy(1_000);
     expect(streakStore.get().count).toBe(1);
+  });
+
+  function catalogWithHabitQuote(): Catalog {
+    const catalog = testCatalog();
+    catalog.cards.push(
+      card(HABIT_QUOTE_ID, ['productivity'], {
+        text: 'Every habit is maintained by the corresponding actions.',
+        translations: { pl: 'Każdy nawyk utrzymuje się dzięki działaniom.' },
+        author: { en: 'Epictetus', pl: 'Epiktet' },
+        work: 'Discourses',
+      }),
+    );
+    return catalog;
+  }
+
+  it('opens a dialog about habits from the flame and closes it again', async () => {
+    const { user } = renderApp('en', { catalog: catalogWithHabitQuote() });
+    const flame = screen.getByRole('button', { name: 'Reading streak: 0 days in a row' });
+    expect(flame).toHaveAttribute('aria-haspopup', 'dialog');
+    await user.click(flame);
+    const dialog = screen.getByRole('dialog', { name: 'Your reading streak' });
+    expect(dialog).toHaveAttribute('open');
+    expect(within(dialog).getByText('0 days in a row')).toBeInTheDocument();
+    expect(within(dialog).getByText(/Habits shape who we become/)).toBeInTheDocument();
+    expect(within(dialog).getByText(/Come back tomorrow/)).toBeInTheDocument();
+    const quote = within(dialog).getByText(/Every habit is maintained/);
+    expect(quote.closest('blockquote')).toHaveAttribute('lang', 'en');
+    expect(
+      within(dialog).getByText('Każdy nawyk utrzymuje się dzięki działaniom.'),
+    ).toHaveAttribute('lang', 'pl');
+    expect(within(dialog).getByText('Discourses').tagName).toBe('CITE');
+    await user.click(within(dialog).getByRole('button', { name: 'Close' }));
+    expect(dialog).not.toHaveAttribute('open');
+  });
+
+  it('speaks Polish and leaves out a quote the dataset no longer has', async () => {
+    const { user } = renderApp('pl-PL');
+    await user.click(screen.getByRole('button', { name: 'Seria czytania: 0 dni z rzędu' }));
+    const dialog = screen.getByRole('dialog', { name: 'Twoja seria czytania' });
+    expect(within(dialog).getByText(/To nawyki nas kształtują/)).toBeInTheDocument();
+    expect(within(dialog).getByText(/Wróć jutro/)).toBeInTheDocument();
+    expect(dialog.querySelector('blockquote')).toBeNull();
   });
 });
 

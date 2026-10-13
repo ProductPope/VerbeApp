@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { buildCatalog, localized } from '../../src/app/catalog/catalog.js';
 import { catalog } from '../../src/app/catalog/load.js';
+import { HABIT_QUOTE_ID } from '../../src/app/components/ReadingStreak.js';
 import { validDataset } from '../fixtures.js';
 
 describe('buildCatalog', () => {
@@ -83,5 +84,13 @@ describe('the bundled catalog', () => {
     expect(catalog.cards.length).toBeGreaterThanOrEqual(151);
     expect(catalog.cards.every((c) => c.link?.startsWith('https://'))).toBe(true);
     expect(new Set(catalog.cards.map((c) => c.id)).size).toBe(catalog.cards.length);
+  });
+});
+
+describe('streak dialog quote', () => {
+  it('is in the dataset with a Polish translation', () => {
+    const habit = catalog.cards.find((card) => card.id === HABIT_QUOTE_ID);
+    expect(habit).toMatchObject({ author: { en: 'Epictetus' }, kind: 'quote' });
+    expect(habit?.translations.pl).toBeTruthy();
   });
 });

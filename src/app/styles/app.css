@@ -158,14 +158,50 @@ select {
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  margin: 0 var(--space-2) 0 0;
+  padding: 0 var(--space-2);
   color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
 }
 
-.streak[data-active='true'] {
+.streak[data-active='true'],
+.streak-count[data-active='true'] {
   color: var(--color-accent);
   font-weight: 600;
+}
+
+.streak-body p {
+  margin: 0;
+}
+
+.streak-count {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-title);
+}
+
+.streak-quote {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: var(--space-4);
+  border-left: var(--focus-width) solid var(--color-accent);
+}
+
+.streak-quote blockquote {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-title);
+  line-height: var(--line-height-quote);
+}
+
+.streak-quote-translation {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+.streak-quote figcaption {
+  font-size: var(--font-size-small);
 }
 
 /* Settings */
