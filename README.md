@@ -20,10 +20,11 @@ Quote apps are full of misattributed and invented lines. Every quote in VerbeApp
 
 ## The app
 
-A full-screen feed of quote cards: swipe up for the next one, save favourites, hide quotes you
-don't want to see again, filter by category, and switch between English and Polish. Optional
-auto-advance turns the feed into a slideshow and pauses whenever you interact. Everything you
-choose stays on your device, and the app works offline.
+A full-screen feed of quote cards: swipe up for the next one, save favourites and hide quotes you
+don't want to see again. Each English quote shows its Polish translation underneath (switch it off
+in Settings, alongside category filters and the app language). Optional auto-advance turns the
+feed into a slideshow with a progress bar, and pauses whenever you interact. Everything you choose
+stays on your device, and the app works offline.
 
 It is built to WCAG 2.2 AA; see [docs/accessibility.md](docs/accessibility.md) for how that is
 tested.
@@ -39,7 +40,8 @@ tested.
 | `data/schema/*.schema.json` | JSON Schemas for all of the above                             |
 
 English is the primary language. Translations (for now Polish) are optional per quote and always
-carry their translator and licence.
+carry their translator and licence. The current Polish translations are AI-assisted drafts
+(CC0, labelled `VerbeApp contributors (AI-assisted draft)`); corrections are welcome.
 
 ## Development
 

@@ -9,6 +9,8 @@ interface QuoteCardProps {
   language: Language;
   strings: Strings;
   favorite: boolean;
+  /** Translation shown under the quote, or undefined to show none. */
+  translationLanguage: Language | undefined;
   onToggleFavorite: (id: string) => void;
   onHide: (id: string) => void;
   ref?: Ref<HTMLElement>;
@@ -21,15 +23,16 @@ export function QuoteCard({
   language,
   strings,
   favorite,
+  translationLanguage,
   onToggleFavorite,
   onHide,
   ref,
 }: QuoteCardProps) {
-  const translated = card.translations[language];
-  const text = translated ?? card.text;
-  const textLanguage = translated === undefined ? 'en' : language;
+  const translation =
+    translationLanguage === undefined ? undefined : card.translations[translationLanguage];
   const textId = `quote-${String(position)}-text`;
   const captionId = `quote-${String(position)}-caption`;
+  const translationId = `quote-${String(position)}-translation`;
   const author = localized(card.author, language);
 
   return (
@@ -42,13 +45,13 @@ export function QuoteCard({
       aria-posinset={position}
       aria-setsize={-1}
       aria-labelledby={textId}
-      aria-describedby={captionId}
+      aria-describedby={translation === undefined ? captionId : `${captionId} ${translationId}`}
       data-card-id={card.id}
     >
       <figure className="card-figure">
         {card.kind === 'community' && <p className="card-badge">{strings.communitySaying}</p>}
-        <blockquote className="card-text" id={textId} lang={textLanguage}>
-          <p>{text}</p>
+        <blockquote className="card-text" id={textId} lang="en">
+          <p>{card.text}</p>
         </blockquote>
         <figcaption className="card-caption" id={captionId}>
           {card.kind === 'quote' ? (
@@ -63,9 +66,13 @@ export function QuoteCard({
               {strings.by} {author}
             </span>
           )}
-          {textLanguage !== language && <span className="card-note">{strings.englishOnly}</span>}
         </figcaption>
       </figure>
+      {translation !== undefined && (
+        <p className="card-translation" id={translationId} lang={translationLanguage}>
+          {translation}
+        </p>
+      )}
       <div className="card-actions">
         <button
           type="button"

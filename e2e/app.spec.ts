@@ -12,6 +12,13 @@ function feed(page: Page) {
   return page.getByRole('feed');
 }
 
+async function openSettings(page: Page) {
+  await page.getByRole('button', { name: 'Settings' }).click();
+  const dialog = page.getByRole('dialog', { name: 'Settings' });
+  await expect(dialog).toBeVisible();
+  return dialog;
+}
+
 test.describe('accessibility', () => {
   for (const colorScheme of ['light', 'dark'] as const) {
     test(`has no WCAG 2.2 AA violations in the ${colorScheme} theme`, async ({ page }) => {
@@ -20,16 +27,24 @@ test.describe('accessibility', () => {
       await expect(feed(page).getByRole('article').first()).toBeVisible();
       await expectNoAxeViolations(page);
 
-      await page.getByRole('button', { name: 'Saved' }).click();
+      await page.getByRole('button', { name: 'Saved quotes' }).click();
       await expect(page.getByRole('heading', { name: 'Favourites' })).toBeVisible();
+      await expectNoAxeViolations(page);
+
+      await openSettings(page);
       await expectNoAxeViolations(page);
     });
   }
 
   test('has no violations in Polish', async ({ page }) => {
     await page.goto('./');
-    await page.getByRole('combobox', { name: 'Language' }).selectOption('pl');
+    const settings = await openSettings(page);
+    await settings.getByRole('combobox', { name: 'App language' }).selectOption('pl');
     await expect(page.locator('html')).toHaveAttribute('lang', 'pl');
+    await expectNoAxeViolations(page);
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog')).toBeHidden();
+    await expect(page.getByRole('button', { name: 'Ustawienia' })).toBeFocused();
     await expectNoAxeViolations(page);
   });
 
@@ -50,19 +65,26 @@ test.describe('accessibility', () => {
   });
 
   test('keeps every control at least 44 by 44 pixels', async ({ page }) => {
-    await page.goto('./');
-    const controls = page.locator('button:visible, select:visible, .card-link:visible');
-    const sizes = await controls.evaluateAll((elements) =>
-      elements.map((element) => {
-        const { width, height } = element.getBoundingClientRect();
-        return { name: element.textContent.trim(), width, height };
-      }),
-    );
-    expect(sizes.length).toBeGreaterThan(5);
-    for (const size of sizes) {
-      expect(size.height, size.name).toBeGreaterThanOrEqual(44);
-      expect(size.width, size.name).toBeGreaterThanOrEqual(44);
+    async function expectLargeTargets() {
+      const controls = page.locator(
+        'button:visible, select:visible, input:visible, .card-link:visible',
+      );
+      const sizes = await controls.evaluateAll((elements) =>
+        elements.map((element) => {
+          const { width, height } = element.getBoundingClientRect();
+          return { name: element.outerHTML.slice(0, 80), width, height };
+        }),
+      );
+      expect(sizes.length).toBeGreaterThan(3);
+      for (const size of sizes) {
+        expect(size.height, size.name).toBeGreaterThanOrEqual(44);
+        expect(size.width, size.name).toBeGreaterThanOrEqual(44);
+      }
     }
+    await page.goto('./');
+    await expectLargeTargets();
+    await openSettings(page);
+    await expectLargeTargets();
   });
 });
 
@@ -91,7 +113,7 @@ test.describe('feed', () => {
     await expect(page.getByRole('status')).toContainText('Quote hidden.');
 
     await page.reload();
-    await page.getByRole('button', { name: 'Saved' }).click();
+    await page.getByRole('button', { name: 'Saved quotes' }).click();
     await expect(page.getByRole('region', { name: 'Favourites' })).toContainText(
       favoriteText.replace(/[“”]/g, ''),
     );
@@ -100,9 +122,38 @@ test.describe('feed', () => {
     );
   });
 
+  test('shows the Polish translation under the quote unless switched off', async ({ page }) => {
+    await page.goto('./');
+    const first = feed(page).getByRole('article').first();
+    const translation = first.locator('.card-translation');
+    await expect(translation).toHaveAttribute('lang', 'pl');
+    await expect(translation).toBeVisible();
+    const quoteBox = await first.locator('blockquote').boundingBox();
+    const translationBox = await translation.boundingBox();
+    expect(translationBox!.y).toBeGreaterThan(quoteBox!.y + quoteBox!.height);
+
+    const settings = await openSettings(page);
+    await settings.getByRole('switch', { name: 'Polish translation' }).uncheck();
+    await page.keyboard.press('Escape');
+    await expect(first.locator('.card-translation')).toHaveCount(0);
+  });
+
+  test('shows a progress bar while auto-advancing', async ({ page }) => {
+    await page.goto('./');
+    const progress = page.getByTestId('autoplay-progress');
+    await expect(progress).toHaveCount(0);
+    await page.getByRole('button', { name: 'Auto-advance' }).click();
+    await expect(progress).toBeAttached();
+    await expect
+      .poll(() => progress.locator('div').evaluate((bar) => bar.getBoundingClientRect().width))
+      .toBeGreaterThan(0);
+    await page.getByRole('button', { name: 'Auto-advance' }).click();
+    await expect(progress).toHaveCount(0);
+  });
+
   test('filters by category', async ({ page }) => {
     await page.goto('./');
-    const categories = page.getByRole('group', { name: 'Categories' });
+    const categories = (await openSettings(page)).getByRole('group', { name: 'Categories' });
     await categories.getByRole('button', { name: 'Assertiveness' }).click();
     await expect(categories.getByRole('button', { name: 'Assertiveness' })).toHaveAttribute(
       'aria-pressed',

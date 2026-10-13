@@ -6,6 +6,7 @@ interface SavedViewProps {
   favorites: string[];
   hidden: string[];
   language: Language;
+  translationLanguage: Language | undefined;
   strings: Strings;
   onToggleFavorite: (id: string) => void;
   onRestore: (id: string) => void;
@@ -15,12 +16,14 @@ function SavedList({
   ids,
   cards,
   language,
+  translationLanguage,
   actionLabel,
   onAction,
 }: {
   ids: string[];
   cards: Map<string, Card>;
   language: Language;
+  translationLanguage: Language | undefined;
   actionLabel: string;
   onAction: (id: string) => void;
 }) {
@@ -29,12 +32,18 @@ function SavedList({
       {ids.map((id) => {
         const card = cards.get(id);
         if (!card) return null;
-        const translated = card.translations[language];
+        const translation =
+          translationLanguage === undefined ? undefined : card.translations[translationLanguage];
         return (
           <li key={id} className="saved-item">
-            <blockquote lang={translated === undefined ? 'en' : language}>
-              <p>{translated ?? card.text}</p>
+            <blockquote lang="en">
+              <p>{card.text}</p>
             </blockquote>
+            {translation !== undefined && (
+              <p className="saved-translation" lang={translationLanguage}>
+                {translation}
+              </p>
+            )}
             <p className="saved-author">{localized(card.author, language)}</p>
             <button
               type="button"
@@ -58,6 +67,7 @@ export function SavedView({
   favorites,
   hidden,
   language,
+  translationLanguage,
   strings,
   onToggleFavorite,
   onRestore,
@@ -77,6 +87,7 @@ export function SavedView({
             ids={knownFavorites}
             cards={byId}
             language={language}
+            translationLanguage={translationLanguage}
             actionLabel={strings.removeFavorite}
             onAction={onToggleFavorite}
           />
@@ -91,6 +102,7 @@ export function SavedView({
             ids={knownHidden}
             cards={byId}
             language={language}
+            translationLanguage={translationLanguage}
             actionLabel={strings.restore}
             onAction={onRestore}
           />

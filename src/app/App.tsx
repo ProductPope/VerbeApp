@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Catalog } from './catalog/catalog.js';
-import { CategoryFilter } from './components/CategoryFilter.js';
 import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
 import { SavedView } from './components/SavedView.js';
+import { SettingsDialog } from './components/SettingsDialog.js';
 import { eligibleCards } from './feed/queue.js';
-import { isLanguage, LANGUAGES, STRINGS } from './i18n/strings.js';
+import { STRINGS, TRANSLATION_LANGUAGE } from './i18n/strings.js';
 import { toggle, usePreferences, type PreferencesStore } from './prefs/store.js';
 
 interface AppProps {
@@ -17,13 +17,12 @@ interface AppProps {
 
 type View = 'feed' | 'saved';
 
-const LANGUAGE_NAMES = { en: 'English', pl: 'Polski' } as const;
-
 export function App({ catalog, store, random, reducedMotion }: AppProps) {
   const prefs = usePreferences(store);
   const strings = STRINGS[prefs.language];
   const [view, setView] = useState<View>('feed');
   const [lastHidden, setLastHidden] = useState<string | null>(null);
+  const settings = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     document.documentElement.lang = prefs.language;
@@ -31,6 +30,7 @@ export function App({ catalog, store, random, reducedMotion }: AppProps) {
   }, [prefs.language, strings]);
 
   const eligible = eligibleCards(catalog.cards, prefs.hidden, prefs.tags);
+  const translationLanguage = prefs.translation ? TRANSLATION_LANGUAGE : undefined;
 
   function toggleFavorite(id: string) {
     store.update((current) => ({ ...current, favorites: toggle(current.favorites, id) }));
@@ -55,76 +55,67 @@ export function App({ catalog, store, random, reducedMotion }: AppProps) {
         {strings.skipToContent}
       </a>
       <header className="app-header">
-        <div className="app-bar">
-          <h1 className="app-title">{strings.appName}</h1>
-          <nav aria-label={strings.mainNavigation}>
-            <ul className="tabs">
-              {(['feed', 'saved'] as const).map((target) => (
-                <li key={target}>
-                  <button
-                    type="button"
-                    className="tab"
-                    aria-current={view === target ? 'page' : undefined}
-                    onClick={() => {
-                      setView(target);
-                    }}
-                  >
-                    {target === 'feed' ? strings.feedTab : strings.savedTab}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <label className="language">
-            <span className="visually-hidden">{strings.languageLabel}</span>
-            <select
-              value={prefs.language}
-              onChange={(event) => {
-                const language = event.target.value;
-                if (isLanguage(language)) store.update((current) => ({ ...current, language }));
-              }}
-            >
-              {LANGUAGES.map((language) => (
-                <option key={language} value={language} lang={language}>
-                  {LANGUAGE_NAMES[language]}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
+        <h1 className="app-title">{strings.appName}</h1>
         {view === 'feed' && (
-          <div className="toolbar">
-            <CategoryFilter
-              tags={catalog.tags}
-              selected={prefs.tags}
-              language={prefs.language}
-              strings={strings}
-              onChange={(tags) => {
-                store.update((current) => ({ ...current, tags }));
-              }}
-            />
-            <button
-              type="button"
-              className="icon-button autoplay"
-              aria-pressed={prefs.autoplay}
-              onClick={() => {
-                store.update((current) => ({ ...current, autoplay: !current.autoplay }));
-              }}
-            >
-              <Icon name={prefs.autoplay ? 'pause' : 'play'} />
-              <span className="visually-hidden">
-                {prefs.autoplay ? strings.autoplayOn : strings.autoplayOff}
-              </span>
-            </button>
-          </div>
+          <button
+            type="button"
+            className="icon-button"
+            aria-pressed={prefs.autoplay}
+            onClick={() => {
+              store.update((current) => ({ ...current, autoplay: !current.autoplay }));
+            }}
+          >
+            <Icon name={prefs.autoplay ? 'pause' : 'play'} />
+            <span className="visually-hidden">{strings.autoplay}</span>
+          </button>
         )}
+        <button
+          type="button"
+          className="icon-button"
+          aria-pressed={view === 'saved'}
+          onClick={() => {
+            setView(view === 'saved' ? 'feed' : 'saved');
+          }}
+        >
+          <Icon name="bookmark" filled={view === 'saved'} />
+          <span className="visually-hidden">{strings.saved}</span>
+        </button>
+        <button
+          type="button"
+          className="icon-button"
+          aria-haspopup="dialog"
+          onClick={() => {
+            settings.current?.showModal();
+          }}
+        >
+          <Icon name="settings" />
+          <span className="visually-hidden">{strings.settings}</span>
+        </button>
       </header>
+      <SettingsDialog
+        ref={settings}
+        tags={catalog.tags}
+        selectedTags={prefs.tags}
+        language={prefs.language}
+        translation={prefs.translation}
+        strings={strings}
+        onTagsChange={(tags) => {
+          store.update((current) => ({ ...current, tags }));
+        }}
+        onLanguageChange={(language) => {
+          store.update((current) => ({ ...current, language }));
+        }}
+        onTranslationChange={(translation) => {
+          store.update((current) => ({ ...current, translation }));
+        }}
+      />
       <main id="main" tabIndex={-1}>
         {view === 'feed' ? (
           <Feed
             cards={eligible}
             strings={strings}
             language={prefs.language}
+            translationLanguage={translationLanguage}
             favorites={prefs.favorites}
             autoplay={prefs.autoplay}
             reducedMotion={reducedMotion}
@@ -138,6 +129,7 @@ export function App({ catalog, store, random, reducedMotion }: AppProps) {
             favorites={prefs.favorites}
             hidden={prefs.hidden}
             language={prefs.language}
+            translationLanguage={translationLanguage}
             strings={strings}
             onToggleFavorite={toggleFavorite}
             onRestore={restore}

@@ -7,6 +7,8 @@ interface CategoryFilterProps {
   selected: string[];
   language: Language;
   strings: Strings;
+  /** Id of the visible element that names the group. */
+  labelId: string;
   onChange: (selected: string[]) => void;
 }
 
@@ -16,10 +18,11 @@ export function CategoryFilter({
   selected,
   language,
   strings,
+  labelId,
   onChange,
 }: CategoryFilterProps) {
   return (
-    <div className="chips" role="group" aria-label={strings.categoriesLabel}>
+    <div className="chips" role="group" aria-labelledby={labelId}>
       <button
         type="button"
         className="chip"
