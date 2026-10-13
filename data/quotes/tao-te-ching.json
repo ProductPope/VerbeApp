@@ -99,6 +99,20 @@
           "license": "CC0-1.0"
         }
       }
+    },
+    {
+      "id": "muddy-water-be-still",
+      "text": "Who can (make) the muddy water (clear)? Let it be still, and it will gradually become clear.",
+      "section": "tao-te-ching",
+      "locator": "Chapter XV",
+      "tags": ["mindfulness"],
+      "translations": {
+        "pl": {
+          "text": "Kto potrafi sprawić, by mętna woda stała się czysta? Pozwól jej stać w spokoju, a stopniowo się oczyści.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

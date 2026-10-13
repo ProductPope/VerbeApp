@@ -6,7 +6,7 @@
       "id": "all-we-are-result-thought",
       "text": "All that we are is the result of what we have thought: it is founded on our thoughts, it is made up of our thoughts.",
       "locator": "Chapter I. The Twin-Verses, verse 1",
-      "tags": ["philosophy", "self-development"],
+      "tags": ["philosophy", "self-development", "mindfulness"],
       "translations": {
         "pl": {
           "text": "Wszystko, czym jesteśmy, jest wynikiem tego, co myśleliśmy: opiera się na naszych myślach i z naszych myśli jest zbudowane.",
@@ -45,7 +45,7 @@
       "id": "good-tame-mind",
       "text": "It is good to tame the mind, which is difficult to hold in and flighty, rushing wherever it listeth; a tamed mind brings happiness.",
       "locator": "Chapter III. Thought, verse 35",
-      "tags": ["self-development", "happiness"],
+      "tags": ["self-development", "happiness", "mindfulness"],
       "translations": {
         "pl": {
           "text": "Dobrze jest okiełznać umysł, trudny do utrzymania i niestały, pędzący, dokąd zechce; okiełznany umysł przynosi szczęście.",
@@ -205,6 +205,58 @@
       "translations": {
         "pl": {
           "text": "Sam musisz podjąć wysiłek.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "rain-ill-thatched-house",
+      "text": "As rain breaks through an ill-thatched house, passion will break through an unreflecting mind.",
+      "locator": "Chapter I. The Twin-Verses, verse 13",
+      "tags": ["mindfulness"],
+      "translations": {
+        "pl": {
+          "text": "Jak deszcz przecieka przez źle pokryty dach, tak namiętność przedziera się przez umysł, który się nie zastanawia.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "deep-still-lake",
+      "text": "Wise people, after they have listened to the laws, become serene, like a deep, smooth, and still lake.",
+      "locator": "Chapter VI. The Wise Man (Pandita), verse 82",
+      "tags": ["mindfulness"],
+      "translations": {
+        "pl": {
+          "text": "Mądrzy ludzie, wysłuchawszy praw, stają się pogodni jak głębokie, gładkie i nieruchome jezioro.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "quiet-thought-word-deed",
+      "text": "His thought is quiet, quiet are his word and deed, when he has obtained freedom by true knowledge, when he has thus become a quiet man.",
+      "locator": "Chapter VII. The Venerable (Arhat), verse 96",
+      "tags": ["mindfulness"],
+      "translations": {
+        "pl": {
+          "text": "Jego myśl jest spokojna, spokojne są jego słowa i czyny, gdy przez prawdziwą wiedzę zdobył wolność i stał się człowiekiem spokojnym.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "control-thy-mind",
+      "text": "Beware of the anger of the mind, and control thy mind!",
+      "locator": "Chapter XVII. Anger, verse 233",
+      "tags": ["mindfulness", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Strzeż się gniewu umysłu i panuj nad swoim umysłem!",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }

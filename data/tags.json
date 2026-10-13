@@ -64,6 +64,14 @@
         "en": "Facing fear, taking the first step and keeping going.",
         "pl": "Stawianie czoła lękowi, robienie pierwszego kroku i wytrwałość."
       }
+    },
+    {
+      "id": "mindfulness",
+      "label": { "en": "Mindfulness", "pl": "Uważność" },
+      "description": {
+        "en": "Attention, the present moment and a quiet mind.",
+        "pl": "Uwaga, chwila obecna i spokojny umysł."
+      }
     }
   ]
 }
