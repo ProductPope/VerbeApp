@@ -3,10 +3,13 @@ import type { Catalog } from './catalog/catalog.js';
 import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
 import { StreakBadge, StreakCelebration } from './components/ReadingStreak.js';
+import { NotificationSetting } from './components/NotificationSetting.js';
 import { ProfileDialog } from './components/ProfileDialog.js';
 import { SettingsDialog } from './components/SettingsDialog.js';
 import { eligibleCards } from './feed/queue.js';
 import { STRINGS, TRANSLATION_LANGUAGE } from './i18n/strings.js';
+import type { PushService } from './notifications/push.js';
+import { writeSharedPrefs } from './notifications/shared-prefs.js';
 import { toggle, usePreferences, type PreferencesStore } from './prefs/store.js';
 import type { StreakStore } from './streak/streak.js';
 import { trackActiveTime } from './streak/tracker.js';
@@ -17,9 +20,21 @@ interface AppProps {
   streakStore: StreakStore;
   random: () => number;
   reducedMotion: boolean;
+  /** Daily notifications; undefined when unsupported or not configured. */
+  push?: PushService | undefined;
+  /** Card to show first, e.g. the one a notification was about. */
+  initialCardId?: string | undefined;
 }
 
-export function App({ catalog, store, streakStore, random, reducedMotion }: AppProps) {
+export function App({
+  catalog,
+  store,
+  streakStore,
+  random,
+  reducedMotion,
+  push,
+  initialCardId,
+}: AppProps) {
   const prefs = usePreferences(store);
   const strings = STRINGS[prefs.language];
   const [lastHidden, setLastHidden] = useState<string | null>(null);
@@ -32,6 +47,14 @@ export function App({ catalog, store, streakStore, random, reducedMotion }: AppP
   }, [prefs.language, strings]);
 
   useEffect(() => trackActiveTime(streakStore), [streakStore]);
+
+  // Let the service worker pick a notification quote that respects these choices.
+  const { language, translation, hidden, tags, notifyHour } = prefs;
+  useEffect(() => {
+    void writeSharedPrefs({ language, translation, hidden, tags, hour: notifyHour }).catch(
+      () => undefined,
+    );
+  }, [language, translation, hidden, tags, notifyHour]);
 
   const eligible = eligibleCards(catalog.cards, prefs.hidden, prefs.tags);
   const translationLanguage = prefs.translation ? TRANSLATION_LANGUAGE : undefined;
@@ -122,6 +145,19 @@ export function App({ catalog, store, streakStore, random, reducedMotion }: AppP
         onTranslationChange={(translation) => {
           store.update((current) => ({ ...current, translation }));
         }}
+        notification={
+          push && (
+            <NotificationSetting
+              push={push}
+              enabled={prefs.notify}
+              hour={prefs.notifyHour}
+              strings={strings}
+              onChange={(change) => {
+                store.update((current) => ({ ...current, ...change }));
+              }}
+            />
+          )
+        }
       />
       <main id="main" tabIndex={-1}>
         <Feed
@@ -133,6 +169,7 @@ export function App({ catalog, store, streakStore, random, reducedMotion }: AppP
           autoplay={prefs.autoplay}
           reducedMotion={reducedMotion}
           random={random}
+          initialCardId={initialCardId}
           onToggleFavorite={toggleFavorite}
           onHide={hide}
         />

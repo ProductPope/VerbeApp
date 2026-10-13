@@ -1,0 +1,16 @@
+// Cloudflare Worker that sends the daily quote notification.
+// Deployed by .github/workflows/deploy-worker.yml, which fills in the KV
+// namespace id and sets the VAPID keys as secrets. See docs/notifications.md.
+{
+  "name": "verbeapp-push",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "triggers": { "crons": ["0 * * * *"] },
+  "kv_namespaces": [{ "binding": "SUBSCRIBERS", "id": "KV_NAMESPACE_ID" }],
+  "vars": {
+    "ALLOWED_ORIGIN": "https://productpope.github.io",
+    "VAPID_SUBJECT": "https://github.com/ProductPope/VerbeApp",
+  },
+  "observability": { "enabled": true },
+}

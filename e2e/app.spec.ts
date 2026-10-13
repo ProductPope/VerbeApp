@@ -255,6 +255,56 @@ test.describe('installable app', () => {
     expect(manifest.icons.some((icon) => icon.purpose === 'maskable')).toBe(true);
   });
 
+  test('shows the quote of the day when a push arrives and opens it on tap', async ({
+    page,
+    context,
+  }) => {
+    await page.goto('./');
+    await page.evaluate(async () => {
+      await navigator.serviceWorker.ready;
+    });
+    const worker = context.serviceWorkers()[0] ?? (await context.waitForEvent('serviceworker'));
+    const notification = await worker.evaluate(async () => {
+      // Runs inside the service worker, whose types the DOM library lacks.
+      const scope = self as unknown as {
+        registration: ServiceWorkerRegistration;
+        dispatchEvent(event: Event): boolean;
+        PushEvent: new (type: string) => Event;
+      };
+      // Headless browsers may have no notification centre, so record the call instead.
+      const shown: { title: string; options?: NotificationOptions }[] = [];
+      scope.registration.showNotification = (title, options) => {
+        shown.push({ title, ...(options === undefined ? {} : { options }) });
+        return Promise.resolve();
+      };
+      scope.dispatchEvent(new scope.PushEvent('push'));
+      for (let attempt = 0; attempt < 50 && shown.length === 0; attempt++) {
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+      const [first] = shown;
+      if (first) {
+        return {
+          title: first.title,
+          body: first.options?.body ?? '',
+          tag: first.options?.tag,
+          data: first.options?.data as { quoteId: string },
+        };
+      }
+      return null;
+    });
+    expect(notification?.title).toBeTruthy();
+    expect(notification?.body.length).toBeGreaterThan(10);
+    expect(notification?.tag).toBe('daily-quote');
+
+    // Opening the app the way a tap does shows that quote first.
+    await page.goto(`./?quote=${notification!.data.quoteId}`);
+    await expect(feed(page).getByRole('article').first()).toHaveAttribute(
+      'data-card-id',
+      notification!.data.quoteId,
+    );
+    await expect(page).not.toHaveURL(/quote=/);
+  });
+
   test('works offline after the first visit', async ({ page, context }) => {
     await page.goto('./');
     await page.evaluate(async () => {

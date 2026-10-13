@@ -1,4 +1,4 @@
-import type { Ref } from 'react';
+import type { ReactNode, Ref } from 'react';
 import { localized, type Card } from '../catalog/catalog.js';
 import { isLanguage, LANGUAGES, type Language, type Strings } from '../i18n/strings.js';
 import { Icon } from './Icon.js';
@@ -17,6 +17,8 @@ interface ProfileDialogProps {
   onRestore: (id: string) => void;
   onLanguageChange: (language: Language) => void;
   onTranslationChange: (translation: boolean) => void;
+  /** The daily notification setting, when this build has a push server. */
+  notification?: ReactNode;
   ref?: Ref<HTMLDialogElement>;
 }
 
@@ -75,9 +77,15 @@ function Preferences({
   strings,
   onLanguageChange,
   onTranslationChange,
+  notification,
 }: Pick<
   ProfileDialogProps,
-  'language' | 'translation' | 'strings' | 'onLanguageChange' | 'onTranslationChange'
+  | 'language'
+  | 'translation'
+  | 'strings'
+  | 'onLanguageChange'
+  | 'onTranslationChange'
+  | 'notification'
 >) {
   return (
     <section aria-labelledby="preferences-heading">
@@ -102,6 +110,7 @@ function Preferences({
             {strings.translationHint}
           </p>
         </div>
+        {notification}
         <div className="setting setting-row">
           <label className="setting-label" htmlFor="setting-language">
             {strings.languageLabel}
@@ -143,6 +152,7 @@ export function ProfileDialog({
   onRestore,
   onLanguageChange,
   onTranslationChange,
+  notification,
   ref,
 }: ProfileDialogProps) {
   const byId = new Map(cards.map((card) => [card.id, card]));
@@ -171,6 +181,7 @@ export function ProfileDialog({
           strings={strings}
           onLanguageChange={onLanguageChange}
           onTranslationChange={onTranslationChange}
+          notification={notification}
         />
         <section aria-labelledby="favorites-heading">
           <h3 id="favorites-heading">{strings.favoritesHeading}</h3>

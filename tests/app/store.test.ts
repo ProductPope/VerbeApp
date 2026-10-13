@@ -39,6 +39,8 @@ describe('parsePreferences', () => {
       tags: ['philosophy'],
       autoplay: 'yes',
       translation: 'no',
+      notify: 'yes',
+      notifyHour: 25,
     });
     expect(parsePreferences(raw, fallback)).toEqual({
       language: 'en',
@@ -47,7 +49,14 @@ describe('parsePreferences', () => {
       tags: ['philosophy'],
       autoplay: false,
       translation: true,
+      notify: false,
+      notifyHour: 8,
     });
+  });
+
+  it('keeps a valid notification hour', () => {
+    const raw = JSON.stringify({ notify: true, notifyHour: 21 });
+    expect(parsePreferences(raw, fallback)).toMatchObject({ notify: true, notifyHour: 21 });
   });
 
   it('turns translations off only when explicitly stored', () => {

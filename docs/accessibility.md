@@ -30,6 +30,9 @@ with TalkBack on Android and a keyboard on desktop.
   closes it and focus returns to the Profile button. It has three labelled regions: Preferences,
   Favourites and Hidden quotes. In Preferences the translation toggle is a checkbox with
   `role="switch"` and the app language is a native `<select>`.
+- **Daily notification** (in Preferences): a switch with its hint and any error in its accessible
+  description; the error is also announced through a status region. The hour picker appears only
+  when the switch is on.
 - **Language**: the page `lang` follows the chosen language. Quotes are always `lang="en"`, and the
   translation under them carries `lang="pl"`, so screen readers pronounce each correctly. The
   translation is part of the article's description.

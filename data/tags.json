@@ -72,6 +72,14 @@
         "en": "Attention, the present moment and a quiet mind.",
         "pl": "Uwaga, chwila obecna i spokojny umysł."
       }
+    },
+    {
+      "id": "mortality",
+      "label": { "en": "Mortality & meaning", "pl": "Śmiertelność i sens" },
+      "description": {
+        "en": "Memento mori: life is short, so live it well and on purpose.",
+        "pl": "Memento mori: życie jest krótkie, więc przeżyj je dobrze i świadomie."
+      }
     }
   ]
 }

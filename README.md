@@ -1,13 +1,13 @@
 # VerbeApp
 
-Short, wise quotes on philosophy, self-development, productivity, assertiveness, resilience, relationships, happiness, courage and mindfulness, delivered to
+Short, wise quotes on philosophy, self-development, resilience, relationships, mindfulness and more, delivered to
 your phone.
 
 **Open the app: <https://productpope.github.io/VerbeApp/>** and on Android choose _Install app_
 (or _Add to Home screen_) in Chrome's menu.
 
-> **Status:** early development. The verified dataset and the installable app are in place; daily
-> notifications come next. See the [roadmap](#roadmap).
+> **Status:** early development. The verified dataset, the installable app and daily notifications
+> are in place. See the [roadmap](#roadmap).
 
 ## What makes it different
 
@@ -65,7 +65,8 @@ behind the design.
 1. **Quote dataset**: schema, validation and source verification. ✅
 2. **App**: installable PWA with a full-screen card feed, favourites and hidden quotes,
    category filter and English/Polish switch, built to WCAG 2.2 AA on a token-based design system. ✅
-3. **Daily quote**: a push notification at a time you choose.
+3. **Daily quote**: a push notification at a time you choose, sent by a small Cloudflare Worker.
+   See [docs/notifications.md](docs/notifications.md). ✅
 
 ## Licence
 

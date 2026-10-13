@@ -11,12 +11,16 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      // A custom service worker so that it can show the daily quote notification.
+      strategies: 'injectManifest',
+      srcDir: 'src/sw',
+      filename: 'sw.ts',
       includeAssets: ['icon.svg'],
       manifest: {
         name: 'VerbeApp',
         short_name: 'VerbeApp',
         description:
-          'Wise quotes on philosophy, self-development, productivity, assertiveness, resilience, relationships, happiness, courage and mindfulness, from verified sources.',
+          'Wise quotes on philosophy, self-development, resilience, relationships, mindfulness and more, from verified sources.',
         lang: 'en',
         start_url: base,
         scope: base,
