@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/ProductPope/VerbeApp/data/schema/sources.schema.json",
   "title": "Sources",
-  "description": "Published works quotes are taken from. Every source must be in the public domain and available as a verifiable digital edition.",
+  "description": "Published works quotes are taken from. Every source must be in the public domain and available as a digital edition the quotes can be verified against.",
   "type": "object",
   "required": ["sources"],
   "additionalProperties": false,
@@ -51,24 +51,57 @@
             "const": "public-domain"
           },
           "edition": {
-            "type": "object",
-            "required": ["publisher", "url", "repository"],
-            "additionalProperties": false,
-            "properties": {
-              "publisher": {
-                "const": "Standard Ebooks"
+            "oneOf": [
+              {
+                "$ref": "#/$defs/standardEbooks"
               },
-              "url": {
-                "type": "string",
-                "pattern": "^https://standardebooks\\.org/ebooks/[a-z0-9/-]+$"
-              },
-              "repository": {
-                "description": "Git repository holding the edition's source, used to verify quotes word for word.",
-                "type": "string",
-                "pattern": "^https://github\\.com/standardebooks/[a-z0-9_-]+$"
+              {
+                "$ref": "#/$defs/gutenberg"
               }
-            }
+            ]
           }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "standardEbooks": {
+      "description": "A Standard Ebooks edition; quotes are verified against the chapter files in its Git repository.",
+      "type": "object",
+      "required": ["publisher", "url", "repository"],
+      "additionalProperties": false,
+      "properties": {
+        "publisher": {
+          "const": "Standard Ebooks"
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https://standardebooks\\.org/ebooks/[a-z0-9/-]+$"
+        },
+        "repository": {
+          "description": "Git repository holding the edition's source, used to verify quotes word for word.",
+          "type": "string",
+          "pattern": "^https://github\\.com/standardebooks/[a-z0-9_-]+$"
+        }
+      }
+    },
+    "gutenberg": {
+      "description": "A Project Gutenberg edition; quotes are verified against its plain-text file. Use it only for works Standard Ebooks does not publish.",
+      "type": "object",
+      "required": ["publisher", "url", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "publisher": {
+          "const": "Project Gutenberg"
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https://www\\.gutenberg\\.org/ebooks/[0-9]+$"
+        },
+        "text": {
+          "description": "UTF-8 plain-text file of the edition.",
+          "type": "string",
+          "pattern": "^https://www\\.gutenberg\\.org/cache/epub/[0-9]+/pg[0-9]+\\.txt$"
         }
       }
     }

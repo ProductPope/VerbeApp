@@ -12,6 +12,13 @@
       "circa": true
     },
     {
+      "id": "the-buddha",
+      "name": {
+        "en": "The Buddha",
+        "pl": "Budda"
+      }
+    },
+    {
       "id": "confucius",
       "name": {
         "en": "Confucius",

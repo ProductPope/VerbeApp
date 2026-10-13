@@ -26,6 +26,7 @@ export function validDataset(): Dataset {
         },
       },
     ],
+    community: [],
     collections: [
       {
         path: 'data/quotes/meditations.json',

@@ -7,21 +7,29 @@
   "required": ["source", "quotes"],
   "additionalProperties": false,
   "properties": {
-    "$schema": { "type": "string" },
-    "source": { "$ref": "common.schema.json#/$defs/slug" },
+    "$schema": {
+      "type": "string"
+    },
+    "source": {
+      "$ref": "common.schema.json#/$defs/slug"
+    },
     "quotes": {
       "type": "array",
       "minItems": 1,
-      "items": { "$ref": "#/$defs/quote" }
+      "items": {
+        "$ref": "#/$defs/quote"
+      }
     }
   },
   "$defs": {
     "quote": {
       "type": "object",
-      "required": ["id", "text", "section", "locator", "tags"],
+      "required": ["id", "text", "locator", "tags"],
       "additionalProperties": false,
       "properties": {
-        "id": { "$ref": "common.schema.json#/$defs/slug" },
+        "id": {
+          "$ref": "common.schema.json#/$defs/slug"
+        },
         "text": {
           "description": "Exact wording from the edition. Use … (U+2026) to mark omitted words.",
           "type": "string",
@@ -29,7 +37,7 @@
           "maxLength": 400
         },
         "section": {
-          "description": "File name, without extension, of the edition's chapter containing the quote.",
+          "description": "Chapter file name, without extension, in a Standard Ebooks edition (required there). Omit for plain-text editions.",
           "$ref": "common.schema.json#/$defs/slug"
         },
         "locator": {
@@ -42,13 +50,19 @@
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": { "$ref": "common.schema.json#/$defs/slug" }
+          "items": {
+            "$ref": "common.schema.json#/$defs/slug"
+          }
         },
         "translations": {
           "description": "Translations into other languages, keyed by language code.",
           "type": "object",
-          "propertyNames": { "$ref": "common.schema.json#/$defs/languageCode" },
-          "additionalProperties": { "$ref": "#/$defs/translation" }
+          "propertyNames": {
+            "$ref": "common.schema.json#/$defs/languageCode"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/translation"
+          }
         }
       }
     },
@@ -57,13 +71,19 @@
       "required": ["text", "translator", "license"],
       "additionalProperties": false,
       "properties": {
-        "text": { "type": "string", "minLength": 10, "maxLength": 500 },
+        "text": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 500
+        },
         "translator": {
           "description": "Who translated the quote, e.g. a published translator or VerbeApp contributors.",
           "type": "string",
           "minLength": 1
         },
-        "license": { "enum": ["public-domain", "CC0-1.0"] }
+        "license": {
+          "enum": ["public-domain", "CC0-1.0"]
+        }
       }
     }
   }

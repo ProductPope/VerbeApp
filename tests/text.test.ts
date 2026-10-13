@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   containsQuote,
+  gutenbergBody,
   normalizeForMatch,
   quoteFragments,
   xhtmlToText,
@@ -70,5 +71,23 @@ describe('containsQuote', () => {
 
   it('rejects an empty quote', () => {
     expect(containsQuote(source, '…')).toBe(false);
+  });
+});
+
+describe('gutenbergBody', () => {
+  it('keeps only the book between the licence markers and drops italics underscores', () => {
+    const file = [
+      'The Project Gutenberg eBook of Something',
+      '*** START OF THE PROJECT GUTENBERG EBOOK SOMETHING ***',
+      'All that we are is the _result_ of',
+      'what we have thought.',
+      '*** END OF THE PROJECT GUTENBERG EBOOK SOMETHING ***',
+      'Licence text',
+    ].join('\n');
+    expect(gutenbergBody(file)).toBe('All that we are is the result of\nwhat we have thought.');
+  });
+
+  it('returns the whole text when the markers are missing', () => {
+    expect(gutenbergBody('  Plain text.  ')).toBe('Plain text.');
   });
 });

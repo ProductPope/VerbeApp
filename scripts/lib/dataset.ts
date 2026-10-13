@@ -1,6 +1,14 @@
+import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
-import type { Author, CollectionFile, Dataset, Source, Tag } from '../../src/data/model.js';
+import type {
+  Author,
+  CollectionFile,
+  CommunityFile,
+  Dataset,
+  Source,
+  Tag,
+} from '../../src/data/model.js';
 import { validateAgainstSchema, type SchemaName } from '../../src/data/validate.js';
 import type { Problem } from '../../src/data/integrity.js';
 
@@ -29,6 +37,15 @@ async function readValidated<T>(path: string, schema: SchemaName, problems: Prob
   return errors.length === 0 ? (data as T) : undefined;
 }
 
+async function jsonFiles(dir: string): Promise<string[]> {
+  if (!existsSync(dir)) return [];
+  const names = await readdir(dir);
+  return names
+    .filter((name) => name.endsWith('.json'))
+    .sort()
+    .map((name) => join(dir, name));
+}
+
 /** Reads every data file, validating each one against its JSON Schema. */
 export async function loadDataset(dataDir = DATA_DIR): Promise<LoadResult> {
   const problems: Problem[] = [];
@@ -44,11 +61,8 @@ export async function loadDataset(dataDir = DATA_DIR): Promise<LoadResult> {
     problems,
   );
 
-  const quotesDir = join(dataDir, 'quotes');
-  const files = (await readdir(quotesDir)).filter((name) => name.endsWith('.json')).sort();
   const collections: CollectionFile[] = [];
-  for (const name of files) {
-    const path = join(quotesDir, name);
+  for (const path of await jsonFiles(join(dataDir, 'quotes'))) {
     const collection = await readValidated<CollectionFile['collection']>(
       path,
       'quote-collection',
@@ -57,12 +71,23 @@ export async function loadDataset(dataDir = DATA_DIR): Promise<LoadResult> {
     if (collection) collections.push({ path: relative(ROOT, path), collection });
   }
 
+  const community: CommunityFile[] = [];
+  for (const path of await jsonFiles(join(dataDir, 'community'))) {
+    const collection = await readValidated<CommunityFile['collection']>(
+      path,
+      'community-collection',
+      problems,
+    );
+    if (collection) community.push({ path: relative(ROOT, path), collection });
+  }
+
   return {
     dataset: {
       tags: tags?.tags ?? [],
       authors: authors?.authors ?? [],
       sources: sources?.sources ?? [],
       collections,
+      community,
     },
     problems,
   };

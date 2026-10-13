@@ -1,14 +1,13 @@
 /**
  * Checks that every quote appears word for word in the section of the
- * edition it cites. Needs network access to clone the editions; they are
- * cached in .cache/editions.
+ * edition it cites. Needs network access to download the editions; they are
+ * cached in .cache/editions. Community sayings are original and not checked.
  *
  * Usage: npm run data:verify [-- <source-id> ...]
  */
 import { loadDataset, printProblems } from './lib/dataset.js';
-import { fetchEdition, readSection } from './lib/editions.js';
+import { openEdition } from './lib/editions.js';
 import { containsQuote } from '../src/sources/text.js';
-import type { Problem } from '../src/data/integrity.js';
 
 const only = new Set(process.argv.slice(2));
 const { dataset, problems } = await loadDataset();
@@ -19,22 +18,17 @@ for (const { path, collection } of dataset.collections) {
   if (only.size > 0 && !only.has(collection.source)) continue;
   const source = sources.get(collection.source);
   if (!source) continue;
-  const editionDir = await fetchEdition(source);
-  const sectionCache = new Map<string, string | undefined>();
+  const edition = await openEdition(source);
 
   for (const quote of collection.quotes) {
-    if (!sectionCache.has(quote.section)) {
-      sectionCache.set(quote.section, await readSection(editionDir, quote.section));
-    }
-    const text = sectionCache.get(quote.section);
-    const problem: Problem | undefined =
-      text === undefined
-        ? { file: path, message: `quote "${quote.id}": section "${quote.section}" not found` }
-        : containsQuote(text, quote.text)
-          ? undefined
-          : { file: path, message: `quote "${quote.id}" not found in "${quote.section}"` };
-    if (problem) problems.push(problem);
     checked++;
+    const where = quote.section ?? 'the edition';
+    const text = await edition.text(quote.section);
+    if (text === undefined) {
+      problems.push({ file: path, message: `quote "${quote.id}": section "${where}" not found` });
+    } else if (!containsQuote(text, quote.text)) {
+      problems.push({ file: path, message: `quote "${quote.id}" not found in ${where}` });
+    }
   }
 }
 
