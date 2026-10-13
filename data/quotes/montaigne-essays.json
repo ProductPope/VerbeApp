@@ -40,6 +40,45 @@
           "license": "CC0-1.0"
         }
       }
+    },
+    {
+      "id": "most-afraid-of-fear",
+      "text": "The thing in the world I am most afraid of is fear.",
+      "locator": "Book I, Chapter XVII",
+      "tags": ["courage"],
+      "translations": {
+        "pl": {
+          "text": "Tym, czego boję się na świecie najbardziej, jest strach.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "valour-is-stability",
+      "text": "Valour is stability, not of legs and arms, but of the courage and the soul; it does not lie in the goodness of our horse or our arms but in our own.",
+      "locator": "Book I, Chapter XXX",
+      "tags": ["courage"],
+      "translations": {
+        "pl": {
+          "text": "Męstwo to stałość nie nóg i ramion, lecz odwagi i duszy; nie tkwi w zaletach naszego konia ani broni, lecz w naszych własnych.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "valour-consists-in-fighting",
+      "text": "The honour of valour consists in fighting, not in subduing.",
+      "locator": "Book I, Chapter XXX",
+      "tags": ["courage"],
+      "translations": {
+        "pl": {
+          "text": "Chwała męstwa leży w walce, nie w pokonaniu przeciwnika.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

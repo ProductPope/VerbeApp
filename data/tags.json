@@ -56,6 +56,14 @@
         "en": "Contentment, cheerfulness and appreciating what you already have.",
         "pl": "Zadowolenie, pogoda ducha i docenianie tego, co już masz."
       }
+    },
+    {
+      "id": "courage",
+      "label": { "en": "Courage & action", "pl": "Odwaga i działanie" },
+      "description": {
+        "en": "Facing fear, taking the first step and keeping going.",
+        "pl": "Stawianie czoła lękowi, robienie pierwszego kroku i wytrwałość."
+      }
     }
   ]
 }

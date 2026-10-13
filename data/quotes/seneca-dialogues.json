@@ -175,7 +175,7 @@
       "text": "We ought to move and not to become frozen still by fear.",
       "section": "on-peace-of-mind",
       "locator": "On Peace of Mind",
-      "tags": ["assertiveness"],
+      "tags": ["assertiveness", "courage"],
       "translations": {
         "pl": {
           "text": "Powinniśmy działać, a nie zastygać ze strachu.",
@@ -417,6 +417,20 @@
       "translations": {
         "pl": {
           "text": "Wolę musieć miarkować radości niż tłumić smutki.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "pilot-in-a-storm",
+      "text": "You can judge of a pilot in a storm, of a soldier in a battle.",
+      "section": "on-providence",
+      "locator": "On Providence",
+      "tags": ["courage", "resilience"],
+      "translations": {
+        "pl": {
+          "text": "Sternika poznasz w czasie burzy, żołnierza w bitwie.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }
