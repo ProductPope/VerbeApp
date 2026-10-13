@@ -191,7 +191,6 @@ test.describe('installable app', () => {
     page,
     context,
   }) => {
-    await context.grantPermissions(['notifications']);
     await page.goto('./');
     await page.evaluate(async () => {
       await navigator.serviceWorker.ready;
@@ -204,18 +203,30 @@ test.describe('installable app', () => {
         dispatchEvent(event: Event): boolean;
         PushEvent: new (type: string) => Event;
       };
+      // Headless browsers may have no notification centre, so record the call instead.
+      const shown: { title: string; options?: NotificationOptions }[] = [];
+      scope.registration.showNotification = (title, options) => {
+        shown.push({ title, ...(options === undefined ? {} : { options }) });
+        return Promise.resolve();
+      };
       scope.dispatchEvent(new scope.PushEvent('push'));
-      for (let attempt = 0; attempt < 50; attempt++) {
-        const [shown] = await scope.registration.getNotifications({ tag: 'daily-quote' });
-        if (shown) {
-          return { title: shown.title, body: shown.body, data: shown.data as { quoteId: string } };
-        }
+      for (let attempt = 0; attempt < 50 && shown.length === 0; attempt++) {
         await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+      const [first] = shown;
+      if (first) {
+        return {
+          title: first.title,
+          body: first.options?.body ?? '',
+          tag: first.options?.tag,
+          data: first.options?.data as { quoteId: string },
+        };
       }
       return null;
     });
     expect(notification?.title).toBeTruthy();
     expect(notification?.body.length).toBeGreaterThan(10);
+    expect(notification?.tag).toBe('daily-quote');
 
     // Opening the app the way a tap does shows that quote first.
     await page.goto(`./?quote=${notification!.data.quoteId}`);
