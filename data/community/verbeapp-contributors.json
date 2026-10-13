@@ -1,0 +1,329 @@
+{
+  "$schema": "../schema/community-collection.schema.json",
+  "contributor": "VerbeApp contributors (AI-assisted, ideas collected by Marcin)",
+  "items": [
+    {
+      "id": "name-the-feeling",
+      "text": "When a feeling runs you, name it: \"this is anxiety\", \"this is anger\". Putting it into words takes some of its charge away and gives you back the choice of what to do next.",
+      "tags": ["self-development"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://en.wikipedia.org/wiki/Affect_labeling",
+        "title": "Affect labeling (Wikipedia)"
+      },
+      "translations": {
+        "pl": {
+          "text": "Kiedy uczucie przejmuje stery, nazwij je: „to jest lęk”, „to jest złość”. Ubranie go w słowa odbiera mu część siły i oddaje ci wybór, co zrobić dalej.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "check-your-state-first",
+      "text": "Before you act, check your state. Calm energy tends to lead to good choices, scattered energy to rushed reactions. Settle first, then decide.",
+      "tags": ["self-development", "productivity"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://deepstash.com/",
+        "title": "Deepstash"
+      },
+      "translations": {
+        "pl": {
+          "text": "Zanim zaczniesz działać, sprawdź swój stan. Spokojna energia prowadzi zwykle do dobrych wyborów, rozproszona do pochopnych reakcji. Najpierw się wycisz, potem decyduj.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "work-fills-the-time",
+      "text": "Work expands to fill the time you give it. Give every task a deadline, even a small one you set yourself.",
+      "tags": ["productivity"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://en.wikipedia.org/wiki/Parkinson%27s_law",
+        "title": "Parkinson's law (Wikipedia)"
+      },
+      "translations": {
+        "pl": {
+          "text": "Praca rozrasta się tak, by wypełnić czas, który na nią dasz. Każdemu zadaniu wyznacz termin, nawet mały, ustalony przez siebie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "six-tasks-for-tomorrow",
+      "text": "At the end of each workday, write down the six most important tasks for tomorrow, in order. Tomorrow, work on the first until it is done, then the next. Move anything unfinished to the next list.",
+      "tags": ["productivity"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://en.wikipedia.org/wiki/Ivy_Lee",
+        "title": "Ivy Lee (Wikipedia)"
+      },
+      "translations": {
+        "pl": {
+          "text": "Na koniec dnia pracy zapisz sześć najważniejszych zadań na jutro, w kolejności. Jutro pracuj nad pierwszym, aż je skończysz, potem nad kolejnym. To, czego nie skończysz, przenieś na następną listę.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "urgent-versus-important",
+      "text": "Sort tasks by two questions: is it important, and is it urgent? Do the important and urgent now, schedule the important but not urgent, delegate the urgent but unimportant, and drop the rest.",
+      "tags": ["productivity"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://en.wikipedia.org/wiki/Time_management#The_Eisenhower_Method",
+        "title": "Eisenhower method (Wikipedia)"
+      },
+      "translations": {
+        "pl": {
+          "text": "Sortuj zadania dwoma pytaniami: czy to ważne i czy pilne? Ważne i pilne zrób teraz, ważne, ale niepilne zaplanuj, pilne, ale nieważne przekaż komuś, a resztę odpuść.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "protect-first-half-hour",
+      "text": "Protect the first thirty minutes after you wake up. How you start the day sets the tone for the rest of it, so spend them on something that steadies you, not on your phone.",
+      "tags": ["self-development", "productivity"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://deepstash.com/",
+        "title": "Deepstash"
+      },
+      "translations": {
+        "pl": {
+          "text": "Chroń pierwsze trzydzieści minut po przebudzeniu. Początek dnia nadaje ton całej reszcie, więc poświęć je czemuś, co cię wycisza, a nie telefonowi.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "say-no-to-protect-priorities",
+      "text": "If your priorities are not in your calendar, other people's will be. Know what matters most to you, and say no, kindly and clearly, to what doesn't.",
+      "tags": ["assertiveness", "productivity"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://deepstash.com/",
+        "title": "Deepstash"
+      },
+      "translations": {
+        "pl": {
+          "text": "Jeśli w twoim kalendarzu nie ma twoich priorytetów, znajdą się w nim cudze. Wiedz, co jest dla ciebie najważniejsze, i odmawiaj, życzliwie i jasno, temu, co nie jest.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "lessons-not-regrets",
+      "text": "Take the lessons from your past and leave the regrets there. Every minute spent replaying old mistakes is a minute not spent on the problem in front of you.",
+      "tags": ["self-development"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://deepstash.com/",
+        "title": "Deepstash"
+      },
+      "translations": {
+        "pl": {
+          "text": "Zabierz z przeszłości lekcje, a żale zostaw za sobą. Każda minuta odtwarzania dawnych błędów to minuta, której nie poświęcisz problemowi przed tobą.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "ask-what-is-true",
+      "text": "When your mind fills in a story, for example that a friend who hasn't replied is upset with you, ask: what is actually true right now? Often the only fact is that they haven't replied yet.",
+      "tags": ["self-development", "assertiveness"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://en.wikipedia.org/wiki/The_Four_Agreements",
+        "title": "The Four Agreements (Wikipedia)"
+      },
+      "translations": {
+        "pl": {
+          "text": "Gdy umysł dopisuje historię, na przykład że przyjaciel, który nie odpisał, jest na ciebie zły, zapytaj: co jest teraz naprawdę prawdą? Często jedynym faktem jest to, że jeszcze nie odpisał.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "not-everything-is-about-you",
+      "text": "Most tones and looks that seem aimed at you come from other people's stress, tiredness or distraction. Taking less personally means carrying less that was never yours.",
+      "tags": ["self-development", "assertiveness"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://en.wikipedia.org/wiki/The_Four_Agreements",
+        "title": "The Four Agreements (Wikipedia)"
+      },
+      "translations": {
+        "pl": {
+          "text": "Większość tonów i spojrzeń, które wydają się wymierzone w ciebie, bierze się ze stresu, zmęczenia albo rozkojarzenia innych. Mniej brać do siebie to nosić mniej tego, co nigdy nie było twoje.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "distance-until-trust",
+      "text": "With someone who keeps score, owes you nothing but keeps tabs on what you owe, keep a friendly distance until they earn your trust. You don't have to play a game you didn't agree to.",
+      "tags": ["assertiveness"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://deepstash.com/",
+        "title": "Deepstash"
+      },
+      "translations": {
+        "pl": {
+          "text": "Przy kimś, kto prowadzi rachunki i pamięta tylko, co ty jesteś winien, trzymaj życzliwy dystans, dopóki nie zasłuży na zaufanie. Nie musisz grać w grę, na którą się nie umawiałeś.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "autonomy-fuels-motivation",
+      "text": "People do their best work when they have a say in what they do, how and when. If you lead others, give them room; if you lead yourself, choose your own way of doing the work.",
+      "tags": ["productivity", "self-development"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://en.wikipedia.org/wiki/Self-determination_theory",
+        "title": "Self-determination theory (Wikipedia)"
+      },
+      "translations": {
+        "pl": {
+          "text": "Ludzie pracują najlepiej, gdy mają wpływ na to, co robią, jak i kiedy. Jeśli kierujesz innymi, daj im przestrzeń; jeśli kierujesz sobą, wybierz własny sposób wykonania pracy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "prepare-for-luck",
+      "text": "Luck is mostly preparation meeting opportunity. Learn, stay positive when things get hard, be where things happen, and act when the chance comes.",
+      "tags": ["self-development"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://deepstash.com/",
+        "title": "Deepstash"
+      },
+      "translations": {
+        "pl": {
+          "text": "Szczęście to głównie przygotowanie, które spotyka okazję. Ucz się, zachowaj pogodę ducha, gdy jest trudno, bywaj tam, gdzie coś się dzieje, i działaj, gdy przyjdzie szansa.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "go-on-a-media-diet",
+      "text": "Most news is negative and has nothing to do with your life. Put yourself on a media diet: swap some scrolling for a book, a walk or time with people.",
+      "tags": ["self-development", "productivity"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://deepstash.com/",
+        "title": "Deepstash"
+      },
+      "translations": {
+        "pl": {
+          "text": "Większość wiadomości jest negatywna i nie ma nic wspólnego z twoim życiem. Przejdź na dietę informacyjną: zamień część przewijania na książkę, spacer albo czas z ludźmi.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "small-choices-compound",
+      "text": "Small choices compound. A penny doubled every day looks like nothing for weeks and then becomes a fortune. Habits work the same way, so judge them by where they lead, not by today.",
+      "tags": ["self-development", "productivity"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://deepstash.com/",
+        "title": "Deepstash"
+      },
+      "translations": {
+        "pl": {
+          "text": "Małe wybory się kumulują. Grosz podwajany każdego dnia przez tygodnie wygląda na nic, a potem staje się fortuną. Nawyki działają tak samo, więc oceniaj je po tym, dokąd prowadzą, a nie po dzisiejszym dniu.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "sleep-is-not-a-shortcut",
+      "text": "An hour less sleep is not an hour more done. Tiredness costs you focus, mood and judgement, so protect your sleep like any other important appointment.",
+      "tags": ["productivity", "self-development"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://deepstash.com/",
+        "title": "Deepstash"
+      },
+      "translations": {
+        "pl": {
+          "text": "Godzina snu mniej to nie godzina pracy więcej. Zmęczenie kosztuje cię skupienie, nastrój i trzeźwy osąd, więc chroń sen jak każde inne ważne spotkanie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "settle-before-deciding",
+      "text": "Before a decision, ask: am I calm, rushed or bracing? If you are not calm, slow your breath, feel your feet on the ground, take a short pause, and only then decide.",
+      "tags": ["self-development"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://deepstash.com/",
+        "title": "Deepstash"
+      },
+      "translations": {
+        "pl": {
+          "text": "Przed decyzją zapytaj: czy jestem spokojny, w pośpiechu, czy w napięciu? Jeśli nie jesteś spokojny, zwolnij oddech, poczuj stopy na ziemi, zrób krótką pauzę i dopiero wtedy zdecyduj.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "watch-practise-ask",
+      "text": "To get better at anything: watch how the best do it, practise it often, and ask for honest feedback on what to change.",
+      "tags": ["productivity", "self-development"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://deepstash.com/",
+        "title": "Deepstash"
+      },
+      "translations": {
+        "pl": {
+          "text": "Żeby stać się w czymś lepszym: patrz, jak robią to najlepsi, ćwicz często i proś o szczerą informację zwrotną, co zmienić.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "enjoy-the-infinite-game",
+      "text": "Every goal you reach shows you the next one. Life is a game that doesn't end, so the best way to play it is to find a way to enjoy it.",
+      "tags": ["philosophy", "self-development"],
+      "license": "CC0-1.0",
+      "inspiredBy": {
+        "url": "https://en.wikipedia.org/wiki/Finite_and_Infinite_Games",
+        "title": "Finite and Infinite Games (Wikipedia)"
+      },
+      "translations": {
+        "pl": {
+          "text": "Każdy osiągnięty cel pokazuje ci następny. Życie to gra, która się nie kończy, więc najlepszy sposób, by w nią grać, to znaleźć w niej radość.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    }
+  ]
+}
