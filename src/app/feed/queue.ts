@@ -56,6 +56,27 @@ export function nextRound(
   return round;
 }
 
+/**
+ * The next few cards of an endless feed made of shuffled rounds. Only a few
+ * are added at a time, so the page holds as many cards as the reader has
+ * reached rather than whole rounds. `round` is what the current round has
+ * shown so far; when every eligible card has been shown a new round starts.
+ */
+export function nextBatch(
+  eligible: readonly Card[],
+  round: readonly Card[],
+  previous: readonly Card[],
+  random: () => number,
+  size: number,
+): { cards: Card[]; newRound: boolean } {
+  const shown = new Set(round.map((card) => card.id));
+  const remaining = eligible.filter((card) => !shown.has(card.id));
+  if (round.length > 0 && remaining.length > 0) {
+    return { cards: shuffle(remaining, random).slice(0, size), newRound: false };
+  }
+  return { cards: nextRound(eligible, previous, random).slice(0, size), newRound: true };
+}
+
 /** How long auto-advance shows a card: enough to read it at a relaxed pace. */
 export function readingTimeMs(text: string): number {
   const words = text.trim().split(/\s+/).length;

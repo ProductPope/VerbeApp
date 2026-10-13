@@ -8,7 +8,9 @@ explained in [ADR 0006](adr/0006-daily-quote-push-without-payload.md).
 1. The app subscribes the browser to Web Push with the worker's VAPID public key and sends the
    worker `{ endpoint, hour, timeZone }`.
 2. Every hour on the hour, the worker (`worker/src/index.ts`) sends an empty push to each device
-   whose local hour has come.
+   whose local hour has come. Devices are stored in 24 buckets by the UTC hour they are due, so
+   each run reads only its own bucket and the two next to it (a daylight saving change moves a
+   device by an hour; the run that notices it moves the device to its new bucket).
 3. The service worker (`src/sw/sw.ts`) picks the quote of the day from the bundled catalogue,
    skipping the reader's hidden quotes and keeping to their categories, and shows it. Tapping the
    notification opens the app on that quote.
@@ -19,6 +21,15 @@ The worker stores only the push endpoint (a random URL issued by the browser's p
 hour and the time zone. It does not know which quotes a reader likes, hides or receives. Switching
 the notification off deletes the record; records the push service reports as expired are deleted
 automatically.
+
+## Abuse protection and limits
+
+- The worker accepts only endpoints of the browsers' push services (Google, Mozilla, Microsoft,
+  Apple), so it cannot be used to send requests to any other address.
+- Subscription changes are limited to 10 a minute per IP address (Cloudflare rate limiting).
+- On the free Workers plan one run may make 50 outgoing requests, so about 50 devices can share the
+  same notification hour; beyond that, move to the paid plan or spread sending with Cloudflare
+  Queues. The hourly run logs how many pushes were sent, removed and failed.
 
 ## Setting it up
 

@@ -50,6 +50,8 @@ export interface Translation {
   text: string;
   translator: string;
   license: 'public-domain' | 'CC0-1.0';
+  /** ai-draft: machine-assisted and not checked by a person yet. */
+  status: 'ai-draft' | 'reviewed';
 }
 
 export interface Quote {

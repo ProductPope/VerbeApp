@@ -124,6 +124,18 @@ export function checkIntegrity(
     }
   }
 
+  // A site's home page says nothing about where an idea came from.
+  for (const { path, collection } of dataset.community) {
+    for (const item of collection.items) {
+      if (item.inspiredBy && new URL(item.inspiredBy.url).pathname.replace(/\/+$/, '') === '') {
+        problems.push({
+          file: path,
+          message: `item "${item.id}": inspiredBy must link to a specific page, not the home page of ${item.inspiredBy.url}`,
+        });
+      }
+    }
+  }
+
   for (const { path, quote } of allQuotes) {
     for (const tag of quote.tags) {
       if (!tagIds.has(tag)) {

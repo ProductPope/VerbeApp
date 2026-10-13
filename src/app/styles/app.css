@@ -228,14 +228,50 @@ textarea.field {
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  margin: 0 var(--space-2) 0 0;
+  padding: 0 var(--space-2);
   color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
 }
 
-.streak[data-active='true'] {
+.streak[data-active='true'],
+.streak-count[data-active='true'] {
   color: var(--color-accent);
   font-weight: 600;
+}
+
+.streak-body p {
+  margin: 0;
+}
+
+.streak-count {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-title);
+}
+
+.streak-quote {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: var(--space-4);
+  border-left: var(--focus-width) solid var(--color-accent);
+}
+
+.streak-quote blockquote {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-title);
+  line-height: var(--line-height-quote);
+}
+
+.streak-quote-translation {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+.streak-quote figcaption {
+  font-size: var(--font-size-small);
 }
 
 /* Settings */
@@ -314,12 +350,49 @@ textarea.field {
   border-radius: var(--radius-small);
 }
 
+/*
+ * A sliding switch drawn on a native checkbox with role="switch", so it keeps
+ * native keyboard and screen reader behaviour. The transparent border keeps the
+ * touch target at 44px tall while the visible track stays label-sized.
+ */
 .switch {
-  width: var(--target-size);
+  --switch-inset: 0.5rem;
+
+  flex: none;
+  width: calc(3rem + 2 * var(--switch-inset));
   height: var(--target-size);
   margin: 0;
-  accent-color: var(--color-accent);
+  border: var(--switch-inset) solid transparent;
+  border-radius: var(--radius-pill);
+  appearance: none;
+  background-color: var(--color-border);
+  background-clip: padding-box;
+  background-image: radial-gradient(
+    circle closest-side,
+    var(--color-surface) 70%,
+    transparent calc(70% + 1px)
+  );
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: calc(var(--target-size) - 2 * var(--switch-inset)) 100%;
   cursor: pointer;
+  transition:
+    background-color var(--duration-fast) ease,
+    background-position var(--duration-fast) ease;
+}
+
+.switch:checked {
+  background-color: var(--color-accent);
+  background-position: right center;
+}
+
+/* Windows High Contrast drops backgrounds; fall back to the native checkbox. */
+@media (forced-colors: active) {
+  .switch {
+    width: var(--target-size);
+    border: 0;
+    appearance: auto;
+  }
 }
 
 .chips {
@@ -434,6 +507,14 @@ main:focus {
   border-top: var(--border-width) solid var(--color-border);
 }
 
+.card-translation-note {
+  width: 100%;
+  max-width: 38rem;
+  margin: calc(var(--space-2) - var(--space-5)) auto 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
 .card-badge {
   align-self: flex-start;
   margin: 0;
@@ -499,18 +580,46 @@ main:focus {
 }
 
 /* Profile */
+.disclosure summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--target-size);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.disclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+/* A chevron that points down when open; currentColor keeps it themed. */
+.disclosure summary::after {
+  width: 0.5em;
+  height: 0.5em;
+  border-right: var(--border-width) solid currentColor;
+  border-bottom: var(--border-width) solid currentColor;
+  margin-left: var(--space-1);
+  content: '';
+  transform: rotate(-45deg);
+  transition: transform var(--duration-fast) ease;
+}
+
+.disclosure[open] summary::after {
+  transform: rotate(45deg);
+}
+
 .preferences {
   display: grid;
   gap: var(--space-5);
+  padding-top: var(--space-3);
 }
 
-.saved {
-  overflow-y: auto;
-  padding: var(--space-4);
-  padding-bottom: var(--space-7);
-}
-
-.saved h2 {
+.saved h3 {
+  margin: 0 0 var(--space-3);
   font-family: var(--font-serif);
   font-size: var(--font-size-title);
 }

@@ -12,7 +12,8 @@
         "pl": {
           "text": "Życie niezbadane nie jest warte życia.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -26,7 +27,8 @@
         "pl": {
           "text": "Ani nie wiem, ani nie myślę, że wiem.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -40,7 +42,8 @@
         "pl": {
           "text": "Początek jest najważniejszą częścią każdej pracy.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     }

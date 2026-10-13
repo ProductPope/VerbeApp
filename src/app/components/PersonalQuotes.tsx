@@ -27,7 +27,7 @@ export function PersonalQuotes({
 
   return (
     <section aria-labelledby="personal-heading" aria-describedby="personal-hint">
-      <h2 id="personal-heading">{strings.personalHeading}</h2>
+      <h3 id="personal-heading">{strings.personalHeading}</h3>
       <p className="muted" id="personal-hint">
         {strings.personalHint}
       </p>

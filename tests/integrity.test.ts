@@ -144,4 +144,30 @@ describe('checkIntegrity', () => {
       'quote "loss-nothing-else-change" has unknown tag "cooking"',
     ]);
   });
+
+  it('requires inspiredBy to link to a specific page, not a home page', () => {
+    const dataset = validDataset();
+    const item = (id: string, url: string) => ({
+      id,
+      text: `Start before you feel ready (${id}).`,
+      tags: ['philosophy'],
+      license: 'CC0-1.0' as const,
+      inspiredBy: { url },
+    });
+    dataset.community.push({
+      path: 'data/community/someone.json',
+      collection: {
+        contributor: 'someone',
+        items: [
+          item('home-page', 'https://deepstash.com/'),
+          item('bare-domain', 'https://example.org'),
+          item('specific-page', 'https://en.wikipedia.org/wiki/Procrastination'),
+        ],
+      },
+    });
+    expect(messages(dataset)).toEqual([
+      'item "home-page": inspiredBy must link to a specific page, not the home page of https://deepstash.com/',
+      'item "bare-domain": inspiredBy must link to a specific page, not the home page of https://example.org',
+    ]);
+  });
 });

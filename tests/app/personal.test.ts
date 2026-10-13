@@ -115,6 +115,7 @@ describe('personalCard', () => {
       text: 'Own words a.',
       language: 'pl',
       translations: {},
+      draftTranslations: [],
       tags: ['philosophy'],
       author: { en: 'Seneca' },
       work: 'Letters, p. 12',

@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
   containsQuote,
+  findQuote,
+  hidesAttribution,
   gutenbergBody,
   normalizeForMatch,
   quoteFragments,
@@ -72,6 +74,22 @@ describe('containsQuote', () => {
   it('rejects an empty quote', () => {
     expect(containsQuote(source, '…')).toBe(false);
   });
+
+  it('rejects an ellipsis that leaves out more than the allowed omission', () => {
+    const quote = 'Men seek retreats … desire such things very much.';
+    expect(containsQuote(source, quote, 120)).toBe(true);
+    expect(containsQuote(source, quote, 10)).toBe(false);
+  });
+
+  it('rejects an ellipsis that hides who is speaking far away in the text', () => {
+    const essay = `Men (says an ancient Greek sentence)${' and so on'.repeat(30)} are tormented by opinions.`;
+    expect(containsQuote(essay, 'Men … are tormented by opinions.')).toBe(false);
+  });
+
+  it('finds a later occurrence of the first fragment when an earlier one is too far away', () => {
+    const text = `Men seek.${' x'.repeat(200)} Men seek retreats and houses.`;
+    expect(containsQuote(text, 'Men seek … houses.', 20)).toBe(true);
+  });
 });
 
 describe('gutenbergBody', () => {
@@ -89,5 +107,30 @@ describe('gutenbergBody', () => {
 
   it('returns the whole text when the markers are missing', () => {
     expect(gutenbergBody('  Plain text.  ')).toBe('Plain text.');
+  });
+});
+
+describe('findQuote', () => {
+  it('returns the omitted passages', () => {
+    expect(findQuote('Men, says one, are tormented by opinions.', 'Men … are tormented')).toEqual([
+      ', says one, ',
+    ]);
+  });
+
+  it('returns no omissions for a quote without an ellipsis', () => {
+    expect(findQuote('Know thyself.', 'Know thyself')).toEqual([]);
+  });
+});
+
+describe('hidesAttribution', () => {
+  it('flags omitted words that name another speaker', () => {
+    expect(hidesAttribution(' (says an ancient greek sentence) ')).toBe(true);
+    expect(hidesAttribution(' as plato saith, ')).toBe(true);
+    expect(hidesAttribution(' "the wise" ')).toBe(true);
+  });
+
+  it('accepts ordinary omissions', () => {
+    expect(hidesAttribution(', and of all things, ')).toBe(false);
+    expect(hidesAttribution(' essays and sayings ')).toBe(false);
   });
 });

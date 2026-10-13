@@ -19,9 +19,18 @@ async function openSettings(page: Page) {
   return dialog;
 }
 
-async function openPreferences(page: Page) {
+async function openProfile(page: Page) {
   await page.getByRole('button', { name: 'Your profile' }).click();
-  const preferences = page.getByRole('region', { name: 'Preferences' });
+  const dialog = page.getByRole('dialog', { name: 'Your profile' });
+  await expect(dialog).toBeVisible();
+  return dialog;
+}
+
+async function openPreferences(page: Page) {
+  const profile = await openProfile(page);
+  const preferences = profile.getByRole('region', { name: 'Preferences' });
+  await expect(preferences.getByRole('combobox', { name: 'App language' })).toBeHidden();
+  await preferences.getByText('Preferences').click();
   await expect(preferences).toBeVisible();
   return preferences;
 }
@@ -34,9 +43,12 @@ test.describe('accessibility', () => {
       await expect(feed(page).getByRole('article').first()).toBeVisible();
       await expectNoAxeViolations(page);
 
-      await page.getByRole('button', { name: 'Your profile' }).click();
-      await expect(page.getByRole('heading', { name: 'Favourites' })).toBeVisible();
+      const profile = await openProfile(page);
+      await expect(profile.getByRole('heading', { name: 'Favourites' })).toBeVisible();
       await expectNoAxeViolations(page);
+      await profile.getByRole('button', { name: 'Close' }).click();
+      await expect(profile).toBeHidden();
+      await expect(page.getByRole('button', { name: 'Your profile' })).toBeFocused();
 
       await openSettings(page);
       await expectNoAxeViolations(page);
@@ -49,6 +61,7 @@ test.describe('accessibility', () => {
     await preferences.getByRole('combobox', { name: 'App language' }).selectOption('pl');
     await expect(page.locator('html')).toHaveAttribute('lang', 'pl');
     await expectNoAxeViolations(page);
+    await page.getByRole('button', { name: 'Zamknij' }).click();
     await page.getByRole('button', { name: 'Ustawienia' }).click();
     await expect(page.getByRole('dialog', { name: 'Ustawienia' })).toBeVisible();
     await expectNoAxeViolations(page);
@@ -184,7 +197,7 @@ test.describe('feed', () => {
 
     const preferences = await openPreferences(page);
     await preferences.getByRole('switch', { name: 'Polish translation' }).uncheck();
-    await page.getByRole('button', { name: 'Your profile' }).click();
+    await page.getByRole('dialog').getByRole('button', { name: 'Close' }).click();
     await expect(feed(page).getByRole('article').first()).toBeVisible();
     await expect(feed(page).locator('.card-translation')).toHaveCount(0);
   });
@@ -235,13 +248,20 @@ test.describe('your own quotes', () => {
     await expect(section.getByText('Write it down before it fades.')).toBeVisible();
     await expect(section.getByRole('button', { name: 'Edit' })).toBeVisible();
 
-    await page.reload();
-    const card = feed(page)
-      .getByRole('article')
-      .filter({ hasText: 'Write it down before it fades.' })
-      .first();
-    await expect(card).toBeAttached();
-    await expect(card.getByText('Your quote')).toBeAttached();
+    // The feed shows a few cards at a time; open it on the new quote, as a notification would.
+    const id = await page.evaluate(
+      () =>
+        (
+          JSON.parse(localStorage.getItem('verbeapp:personal-quotes:v1') ?? '[]') as {
+            id: string;
+          }[]
+        )[0]?.id,
+    );
+    expect(id).toMatch(/^mine-/);
+    await page.goto(`./?quote=${id!}`);
+    const card = feed(page).getByRole('article').first();
+    await expect(card).toContainText('Write it down before it fades.');
+    await expect(card.getByText('Your quote')).toBeVisible();
   });
 
   test('closes the form with Escape and returns focus', async ({ page }) => {
@@ -251,7 +271,7 @@ test.describe('your own quotes', () => {
     await add.click();
     await expect(page.getByRole('textbox', { name: 'Quote' })).toBeFocused();
     await page.keyboard.press('Escape');
-    await expect(page.getByRole('dialog')).toBeHidden();
+    await expect(page.getByRole('dialog', { name: 'Add a quote' })).toBeHidden();
     await expect(add).toBeFocused();
   });
 });
@@ -270,6 +290,83 @@ test.describe('reading streak', () => {
     await page.reload();
     await expect(page.locator('.streak')).toContainText('Reading streak: 1 day in a row');
   });
+
+  test('keeps the streak when an older copy of the app is still open', async ({ context }) => {
+    // Pages in one context share the fake clock, so the older copy sits in the
+    // background (hidden) while the newer one counts today.
+    const setHidden = (page: Page, hidden: boolean) =>
+      page.evaluate((value) => {
+        Object.defineProperty(document, 'hidden', { configurable: true, value });
+        document.dispatchEvent(new Event('visibilitychange'));
+      }, hidden);
+    await context.clock.install({ time: new Date(2026, 9, 13, 9, 0) });
+    const older = await context.newPage();
+    await older.goto('./');
+    await older.evaluate(async () => {
+      await navigator.serviceWorker.ready;
+    });
+    await older.reload();
+    await context.clock.runFor(5_000);
+    await setHidden(older, true);
+
+    const newer = await context.newPage();
+    await newer.goto('./');
+    await context.clock.runFor(31_000);
+    await expect(newer.locator('.streak')).toContainText('Reading streak: 1 day in a row');
+
+    await setHidden(older, false);
+    await context.clock.runFor(5_000);
+    await expect(older.locator('.streak')).toContainText('Reading streak: 1 day in a row');
+    await newer.reload();
+    await expect(newer.locator('.streak')).toContainText('Reading streak: 1 day in a row');
+  });
+
+  test('explains the streak in a dialog opened from the flame', async ({ page }) => {
+    await page.goto('./');
+    const flame = page.getByRole('button', { name: /^Reading streak/ });
+    await flame.click();
+    const dialog = page.getByRole('dialog', { name: 'Your reading streak' });
+    await expect(dialog).toBeVisible();
+    await expect(dialog).toContainText('Habits shape who we become.');
+    await expect(dialog.locator('blockquote')).toContainText('Every habit and faculty');
+    await expectNoAxeViolations(page);
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await expect(flame).toBeFocused();
+  });
+});
+
+test.describe('security', () => {
+  test('runs under a Content Security Policy without violating it', async ({ page }) => {
+    const violations: string[] = [];
+    page.on('console', (message) => {
+      if (message.text().includes('Content Security Policy')) violations.push(message.text());
+    });
+    await page.addInitScript(() => {
+      document.addEventListener('securitypolicyviolation', (event) => {
+        console.error(`Content Security Policy: ${event.violatedDirective}`);
+      });
+    });
+    await page.goto('./');
+    const policy = await page
+      .locator('meta[http-equiv="Content-Security-Policy"]')
+      .getAttribute('content');
+    expect(policy).toContain("script-src 'self'");
+    await expect(feed(page).getByRole('article').first()).toBeVisible();
+    await page.getByRole('button', { name: 'Auto-advance' }).click();
+    await expect(page.getByTestId('autoplay-progress')).toBeVisible();
+    expect(violations).toEqual([]);
+  });
+
+  test('still fits the screen in landscape', async ({ page }) => {
+    await page.setViewportSize({ width: 915, height: 412 });
+    await page.goto('./');
+    await expect(feed(page).getByRole('article').first()).toBeVisible();
+    const scrolls = await page.evaluate(
+      () => document.documentElement.scrollHeight > window.innerHeight,
+    );
+    expect(scrolls).toBe(false);
+  });
 });
 
 test.describe('installable app', () => {
@@ -280,9 +377,12 @@ test.describe('installable app', () => {
     const manifest = (await (await request.get(href!)).json()) as {
       name: string;
       display: string;
+      orientation?: string;
       icons: { sizes: string; purpose?: string }[];
     };
     expect(manifest).toMatchObject({ name: 'VerbeApp', display: 'standalone' });
+    // WCAG 1.3.4: the app must not lock itself to portrait or landscape.
+    expect(manifest.orientation).toBeUndefined();
     expect(manifest.icons.map((icon) => icon.sizes)).toEqual(
       expect.arrayContaining(['192x192', '512x512']),
     );

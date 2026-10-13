@@ -7,9 +7,14 @@ import { NotificationsBlockedError, type PushService } from '../../src/app/notif
 import { createPersonalStore } from '../../src/app/personal/personal.js';
 import { createPreferencesStore } from '../../src/app/prefs/store.js';
 import { createStreakStore, dayOf, previousDay } from '../../src/app/streak/streak.js';
-import { testCatalog } from './fixtures.js';
+import type { Catalog } from '../../src/app/catalog/catalog.js';
+import { HABIT_QUOTE_ID } from '../../src/app/components/ReadingStreak.js';
+import { card, testCatalog } from './fixtures.js';
 
-function renderApp(language = 'en', extra: { push?: PushService; initialCardId?: string } = {}) {
+function renderApp(
+  language = 'en',
+  extra: { push?: PushService; initialCardId?: string; catalog?: Catalog } = {},
+) {
   const store = createPreferencesStore(localStorage, language);
   const streakStore = createStreakStore(localStorage);
   const personalStore = createPersonalStore(localStorage);
@@ -37,9 +42,17 @@ async function openSettings(user: ReturnType<typeof userEvent.setup>) {
   return screen.getByRole('dialog', { name: 'Settings' });
 }
 
-async function openPreferences(user: ReturnType<typeof userEvent.setup>) {
+async function openProfile(user: ReturnType<typeof userEvent.setup>) {
   await user.click(screen.getByRole('button', { name: 'Your profile' }));
-  return screen.getByRole('region', { name: 'Preferences' });
+  return screen.getByRole('dialog', { name: 'Your profile' });
+}
+
+async function openPreferences(user: ReturnType<typeof userEvent.setup>) {
+  const profile = await openProfile(user);
+  const preferences = within(profile).getByRole('region', { name: 'Preferences' });
+  await user.click(within(preferences).getByText('Preferences'));
+  expect(preferences.querySelector('details')).toHaveAttribute('open');
+  return preferences;
 }
 
 function articles() {
@@ -137,13 +150,8 @@ describe('favourites and hidden quotes', () => {
     expect(button).toHaveAttribute('aria-pressed', 'true');
     expect(store.get().favorites).toEqual([id]);
 
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
-    expect(screen.getByRole('button', { name: 'Your profile' })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    );
-    expect(screen.queryByRole('button', { name: 'Auto-advance' })).not.toBeInTheDocument();
-    const favorites = screen.getByRole('region', { name: 'Favourites' });
+    const profile = await openProfile(user);
+    const favorites = within(profile).getByRole('region', { name: 'Favourites' });
     expect(within(favorites).getByText(`Text of ${id}.`)).toBeInTheDocument();
     await user.click(within(favorites).getByRole('button', { name: 'Remove from favourites' }));
     expect(within(favorites).getByText(/No favourites yet/)).toBeInTheDocument();
@@ -163,15 +171,49 @@ describe('favourites and hidden quotes', () => {
     expect(status).toBeEmptyDOMElement();
   });
 
+  it('lets the undo offer go after a while, but not while it has focus', () => {
+    vi.useFakeTimers();
+    renderApp();
+    const hideFirst = () => {
+      fireEvent.click(within(articles()[0]!).getByRole('button', { name: 'Don’t show again' }));
+    };
+    const wait = (ms: number) => {
+      act(() => {
+        vi.advanceTimersByTime(ms);
+      });
+    };
+    const status = screen.getByRole('status');
+    hideFirst();
+    wait(7_900);
+    expect(status).toHaveTextContent('Quote hidden.');
+    wait(200);
+    expect(status).toBeEmptyDOMElement();
+
+    hideFirst();
+    const undo = within(status).getByRole('button', { name: 'Undo' });
+    act(() => {
+      undo.focus();
+    });
+    wait(20_000);
+    expect(status).toHaveTextContent('Quote hidden.');
+    act(() => {
+      undo.blur();
+    });
+    wait(8_000);
+    expect(status).not.toHaveTextContent('Quote hidden.');
+    // With the offer gone, the streak message that was held back can show.
+    expect(status).toHaveTextContent('Day one of your reading streak');
+  });
+
   it('restores hidden quotes from the profile', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, hidden: ['beta', 'unknown-id'] }));
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
-    const hidden = screen.getByRole('region', { name: 'Hidden quotes' });
+    const profile = await openProfile(user);
+    const hidden = within(profile).getByRole('region', { name: 'Hidden quotes' });
     expect(within(hidden).getAllByRole('listitem')).toHaveLength(1);
     await user.click(within(hidden).getByRole('button', { name: 'Show again' }));
     expect(within(hidden).getByText('Nothing hidden.')).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    await user.click(within(profile).getByRole('button', { name: 'Close' }));
     expect(cardIds()).toContain('beta');
   });
 
@@ -206,6 +248,22 @@ describe('categories', () => {
   });
 });
 
+describe('profile', () => {
+  it('opens as a modal dialog with preferences collapsed and closes with the X button', async () => {
+    const { user } = renderApp();
+    const profile = await openProfile(user);
+    expect(profile).toHaveAttribute('open');
+    const preferences = within(profile).getByRole('region', { name: 'Preferences' });
+    expect(preferences.querySelector('details')).not.toHaveAttribute('open');
+    expect(screen.getByRole('button', { name: 'Your profile' })).toHaveAttribute(
+      'aria-haspopup',
+      'dialog',
+    );
+    await user.click(within(profile).getByRole('button', { name: 'Close' }));
+    expect(profile).not.toHaveAttribute('open');
+  });
+});
+
 describe('settings', () => {
   it('opens as a modal dialog and closes again', async () => {
     const { user } = renderApp();
@@ -232,6 +290,16 @@ describe('translation', () => {
     expect(beta).not.toHaveAccessibleDescription(/Tekst/);
   });
 
+  it('labels an AI draft translation and leaves a reviewed one unlabelled', () => {
+    renderApp();
+    const alpha = articles().find((a) => a.dataset.cardId === 'alpha')!;
+    expect(within(alpha).getByText('AI Translated')).toBeInTheDocument();
+    expect(alpha).toHaveAccessibleDescription(/AI Translated/);
+    const gamma = articles().find((a) => a.dataset.cardId === 'gamma')!;
+    expect(within(gamma).getByText('Tekst gamma.')).toBeInTheDocument();
+    expect(within(gamma).queryByText('AI Translated')).not.toBeInTheDocument();
+  });
+
   it('can be switched off in the profile preferences', async () => {
     const { user, store } = renderApp();
     const preferences = await openPreferences(user);
@@ -240,15 +308,15 @@ describe('translation', () => {
     expect(toggle).toHaveAccessibleDescription(/AI/);
     await user.click(toggle);
     expect(store.get().translation).toBe(false);
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    await user.click(screen.getByRole('button', { name: 'Close' }));
     expect(screen.queryByText('Tekst alfa.')).not.toBeInTheDocument();
   });
 
   it('also appears in the profile', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, favorites: ['alpha'] }));
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
-    const favorites = screen.getByRole('region', { name: 'Favourites' });
+    const profile = await openProfile(user);
+    const favorites = within(profile).getByRole('region', { name: 'Favourites' });
     expect(within(favorites).getByText('Tekst alfa.')).toHaveAttribute('lang', 'pl');
   });
 });
@@ -262,8 +330,10 @@ describe('language', () => {
       'pl',
     );
     expect(document.documentElement.lang).toBe('pl');
-    expect(screen.getByRole('region', { name: 'Preferencje' })).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Twój profil' }));
+    const profile = screen.getByRole('dialog', { name: 'Twój profil' });
+    expect(within(profile).getByRole('region', { name: 'Preferencje' })).toBeInTheDocument();
+    await user.click(within(profile).getByRole('button', { name: 'Zamknij' }));
+    expect(profile).not.toHaveAttribute('open');
     expect(screen.getByRole('feed', { name: 'Lista cytatów' })).toBeInTheDocument();
     const alpha = articles().find((a) => a.dataset.cardId === 'alpha')!;
     expect(within(alpha).getByText('Text of alpha.')).toBeInTheDocument();
@@ -442,6 +512,27 @@ describe('opening from a notification', () => {
     renderApp('en', { initialCardId: 'missing' });
     expect(cardIds()).toHaveLength(5);
   });
+  it('shows the notified quote first even when the catalogue is large', () => {
+    const catalog = testCatalog();
+    for (let i = 0; i < 40; i++) catalog.cards.push(card(`extra-${String(i)}`, ['philosophy']));
+    renderApp('en', { catalog, initialCardId: 'extra-39' });
+    expect(cardIds()[0]).toBe('extra-39');
+    expect(cardIds()).toHaveLength(8);
+  });
+});
+
+describe('a large catalogue', () => {
+  it('renders a few cards at a time and adds more as the reader moves on', async () => {
+    const catalog = testCatalog();
+    for (let i = 0; i < 40; i++) catalog.cards.push(card(`extra-${String(i)}`, ['philosophy']));
+    const { user } = renderApp('en', { catalog });
+    expect(articles()).toHaveLength(8);
+    articles()[0]!.focus();
+    for (let i = 0; i < 6; i++) await user.keyboard('{PageDown}');
+    expect(articles().length).toBeGreaterThan(8);
+    expect(articles().length).toBeLessThanOrEqual(16);
+    expect(new Set(cardIds()).size).toBe(cardIds().length);
+  });
 });
 
 describe('reading streak', () => {
@@ -463,7 +554,7 @@ describe('reading streak', () => {
   it('counts today after 30 seconds in the app and celebrates it once', () => {
     vi.useFakeTimers({ now: new Date(2026, 9, 13, 9, 0) });
     const { streakStore } = renderApp();
-    const badge = screen.getByText('Reading streak: 0 days in a row').parentElement!;
+    const badge = screen.getByRole('button', { name: 'Reading streak: 0 days in a row' });
     advanceBy(29_000);
     expect(streakStore.get().count).toBe(0);
     expect(within(badge).getByText(/Reading streak: 0/)).toBeInTheDocument();
@@ -514,6 +605,48 @@ describe('reading streak', () => {
     advanceBy(1_000);
     expect(streakStore.get().count).toBe(1);
   });
+
+  function catalogWithHabitQuote(): Catalog {
+    const catalog = testCatalog();
+    catalog.cards.push(
+      card(HABIT_QUOTE_ID, ['productivity'], {
+        text: 'Every habit is maintained by the corresponding actions.',
+        translations: { pl: 'Każdy nawyk utrzymuje się dzięki działaniom.' },
+        author: { en: 'Epictetus', pl: 'Epiktet' },
+        work: 'Discourses',
+      }),
+    );
+    return catalog;
+  }
+
+  it('opens a dialog about habits from the flame and closes it again', async () => {
+    const { user } = renderApp('en', { catalog: catalogWithHabitQuote() });
+    const flame = screen.getByRole('button', { name: 'Reading streak: 0 days in a row' });
+    expect(flame).toHaveAttribute('aria-haspopup', 'dialog');
+    await user.click(flame);
+    const dialog = screen.getByRole('dialog', { name: 'Your reading streak' });
+    expect(dialog).toHaveAttribute('open');
+    expect(within(dialog).getByText('0 days in a row')).toBeInTheDocument();
+    expect(within(dialog).getByText(/Habits shape who we become/)).toBeInTheDocument();
+    expect(within(dialog).getByText(/Come back tomorrow/)).toBeInTheDocument();
+    const quote = within(dialog).getByText(/Every habit is maintained/);
+    expect(quote.closest('blockquote')).toHaveAttribute('lang', 'en');
+    expect(
+      within(dialog).getByText('Każdy nawyk utrzymuje się dzięki działaniom.'),
+    ).toHaveAttribute('lang', 'pl');
+    expect(within(dialog).getByText('Discourses').tagName).toBe('CITE');
+    await user.click(within(dialog).getByRole('button', { name: 'Close' }));
+    expect(dialog).not.toHaveAttribute('open');
+  });
+
+  it('speaks Polish and leaves out a quote the dataset no longer has', async () => {
+    const { user } = renderApp('pl-PL');
+    await user.click(screen.getByRole('button', { name: 'Seria czytania: 0 dni z rzędu' }));
+    const dialog = screen.getByRole('dialog', { name: 'Twoja seria czytania' });
+    expect(within(dialog).getByText(/To nawyki nas kształtują/)).toBeInTheDocument();
+    expect(within(dialog).getByText(/Wróć jutro/)).toBeInTheDocument();
+    expect(dialog.querySelector('blockquote')).toBeNull();
+  });
 });
 
 describe('your own quotes', () => {
@@ -539,7 +672,7 @@ describe('your own quotes', () => {
     await user.click(within(dialog).getByRole('checkbox', { name: 'Philosophy' }));
     await user.click(within(dialog).getByRole('button', { name: 'Save' }));
 
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(screen.queryByRole('dialog', { name: 'Add a quote' })).not.toBeInTheDocument();
     expect(screen.getByRole('status')).toHaveTextContent('Quote saved.');
     expect(persistStorage).toHaveBeenCalledOnce();
     const [saved] = personalStore.get();
@@ -554,7 +687,6 @@ describe('your own quotes', () => {
     expect(within(section).getByText('Mind the gap.')).toBeInTheDocument();
     expect(within(section).getByText('Me, Notebook, p. 3')).toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
     const card = articles().find((a) => a.dataset.cardId === saved!.id)!;
     expect(within(card).getByText('Your quote')).toBeInTheDocument();
     expect(within(card).getByText('Notebook, p. 3')).toBeInTheDocument();
@@ -582,7 +714,7 @@ describe('your own quotes', () => {
     await user.type(field, 'Nie wszystko złoto.');
     expect(field).toHaveAttribute('lang', 'pl');
     await user.click(within(dialog).getByRole('button', { name: 'Anuluj' }));
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(screen.queryByRole('dialog', { name: 'Dodaj cytat' })).not.toBeInTheDocument();
     expect(personalStore.get()).toEqual([]);
   });
 

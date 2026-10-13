@@ -11,7 +11,8 @@
         "pl": {
           "text": "Moje doświadczenie to to, na co zgadzam się zwracać uwagę.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     }

@@ -12,7 +12,8 @@
         "pl": {
           "text": "Nauka bez myślenia to praca stracona; myślenie bez nauki jest niebezpieczne.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -26,7 +27,8 @@
         "pl": {
           "text": "Gdy coś wiesz, przyznawać, że to wiesz; a gdy czegoś nie wiesz, przyznawać, że tego nie wiesz — oto wiedza.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -40,7 +42,8 @@
         "pl": {
           "text": "Czego nie chcesz, by tobie czyniono, tego nie czyń innym.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -54,7 +57,8 @@
         "pl": {
           "text": "Mieć wady i ich nie poprawiać — to dopiero należy nazwać posiadaniem wad.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -68,7 +72,8 @@
         "pl": {
           "text": "Gdy masz wady, nie bój się ich porzucić.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -82,7 +87,8 @@
         "pl": {
           "text": "Nie martwię się tym, że nikt mnie nie zna; staram się być godny tego, by mnie znano.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -96,7 +102,293 @@
         "pl": {
           "text": "Człowiek powinien mówić: nie martwię się tym, że nie mam stanowiska; martwię się tym, jak się do niego przygotować.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "pleasant-learn-constant-perseverance",
+      "text": "Is it not pleasant to learn with a constant perseverance and application?",
+      "section": "chapter-1",
+      "locator": "Book I: Hsio R",
+      "tags": ["self-development", "happiness"],
+      "translations": {
+        "pl": {
+          "text": "Czyż nie jest przyjemnie uczyć się z nieustanną wytrwałością i pilnością?",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "delightful-friends-distant-quarters",
+      "text": "Is it not delightful to have friends coming from distant quarters?",
+      "section": "chapter-1",
+      "locator": "Book I: Hsio R",
+      "tags": ["relationships", "happiness"],
+      "translations": {
+        "pl": {
+          "text": "Czyż nie jest rozkoszą, gdy przyjaciele przybywają z dalekich stron?",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "daily-examine-three-points",
+      "text": "I daily examine myself on three points:—whether, in transacting business for others, I may have been not faithful;—whether, in intercourse with friends, I may have been not sincere;—whether I may have not mastered and practised the instructions of my teacher.",
+      "section": "chapter-1",
+      "locator": "Book I: Hsio R",
+      "tags": ["self-development", "mindfulness"],
+      "translations": {
+        "pl": {
+          "text": "Codziennie badam siebie w trzech sprawach: czy, załatwiając cudze sprawy, nie byłem nielojalny; czy w obcowaniu z przyjaciółmi nie byłem nieszczery; czy nie zaniedbałem opanowania i praktykowania nauk mojego nauczyciela.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "acts-before-speaks",
+      "text": "He acts before he speaks, and afterwards speaks according to his actions.",
+      "section": "chapter-2",
+      "locator": "Book II: Wei Chang",
+      "tags": ["productivity", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Najpierw działa, a dopiero potem mówi — zgodnie z tym, co zrobił.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "see-right-not-do-courage",
+      "text": "To see what is right and not to do it is want of courage.",
+      "section": "chapter-2",
+      "locator": "Book II: Wei Chang",
+      "tags": ["courage", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Widzieć, co słuszne, i tego nie czynić — to brak odwagi.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "mind-conversant-righteousness-gain",
+      "text": "The mind of the superior man is conversant with righteousness; the mind of the mean man is conversant with gain.",
+      "section": "chapter-4",
+      "locator": "Book IV: Le Jin",
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Umysł człowieka szlachetnego zna się na prawości; umysł człowieka małego zna się na zysku.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "slow-speech-earnest-conduct",
+      "text": "The superior man wishes to be slow in his speech and earnest in his conduct.",
+      "section": "chapter-4",
+      "locator": "Book IV: Le Jin",
+      "tags": ["assertiveness", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "Człowiek szlachetny pragnie być powolny w mowie, a gorliwy w czynach.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "virtue-not-left-alone",
+      "text": "Virtue is not left to stand alone. He who practises it will have neighbors.",
+      "section": "chapter-4",
+      "locator": "Book IV: Le Jin",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Cnota nie zostaje osamotniona. Kto ją praktykuje, będzie miał sąsiadów.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "coarse-rice-still-joy",
+      "text": "With coarse rice to eat, with water to drink, and my bended arm for a pillow;—I have still joy in the midst of these things.",
+      "section": "chapter-7",
+      "locator": "Book VII: Shû R",
+      "tags": ["happiness"],
+      "translations": {
+        "pl": {
+          "text": "Mając do jedzenia prosty ryż, do picia wodę, a za poduszkę zgięte ramię — wciąż znajduję w tym radość.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "walk-two-others-teachers",
+      "text": "When I walk along with two others, they may serve me as my teachers. I will select their good qualities and follow them, their bad qualities and avoid them.",
+      "section": "chapter-7",
+      "locator": "Book VII: Shû R",
+      "tags": ["self-development", "relationships"],
+      "translations": {
+        "pl": {
+          "text": "Gdy idę z dwoma innymi, mogą mi oni służyć za nauczycieli. Wybiorę ich dobre cechy i pójdę za nimi, a złych będę unikał.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "stopping-is-my-own-work",
+      "text": "If there want but one basket of earth to complete the work, and I stop, the stopping is my own work.",
+      "section": "chapter-9",
+      "locator": "Book IX: Tsze Han",
+      "tags": ["productivity", "resilience"],
+      "translations": {
+        "pl": {
+          "text": "Jeśli do ukończenia dzieła brakuje tylko jednego kosza ziemi, a ja przestanę, to zatrzymanie się jest moim własnym dziełem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "one-basketful-going-forward",
+      "text": "Though but one basketful is thrown at a time, the advancing with it is my own going forward.",
+      "section": "chapter-9",
+      "locator": "Book IX: Tsze Han",
+      "tags": ["productivity", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Choćby rzucać tylko jeden kosz naraz, każdy taki krok naprzód jest moim własnym postępem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "will-common-man-not-taken",
+      "text": "The commander of the forces of a large state may be carried off, but the will of even a common man cannot be taken from him.",
+      "section": "chapter-9",
+      "locator": "Book IX: Tsze Han",
+      "tags": ["resilience", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Wodza wojsk wielkiego państwa można porwać, ale woli nawet zwykłego człowieka nie można mu odebrać.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "pine-cypress-last-lose-leaves",
+      "text": "When the year becomes cold, then we know how the pine and the cypress are the last to lose their leaves.",
+      "section": "chapter-9",
+      "locator": "Book IX: Tsze Han",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Dopiero gdy rok staje się zimny, poznajemy, że sosna i cyprys ostatnie tracą liście.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "wise-free-perplexities-bold-fear",
+      "text": "The wise are free from perplexities; the virtuous from anxiety; and the bold from fear.",
+      "section": "chapter-9",
+      "locator": "Book IX: Tsze Han",
+      "tags": ["courage", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Mądrzy są wolni od rozterek, cnotliwi od niepokoju, a odważni od lęku.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "internal-examination-nothing-wrong",
+      "text": "When internal examination discovers nothing wrong, what is there to be anxious about, what is there to fear?",
+      "section": "chapter-12",
+      "locator": "Book XII: Yen Yüan",
+      "tags": ["mindfulness", "courage"],
+      "translations": {
+        "pl": {
+          "text": "Gdy wewnętrzny rachunek sumienia nie odkrywa niczego złego, czym się niepokoić, czego się bać?",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "not-desirous-things-done-quickly",
+      "text": "Do not be desirous to have things done quickly; do not look at small advantages. Desire to have things done quickly prevents their being done thoroughly. Looking at small advantages prevents great affairs from being accomplished.",
+      "section": "chapter-13",
+      "locator": "Book XIII: Tsze-Lû",
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Nie pragnij, by sprawy załatwiano szybko; nie patrz na drobne korzyści. Pragnienie szybkości nie pozwala zrobić rzeczy gruntownie. Patrzenie na drobne korzyści nie pozwala dokonać wielkich spraw.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "mechanic-sharpen-tools",
+      "text": "The mechanic, who wishes to do his work well, must first sharpen his tools.",
+      "section": "chapter-15",
+      "locator": "Book XV: Wei Ling Kung",
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Rzemieślnik, który chce dobrze wykonać swoją pracę, musi najpierw naostrzyć narzędzia.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "superior-man-seeks-in-himself",
+      "text": "What the superior man seeks, is in himself. What the mean man seeks, is in others.",
+      "section": "chapter-15",
+      "locator": "Book XV: Wei Ling Kung",
+      "tags": ["self-development", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Tego, czego szuka człowiek szlachetny, szuka w sobie. Tego, czego szuka człowiek mały, szuka w innych.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     }

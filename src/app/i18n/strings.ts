@@ -14,6 +14,7 @@ const en = {
   languageLabel: 'App language',
   translationLabel: 'Polish translation',
   translationHint: 'Draft translations prepared with AI help. Corrections are welcome on GitHub.',
+  aiDraftTranslation: 'AI Translated',
   notificationLabel: 'Daily quote notification',
   notificationTime: 'Time',
   notificationHint: 'One quote a day at the time you choose. Only this device is notified.',
@@ -82,6 +83,12 @@ const en = {
     days === 1
       ? 'Day one of your reading streak. See you tomorrow!'
       : `${String(days)} days in a row. Well done!`,
+  streakTitle: 'Your reading streak',
+  streakDays: (days: number) => `${String(days)} ${days === 1 ? 'day' : 'days'} in a row`,
+  streakHabit:
+    'Habits shape who we become. A few quiet minutes with a good thought every day do more than a long read once in a while.',
+  streakHow:
+    'A day counts after 30 seconds in the app. Come back tomorrow to keep the flame alight.',
 };
 
 export type Strings = typeof en;
@@ -110,6 +117,7 @@ const pl: Strings = {
   translationLabel: 'Tłumaczenie na polski',
   translationHint:
     'Robocze tłumaczenia przygotowane z pomocą AI. Poprawki mile widziane na GitHubie.',
+  aiDraftTranslation: 'Przetłumaczone przez AI',
   notificationLabel: 'Codzienne powiadomienie z cytatem',
   notificationTime: 'Godzina',
   notificationHint:
@@ -175,6 +183,11 @@ const pl: Strings = {
     `Seria czytania: ${String(days)} ${days === 1 ? 'dzień' : 'dni'} z rzędu`,
   streakReached: (days: number) =>
     days === 1 ? 'Pierwszy dzień serii czytania. Do jutra!' : `${String(days)} dni z rzędu. Brawo!`,
+  streakTitle: 'Twoja seria czytania',
+  streakDays: (days: number) => `${String(days)} ${days === 1 ? 'dzień' : 'dni'} z rzędu`,
+  streakHabit:
+    'To nawyki nas kształtują. Kilka spokojnych minut z dobrą myślą każdego dnia daje więcej niż długa lektura od święta.',
+  streakHow: 'Dzień liczy się po 30 sekundach w aplikacji. Wróć jutro, żeby płomień nie zgasł.',
 };
 
 export const STRINGS: Record<Language, Strings> = { en, pl };

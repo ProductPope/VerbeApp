@@ -124,6 +124,7 @@ export function personalCard(quote: PersonalQuote): Card {
     text: quote.text,
     language: quote.language,
     translations: {},
+    draftTranslations: [],
     tags: quote.tags,
     author: { en: quote.author },
     work: quote.source,

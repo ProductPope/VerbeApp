@@ -15,7 +15,8 @@
         "pl": {
           "text": "Kiedy uczucie przejmuje stery, nazwij je: „to jest lęk”, „to jest złość”. Ubranie go w słowa odbiera mu część siły i oddaje ci wybór, co zrobić dalej.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -24,15 +25,12 @@
       "text": "Before you act, check your state. Calm energy tends to lead to good choices, scattered energy to rushed reactions. Settle first, then decide.",
       "tags": ["self-development", "productivity", "mindfulness"],
       "license": "CC0-1.0",
-      "inspiredBy": {
-        "url": "https://deepstash.com/",
-        "title": "Deepstash"
-      },
       "translations": {
         "pl": {
           "text": "Zanim zaczniesz działać, sprawdź swój stan. Spokojna energia prowadzi zwykle do dobrych wyborów, rozproszona do pochopnych reakcji. Najpierw się wycisz, potem decyduj.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -49,7 +47,8 @@
         "pl": {
           "text": "Praca rozrasta się tak, by wypełnić czas, który na nią dasz. Każdemu zadaniu wyznacz termin, nawet mały, ustalony przez siebie.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -66,7 +65,8 @@
         "pl": {
           "text": "Na koniec dnia pracy zapisz sześć najważniejszych zadań na jutro, w kolejności. Jutro pracuj nad pierwszym, aż je skończysz, potem nad kolejnym. To, czego nie skończysz, przenieś na następną listę.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -83,7 +83,8 @@
         "pl": {
           "text": "Sortuj zadania dwoma pytaniami: czy to ważne i czy pilne? Ważne i pilne zrób teraz, ważne, ale niepilne zaplanuj, pilne, ale nieważne przekaż komuś, a resztę odpuść.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -92,15 +93,12 @@
       "text": "Protect the first thirty minutes after you wake up. How you start the day sets the tone for the rest of it, so spend them on something that steadies you, not on your phone.",
       "tags": ["self-development", "productivity"],
       "license": "CC0-1.0",
-      "inspiredBy": {
-        "url": "https://deepstash.com/",
-        "title": "Deepstash"
-      },
       "translations": {
         "pl": {
           "text": "Chroń pierwsze trzydzieści minut po przebudzeniu. Początek dnia nadaje ton całej reszcie, więc poświęć je czemuś, co cię wycisza, a nie telefonowi.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -110,14 +108,15 @@
       "tags": ["assertiveness", "productivity"],
       "license": "CC0-1.0",
       "inspiredBy": {
-        "url": "https://deepstash.com/",
-        "title": "Deepstash"
+        "url": "https://en.wikipedia.org/wiki/Greg_McKeown",
+        "title": "Greg McKeown, Essentialism"
       },
       "translations": {
         "pl": {
           "text": "Jeśli w twoim kalendarzu nie ma twoich priorytetów, znajdą się w nim cudze. Wiedz, co jest dla ciebie najważniejsze, i odmawiaj, życzliwie i jasno, temu, co nie jest.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -126,15 +125,12 @@
       "text": "Take the lessons from your past and leave the regrets there. Every minute spent replaying old mistakes is a minute not spent on the problem in front of you.",
       "tags": ["self-development", "resilience"],
       "license": "CC0-1.0",
-      "inspiredBy": {
-        "url": "https://deepstash.com/",
-        "title": "Deepstash"
-      },
       "translations": {
         "pl": {
           "text": "Zabierz z przeszłości lekcje, a żale zostaw za sobą. Każda minuta odtwarzania dawnych błędów to minuta, której nie poświęcisz problemowi przed tobą.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -151,7 +147,8 @@
         "pl": {
           "text": "Gdy umysł dopisuje historię, na przykład że przyjaciel, który nie odpisał, jest na ciebie zły, zapytaj: co jest teraz naprawdę prawdą? Często jedynym faktem jest to, że jeszcze nie odpisał.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -168,7 +165,8 @@
         "pl": {
           "text": "Większość tonów i spojrzeń, które wydają się wymierzone w ciebie, bierze się ze stresu, zmęczenia albo rozkojarzenia innych. Mniej brać do siebie to nosić mniej tego, co nigdy nie było twoje.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -177,15 +175,12 @@
       "text": "With someone who keeps score, owes you nothing but keeps tabs on what you owe, keep a friendly distance until they earn your trust. You don't have to play a game you didn't agree to.",
       "tags": ["assertiveness", "relationships"],
       "license": "CC0-1.0",
-      "inspiredBy": {
-        "url": "https://deepstash.com/",
-        "title": "Deepstash"
-      },
       "translations": {
         "pl": {
           "text": "Przy kimś, kto prowadzi rachunki i pamięta tylko, co ty jesteś winien, trzymaj życzliwy dystans, dopóki nie zasłuży na zaufanie. Nie musisz grać w grę, na którą się nie umawiałeś.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -202,7 +197,8 @@
         "pl": {
           "text": "Ludzie pracują najlepiej, gdy mają wpływ na to, co robią, jak i kiedy. Jeśli kierujesz innymi, daj im przestrzeń; jeśli kierujesz sobą, wybierz własny sposób wykonania pracy.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -211,15 +207,12 @@
       "text": "Luck is mostly preparation meeting opportunity. Learn, stay positive when things get hard, be where things happen, and act when the chance comes.",
       "tags": ["self-development", "courage"],
       "license": "CC0-1.0",
-      "inspiredBy": {
-        "url": "https://deepstash.com/",
-        "title": "Deepstash"
-      },
       "translations": {
         "pl": {
           "text": "Szczęście to głównie przygotowanie, które spotyka okazję. Ucz się, zachowaj pogodę ducha, gdy jest trudno, bywaj tam, gdzie coś się dzieje, i działaj, gdy przyjdzie szansa.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -229,14 +222,15 @@
       "tags": ["self-development", "productivity", "mindfulness"],
       "license": "CC0-1.0",
       "inspiredBy": {
-        "url": "https://deepstash.com/",
-        "title": "Deepstash"
+        "url": "https://en.wikipedia.org/wiki/Rolf_Dobelli",
+        "title": "Rolf Dobelli on news consumption"
       },
       "translations": {
         "pl": {
           "text": "Większość wiadomości jest negatywna i nie ma nic wspólnego z twoim życiem. Przejdź na dietę informacyjną: zamień część przewijania na książkę, spacer albo czas z ludźmi.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -246,14 +240,15 @@
       "tags": ["self-development", "productivity"],
       "license": "CC0-1.0",
       "inspiredBy": {
-        "url": "https://deepstash.com/",
-        "title": "Deepstash"
+        "url": "https://en.wikipedia.org/wiki/Compound_interest",
+        "title": "Compound interest (Wikipedia)"
       },
       "translations": {
         "pl": {
           "text": "Małe wybory się kumulują. Grosz podwajany każdego dnia przez tygodnie wygląda na nic, a potem staje się fortuną. Nawyki działają tak samo, więc oceniaj je po tym, dokąd prowadzą, a nie po dzisiejszym dniu.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -263,14 +258,15 @@
       "tags": ["productivity", "self-development"],
       "license": "CC0-1.0",
       "inspiredBy": {
-        "url": "https://deepstash.com/",
-        "title": "Deepstash"
+        "url": "https://en.wikipedia.org/wiki/Sleep_deprivation",
+        "title": "Sleep deprivation (Wikipedia)"
       },
       "translations": {
         "pl": {
           "text": "Godzina snu mniej to nie godzina pracy więcej. Zmęczenie kosztuje cię skupienie, nastrój i trzeźwy osąd, więc chroń sen jak każde inne ważne spotkanie.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -279,15 +275,12 @@
       "text": "Before a decision, ask: am I calm, rushed or bracing? If you are not calm, slow your breath, feel your feet on the ground, take a short pause, and only then decide.",
       "tags": ["self-development", "mindfulness"],
       "license": "CC0-1.0",
-      "inspiredBy": {
-        "url": "https://deepstash.com/",
-        "title": "Deepstash"
-      },
       "translations": {
         "pl": {
           "text": "Przed decyzją zapytaj: czy jestem spokojny, w pośpiechu, czy w napięciu? Jeśli nie jesteś spokojny, zwolnij oddech, poczuj stopy na ziemi, zrób krótką pauzę i dopiero wtedy zdecyduj.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -297,14 +290,15 @@
       "tags": ["productivity", "self-development"],
       "license": "CC0-1.0",
       "inspiredBy": {
-        "url": "https://deepstash.com/",
-        "title": "Deepstash"
+        "url": "https://en.wikipedia.org/wiki/Practice_(learning_method)#Deliberate_practice",
+        "title": "Deliberate practice (Wikipedia)"
       },
       "translations": {
         "pl": {
           "text": "Żeby stać się w czymś lepszym: patrz, jak robią to najlepsi, ćwicz często i proś o szczerą informację zwrotną, co zmienić.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -321,7 +315,8 @@
         "pl": {
           "text": "Każdy osiągnięty cel pokazuje ci następny. Życie to gra, która się nie kończy, więc najlepszy sposób, by w nią grać, to znaleźć w niej radość.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     }
