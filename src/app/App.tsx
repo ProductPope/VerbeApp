@@ -84,8 +84,8 @@ export function App({ catalog, store, streakStore, random, reducedMotion }: AppP
             setView(view === 'saved' ? 'feed' : 'saved');
           }}
         >
-          <Icon name="bookmark" filled={view === 'saved'} />
-          <span className="visually-hidden">{strings.saved}</span>
+          <Icon name="user" filled={view === 'saved'} />
+          <span className="visually-hidden">{strings.profile}</span>
         </button>
         <button
           type="button"
