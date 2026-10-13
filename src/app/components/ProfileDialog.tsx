@@ -290,14 +290,6 @@ export function ProfileDialog({
       </div>
       {view === null ? (
         <div className="settings-body saved">
-          <Preferences
-            language={language}
-            translation={translation}
-            strings={strings}
-            onLanguageChange={onLanguageChange}
-            onTranslationChange={onTranslationChange}
-            notification={notification}
-          />
           <nav aria-label={strings.profileLists}>
             <ul className="profile-links">
               {personal !== undefined && (
@@ -334,6 +326,15 @@ export function ProfileDialog({
               />
             </ul>
           </nav>
+          {/* Settings come after the reader's own lists, which are what the profile is mostly opened for. */}
+          <Preferences
+            language={language}
+            translation={translation}
+            strings={strings}
+            onLanguageChange={onLanguageChange}
+            onTranslationChange={onTranslationChange}
+            notification={notification}
+          />
           {/* Last and collapsed, so it never competes with the reader's own content. */}
           <section aria-labelledby="about-heading">
             <details className="disclosure about">
