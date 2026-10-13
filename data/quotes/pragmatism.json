@@ -1,0 +1,20 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "pragmatism",
+  "quotes": [
+    {
+      "id": "truth-happens-idea",
+      "text": "Truth happens to an idea.",
+      "section": "chapter-6",
+      "locator": "Lecture VI: Pragmatism’s Conception of Truth",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "must-bring-out-each",
+      "text": "You must bring out of each word its practical cash-value, set it at work within the stream of your experience.",
+      "section": "chapter-2",
+      "locator": "Lecture II: What Pragmatism Means",
+      "tags": ["philosophy", "productivity"]
+    }
+  ]
+}

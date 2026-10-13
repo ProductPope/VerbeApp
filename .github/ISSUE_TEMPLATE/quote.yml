@@ -1,0 +1,24 @@
+name: Suggest a quote
+description: Propose a quote from a public-domain work
+labels: [quote]
+body:
+  - type: textarea
+    id: text
+    attributes:
+      label: Quote
+      description: Copy the exact wording from the edition.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: Work, author and chapter, e.g. Walden, Thoreau, "Economy".
+    validations:
+      required: true
+  - type: dropdown
+    id: tags
+    attributes:
+      label: Categories
+      multiple: true
+      options: [philosophy, self-development, productivity, assertiveness]

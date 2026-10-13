@@ -1,0 +1,97 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "epictetus-short-works",
+  "quotes": [
+    {
+      "id": "things-some-our-power",
+      "text": "Of things some are in our power, and others are not.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter I",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "men-disturbed-not-things",
+      "text": "Men are disturbed not by the things which happen, but by the opinions about the things.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter V",
+      "tags": ["philosophy", "self-development"]
+    },
+    {
+      "id": "would-improve-submit-considered",
+      "text": "If you would improve, submit to be considered without sense and foolish with respect to externals.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter XIII",
+      "tags": ["self-development", "assertiveness"]
+    },
+    {
+      "id": "seek-not-things-happen",
+      "text": "Seek not that the things which happen should happen as you wish; but wish the things which happen to be as they are, and you will have a tranquil flow of life.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter VIII",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "never-say-about-anything",
+      "text": "Never say about anything, I have lost it, but say I have restored it.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter XI",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "how-long-will-then",
+      "text": "How long will you then still defer thinking yourself worthy of the best things…",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter LI",
+      "tags": ["productivity", "self-development"]
+    },
+    {
+      "id": "remember-not-reviles-or",
+      "text": "Remember that it is not he who reviles you or strikes you, who insults you, but it is your opinion about these things as being insulting.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter XX",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "man-has-reported-certain",
+      "text": "If a man has reported to you, that a certain person speaks ill of you, do not make any defence (answer) to what has been told you: but reply, The man did not know the rest of my faults, for he would not have mentioned these only.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter XXXIII",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "at-banquet-do-not",
+      "text": "At a banquet do not say how a man ought to eat, but eat as you ought to eat.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter XLVI",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "remember-life-ought-behave",
+      "text": "Remember that in life you ought to behave as at a banquet.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter XV",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "so-also-will-at",
+      "text": "So you also will be at one time an athlete, at another a gladiator, then a rhetorician, then a philosopher, but with your whole soul you will be nothing at all.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter XXIX",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "practise-saying-every-harsh",
+      "text": "Practise saying to every harsh appearance, You are an appearance, and in no manner what you appear to be.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter I",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "when-any-person-treats",
+      "text": "When any person treats you ill or speaks ill of you, remember that he does this or says this because he thinks that it is his duty.",
+      "section": "the-enchiridion",
+      "locator": "The Enchiridion, chapter XLII",
+      "tags": ["assertiveness"]
+    }
+  ]
+}

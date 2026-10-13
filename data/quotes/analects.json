@@ -1,0 +1,55 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "analects",
+  "quotes": [
+    {
+      "id": "learning-without-thought-labour",
+      "text": "Learning without thought is labour lost; thought without learning is perilous.",
+      "section": "chapter-2",
+      "locator": "Book II: Wei Chang",
+      "tags": ["self-development", "philosophy"]
+    },
+    {
+      "id": "when-know-thing-hold",
+      "text": "When you know a thing, to hold that you know it; and when you do not know a thing, to allow that you do not know it;—this is knowledge.",
+      "section": "chapter-2",
+      "locator": "Book II: Wei Chang",
+      "tags": ["philosophy", "assertiveness"]
+    },
+    {
+      "id": "do-not-want-done",
+      "text": "What you do not want done to yourself, do not do to others.",
+      "section": "chapter-15",
+      "locator": "Book XV: Wei Ling Kung",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "have-faults-not-reform",
+      "text": "To have faults and not to reform them—this, indeed, should be pronounced having faults.",
+      "section": "chapter-15",
+      "locator": "Book XV: Wei Ling Kung",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "when-have-faults-do",
+      "text": "When you have faults, do not fear to abandon them.",
+      "section": "chapter-1",
+      "locator": "Book I: Hsio R",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "am-not-concerned-am",
+      "text": "I am not concerned that I am not known, I seek to be worthy to be known.",
+      "section": "chapter-4",
+      "locator": "Book IV: Le Jin",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "man-should-say-am",
+      "text": "A man should say, I am not concerned that I have no place, I am concerned how I may fit myself for one.",
+      "section": "chapter-4",
+      "locator": "Book IV: Le Jin",
+      "tags": ["self-development"]
+    }
+  ]
+}

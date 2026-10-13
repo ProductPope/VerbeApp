@@ -1,0 +1,221 @@
+{
+  "$schema": "./schema/sources.schema.json",
+  "sources": [
+    {
+      "id": "meditations",
+      "title": "Meditations",
+      "author": "marcus-aurelius",
+      "translator": {
+        "name": "George Long",
+        "died": 1879
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/marcus-aurelius/meditations/george-long",
+        "repository": "https://github.com/standardebooks/marcus-aurelius_meditations_george-long"
+      }
+    },
+    {
+      "id": "epictetus-short-works",
+      "title": "Short Works",
+      "author": "epictetus",
+      "translator": {
+        "name": "George Long",
+        "died": 1879
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/epictetus/short-works/george-long",
+        "repository": "https://github.com/standardebooks/epictetus_short-works_george-long"
+      }
+    },
+    {
+      "id": "epictetus-discourses",
+      "title": "Discourses",
+      "author": "epictetus",
+      "translator": {
+        "name": "George Long",
+        "died": 1879
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/epictetus/discourses/george-long",
+        "repository": "https://github.com/standardebooks/epictetus_discourses_george-long"
+      }
+    },
+    {
+      "id": "seneca-dialogues",
+      "title": "Dialogues",
+      "author": "seneca",
+      "translator": {
+        "name": "Aubrey Stewart",
+        "died": 1918
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/seneca/dialogues/aubrey-stewart",
+        "repository": "https://github.com/standardebooks/seneca_dialogues_aubrey-stewart"
+      }
+    },
+    {
+      "id": "emerson-essays",
+      "title": "Essays",
+      "author": "ralph-waldo-emerson",
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/ralph-waldo-emerson/essays",
+        "repository": "https://github.com/standardebooks/ralph-waldo-emerson_essays"
+      }
+    },
+    {
+      "id": "walden",
+      "title": "Walden",
+      "author": "henry-david-thoreau",
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/henry-david-thoreau/walden",
+        "repository": "https://github.com/standardebooks/henry-david-thoreau_walden"
+      }
+    },
+    {
+      "id": "franklin-autobiography",
+      "title": "The Autobiography of Benjamin Franklin",
+      "author": "benjamin-franklin",
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/benjamin-franklin/the-autobiography-of-benjamin-franklin",
+        "repository": "https://github.com/standardebooks/benjamin-franklin_the-autobiography-of-benjamin-franklin"
+      }
+    },
+    {
+      "id": "tao-te-ching",
+      "title": "Tao Te Ching",
+      "author": "laozi",
+      "translator": {
+        "name": "James Legge",
+        "died": 1897
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/laozi/tao-te-ching/james-legge",
+        "repository": "https://github.com/standardebooks/laozi_tao-te-ching_james-legge"
+      }
+    },
+    {
+      "id": "analects",
+      "title": "Analects",
+      "author": "confucius",
+      "translator": {
+        "name": "James Legge",
+        "died": 1897
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/confucius/analects/james-legge",
+        "repository": "https://github.com/standardebooks/confucius_analects_james-legge"
+      }
+    },
+    {
+      "id": "on-liberty",
+      "title": "On Liberty",
+      "author": "john-stuart-mill",
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/john-stuart-mill/on-liberty",
+        "repository": "https://github.com/standardebooks/john-stuart-mill_on-liberty"
+      }
+    },
+    {
+      "id": "plato-dialogues",
+      "title": "Dialogues",
+      "author": "plato",
+      "translator": {
+        "name": "Benjamin Jowett",
+        "died": 1893
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/plato/dialogues/benjamin-jowett",
+        "repository": "https://github.com/standardebooks/plato_dialogues_benjamin-jowett"
+      }
+    },
+    {
+      "id": "vindication-of-the-rights-of-woman",
+      "title": "A Vindication of the Rights of Woman",
+      "author": "mary-wollstonecraft",
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/mary-wollstonecraft/a-vindication-of-the-rights-of-woman",
+        "repository": "https://github.com/standardebooks/mary-wollstonecraft_a-vindication-of-the-rights-of-woman"
+      }
+    },
+    {
+      "id": "thus-spake-zarathustra",
+      "title": "Thus Spake Zarathustra",
+      "author": "friedrich-nietzsche",
+      "translator": {
+        "name": "Thomas Common",
+        "died": 1919
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/friedrich-nietzsche/thus-spake-zarathustra/thomas-common",
+        "repository": "https://github.com/standardebooks/friedrich-nietzsche_thus-spake-zarathustra_thomas-common"
+      }
+    },
+    {
+      "id": "pragmatism",
+      "title": "Pragmatism",
+      "author": "william-james",
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/william-james/pragmatism",
+        "repository": "https://github.com/standardebooks/william-james_pragmatism"
+      }
+    },
+    {
+      "id": "consolation-of-philosophy",
+      "title": "The Consolation of Philosophy",
+      "author": "boethius",
+      "translator": {
+        "name": "H. R. James",
+        "died": 1931
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/boethius/the-consolation-of-philosophy/h-r-james",
+        "repository": "https://github.com/standardebooks/boethius_the-consolation-of-philosophy_h-r-james"
+      }
+    }
+  ]
+}

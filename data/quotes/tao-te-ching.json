@@ -1,0 +1,55 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "tao-te-ching",
+  "quotes": [
+    {
+      "id": "knows-other-men-discerning",
+      "text": "He who knows other men is discerning; he who knows himself is intelligent.",
+      "section": "tao-te-ching",
+      "locator": "Chapter XXXIII",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "overcomes-others-strong-overcomes",
+      "text": "He who overcomes others is strong; he who overcomes himself is mighty.",
+      "section": "tao-te-ching",
+      "locator": "Chapter XXXIII",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "tree-fills-arms-grew",
+      "text": "The tree which fills the arms grew from the tiniest sprout; the tower of nine storeys rose from a (small) heap of earth; the journey of a thousand li commenced with a single step.",
+      "section": "tao-te-ching",
+      "locator": "Chapter LXIV",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "highest-excellence-like-water",
+      "text": "The highest excellence is like (that of) water.",
+      "section": "tao-te-ching",
+      "locator": "Chapter VIII",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "softest-thing-world-dashes",
+      "text": "The softest thing in the world dashes against and overcomes the hardest.",
+      "section": "tao-te-ching",
+      "locator": "Chapter XLIII",
+      "tags": ["philosophy"]
+    },
+    {
+      "id": "there-no-guilt-greater",
+      "text": "There is no guilt greater than to sanction ambition; no calamity greater than to be discontented with one’s lot; no fault greater than the wish to be getting.",
+      "section": "tao-te-ching",
+      "locator": "Chapter XLVI",
+      "tags": ["philosophy", "self-development"]
+    },
+    {
+      "id": "satisfied-with-lot-rich",
+      "text": "He who is satisfied with his lot is rich; he who goes on acting with energy has a (firm) will.",
+      "section": "tao-te-ching",
+      "locator": "Chapter XXXIII",
+      "tags": ["self-development"]
+    }
+  ]
+}

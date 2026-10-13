@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ProductPope/VerbeApp/data/schema/quote-collection.schema.json",
+  "title": "Quote collection",
+  "description": "All quotes taken from one source. The file name must match the source id.",
+  "type": "object",
+  "required": ["source", "quotes"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "source": { "$ref": "common.schema.json#/$defs/slug" },
+    "quotes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/quote" }
+    }
+  },
+  "$defs": {
+    "quote": {
+      "type": "object",
+      "required": ["id", "text", "section", "locator", "tags"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/slug" },
+        "text": {
+          "description": "Exact wording from the edition. Use … (U+2026) to mark omitted words.",
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 400
+        },
+        "section": {
+          "description": "File name, without extension, of the edition's chapter containing the quote.",
+          "$ref": "common.schema.json#/$defs/slug"
+        },
+        "locator": {
+          "description": "Human-readable position in the work, e.g. Book IV, 3.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "tags": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/slug" }
+        },
+        "translations": {
+          "description": "Translations into other languages, keyed by language code.",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/languageCode" },
+          "additionalProperties": { "$ref": "#/$defs/translation" }
+        }
+      }
+    },
+    "translation": {
+      "type": "object",
+      "required": ["text", "translator", "license"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string", "minLength": 10, "maxLength": 500 },
+        "translator": {
+          "description": "Who translated the quote, e.g. a published translator or VerbeApp contributors.",
+          "type": "string",
+          "minLength": 1
+        },
+        "license": { "enum": ["public-domain", "CC0-1.0"] }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ProductPope/VerbeApp/data/schema/tags.schema.json",
+  "title": "Tags",
+  "description": "Categories a quote can belong to. Labels are localised; English is required.",
+  "type": "object",
+  "required": ["tags"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "tags": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/slug" },
+          "label": { "$ref": "common.schema.json#/$defs/localizedString" },
+          "description": { "$ref": "common.schema.json#/$defs/localizedString" }
+        }
+      }
+    }
+  }
+}

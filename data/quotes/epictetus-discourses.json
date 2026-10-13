@@ -1,0 +1,55 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "epictetus-discourses",
+  "quotes": [
+    {
+      "id": "first-say-yourself-wish",
+      "text": "First say to yourself who you wish to be, then do accordingly what you are doing.",
+      "section": "book-3",
+      "locator": "Book III",
+      "tags": ["self-development", "productivity"]
+    },
+    {
+      "id": "every-habit-faculty-maintained",
+      "text": "Every habit and faculty is maintained and increased by the corresponding actions: the habit of walking by walking, the habit of running by running.",
+      "section": "book-2",
+      "locator": "Book II",
+      "tags": ["productivity", "self-development"]
+    },
+    {
+      "id": "impossible-man-begin-learn",
+      "text": "It is impossible for a man to begin to learn that which he thinks that he knows.",
+      "section": "book-2",
+      "locator": "Book II",
+      "tags": ["self-development"]
+    },
+    {
+      "id": "nothing-great-said-epictetus",
+      "text": "Nothing great, said Epictetus, is produced suddenly, since not even the grape or the fig is.",
+      "section": "book-1",
+      "locator": "Book I",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "good-man-invincible-does",
+      "text": "The good man is invincible, for he does not enter the contest where he is not stronger.",
+      "section": "book-3",
+      "locator": "Book III",
+      "tags": ["assertiveness"]
+    },
+    {
+      "id": "would-good-reader-read",
+      "text": "If you would be a good reader, read; if a writer, write.",
+      "section": "book-2",
+      "locator": "Book II",
+      "tags": ["productivity"]
+    },
+    {
+      "id": "whomsoever-then-power-another",
+      "text": "Whomsoever then it is in the power of another to hinder and compel, declare that he is not free.",
+      "section": "book-4",
+      "locator": "Book IV",
+      "tags": ["assertiveness"]
+    }
+  ]
+}

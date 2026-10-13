@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ProductPope/VerbeApp/data/schema/sources.schema.json",
+  "title": "Sources",
+  "description": "Published works quotes are taken from. Every source must be in the public domain and available as a verifiable digital edition.",
+  "type": "object",
+  "required": ["sources"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "author", "language", "license", "edition"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/slug"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "author": {
+            "$ref": "common.schema.json#/$defs/slug"
+          },
+          "translator": {
+            "description": "Translator of the English text, when the work was not written in English. The death year proves the translation is in the public domain.",
+            "type": "object",
+            "required": ["name", "died"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "died": {
+                "$ref": "common.schema.json#/$defs/year"
+              }
+            }
+          },
+          "language": {
+            "description": "Language of the text quoted from this edition.",
+            "$ref": "common.schema.json#/$defs/languageCode"
+          },
+          "license": {
+            "const": "public-domain"
+          },
+          "edition": {
+            "type": "object",
+            "required": ["publisher", "url", "repository"],
+            "additionalProperties": false,
+            "properties": {
+              "publisher": {
+                "const": "Standard Ebooks"
+              },
+              "url": {
+                "type": "string",
+                "pattern": "^https://standardebooks\\.org/ebooks/[a-z0-9/-]+$"
+              },
+              "repository": {
+                "description": "Git repository holding the edition's source, used to verify quotes word for word.",
+                "type": "string",
+                "pattern": "^https://github\\.com/standardebooks/[a-z0-9_-]+$"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
