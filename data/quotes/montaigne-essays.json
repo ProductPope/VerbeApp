@@ -14,6 +14,32 @@
           "license": "CC0-1.0"
         }
       }
+    },
+    {
+      "id": "because-it-was-he",
+      "text": "If a man should importune me to give a reason why I loved him, I find it could no otherwise be expressed, than by making answer: because it was he, because it was I.",
+      "locator": "Book I, Chapter XXVII",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Gdyby ktoś nalegał, bym podał powód, dla którego go kochałem, czuję, że nie dałoby się tego wyrazić inaczej niż odpowiedzią: bo to był on, bo to byłem ja.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "give-myself-to-my-friend",
+      "text": "In true friendship, wherein I am perfect, I more give myself to my friend, than I endeavour to attract him to me.",
+      "locator": "Book III, Chapter IX",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "W prawdziwej przyjaźni, w której jestem biegły, bardziej oddaję się przyjacielowi, niż staram się przyciągnąć go do siebie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

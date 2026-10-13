@@ -119,7 +119,7 @@
       "text": "The greatest remedy for anger is delay.",
       "section": "on-anger",
       "locator": "On Anger",
-      "tags": ["self-development", "assertiveness"],
+      "tags": ["self-development", "assertiveness", "relationships"],
       "translations": {
         "pl": {
           "text": "Największym lekarstwem na gniew jest zwłoka.",
@@ -133,7 +133,7 @@
       "text": "Wherever there is a human being, there is an opportunity for a benefit.",
       "section": "on-a-happy-life",
       "locator": "On a Happy Life",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "relationships"],
       "translations": {
         "pl": {
           "text": "Gdziekolwiek jest człowiek, tam jest okazja do dobrego uczynku.",
@@ -291,6 +291,62 @@
       "translations": {
         "pl": {
           "text": "Nikt nie wytrzymałby nieszczęścia, gdyby stale działało z tą samą siłą co przy pierwszym uderzeniu.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "born-for-mutual-assistance",
+      "text": "Mankind is born for mutual assistance, anger for mutual ruin: the former loves society, the latter estrangement.",
+      "section": "on-anger",
+      "locator": "On Anger",
+      "tags": ["relationships", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Ludzkość rodzi się do wzajemnej pomocy, gniew do wzajemnej zguby: ta pierwsza kocha wspólnotę, ten drugi oddalenie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "refuses-to-pardon",
+      "text": "He who refuses to pardon, how often has he begged it for himself?",
+      "section": "on-anger",
+      "locator": "On Anger",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Ten, kto odmawia przebaczenia, jakże często sam o nie prosił?",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "anger-into-friendship",
+      "text": "How can we gain more glory than by turning anger into friendship?",
+      "section": "on-anger",
+      "locator": "On Anger",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Czym możemy zdobyć więcej chwały niż zamieniając gniew w przyjaźń?",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "must-also-love-them",
+      "text": "If you wish those whom you lay under an obligation to be grateful to you, you must not merely confer benefits upon them, but you must also love them.",
+      "section": "on-benefits",
+      "locator": "On Benefits",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Jeśli chcesz, by ci, których zobowiązujesz, byli ci wdzięczni, nie wystarczy wyświadczać im dobrodziejstw: musisz ich też kochać.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }
