@@ -3,8 +3,8 @@ import type { Catalog } from './catalog/catalog.js';
 import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
 import { StreakBadge, StreakCelebration } from './components/ReadingStreak.js';
-import { ProfileView } from './components/ProfileView.js';
 import { NotificationSetting } from './components/NotificationSetting.js';
+import { ProfileDialog } from './components/ProfileDialog.js';
 import { SettingsDialog } from './components/SettingsDialog.js';
 import { eligibleCards } from './feed/queue.js';
 import { STRINGS, TRANSLATION_LANGUAGE } from './i18n/strings.js';
@@ -26,8 +26,6 @@ interface AppProps {
   initialCardId?: string | undefined;
 }
 
-type View = 'feed' | 'saved';
-
 export function App({
   catalog,
   store,
@@ -39,9 +37,9 @@ export function App({
 }: AppProps) {
   const prefs = usePreferences(store);
   const strings = STRINGS[prefs.language];
-  const [view, setView] = useState<View>('feed');
   const [lastHidden, setLastHidden] = useState<string | null>(null);
   const settings = useRef<HTMLDialogElement>(null);
+  const profile = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     document.documentElement.lang = prefs.language;
@@ -86,28 +84,26 @@ export function App({
       <header className="app-header">
         <h1 className="app-title">{strings.appName}</h1>
         <StreakBadge store={streakStore} strings={strings} />
-        {view === 'feed' && (
-          <button
-            type="button"
-            className="icon-button"
-            aria-pressed={prefs.autoplay}
-            onClick={() => {
-              store.update((current) => ({ ...current, autoplay: !current.autoplay }));
-            }}
-          >
-            <Icon name={prefs.autoplay ? 'pause' : 'play'} />
-            <span className="visually-hidden">{strings.autoplay}</span>
-          </button>
-        )}
         <button
           type="button"
           className="icon-button"
-          aria-pressed={view === 'saved'}
+          aria-pressed={prefs.autoplay}
           onClick={() => {
-            setView(view === 'saved' ? 'feed' : 'saved');
+            store.update((current) => ({ ...current, autoplay: !current.autoplay }));
           }}
         >
-          <Icon name="user" filled={view === 'saved'} />
+          <Icon name={prefs.autoplay ? 'pause' : 'play'} />
+          <span className="visually-hidden">{strings.autoplay}</span>
+        </button>
+        <button
+          type="button"
+          className="icon-button"
+          aria-haspopup="dialog"
+          onClick={() => {
+            profile.current?.showModal();
+          }}
+        >
+          <Icon name="user" />
           <span className="visually-hidden">{strings.profile}</span>
         </button>
         <button
@@ -132,53 +128,51 @@ export function App({
           store.update((current) => ({ ...current, tags }));
         }}
       />
+      <ProfileDialog
+        ref={profile}
+        cards={catalog.cards}
+        favorites={prefs.favorites}
+        hidden={prefs.hidden}
+        language={prefs.language}
+        translation={prefs.translation}
+        translationLanguage={translationLanguage}
+        strings={strings}
+        onToggleFavorite={toggleFavorite}
+        onRestore={restore}
+        onLanguageChange={(language) => {
+          store.update((current) => ({ ...current, language }));
+        }}
+        onTranslationChange={(translation) => {
+          store.update((current) => ({ ...current, translation }));
+        }}
+        notification={
+          push && (
+            <NotificationSetting
+              push={push}
+              enabled={prefs.notify}
+              hour={prefs.notifyHour}
+              strings={strings}
+              onChange={(change) => {
+                store.update((current) => ({ ...current, ...change }));
+              }}
+            />
+          )
+        }
+      />
       <main id="main" tabIndex={-1}>
-        {view === 'feed' ? (
-          <Feed
-            cards={eligible}
-            strings={strings}
-            language={prefs.language}
-            translationLanguage={translationLanguage}
-            favorites={prefs.favorites}
-            autoplay={prefs.autoplay}
-            reducedMotion={reducedMotion}
-            random={random}
-            initialCardId={initialCardId}
-            onToggleFavorite={toggleFavorite}
-            onHide={hide}
-          />
-        ) : (
-          <ProfileView
-            cards={catalog.cards}
-            favorites={prefs.favorites}
-            hidden={prefs.hidden}
-            language={prefs.language}
-            translation={prefs.translation}
-            translationLanguage={translationLanguage}
-            strings={strings}
-            onToggleFavorite={toggleFavorite}
-            onRestore={restore}
-            onLanguageChange={(language) => {
-              store.update((current) => ({ ...current, language }));
-            }}
-            onTranslationChange={(translation) => {
-              store.update((current) => ({ ...current, translation }));
-            }}
-            notification={
-              push && (
-                <NotificationSetting
-                  push={push}
-                  enabled={prefs.notify}
-                  hour={prefs.notifyHour}
-                  strings={strings}
-                  onChange={(change) => {
-                    store.update((current) => ({ ...current, ...change }));
-                  }}
-                />
-              )
-            }
-          />
-        )}
+        <Feed
+          cards={eligible}
+          strings={strings}
+          language={prefs.language}
+          translationLanguage={translationLanguage}
+          favorites={prefs.favorites}
+          autoplay={prefs.autoplay}
+          reducedMotion={reducedMotion}
+          random={random}
+          initialCardId={initialCardId}
+          onToggleFavorite={toggleFavorite}
+          onHide={hide}
+        />
       </main>
       <div className="status" role="status">
         {lastHidden !== null && (

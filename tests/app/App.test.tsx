@@ -30,9 +30,17 @@ async function openSettings(user: ReturnType<typeof userEvent.setup>) {
   return screen.getByRole('dialog', { name: 'Settings' });
 }
 
-async function openPreferences(user: ReturnType<typeof userEvent.setup>) {
+async function openProfile(user: ReturnType<typeof userEvent.setup>) {
   await user.click(screen.getByRole('button', { name: 'Your profile' }));
-  return screen.getByRole('region', { name: 'Preferences' });
+  return screen.getByRole('dialog', { name: 'Your profile' });
+}
+
+async function openPreferences(user: ReturnType<typeof userEvent.setup>) {
+  const profile = await openProfile(user);
+  const preferences = within(profile).getByRole('region', { name: 'Preferences' });
+  await user.click(within(preferences).getByText('Preferences'));
+  expect(preferences.querySelector('details')).toHaveAttribute('open');
+  return preferences;
 }
 
 function articles() {
@@ -130,13 +138,8 @@ describe('favourites and hidden quotes', () => {
     expect(button).toHaveAttribute('aria-pressed', 'true');
     expect(store.get().favorites).toEqual([id]);
 
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
-    expect(screen.getByRole('button', { name: 'Your profile' })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    );
-    expect(screen.queryByRole('button', { name: 'Auto-advance' })).not.toBeInTheDocument();
-    const favorites = screen.getByRole('region', { name: 'Favourites' });
+    const profile = await openProfile(user);
+    const favorites = within(profile).getByRole('region', { name: 'Favourites' });
     expect(within(favorites).getByText(`Text of ${id}.`)).toBeInTheDocument();
     await user.click(within(favorites).getByRole('button', { name: 'Remove from favourites' }));
     expect(within(favorites).getByText(/No favourites yet/)).toBeInTheDocument();
@@ -159,12 +162,12 @@ describe('favourites and hidden quotes', () => {
   it('restores hidden quotes from the profile', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, hidden: ['beta', 'unknown-id'] }));
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
-    const hidden = screen.getByRole('region', { name: 'Hidden quotes' });
+    const profile = await openProfile(user);
+    const hidden = within(profile).getByRole('region', { name: 'Hidden quotes' });
     expect(within(hidden).getAllByRole('listitem')).toHaveLength(1);
     await user.click(within(hidden).getByRole('button', { name: 'Show again' }));
     expect(within(hidden).getByText('Nothing hidden.')).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    await user.click(within(profile).getByRole('button', { name: 'Close' }));
     expect(cardIds()).toContain('beta');
   });
 
@@ -196,6 +199,22 @@ describe('categories', () => {
     await user.click(within(group).getByRole('button', { name: 'Philosophy' }));
     await user.click(within(group).getByRole('button', { name: 'All' }));
     expect(cardIds()).toHaveLength(5);
+  });
+});
+
+describe('profile', () => {
+  it('opens as a modal dialog with preferences collapsed and closes with the X button', async () => {
+    const { user } = renderApp();
+    const profile = await openProfile(user);
+    expect(profile).toHaveAttribute('open');
+    const preferences = within(profile).getByRole('region', { name: 'Preferences' });
+    expect(preferences.querySelector('details')).not.toHaveAttribute('open');
+    expect(screen.getByRole('button', { name: 'Your profile' })).toHaveAttribute(
+      'aria-haspopup',
+      'dialog',
+    );
+    await user.click(within(profile).getByRole('button', { name: 'Close' }));
+    expect(profile).not.toHaveAttribute('open');
   });
 });
 
@@ -233,15 +252,15 @@ describe('translation', () => {
     expect(toggle).toHaveAccessibleDescription(/AI/);
     await user.click(toggle);
     expect(store.get().translation).toBe(false);
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    await user.click(screen.getByRole('button', { name: 'Close' }));
     expect(screen.queryByText('Tekst alfa.')).not.toBeInTheDocument();
   });
 
   it('also appears in the profile', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, favorites: ['alpha'] }));
-    await user.click(screen.getByRole('button', { name: 'Your profile' }));
-    const favorites = screen.getByRole('region', { name: 'Favourites' });
+    const profile = await openProfile(user);
+    const favorites = within(profile).getByRole('region', { name: 'Favourites' });
     expect(within(favorites).getByText('Tekst alfa.')).toHaveAttribute('lang', 'pl');
   });
 });
@@ -255,8 +274,10 @@ describe('language', () => {
       'pl',
     );
     expect(document.documentElement.lang).toBe('pl');
-    expect(screen.getByRole('region', { name: 'Preferencje' })).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Twój profil' }));
+    const profile = screen.getByRole('dialog', { name: 'Twój profil' });
+    expect(within(profile).getByRole('region', { name: 'Preferencje' })).toBeInTheDocument();
+    await user.click(within(profile).getByRole('button', { name: 'Zamknij' }));
+    expect(profile).not.toHaveAttribute('open');
     expect(screen.getByRole('feed', { name: 'Lista cytatów' })).toBeInTheDocument();
     const alpha = articles().find((a) => a.dataset.cardId === 'alpha')!;
     expect(within(alpha).getByText('Text of alpha.')).toBeInTheDocument();

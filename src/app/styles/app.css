@@ -429,18 +429,46 @@ main:focus {
 }
 
 /* Profile */
+.disclosure summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--target-size);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.disclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+/* A chevron that points down when open; currentColor keeps it themed. */
+.disclosure summary::after {
+  width: 0.5em;
+  height: 0.5em;
+  border-right: var(--border-width) solid currentColor;
+  border-bottom: var(--border-width) solid currentColor;
+  margin-left: var(--space-1);
+  content: '';
+  transform: rotate(-45deg);
+  transition: transform var(--duration-fast) ease;
+}
+
+.disclosure[open] summary::after {
+  transform: rotate(45deg);
+}
+
 .preferences {
   display: grid;
   gap: var(--space-5);
+  padding-top: var(--space-3);
 }
 
-.saved {
-  overflow-y: auto;
-  padding: var(--space-4);
-  padding-bottom: var(--space-7);
-}
-
-.saved h2 {
+.saved h3 {
+  margin: 0 0 var(--space-3);
   font-family: var(--font-serif);
   font-size: var(--font-size-title);
 }

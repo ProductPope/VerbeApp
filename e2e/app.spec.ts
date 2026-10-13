@@ -19,9 +19,18 @@ async function openSettings(page: Page) {
   return dialog;
 }
 
-async function openPreferences(page: Page) {
+async function openProfile(page: Page) {
   await page.getByRole('button', { name: 'Your profile' }).click();
-  const preferences = page.getByRole('region', { name: 'Preferences' });
+  const dialog = page.getByRole('dialog', { name: 'Your profile' });
+  await expect(dialog).toBeVisible();
+  return dialog;
+}
+
+async function openPreferences(page: Page) {
+  const profile = await openProfile(page);
+  const preferences = profile.getByRole('region', { name: 'Preferences' });
+  await expect(preferences.getByRole('combobox', { name: 'App language' })).toBeHidden();
+  await preferences.getByText('Preferences').click();
   await expect(preferences).toBeVisible();
   return preferences;
 }
@@ -34,9 +43,12 @@ test.describe('accessibility', () => {
       await expect(feed(page).getByRole('article').first()).toBeVisible();
       await expectNoAxeViolations(page);
 
-      await page.getByRole('button', { name: 'Your profile' }).click();
-      await expect(page.getByRole('heading', { name: 'Favourites' })).toBeVisible();
+      const profile = await openProfile(page);
+      await expect(profile.getByRole('heading', { name: 'Favourites' })).toBeVisible();
       await expectNoAxeViolations(page);
+      await profile.getByRole('button', { name: 'Close' }).click();
+      await expect(profile).toBeHidden();
+      await expect(page.getByRole('button', { name: 'Your profile' })).toBeFocused();
 
       await openSettings(page);
       await expectNoAxeViolations(page);
@@ -49,6 +61,7 @@ test.describe('accessibility', () => {
     await preferences.getByRole('combobox', { name: 'App language' }).selectOption('pl');
     await expect(page.locator('html')).toHaveAttribute('lang', 'pl');
     await expectNoAxeViolations(page);
+    await page.getByRole('button', { name: 'Zamknij' }).click();
     await page.getByRole('button', { name: 'Ustawienia' }).click();
     await expect(page.getByRole('dialog', { name: 'Ustawienia' })).toBeVisible();
     await expectNoAxeViolations(page);
@@ -181,7 +194,7 @@ test.describe('feed', () => {
 
     const preferences = await openPreferences(page);
     await preferences.getByRole('switch', { name: 'Polish translation' }).uncheck();
-    await page.getByRole('button', { name: 'Your profile' }).click();
+    await page.getByRole('dialog').getByRole('button', { name: 'Close' }).click();
     await expect(feed(page).getByRole('article').first()).toBeVisible();
     await expect(feed(page).locator('.card-translation')).toHaveCount(0);
   });
