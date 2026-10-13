@@ -27,8 +27,13 @@ with TalkBack on Android and a keyboard on desktop.
 - **Settings** (category filters) live in one native modal `<dialog>`: it traps focus, closes on
   Escape and returns focus to the Settings button.
 - **Profile** opens a native modal `<dialog>` that works like Settings: an X button or Escape
-  closes it and focus returns to the Profile button. It has four labelled regions: Preferences,
-  Your quotes, Favourites and Hidden quotes. Preferences is a native `<details>` disclosure, collapsed by default; inside it the translation toggle is a checkbox with
+  closes it and focus returns to the Profile button. Its first view holds Preferences, a
+  navigation landmark ("Your lists") with one button each for Your quotes, Favourites and Hidden
+  quotes (the visible count is part of the name, e.g. "Favourites 2"), and About. Each button opens
+  its list in its own view, a labelled region whose heading takes focus so screen readers announce
+  it; a Back button (named "Back to your profile") returns to the first view with focus on the
+  button the reader came from, and closing the dialog always starts the next visit from the first
+  view. Authors in the lists are bold, apart from the source, as on the quote cards. Preferences is a native `<details>` disclosure, collapsed by default; inside it the translation toggle is a checkbox with
   `role="switch"`, drawn as a sliding switch (44 px tall touch area; native checkbox in forced-colors mode), and the app language is a native `<select>`.
 - **About** is the profile's last region, a `<details>` disclosure collapsed by default, so it
   stays out of the way; its GitHub link opens in a new tab with `rel="noopener noreferrer"`.
