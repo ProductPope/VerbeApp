@@ -4,15 +4,23 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../src/app/App.js';
 import { readingTimeMs, seededRandom } from '../../src/app/feed/queue.js';
 import { createPreferencesStore } from '../../src/app/prefs/store.js';
+import { createStreakStore, dayOf, previousDay } from '../../src/app/streak/streak.js';
 import { testCatalog } from './fixtures.js';
 
 function renderApp(language = 'en') {
   const store = createPreferencesStore(localStorage, language);
+  const streakStore = createStreakStore(localStorage);
   const user = userEvent.setup();
   const view = render(
-    <App catalog={testCatalog()} store={store} random={seededRandom(1)} reducedMotion={false} />,
+    <App
+      catalog={testCatalog()}
+      store={store}
+      streakStore={streakStore}
+      random={seededRandom(1)}
+      reducedMotion={false}
+    />,
   );
-  return { store, user, ...view };
+  return { store, streakStore, user, ...view };
 }
 
 async function openSettings(user: ReturnType<typeof userEvent.setup>) {
@@ -351,6 +359,78 @@ describe('auto-advance', () => {
     });
     advanceBy(31_000);
     expect(articles()[1]!.dataset.scrolledTo).toBe('true');
+  });
+});
+
+describe('reading streak', () => {
+  function advanceBy(ms: number) {
+    act(() => {
+      vi.advanceTimersByTime(ms);
+    });
+  }
+
+  function setHidden(hidden: boolean) {
+    Object.defineProperty(document, 'hidden', { configurable: true, value: hidden });
+    fireEvent(document, new Event('visibilitychange'));
+  }
+
+  afterEach(() => {
+    setHidden(false);
+  });
+
+  it('counts today after 30 seconds in the app and celebrates it once', () => {
+    vi.useFakeTimers({ now: new Date(2026, 9, 13, 9, 0) });
+    const { streakStore } = renderApp();
+    const badge = screen.getByText('Reading streak: 0 days in a row').parentElement!;
+    advanceBy(29_000);
+    expect(streakStore.get().count).toBe(0);
+    expect(within(badge).getByText(/Reading streak: 0/)).toBeInTheDocument();
+    advanceBy(1_000);
+    expect(streakStore.get()).toMatchObject({ count: 1, lastDay: '2026-10-13' });
+    expect(badge).toHaveTextContent('Reading streak: 1 day in a row');
+    expect(screen.getByRole('status')).toHaveTextContent('Day one of your reading streak.');
+    advanceBy(6_000);
+    expect(screen.getByRole('status')).toBeEmptyDOMElement();
+    advanceBy(60_000);
+    expect(streakStore.get().count).toBe(1);
+  });
+
+  it('continues yesterday’s streak', () => {
+    vi.useFakeTimers({ now: new Date(2026, 9, 13, 9, 0) });
+    const yesterday = previousDay(dayOf(new Date()));
+    localStorage.setItem(
+      'verbeapp:streak:v1',
+      JSON.stringify({ count: 4, lastDay: yesterday, activeDay: yesterday, activeMs: 30_000 }),
+    );
+    renderApp('pl-PL');
+    expect(screen.getByText('Seria czytania: 4 dni z rzędu')).toBeInTheDocument();
+    advanceBy(30_000);
+    expect(screen.getByText('Seria czytania: 5 dni z rzędu')).toBeInTheDocument();
+    expect(screen.getByRole('status')).toHaveTextContent('5 dni z rzędu. Brawo!');
+  });
+
+  it('does not count time while the device sleeps', () => {
+    vi.useFakeTimers({ now: new Date(2026, 9, 13, 9, 0) });
+    const { streakStore } = renderApp();
+    advanceBy(5_000);
+    // A sleeping phone stops timers while the clock moves on.
+    vi.setSystemTime(Date.now() + 10 * 60_000);
+    advanceBy(1_000);
+    expect(streakStore.get()).toMatchObject({ count: 0, activeMs: 7_000 });
+  });
+
+  it('does not count time while the app is hidden', () => {
+    vi.useFakeTimers({ now: new Date(2026, 9, 13, 9, 0) });
+    const { streakStore } = renderApp();
+    advanceBy(20_000);
+    setHidden(true);
+    advanceBy(120_000);
+    expect(streakStore.get().count).toBe(0);
+    setHidden(false);
+    advanceBy(9_000);
+    expect(streakStore.get()).toMatchObject({ count: 0, activeMs: 29_000 });
+    advanceBy(1_000);
+    expect(streakStore.get().count).toBe(1);
   });
 });
 

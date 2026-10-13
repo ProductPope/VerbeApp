@@ -2,22 +2,26 @@ import { useEffect, useRef, useState } from 'react';
 import type { Catalog } from './catalog/catalog.js';
 import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
+import { StreakBadge, StreakCelebration } from './components/ReadingStreak.js';
 import { SavedView } from './components/SavedView.js';
 import { SettingsDialog } from './components/SettingsDialog.js';
 import { eligibleCards } from './feed/queue.js';
 import { STRINGS, TRANSLATION_LANGUAGE } from './i18n/strings.js';
 import { toggle, usePreferences, type PreferencesStore } from './prefs/store.js';
+import type { StreakStore } from './streak/streak.js';
+import { trackActiveTime } from './streak/tracker.js';
 
 interface AppProps {
   catalog: Catalog;
   store: PreferencesStore;
+  streakStore: StreakStore;
   random: () => number;
   reducedMotion: boolean;
 }
 
 type View = 'feed' | 'saved';
 
-export function App({ catalog, store, random, reducedMotion }: AppProps) {
+export function App({ catalog, store, streakStore, random, reducedMotion }: AppProps) {
   const prefs = usePreferences(store);
   const strings = STRINGS[prefs.language];
   const [view, setView] = useState<View>('feed');
@@ -28,6 +32,8 @@ export function App({ catalog, store, random, reducedMotion }: AppProps) {
     document.documentElement.lang = prefs.language;
     document.title = `${strings.appName}: ${strings.tagline}`;
   }, [prefs.language, strings]);
+
+  useEffect(() => trackActiveTime(streakStore), [streakStore]);
 
   const eligible = eligibleCards(catalog.cards, prefs.hidden, prefs.tags);
   const translationLanguage = prefs.translation ? TRANSLATION_LANGUAGE : undefined;
@@ -56,6 +62,7 @@ export function App({ catalog, store, random, reducedMotion }: AppProps) {
       </a>
       <header className="app-header">
         <h1 className="app-title">{strings.appName}</h1>
+        <StreakBadge store={streakStore} strings={strings} />
         {view === 'feed' && (
           <button
             type="button"
@@ -151,6 +158,7 @@ export function App({ catalog, store, random, reducedMotion }: AppProps) {
             </button>
           </p>
         )}
+        <StreakCelebration store={streakStore} strings={strings} suppressed={lastHidden !== null} />
       </div>
     </>
   );

@@ -170,6 +170,22 @@ test.describe('feed', () => {
   });
 });
 
+test.describe('reading streak', () => {
+  test('counts today after 30 seconds in the app and remembers it', async ({ page }) => {
+    await page.clock.install({ time: new Date(2026, 9, 13, 9, 0) });
+    await page.goto('./');
+    const badge = page.locator('.streak');
+    await expect(badge).toContainText('Reading streak: 0 days in a row');
+    await page.clock.runFor(31_000);
+    await expect(badge).toContainText('Reading streak: 1 day in a row');
+    await expect(page.getByRole('status')).toContainText('Day one of your reading streak.');
+    await expectNoAxeViolations(page);
+
+    await page.reload();
+    await expect(page.locator('.streak')).toContainText('Reading streak: 1 day in a row');
+  });
+});
+
 test.describe('installable app', () => {
   test('serves a manifest with Android icons', async ({ page, request }) => {
     await page.goto('./');
