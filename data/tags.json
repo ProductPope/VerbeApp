@@ -40,6 +40,14 @@
         "en": "Staying calm under pressure, bearing hardship and getting back up after a setback.",
         "pl": "Spokój pod presją, znoszenie trudności i podnoszenie się po porażce."
       }
+    },
+    {
+      "id": "relationships",
+      "label": { "en": "Relationships", "pl": "Relacje" },
+      "description": {
+        "en": "Friendship, love, kindness and getting along with other people.",
+        "pl": "Przyjaźń, miłość, życzliwość i dobre życie z innymi ludźmi."
+      }
     }
   ]
 }

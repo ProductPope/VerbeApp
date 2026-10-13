@@ -7,7 +7,7 @@
       "text": "Begin the morning by saying to thyself, I shall meet with the busybody, the ungrateful, arrogant, deceitful, envious, unsocial.",
       "section": "book-2",
       "locator": "Book II",
-      "tags": ["philosophy", "self-development"],
+      "tags": ["philosophy", "self-development", "relationships"],
       "translations": {
         "pl": {
           "text": "Zaczynaj poranek, mówiąc sobie: spotkam dziś wścibskiego, niewdzięcznego, aroganckiego, podstępnego, zawistnego i nietowarzyskiego.",
@@ -35,7 +35,7 @@
       "text": "The best way of avenging thyself is not to become like the wrong doer.",
       "section": "book-6",
       "locator": "Book VI",
-      "tags": ["philosophy", "assertiveness"],
+      "tags": ["philosophy", "assertiveness", "relationships"],
       "translations": {
         "pl": {
           "text": "Najlepszą zemstą jest nie stać się podobnym do tego, kto wyrządził krzywdę.",
@@ -301,7 +301,7 @@
       "text": "For we are made for cooperation, like feet, like hands, like eyelids, like the rows of the upper and lower teeth.",
       "section": "book-2",
       "locator": "Book II",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "relationships"],
       "translations": {
         "pl": {
           "text": "Jesteśmy bowiem stworzeni do współpracy, jak stopy, jak dłonie, jak powieki, jak rzędy górnych i dolnych zębów.",
