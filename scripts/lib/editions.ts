@@ -37,13 +37,29 @@ async function standardEbooks(id: string, edition: StandardEbooksEdition): Promi
   };
 }
 
+/** Project Gutenberg's official mirror serves the same files when www.gutenberg.org is down. */
+const GUTENBERG_MIRROR = 'https://gutenberg.pglaf.org/';
+
+async function download(url: string): Promise<string> {
+  const urls = [url, url.replace(/^https:\/\/www\.gutenberg\.org\//, GUTENBERG_MIRROR)];
+  const errors: string[] = [];
+  for (const candidate of new Set(urls)) {
+    try {
+      const response = await fetch(candidate);
+      if (response.ok) return await response.text();
+      errors.push(`${candidate}: HTTP ${String(response.status)}`);
+    } catch (error) {
+      errors.push(`${candidate}: ${String(error)}`);
+    }
+  }
+  throw new Error(errors.join('; '));
+}
+
 async function gutenberg(id: string, edition: GutenbergEdition): Promise<Edition> {
   const path = join(CACHE_DIR, `${id}.txt`);
   if (!existsSync(path)) {
-    const response = await fetch(edition.text);
-    if (!response.ok) throw new Error(`${edition.text}: HTTP ${String(response.status)}`);
     await mkdir(CACHE_DIR, { recursive: true });
-    await writeFile(path, await response.text());
+    await writeFile(path, await download(edition.text));
   }
   const body = gutenbergBody(await readFile(path, 'utf8'));
   return {
