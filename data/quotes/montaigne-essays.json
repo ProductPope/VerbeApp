@@ -79,6 +79,32 @@
           "license": "CC0-1.0"
         }
       }
+    },
+    {
+      "id": "where-death-waits",
+      "text": "Where death waits for us is uncertain; let us look for him everywhere.",
+      "locator": "Book I, Chapter XIX",
+      "tags": ["mortality"],
+      "translations": {
+        "pl": {
+          "text": "Nie wiadomo, gdzie czeka na nas śmierć; wypatrujmy jej więc wszędzie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "premeditation-of-death",
+      "text": "The premeditation of death is the premeditation of liberty; he who has learned to die has unlearned to serve.",
+      "locator": "Book I, Chapter XIX",
+      "tags": ["mortality", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Rozmyślanie o śmierci jest rozmyślaniem o wolności; kto nauczył się umierać, oduczył się służyć.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }
