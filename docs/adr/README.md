@@ -9,3 +9,4 @@ never edited after acceptance; a new record supersedes an old one.
 | [0001](0001-quotes-as-json-in-the-repo.md)               | Store quotes as schema-validated JSON in the repo  | Accepted |
 | [0002](0002-verified-public-domain-sources.md)           | Only public-domain sources, verified word for word | Accepted |
 | [0003](0003-gutenberg-editions-and-community-sayings.md) | Project Gutenberg editions and community sayings   | Accepted |
+| [0004](0004-react-pwa-with-local-preferences.md)         | A React PWA with on-device preferences             | Accepted |

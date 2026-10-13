@@ -3,8 +3,11 @@
 Short, wise quotes on philosophy, self-development, productivity and assertiveness, delivered to
 your phone.
 
-> **Status:** early development. The verified quote dataset is in place; the installable web app
-> (PWA) and daily notifications come next. See the [roadmap](#roadmap).
+**Open the app: <https://productpope.github.io/VerbeApp/>** and on Android choose _Install app_
+(or _Add to Home screen_) in Chrome's menu.
+
+> **Status:** early development. The verified dataset and the installable app are in place; daily
+> notifications come next. See the [roadmap](#roadmap).
 
 ## What makes it different
 
@@ -14,6 +17,16 @@ Quote apps are full of misattributed and invented lines. Every quote in VerbeApp
   Project Gutenberg), and CI checks it appears there word for word;
 - **free to use**: only works whose author and translator died more than 70 years ago;
 - **open**: plain JSON files with JSON Schemas, so anyone can add quotes through a pull request.
+
+## The app
+
+A full-screen feed of quote cards: swipe up for the next one, save favourites, hide quotes you
+don't want to see again, filter by category, and switch between English and Polish. Optional
+auto-advance turns the feed into a slideshow and pauses whenever you interact. Everything you
+choose stays on your device, and the app works offline.
+
+It is built to WCAG 2.2 AA; see [docs/accessibility.md](docs/accessibility.md) for how that is
+tested.
 
 ## The dataset
 
@@ -34,7 +47,9 @@ Requires Node.js 22.12 or newer.
 
 ```sh
 npm ci
-npm run check          # lint, type-check, unit tests and data validation
+npm run dev            # start the app at http://localhost:5173
+npm run check          # lint, type-check, unit and component tests, data validation
+npm run test:e2e       # build, then run Playwright and axe tests on an Android viewport
 npm run data:verify    # check every quote against its source text (needs network)
 npm run data:text -- meditations book-4   # print a chapter to copy quotes from
 ```
@@ -46,7 +61,7 @@ behind the design.
 
 1. **Quote dataset**: schema, validation and source verification. ✅
 2. **App**: installable PWA with a full-screen card feed, favourites and hidden quotes,
-   category filter and English/Polish switch, built to WCAG 2.2 AA on a token-based design system.
+   category filter and English/Polish switch, built to WCAG 2.2 AA on a token-based design system. ✅
 3. **Daily quote**: a push notification at a time you choose.
 
 ## Licence
