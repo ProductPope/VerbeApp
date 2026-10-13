@@ -1,0 +1,279 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "indian-home-rule",
+  "quotes": [
+    {
+      "id": "civilization-points-path-duty",
+      "text": "Civilization is that mode of conduct which points out to man the path of duty.",
+      "locator": "Chapter XIII: What is True Civilization?",
+      "tags": ["philosophy", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Cywilizacja to taki sposób postępowania, który wskazuje człowiekowi drogę obowiązku.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "mind-restless-bird",
+      "text": "Mind is a restless bird; the more it gets the more it wants, and still remains unsatisfied.",
+      "locator": "Chapter XIII: What is True Civilization?",
+      "tags": ["mindfulness", "happiness"],
+      "translations": {
+        "pl": {
+          "text": "Umysł jest niespokojnym ptakiem; im więcej dostaje, tym więcej chce, i wciąż pozostaje nienasycony.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "happiness-largely-mental-condition",
+      "text": "Happiness was largely a mental condition. A man is not necessarily happy because he is rich, or unhappy because he is poor.",
+      "locator": "Chapter XIII: What is True Civilization?",
+      "tags": ["happiness", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Szczęście jest w dużej mierze stanem umysłu. Człowiek nie musi być szczęśliwy dlatego, że jest bogaty, ani nieszczęśliwy dlatego, że jest biedny.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "disbelief-dignity-of-man",
+      "text": "To believe that, what has not occurred in history will not occur at all, is to argue disbelief in the dignity of man.",
+      "locator": "Chapter XIV: How can India Become Free?",
+      "tags": ["courage", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Wierzyć, że to, co nie wydarzyło się w historii, nie wydarzy się nigdy, to okazywać niewiarę w godność człowieka.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "means-seed-end-tree",
+      "text": "The means may be likened to a seed, the end to a tree; and there is just the same inviolable connection between the means and the end as there is between the seed and the tree.",
+      "locator": "Chapter XVI: Brute-Force",
+      "tags": ["philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Środki można przyrównać do nasienia, a cel do drzewa; między środkami a celem istnieje dokładnie taki sam nierozerwalny związek jak między nasieniem a drzewem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "real-rights-performance-duty",
+      "text": "Real rights are a result of performance of duty.",
+      "locator": "Chapter XVI: Brute-Force",
+      "tags": ["philosophy", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Prawdziwe prawa są owocem wypełniania obowiązków.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "love-pity-greater-than-arms",
+      "text": "The force of love and pity is infinitely greater than the force of arms. There is harm in the exercise of brute-force, never in that of pity.",
+      "locator": "Chapter XVI: Brute-Force",
+      "tags": ["relationships", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Siła miłości i współczucia jest nieskończenie większa niż siła oręża. W używaniu przemocy tkwi krzywda, w okazywaniu współczucia — nigdy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "force-love-soul-truth",
+      "text": "The force of love is the same as the force of the soul or truth.",
+      "locator": "Chapter XVII: Passive Resistance",
+      "tags": ["relationships", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Siła miłości jest tym samym, co siła duszy, czyli prawdy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "no-man-absolutely-right",
+      "text": "No man can claim to be absolutely in the right, or that a particular thing is wrong, because he thinks so, but it is wrong for him so long as that is his deliberate judgment.",
+      "locator": "Chapter XVII: Passive Resistance",
+      "tags": ["assertiveness", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Nikt nie może twierdzić, że ma całkowitą rację albo że coś jest złe tylko dlatego, że tak uważa; ale jest to złe dla niego, dopóki taki jest jego przemyślany osąd.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "reforms-owe-origin-minorities",
+      "text": "All reforms owe their origin to the initiation of minorities in opposition to majorities.",
+      "locator": "Chapter XVII: Passive Resistance",
+      "tags": ["assertiveness", "courage"],
+      "translations": {
+        "pl": {
+          "text": "Wszystkie reformy zawdzięczają swój początek inicjatywie mniejszości występujących przeciw większościom.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "fears-only-god-fears-no-one",
+      "text": "A man who has realised his manhood, who fears only God, will fear no one else.",
+      "locator": "Chapter XVII: Passive Resistance",
+      "tags": ["courage", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Człowiek, który pojął swoje człowieczeństwo i boi się tylko Boga, nie będzie się bał nikogo innego.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "control-over-mind-free",
+      "text": "Control over the mind is alone necessary, and, when that is attained, man is free like the king of the forest.",
+      "locator": "Chapter XVII: Passive Resistance",
+      "tags": ["mindfulness", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Potrzebne jest jedynie panowanie nad umysłem, a gdy się je osiągnie, człowiek jest wolny jak król puszczy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "defy-death-free-from-fear",
+      "text": "Those who defy death are free from all fear.",
+      "locator": "Chapter XVII: Passive Resistance",
+      "tags": ["courage", "mortality"],
+      "translations": {
+        "pl": {
+          "text": "Ci, którzy rzucają wyzwanie śmierci, są wolni od wszelkiego lęku.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "nature-implanted-ability-cope",
+      "text": "Nature has implanted in the human breast ability to cope with any difficulty or suffering that may come to man unprovoked.",
+      "locator": "Chapter XVII: Passive Resistance",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Natura zaszczepiła w ludzkiej piersi zdolność radzenia sobie z każdą trudnością czy cierpieniem, które mogą spotkać człowieka bez jego winy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "abandons-truth-owing-fear",
+      "text": "When a man abandons truth, he does so owing to fear in some shape or form.",
+      "locator": "Chapter XVII: Passive Resistance",
+      "tags": ["courage", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Gdy człowiek porzuca prawdę, czyni to z lęku w tej czy innej postaci.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "free-from-hatred-no-sword",
+      "text": "One who is free from hatred requires no sword.",
+      "locator": "Chapter XVII: Passive Resistance",
+      "tags": ["relationships", "courage"],
+      "translations": {
+        "pl": {
+          "text": "Kto jest wolny od nienawiści, nie potrzebuje miecza.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "character-building-first-place",
+      "text": "Character-building has the first place in it, and that is primary education. A building erected on that foundation will last.",
+      "locator": "Chapter XVIII: Education",
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Kształtowanie charakteru zajmuje w niej pierwsze miejsce i to jest prawdziwe wykształcenie podstawowe. Budowla wzniesiona na takim fundamencie przetrwa.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "action-better-than-speech",
+      "text": "Action is much better than speech; that it is our duty to say exactly what we think and face the consequences.",
+      "locator": "Chapter XX: Conclusion",
+      "tags": ["assertiveness", "courage", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "Czyn jest o wiele lepszy niż mowa; naszym obowiązkiem jest mówić dokładnie to, co myślimy, i ponosić tego konsekwencje.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "do-what-we-know-right",
+      "text": "We should do what we know to be right, and that others will do it when they see the way.",
+      "locator": "Chapter XX: Conclusion",
+      "tags": ["courage", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "Powinniśmy robić to, co uważamy za słuszne, a inni pójdą w nasze ślady, gdy zobaczą drogę.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "let-each-do-his-duty",
+      "text": "You and I have nothing to do with the others. Let each do his duty. If I do my duty, that is, serve myself, I shall be able to serve others.",
+      "locator": "Chapter XX: Conclusion",
+      "tags": ["self-development", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "Ty i ja nie mamy nic wspólnego z innymi. Niech każdy wypełnia swój obowiązek. Jeśli ja wypełnię swój, czyli posłużę sobie, będę mógł służyć innym.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "real-home-rule-self-control",
+      "text": "Real home-rule is self-rule or self-control.",
+      "locator": "Chapter XX: Conclusion",
+      "tags": ["self-development", "mindfulness"],
+      "translations": {
+        "pl": {
+          "text": "Prawdziwa samorządność to panowanie nad sobą, czyli samokontrola.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    }
+  ]
+}
