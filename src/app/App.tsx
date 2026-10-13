@@ -14,6 +14,9 @@ import { toggle, usePreferences, type PreferencesStore } from './prefs/store.js'
 import type { StreakStore } from './streak/streak.js';
 import { trackActiveTime } from './streak/tracker.js';
 
+/** How long the offer to undo hiding a quote stays on screen. */
+const UNDO_MS = 8_000;
+
 interface AppProps {
   catalog: Catalog;
   store: PreferencesStore;
@@ -38,6 +41,19 @@ export function App({
   const prefs = usePreferences(store);
   const strings = STRINGS[prefs.language];
   const [lastHidden, setLastHidden] = useState<string | null>(null);
+  const [undoFocused, setUndoFocused] = useState(false);
+
+  // The undo offer leaves after a while, but never while it has focus. Hidden
+  // quotes can still be restored from the profile at any time.
+  useEffect(() => {
+    if (lastHidden === null || undoFocused) return;
+    const timer = setTimeout(() => {
+      setLastHidden(null);
+    }, UNDO_MS);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [lastHidden, undoFocused]);
   const settings = useRef<HTMLDialogElement>(null);
   const profile = useRef<HTMLDialogElement>(null);
 
@@ -190,6 +206,13 @@ export function App({
               className="text-button"
               onClick={() => {
                 restore(lastHidden);
+                setUndoFocused(false);
+              }}
+              onFocus={() => {
+                setUndoFocused(true);
+              }}
+              onBlur={() => {
+                setUndoFocused(false);
               }}
             >
               {strings.undo}

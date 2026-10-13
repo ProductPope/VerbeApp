@@ -284,6 +284,39 @@ test.describe('reading streak', () => {
   });
 });
 
+test.describe('security', () => {
+  test('runs under a Content Security Policy without violating it', async ({ page }) => {
+    const violations: string[] = [];
+    page.on('console', (message) => {
+      if (message.text().includes('Content Security Policy')) violations.push(message.text());
+    });
+    await page.addInitScript(() => {
+      document.addEventListener('securitypolicyviolation', (event) => {
+        console.error(`Content Security Policy: ${event.violatedDirective}`);
+      });
+    });
+    await page.goto('./');
+    const policy = await page
+      .locator('meta[http-equiv="Content-Security-Policy"]')
+      .getAttribute('content');
+    expect(policy).toContain("script-src 'self'");
+    await expect(feed(page).getByRole('article').first()).toBeVisible();
+    await page.getByRole('button', { name: 'Auto-advance' }).click();
+    await expect(page.getByTestId('autoplay-progress')).toBeVisible();
+    expect(violations).toEqual([]);
+  });
+
+  test('still fits the screen in landscape', async ({ page }) => {
+    await page.setViewportSize({ width: 915, height: 412 });
+    await page.goto('./');
+    await expect(feed(page).getByRole('article').first()).toBeVisible();
+    const scrolls = await page.evaluate(
+      () => document.documentElement.scrollHeight > window.innerHeight,
+    );
+    expect(scrolls).toBe(false);
+  });
+});
+
 test.describe('installable app', () => {
   test('serves a manifest with Android icons', async ({ page, request }) => {
     await page.goto('./');
@@ -292,9 +325,12 @@ test.describe('installable app', () => {
     const manifest = (await (await request.get(href!)).json()) as {
       name: string;
       display: string;
+      orientation?: string;
       icons: { sizes: string; purpose?: string }[];
     };
     expect(manifest).toMatchObject({ name: 'VerbeApp', display: 'standalone' });
+    // WCAG 1.3.4: the app must not lock itself to portrait or landscape.
+    expect(manifest.orientation).toBeUndefined();
     expect(manifest.icons.map((icon) => icon.sizes)).toEqual(
       expect.arrayContaining(['192x192', '512x512']),
     );

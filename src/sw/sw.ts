@@ -57,11 +57,16 @@ self.addEventListener('notificationclick', (event) => {
       const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
       const existing = windows.find((client) => client.url.startsWith(self.registration.scope));
       if (existing) {
-        await existing.navigate(url.href);
-        await existing.focus();
-      } else {
-        await self.clients.openWindow(url.href);
+        try {
+          // Only a window this worker controls can be navigated; any other throws.
+          await existing.navigate(url.href);
+          await existing.focus();
+          return;
+        } catch {
+          // Fall through and open a new window instead.
+        }
       }
+      await self.clients.openWindow(url.href);
     })(),
   );
 });

@@ -164,6 +164,40 @@ describe('favourites and hidden quotes', () => {
     expect(status).toBeEmptyDOMElement();
   });
 
+  it('lets the undo offer go after a while, but not while it has focus', () => {
+    vi.useFakeTimers();
+    renderApp();
+    const hideFirst = () => {
+      fireEvent.click(within(articles()[0]!).getByRole('button', { name: 'Don’t show again' }));
+    };
+    const wait = (ms: number) => {
+      act(() => {
+        vi.advanceTimersByTime(ms);
+      });
+    };
+    const status = screen.getByRole('status');
+    hideFirst();
+    wait(7_900);
+    expect(status).toHaveTextContent('Quote hidden.');
+    wait(200);
+    expect(status).toBeEmptyDOMElement();
+
+    hideFirst();
+    const undo = within(status).getByRole('button', { name: 'Undo' });
+    act(() => {
+      undo.focus();
+    });
+    wait(20_000);
+    expect(status).toHaveTextContent('Quote hidden.');
+    act(() => {
+      undo.blur();
+    });
+    wait(8_000);
+    expect(status).not.toHaveTextContent('Quote hidden.');
+    // With the offer gone, the streak message that was held back can show.
+    expect(status).toHaveTextContent('Day one of your reading streak');
+  });
+
   it('restores hidden quotes from the profile', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, hidden: ['beta', 'unknown-id'] }));

@@ -37,7 +37,12 @@ with TalkBack on Android and a keyboard on desktop.
   translation under them carries `lang="pl"`, so screen readers pronounce each correctly. The
   translation is part of the article's description.
 - **Motion**: transitions and smooth scrolling are disabled under `prefers-reduced-motion`.
-- **Hiding a quote** is announced in a status region with an Undo button.
+- **Hiding a quote** is announced in a status region with an Undo button. The offer leaves after
+  8 seconds, but not while the Undo button has focus; hidden quotes can always be restored from
+  the profile, so the time limit takes nothing away (WCAG 2.2.1).
+- **Orientation**: the app works in portrait and landscape and does not lock either (WCAG 1.3.4).
+- **AI draft translations** say so in a short line under the translation, which is also part of
+  the article's description.
 - **Reading streak**: the flame in the header is a button whose visible icon and number are
   decorative; a visually hidden sentence gives its name with the full count. It opens a native modal
   `<dialog>` about the streak (closes with its X button or Escape and returns focus to the flame); the
