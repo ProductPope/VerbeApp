@@ -335,6 +335,11 @@ describe('profile', () => {
         .map((button) => button.textContent),
     ).toEqual(['Your quotes 0', 'Favourites 2', 'Hidden quotes 1']);
     expect(within(profile).queryByRole('region', { name: 'Favourites' })).not.toBeInTheDocument();
+    // The reader's lists come first; Preferences and About follow, in that order.
+    expect(
+      lists.compareDocumentPosition(within(profile).getByRole('region', { name: 'Preferences' })),
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(within(profile).getAllByRole('region').at(-1)).toHaveAccessibleName('About Verbe');
 
     await user.click(within(lists).getByRole('button', { name: /^Favourites/ }));
     const favorites = within(profile).getByRole('region', { name: 'Favourites' });
