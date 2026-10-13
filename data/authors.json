@@ -153,6 +153,15 @@
       },
       "born": 1788,
       "died": 1860
+    },
+    {
+      "id": "mahatma-gandhi",
+      "name": {
+        "en": "Mahatma Gandhi",
+        "pl": "Mahatma Gandhi"
+      },
+      "born": 1869,
+      "died": 1948
     }
   ]
 }

@@ -276,6 +276,22 @@
         "url": "https://www.gutenberg.org/ebooks/10741",
         "text": "https://www.gutenberg.org/cache/epub/10741/pg10741.txt"
       }
+    },
+    {
+      "id": "indian-home-rule",
+      "title": "Indian Home Rule (Hind Swaraj)",
+      "author": "mahatma-gandhi",
+      "translator": {
+        "name": "M. K. Gandhi",
+        "died": 1948
+      },
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Project Gutenberg",
+        "url": "https://www.gutenberg.org/ebooks/40461",
+        "text": "https://www.gutenberg.org/cache/epub/40461/pg40461.txt"
+      }
     }
   ]
 }
