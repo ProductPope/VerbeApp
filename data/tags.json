@@ -32,6 +32,14 @@
         "en": "Standing by your own judgement, speaking honestly and not living by others' opinions.",
         "pl": "Trzymanie się własnego zdania, szczera mowa i niezależność od cudzych opinii."
       }
+    },
+    {
+      "id": "resilience",
+      "label": { "en": "Resilience", "pl": "Odporność" },
+      "description": {
+        "en": "Staying calm under pressure, bearing hardship and getting back up after a setback.",
+        "pl": "Spokój pod presją, znoszenie trudności i podnoszenie się po porażce."
+      }
     }
   ]
 }

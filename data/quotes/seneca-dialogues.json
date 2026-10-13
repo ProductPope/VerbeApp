@@ -183,6 +183,118 @@
           "license": "CC0-1.0"
         }
       }
+    },
+    {
+      "id": "fire-tries-gold",
+      "text": "Fire tries gold, misfortune tries brave men.",
+      "section": "on-providence",
+      "locator": "On Providence",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Ogień doświadcza złota, nieszczęście doświadcza dzielnych ludzi.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "misfortune-virtues-opportunity",
+      "text": "Misfortune is virtue’s opportunity.",
+      "section": "on-providence",
+      "locator": "On Providence",
+      "tags": ["resilience", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Nieszczęście jest dla cnoty sposobnością.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "fortune-lashes-let-us-endure",
+      "text": "Fortune lashes and mangles us: well, let us endure it: it is not cruelty, it is a struggle, in which the oftener we engage the braver we shall become.",
+      "section": "on-providence",
+      "locator": "On Providence",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Los nas chłoszcze i kaleczy: cóż, znośmy to; to nie okrucieństwo, lecz zmaganie, a im częściej w nie wchodzimy, tym dzielniejsi się stajemy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "fights-on-his-knee",
+      "text": "Unbroken prosperity cannot bear a single blow; but he who has waged an unceasing strife with his misfortunes has gained a thicker skin by his sufferings, yields to no disaster, and even though he fall yet fights on his knee.",
+      "section": "on-providence",
+      "locator": "On Providence",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Nieprzerwana pomyślność nie zniesie ani jednego ciosu; lecz kto bez ustanku zmagał się ze swoimi nieszczęściami, nabrał w cierpieniu grubszej skóry, nie ugina się przed żadną klęską, a nawet gdy upadnie, walczy dalej na kolanach.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "invulnerable-never-wounded",
+      "text": "The invulnerable is not that which is never struck, but that which is never wounded.",
+      "section": "on-the-firmness-of-the-wise-person",
+      "locator": "On the Firmness of the Wise Person",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Niezranny nie jest ten, kogo nic nigdy nie uderza, lecz ten, kogo nic nigdy nie rani.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "foreseen-blow-falls-lighter",
+      "text": "A blow which has long been foreseen falls much less heavily upon us.",
+      "section": "to-marcia-on-consolation",
+      "locator": "To Marcia, on Consolation",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Cios, który dawno przewidzieliśmy, spada na nas znacznie lżej.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "steer-our-own-course",
+      "text": "Let us, then, steer our own course, and no longer allow ourselves to be driven to leeward by the force of our misfortune.",
+      "section": "to-marcia-on-consolation",
+      "locator": "To Marcia, on Consolation",
+      "tags": ["resilience", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Sterujmy więc własnym kursem i nie pozwólmy już, by siła naszego nieszczęścia spychała nas z wiatrem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "misfortune-first-onset",
+      "text": "No one could hold out against misfortune if it permanently exercised the same force as at its first onset.",
+      "section": "on-peace-of-mind",
+      "locator": "On Peace of Mind",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Nikt nie wytrzymałby nieszczęścia, gdyby stale działało z tą samą siłą co przy pierwszym uderzeniu.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }
