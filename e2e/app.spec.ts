@@ -27,7 +27,7 @@ test.describe('accessibility', () => {
       await expect(feed(page).getByRole('article').first()).toBeVisible();
       await expectNoAxeViolations(page);
 
-      await page.getByRole('button', { name: 'Saved quotes' }).click();
+      await page.getByRole('button', { name: 'Your profile' }).click();
       await expect(page.getByRole('heading', { name: 'Favourites' })).toBeVisible();
       await expectNoAxeViolations(page);
 
@@ -120,7 +120,7 @@ test.describe('feed', () => {
     await expect(page.getByRole('status')).toContainText('Quote hidden.');
 
     await page.reload();
-    await page.getByRole('button', { name: 'Saved quotes' }).click();
+    await page.getByRole('button', { name: 'Your profile' }).click();
     await expect(page.getByRole('region', { name: 'Favourites' })).toContainText(
       favoriteText.replace(/[“”]/g, ''),
     );

@@ -123,8 +123,8 @@ describe('favourites and hidden quotes', () => {
     expect(button).toHaveAttribute('aria-pressed', 'true');
     expect(store.get().favorites).toEqual([id]);
 
-    await user.click(screen.getByRole('button', { name: 'Saved quotes' }));
-    expect(screen.getByRole('button', { name: 'Saved quotes' })).toHaveAttribute(
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
+    expect(screen.getByRole('button', { name: 'Your profile' })).toHaveAttribute(
       'aria-pressed',
       'true',
     );
@@ -152,12 +152,12 @@ describe('favourites and hidden quotes', () => {
   it('restores hidden quotes from the Saved view', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, hidden: ['beta', 'unknown-id'] }));
-    await user.click(screen.getByRole('button', { name: 'Saved quotes' }));
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
     const hidden = screen.getByRole('region', { name: 'Hidden quotes' });
     expect(within(hidden).getAllByRole('listitem')).toHaveLength(1);
     await user.click(within(hidden).getByRole('button', { name: 'Show again' }));
     expect(within(hidden).getByText('Nothing hidden.')).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Saved quotes' }));
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
     expect(cardIds()).toContain('beta');
   });
 
@@ -232,7 +232,7 @@ describe('translation', () => {
   it('also appears in the Saved view', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, favorites: ['alpha'] }));
-    await user.click(screen.getByRole('button', { name: 'Saved quotes' }));
+    await user.click(screen.getByRole('button', { name: 'Your profile' }));
     const favorites = screen.getByRole('region', { name: 'Favourites' });
     expect(within(favorites).getByText('Tekst alfa.')).toHaveAttribute('lang', 'pl');
   });
