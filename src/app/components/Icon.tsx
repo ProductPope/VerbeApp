@@ -9,6 +9,8 @@ const PATHS = {
   bookmark: 'M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z',
   settings: 'M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4',
   close: 'M18 6 6 18M6 6l12 12',
+  flame:
+    'M12 22c4 0 7-2.8 7-7 0-3.4-2.1-6.3-4.6-8.6-.3 2.2-1.4 3.7-2.9 4.4.4-3.3-.9-6.4-3.5-8.8C8 5.4 5 9 5 15c0 4.2 3 7 7 7z',
 } as const;
 
 export type IconName = keyof typeof PATHS;

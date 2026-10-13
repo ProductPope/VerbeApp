@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from 'react';
+import { createLocalStore, useLocalStore } from '../storage/local-store.js';
 import { isLanguage, type Language } from '../i18n/strings.js';
 
 /** Everything the app remembers on this device. Never sent anywhere. */
@@ -50,39 +50,11 @@ export function parsePreferences(raw: string | null, fallback: Preferences): Pre
   }
 }
 
-/** A small observable store persisted to localStorage when it is available. */
+/** Preferences persisted to localStorage when it is available. */
 export function createPreferencesStore(storage: Storage | undefined, browserLanguage: string) {
-  let state = parsePreferences(read(), defaultPreferences(browserLanguage));
-  const listeners = new Set<() => void>();
-
-  function read(): string | null {
-    try {
-      return storage?.getItem(STORAGE_KEY) ?? null;
-    } catch {
-      return null;
-    }
-  }
-
-  function write() {
-    try {
-      storage?.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch {
-      // Private mode or full storage: keep working for this session only.
-    }
-  }
-
-  return {
-    get: () => state,
-    subscribe: (listener: () => void) => {
-      listeners.add(listener);
-      return () => listeners.delete(listener);
-    },
-    update: (change: (current: Preferences) => Preferences) => {
-      state = change(state);
-      write();
-      for (const listener of listeners) listener();
-    },
-  };
+  return createLocalStore(storage, STORAGE_KEY, (raw) =>
+    parsePreferences(raw, defaultPreferences(browserLanguage)),
+  );
 }
 
 export type PreferencesStore = ReturnType<typeof createPreferencesStore>;
@@ -92,5 +64,5 @@ export function toggle(list: string[], id: string): string[] {
 }
 
 export function usePreferences(store: PreferencesStore): Preferences {
-  return useSyncExternalStore(store.subscribe, store.get, store.get);
+  return useLocalStore(store);
 }

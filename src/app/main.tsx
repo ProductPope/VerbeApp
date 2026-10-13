@@ -4,6 +4,7 @@ import { registerSW } from 'virtual:pwa-register';
 import { App } from './App.js';
 import { catalog } from './catalog/load.js';
 import { createPreferencesStore } from './prefs/store.js';
+import { createStreakStore } from './streak/streak.js';
 import './styles/tokens.css';
 import './styles/app.css';
 
@@ -17,11 +18,13 @@ function localStorageOrUndefined(): Storage | undefined {
 
 const root = document.getElementById('root');
 if (root) {
+  const storage = localStorageOrUndefined();
   createRoot(root).render(
     <StrictMode>
       <App
         catalog={catalog}
-        store={createPreferencesStore(localStorageOrUndefined(), navigator.language)}
+        store={createPreferencesStore(storage, navigator.language)}
+        streakStore={createStreakStore(storage)}
         random={Math.random}
         reducedMotion={window.matchMedia('(prefers-reduced-motion: reduce)').matches}
       />
