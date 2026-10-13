@@ -3,19 +3,6 @@
   "source": "montaigne-essays",
   "quotes": [
     {
-      "id": "tormented-opinions-not-things",
-      "text": "Men … are tormented with the opinions they have of things and not by the things themselves.",
-      "locator": "Book I, Chapter XL",
-      "tags": ["philosophy", "self-development", "resilience"],
-      "translations": {
-        "pl": {
-          "text": "Ludzi dręczą mniemania, jakie mają o rzeczach, a nie same rzeczy.",
-          "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
-        }
-      }
-    },
-    {
       "id": "because-it-was-he",
       "text": "If a man should importune me to give a reason why I loved him, I find it could no otherwise be expressed, than by making answer: because it was he, because it was I.",
       "locator": "Book I, Chapter XXVII",
