@@ -245,7 +245,7 @@
       "text": "Set thyself in motion, if it is in thy power, and do not look about thee to see if anyone will observe it… but be content if the smallest thing goes on well, and consider such an event to be no small matter.",
       "section": "book-9",
       "locator": "Book IX",
-      "tags": ["productivity"],
+      "tags": ["productivity", "courage"],
       "translations": {
         "pl": {
           "text": "Rusz się, jeśli to w twojej mocy, i nie rozglądaj się, czy ktoś to zauważy… lecz ciesz się, jeśli najmniejsza rzecz idzie dobrze, i nie uważaj tego za drobiazg.",
@@ -273,7 +273,7 @@
       "text": "Why dost thou not rather act than complain?",
       "section": "book-8",
       "locator": "Book VIII",
-      "tags": ["productivity", "assertiveness"],
+      "tags": ["productivity", "assertiveness", "courage"],
       "translations": {
         "pl": {
           "text": "Czemu raczej nie działasz, zamiast narzekać?",
@@ -287,7 +287,7 @@
       "text": "It is in thy power to do it or to say it, and do not make excuses that thou art hindered.",
       "section": "book-10",
       "locator": "Book X",
-      "tags": ["productivity"],
+      "tags": ["productivity", "courage"],
       "translations": {
         "pl": {
           "text": "W twojej mocy jest to zrobić albo powiedzieć; nie wymawiaj się, że coś ci przeszkadza.",
@@ -315,7 +315,7 @@
       "text": "Throwing away idle hopes, come to thy own aid, if thou carest at all for thyself, while it is in thy power.",
       "section": "book-3",
       "locator": "Book III",
-      "tags": ["self-development", "productivity"],
+      "tags": ["self-development", "productivity", "courage"],
       "translations": {
         "pl": {
           "text": "Porzuć próżne nadzieje i przyjdź sobie z pomocą, jeśli w ogóle dbasz o siebie, póki to w twojej mocy.",
@@ -329,7 +329,7 @@
       "text": "What need is there of suspicious fear, since it is in thy power to inquire what ought to be done?",
       "section": "book-10",
       "locator": "Book X",
-      "tags": ["assertiveness"],
+      "tags": ["assertiveness", "courage"],
       "translations": {
         "pl": {
           "text": "Po co podejrzliwy lęk, skoro w twojej mocy jest zbadać, co należy zrobić?",

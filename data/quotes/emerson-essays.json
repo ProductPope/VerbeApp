@@ -175,7 +175,7 @@
       "text": "The power which resides in him is new in nature, and none but he knows what that is which he can do, nor does he know until he has tried.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["self-development", "productivity"],
+      "tags": ["self-development", "productivity", "courage"],
       "translations": {
         "pl": {
           "text": "Moc, która w nim tkwi, jest nowa w przyrodzie i nikt poza nim nie wie, co potrafi zrobić; on sam też tego nie wie, dopóki nie spróbuje.",
@@ -217,7 +217,7 @@
       "text": "Do the thing, and you shall have the Power; but they who do not the thing have not the power.",
       "section": "compensation",
       "locator": "Compensation",
-      "tags": ["productivity"],
+      "tags": ["productivity", "courage"],
       "translations": {
         "pl": {
           "text": "Zrób to, a będziesz miał moc; ci, którzy tego nie robią, mocy nie mają.",
@@ -333,6 +333,76 @@
       "translations": {
         "pl": {
           "text": "Obudziłem się dziś rano z głęboką wdzięcznością za moich przyjaciół, starych i nowych.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "self-trust-essence-heroism",
+      "text": "Self-trust is the essence of heroism.",
+      "section": "heroism",
+      "locator": "Heroism",
+      "tags": ["courage", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Zaufanie do siebie jest istotą bohaterstwa.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "heroism-is-persistency",
+      "text": "The characteristic of heroism is its persistency.",
+      "section": "heroism",
+      "locator": "Heroism",
+      "tags": ["courage"],
+      "translations": {
+        "pl": {
+          "text": "Cechą bohaterstwa jest wytrwałość.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "never-strike-sail-to-fear",
+      "text": "O friend, never strike sail to a fear!",
+      "section": "heroism",
+      "locator": "Heroism",
+      "tags": ["courage"],
+      "translations": {
+        "pl": {
+          "text": "Przyjacielu, nigdy nie zwijaj żagli przed lękiem!",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "front-worst-apprehension",
+      "text": "Let him front the object of his worst apprehension, and his stoutness will commonly make his fear groundless.",
+      "section": "prudence",
+      "locator": "Prudence",
+      "tags": ["courage"],
+      "translations": {
+        "pl": {
+          "text": "Niech stanie twarzą w twarz z tym, czego najbardziej się obawia, a jego hart zwykle sprawi, że lęk okaże się bezpodstawny.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "prudence-is-courage",
+      "text": "In regard to disagreeable and formidable things, prudence does not consist in evasion or in flight, but in courage.",
+      "section": "prudence",
+      "locator": "Prudence",
+      "tags": ["courage"],
+      "translations": {
+        "pl": {
+          "text": "Wobec rzeczy przykrych i groźnych roztropność nie polega na unikaniu ani na ucieczce, lecz na odwadze.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }
