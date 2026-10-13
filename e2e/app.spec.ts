@@ -45,7 +45,7 @@ test.describe('accessibility', () => {
 
       const profile = await openProfile(page);
       await expect(profile.getByRole('heading', { name: 'Favourites' })).toBeVisible();
-      await profile.getByText('About VerbeApp').click();
+      await profile.getByText('About Verbe').click();
       await expect(profile.getByRole('link', { name: 'Source code on GitHub' })).toBeVisible();
       await expectNoAxeViolations(page);
       await profile.getByRole('button', { name: 'Close' }).click();
@@ -445,7 +445,7 @@ test.describe('installable app', () => {
       orientation?: string;
       icons: { sizes: string; purpose?: string }[];
     };
-    expect(manifest).toMatchObject({ name: 'VerbeApp', display: 'standalone' });
+    expect(manifest).toMatchObject({ name: 'Verbe', display: 'standalone' });
     // WCAG 1.3.4: the app must not lock itself to portrait or landscape.
     expect(manifest.orientation).toBeUndefined();
     expect(manifest.icons.map((icon) => icon.sizes)).toEqual(
@@ -536,7 +536,7 @@ test.describe('offer to install', () => {
         });
         window.dispatchEvent(event);
       });
-      const offer = page.getByRole('complementary', { name: 'Install VerbeApp' });
+      const offer = page.getByRole('complementary', { name: 'Install Verbe' });
       await expect(offer).toBeHidden();
 
       await feed(page).getByRole('button', { name: 'Favourite' }).first().click();

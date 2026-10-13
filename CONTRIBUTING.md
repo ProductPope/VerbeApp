@@ -74,7 +74,7 @@ public domain or your own work released under CC0:
 "translations": {
   "pl": {
     "text": "Większość ludzi wiedzie życie w cichej rozpaczy.",
-    "translator": "VerbeApp contributors",
+    "translator": "Verbe contributors",
     "license": "CC0-1.0",
     "status": "reviewed"
   }

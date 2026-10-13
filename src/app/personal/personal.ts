@@ -139,7 +139,7 @@ export function exportPersonalQuotes(quotes: readonly PersonalQuote[]): string {
 
 export class InvalidBackupError extends Error {
   constructor() {
-    super('Not a VerbeApp personal quotes backup');
+    super('Not a Verbe personal quotes backup');
     this.name = 'InvalidBackupError';
   }
 }

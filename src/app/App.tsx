@@ -257,7 +257,7 @@ export function App({
 
   function exportPersonal() {
     const date = new Date().toISOString().slice(0, 10);
-    saveFile(`verbeapp-my-quotes-${date}.json`, exportPersonalQuotes(personalStore.get()));
+    saveFile(`verbe-my-quotes-${date}.json`, exportPersonalQuotes(personalStore.get()));
   }
 
   function importPersonal(json: string) {
@@ -369,7 +369,7 @@ export function App({
             onImport={importPersonal}
             onImportCsv={previewCsv}
             onDownloadTemplate={() => {
-              saveFile('verbeapp-quotes-template.csv', csvTemplate(catalog.tags));
+              saveFile('verbe-quotes-template.csv', csvTemplate(catalog.tags));
             }}
           />
         }

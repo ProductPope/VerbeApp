@@ -324,9 +324,9 @@ describe('profile', () => {
     const profile = await openProfile(user);
     const regions = within(profile).getAllByRole('region');
     const about = regions.at(-1)!;
-    expect(about).toHaveAccessibleName('About VerbeApp');
+    expect(about).toHaveAccessibleName('About Verbe');
     expect(about.querySelector('details')).not.toHaveAttribute('open');
-    await user.click(within(about).getByText('About VerbeApp'));
+    await user.click(within(about).getByText('About Verbe'));
     expect(about.querySelector('details')).toHaveAttribute('open');
     expect(about).toHaveTextContent(/open-source/);
     expect(about).toHaveTextContent(/public-domain/);
@@ -844,7 +844,7 @@ describe('your own quotes', () => {
     });
     await user.click(within(section).getByRole('button', { name: 'Download backup' }));
     expect(saveFile).toHaveBeenCalledWith(
-      expect.stringMatching(/^verbeapp-my-quotes-\d{4}-\d{2}-\d{2}\.json$/),
+      expect.stringMatching(/^verbe-my-quotes-\d{4}-\d{2}-\d{2}\.json$/),
       expect.any(String),
     );
     const backup = saveFile.mock.calls[0]![1];
@@ -864,7 +864,7 @@ describe('your own quotes', () => {
 
     await user.upload(input, new File(['nope'], 'x.json', { type: 'application/json' }));
     await vi.waitFor(() => {
-      expect(screen.getByRole('status')).toHaveTextContent('This file is not a VerbeApp backup.');
+      expect(screen.getByRole('status')).toHaveTextContent('This file is not a Verbe backup.');
     });
   });
 
@@ -920,7 +920,7 @@ describe('your own quotes', () => {
     expect(within(table).getByText(/Available: Philosophy, Productivity\./)).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Download template' }));
     expect(saveFile).toHaveBeenCalledWith(
-      'verbeapp-quotes-template.csv',
+      'verbe-quotes-template.csv',
       expect.stringMatching(/^\uFEFFtext,author,source,language,categories\r\n/),
     );
   });
@@ -945,7 +945,7 @@ describe('page', () => {
   it('offers a skip link to the quotes and sets the title', () => {
     renderApp();
     expect(screen.getByRole('link', { name: 'Skip to quotes' })).toHaveAttribute('href', '#main');
-    expect(document.title).toBe('VerbeApp: Wise words, one at a time');
+    expect(document.title).toBe('Verbe: Wise words, one at a time');
   });
 });
 
@@ -976,7 +976,7 @@ describe('offer to install', () => {
   }
 
   function offer() {
-    return screen.queryByRole('complementary', { name: 'Install VerbeApp' });
+    return screen.queryByRole('complementary', { name: 'Install Verbe' });
   }
 
   async function favouriteFirst(user: ReturnType<typeof userEvent.setup>) {
@@ -1077,7 +1077,7 @@ describe('offer to install', () => {
     const install = fakeInstall();
     const { user } = renderApp('en', { install });
     const profile = await openProfile(user);
-    await user.click(within(profile).getByText('About VerbeApp'));
+    await user.click(within(profile).getByText('About Verbe'));
     await user.click(within(profile).getByRole('button', { name: 'Install the app' }));
     expect(install.install).toHaveBeenCalledOnce();
     expect(
@@ -1089,7 +1089,7 @@ describe('offer to install', () => {
     savePreferences({ language: 'pl' });
     const { user } = renderApp('pl-PL', { install: fakeInstall() });
     await user.click(within(articles()[0]!).getByRole('button', { name: 'Ulubiony' }));
-    const polish = screen.getByRole('complementary', { name: 'Zainstaluj VerbeApp' });
+    const polish = screen.getByRole('complementary', { name: 'Zainstaluj Verbe' });
     expect(within(polish).getByRole('button', { name: 'Nie teraz' })).toBeInTheDocument();
   });
 });

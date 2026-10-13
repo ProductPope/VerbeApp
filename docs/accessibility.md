@@ -1,6 +1,6 @@
 # Accessibility
 
-VerbeApp targets **WCAG 2.2 level AA**, and AAA contrast (7:1) for quote text.
+Verbe targets **WCAG 2.2 level AA**, and AAA contrast (7:1) for quote text.
 
 ## How it is checked
 

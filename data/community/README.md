@@ -1,6 +1,6 @@
 # Community sayings
 
-Original sayings and practical tips written for VerbeApp by its contributors. They are not quotes
+Original sayings and practical tips written for Verbe by its contributors. They are not quotes
 from literature, and the app always labels them as community content.
 
 Each contributor has one file, e.g. `data/community/marcin.json`:

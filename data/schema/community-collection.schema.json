@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/ProductPope/VerbeApp/data/schema/community-collection.schema.json",
   "title": "Community sayings",
-  "description": "Original sayings and practical tips written for VerbeApp by its contributors and released under CC0. They are not quotes from literature and are always shown as such.",
+  "description": "Original sayings and practical tips written for Verbe by its contributors and released under CC0. They are not quotes from literature and are always shown as such.",
   "type": "object",
   "required": ["contributor", "items"],
   "additionalProperties": false,

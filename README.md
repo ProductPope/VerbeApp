@@ -1,4 +1,4 @@
-# VerbeApp
+# Verbe
 
 Short, wise quotes on philosophy, self-development, resilience, relationships, mindfulness and more, delivered to
 your phone.
@@ -11,7 +11,7 @@ your phone.
 
 ## What makes it different
 
-Quote apps are full of misattributed and invented lines. Every quote in VerbeApp is:
+Quote apps are full of misattributed and invented lines. Every quote in Verbe is:
 
 - **verifiable**: it links to the chapter (Standard Ebooks) or book (Project Gutenberg) of a
   public-domain edition, and CI checks that its words appear there in order, with any `…`
