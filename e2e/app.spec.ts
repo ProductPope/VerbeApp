@@ -89,13 +89,20 @@ test.describe('accessibility', () => {
 });
 
 test.describe('feed', () => {
-  test('snaps to the next quote on swipe and keeps adding quotes', async ({ page }) => {
+  test('flips to the next quote on a sideways swipe and keeps adding quotes', async ({ page }) => {
     await page.goto('./');
     const articles = feed(page).getByRole('article');
     const initial = await articles.count();
+    // Only the feed scrolls sideways; the page itself must not.
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(
+      page.viewportSize()!.width,
+    );
+    const second = await articles.nth(1).boundingBox();
+    expect(second!.x).toBeGreaterThanOrEqual(page.viewportSize()!.width - 1);
+    expect(second!.y).toBeLessThan(page.viewportSize()!.height);
     for (let i = 0; i < initial; i++) {
       await feed(page).evaluate((element) => {
-        element.scrollBy({ top: element.clientHeight, behavior: 'instant' });
+        element.scrollBy({ left: element.clientWidth, behavior: 'instant' });
       });
     }
     await expect.poll(() => articles.count()).toBeGreaterThan(initial);

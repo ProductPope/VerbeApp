@@ -17,7 +17,8 @@ const en = {
   categoriesLabel: 'Categories',
   allCategories: 'All',
   feedLabel: 'Quotes feed',
-  feedHint: 'Swipe up for the next quote. With a keyboard, use Page Down and Page Up.',
+  feedHint:
+    'Swipe left for the next quote. With a keyboard, use the arrow keys or Page Down and Page Up.',
   autoplay: 'Auto-advance',
   favorite: 'Favourite',
   removeFavorite: 'Remove from favourites',
@@ -54,7 +55,8 @@ const pl: Strings = {
   categoriesLabel: 'Kategorie',
   allCategories: 'Wszystkie',
   feedLabel: 'Lista cytatów',
-  feedHint: 'Przesuń w górę, aby zobaczyć następny cytat. Na klawiaturze użyj Page Down i Page Up.',
+  feedHint:
+    'Przesuń w lewo, aby zobaczyć następny cytat. Na klawiaturze użyj strzałek lub Page Down i Page Up.',
   autoplay: 'Autoprzewijanie',
   favorite: 'Ulubiony',
   removeFavorite: 'Usuń z ulubionych',

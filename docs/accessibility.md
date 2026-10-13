@@ -18,7 +18,7 @@ with TalkBack on Android and a keyboard on desktop.
 
 ## Behaviour
 
-- **Feed**: ARIA `feed` of `article`s. Page Down and Page Up move between quotes (also arrows and
+- **Feed**: ARIA `feed` of `article`s laid out side by side; swipe left and right like flipping cards. Page Down and Page Up move between quotes (also arrows and
   j/k when an article has focus). Each article is named by its quote and described by its author.
 - **Auto-advance**: off by default; a toggle button with `aria-pressed`; pauses on mouse hover,
   keyboard focus, and hidden page; restarts on touch; reading time grows with the length of the

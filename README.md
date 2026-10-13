@@ -20,7 +20,7 @@ Quote apps are full of misattributed and invented lines. Every quote in VerbeApp
 
 ## The app
 
-A full-screen feed of quote cards: swipe up for the next one, save favourites and hide quotes you
+A full-screen deck of quote cards: swipe left for the next one, save favourites and hide quotes you
 don't want to see again. Each English quote shows its Polish translation underneath (switch it off
 in Settings, alongside category filters and the app language). Optional auto-advance turns the
 feed into a slideshow with a progress bar, and pauses whenever you interact. Everything you choose

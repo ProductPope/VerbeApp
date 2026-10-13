@@ -78,6 +78,10 @@ describe('feed', () => {
     expect(list[0]).toHaveFocus();
     await user.keyboard('{PageUp}');
     expect(list[0]).toHaveFocus();
+    await user.keyboard('{ArrowRight}');
+    expect(list[1]).toHaveFocus();
+    await user.keyboard('{ArrowLeft}');
+    expect(list[0]).toHaveFocus();
   });
 
   it('inside an article only Page Down and Page Up move, so controls keep their keys', async () => {
@@ -86,6 +90,7 @@ describe('feed', () => {
     const favorite = within(list[0]!).getByRole('button', { name: 'Favourite' });
     favorite.focus();
     await user.keyboard('{ArrowDown}');
+    await user.keyboard('{ArrowRight}');
     expect(favorite).toHaveFocus();
     await user.keyboard('{PageDown}');
     expect(list[1]).toHaveFocus();

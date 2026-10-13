@@ -26,8 +26,8 @@ interface FeedProps {
 /** How many cards must remain below the current one before another round is added. */
 const LOOKAHEAD = 3;
 
-const NEXT_KEYS = new Set(['PageDown', 'ArrowDown', 'j']);
-const PREVIOUS_KEYS = new Set(['PageUp', 'ArrowUp', 'k']);
+const NEXT_KEYS = new Set(['PageDown', 'ArrowRight', 'ArrowDown', 'j']);
+const PREVIOUS_KEYS = new Set(['PageUp', 'ArrowLeft', 'ArrowUp', 'k']);
 
 let roundCounter = 0;
 
@@ -99,7 +99,11 @@ export function Feed({
     const item = items[index];
     const element = item && articles.current.get(item.key);
     if (!element) return;
-    element.scrollIntoView({ block: 'start', behavior: reducedMotion ? 'auto' : 'smooth' });
+    element.scrollIntoView({
+      block: 'nearest',
+      inline: 'start',
+      behavior: reducedMotion ? 'auto' : 'smooth',
+    });
     if (moveFocus) element.focus({ preventScroll: true });
     setActive(index);
     extendFrom(index);
