@@ -6,6 +6,7 @@ export function card(id: string, tags: string[], overrides: Partial<Card> = {}):
     kind: 'quote',
     text: `Text of ${id}.`,
     translations: {},
+    draftTranslations: [],
     tags,
     author: { en: 'Marcus Aurelius', pl: 'Marek Aureliusz' },
     work: 'Meditations',
@@ -26,9 +27,12 @@ export function testCatalog(): Catalog {
       },
     ],
     cards: [
-      card('alpha', ['philosophy'], { translations: { pl: 'Tekst alfa.' } }),
+      card('alpha', ['philosophy'], {
+        translations: { pl: 'Tekst alfa.' },
+        draftTranslations: ['pl'],
+      }),
+      card('gamma', ['philosophy', 'productivity'], { translations: { pl: 'Tekst gamma.' } }),
       card('beta', ['productivity']),
-      card('gamma', ['philosophy', 'productivity']),
       card('delta', ['philosophy']),
       card('epsilon', ['productivity'], {
         kind: 'community',

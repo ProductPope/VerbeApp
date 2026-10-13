@@ -6,10 +6,30 @@ import {
   type PushEnvironment,
 } from '../../src/app/notifications/push.js';
 
-function setup(options: { permission?: NotificationPermission; existing?: boolean } = {}) {
+function setup(
+  options: {
+    permission?: NotificationPermission;
+    existing?: boolean;
+    /** Server key the existing subscription was made with. */
+    existingKey?: number[];
+  } = {},
+) {
   const unsubscribe = vi.fn(() => Promise.resolve(true));
-  const subscription = { endpoint: 'https://push.example/device', unsubscribe };
-  let current: typeof subscription | null = options.existing ? subscription : null;
+  const subscription = {
+    endpoint: 'https://push.example/device',
+    unsubscribe,
+    options: { applicationServerKey: null },
+  };
+  const old = {
+    endpoint: 'https://push.example/old',
+    unsubscribe,
+    options: { applicationServerKey: new Uint8Array(options.existingKey ?? []).buffer },
+  };
+  let current: { endpoint: string } | null = options.existingKey
+    ? old
+    : options.existing
+      ? subscription
+      : null;
   const pushManager = {
     getSubscription: vi.fn(() => Promise.resolve(current)),
     subscribe: vi.fn(() => {
@@ -60,6 +80,32 @@ describe('push service', () => {
     const { service, pushManager } = setup({ existing: true });
     await service.subscribe(21);
     expect(pushManager.subscribe).not.toHaveBeenCalled();
+  });
+
+  it('keeps a subscription made with the current server key', async () => {
+    // 'AAEC' is base64url for the bytes 0, 1, 2.
+    const { service, pushManager, fetchMock, unsubscribe } = setup({ existingKey: [0, 1, 2] });
+    fetchMock.mockResolvedValueOnce(Response.json({ publicKey: 'AAEC' }));
+    await service.subscribe(8);
+    expect(unsubscribe).not.toHaveBeenCalled();
+    expect(pushManager.subscribe).not.toHaveBeenCalled();
+    expect(JSON.parse(fetchMock.mock.calls.at(-1)![1]?.body as string)).toMatchObject({
+      endpoint: 'https://push.example/old',
+    });
+  });
+
+  it('replaces a subscription made with an old server key', async () => {
+    const { service, pushManager, fetchMock, unsubscribe } = setup({ existingKey: [9, 9, 9] });
+    fetchMock.mockResolvedValueOnce(Response.json({ publicKey: 'AAEC' }));
+    await service.subscribe(8);
+    expect(unsubscribe).toHaveBeenCalled();
+    expect(pushManager.subscribe).toHaveBeenCalledWith({
+      userVisibleOnly: true,
+      applicationServerKey: 'AAEC',
+    });
+    expect(JSON.parse(fetchMock.mock.calls.at(-1)![1]?.body as string)).toMatchObject({
+      endpoint: 'https://push.example/device',
+    });
   });
 
   it('stops when the reader blocks notifications', async () => {

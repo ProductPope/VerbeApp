@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   eligibleCards,
+  nextBatch,
   nextRound,
   readingTimeMs,
   seededRandom,
@@ -66,5 +67,35 @@ describe('readingTimeMs', () => {
 
   it('grows with length in between', () => {
     expect(readingTimeMs('word '.repeat(60))).toBeGreaterThan(readingTimeMs('word '.repeat(40)));
+  });
+});
+
+describe('nextBatch', () => {
+  const cards = 'abcdefghij'.split('').map((id) => card(id, []));
+
+  it('shows every card once per round, a few at a time', () => {
+    const random = seededRandom(3);
+    const round: typeof cards = [];
+    while (round.length < cards.length) {
+      const { cards: batch, newRound } = nextBatch(cards, round, round, random, 4);
+      expect(newRound).toBe(round.length === 0);
+      expect(batch.length).toBeLessThanOrEqual(4);
+      round.push(...batch);
+    }
+    expect(round.map((c) => c.id).sort()).toEqual(cards.map((c) => c.id));
+    const next = nextBatch(cards, round, round, random, 4);
+    expect(next.newRound).toBe(true);
+    expect(next.cards[0]?.id).not.toBe(round.at(-1)?.id);
+  });
+
+  it('skips cards that are no longer eligible', () => {
+    const { cards: batch } = nextBatch(
+      cards.slice(0, 3),
+      [cards[0]!],
+      [cards[0]!],
+      seededRandom(1),
+      5,
+    );
+    expect(batch.map((c) => c.id).sort()).toEqual(['b', 'c']);
   });
 });

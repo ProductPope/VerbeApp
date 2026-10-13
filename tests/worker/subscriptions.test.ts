@@ -1,12 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import {
+  isPushServiceHost,
   localHour,
   parseEndpoint,
   parseSubscriber,
   subscriberKey,
+  utcHourFor,
 } from '../../worker/src/subscriptions.js';
 
-const valid = { endpoint: 'https://push.example/abc', hour: 8, timeZone: 'Europe/Warsaw' };
+const valid = {
+  endpoint: 'https://fcm.googleapis.com/fcm/send/abc',
+  hour: 8,
+  timeZone: 'Europe/Warsaw',
+};
 
 describe('parseSubscriber', () => {
   it('accepts a well-formed subscriber and drops extra fields', () => {
@@ -18,7 +24,7 @@ describe('parseSubscriber', () => {
     'text',
     { ...valid, endpoint: 'http://push.example/abc' },
     { ...valid, endpoint: 'not a url' },
-    { ...valid, endpoint: `https://push.example/${'a'.repeat(800)}` },
+    { ...valid, endpoint: `https://fcm.googleapis.com/fcm/send/${'a'.repeat(800)}` },
     { ...valid, hour: 24 },
     { ...valid, hour: -1 },
     { ...valid, hour: 7.5 },
@@ -53,5 +59,40 @@ describe('localHour', () => {
     expect(localHour(new Date('2026-07-15T06:00:00Z'), 'Europe/Warsaw')).toBe(8);
     expect(localHour(new Date('2026-07-15T23:00:00Z'), 'UTC')).toBe(23);
     expect(localHour(new Date('2026-07-15T00:30:00Z'), 'UTC')).toBe(0);
+  });
+});
+
+describe('isPushServiceHost', () => {
+  it.each([
+    'fcm.googleapis.com',
+    'updates.push.services.mozilla.com',
+    'wns2-db5p.notify.windows.com',
+    'web.push.apple.com',
+    'api.push.apple.com',
+  ])('accepts %s', (host) => {
+    expect(isPushServiceHost(host)).toBe(true);
+  });
+
+  it.each(['example.com', 'fcm.googleapis.com.evil.example', 'evilpush.apple.com', 'localhost'])(
+    'refuses %s',
+    (host) => {
+      expect(isPushServiceHost(host)).toBe(false);
+    },
+  );
+});
+
+describe('utcHourFor', () => {
+  it('gives the UTC hour at which the local hour comes, whatever the minute', () => {
+    const warsaw = { ...valid, hour: 8 };
+    expect(utcHourFor(warsaw, new Date('2026-01-15T10:45:00Z'))).toBe(7);
+    expect(utcHourFor(warsaw, new Date('2026-07-15T10:45:00Z'))).toBe(6);
+    expect(utcHourFor({ ...valid, hour: 0 }, new Date('2026-01-15T10:00:00Z'))).toBe(23);
+  });
+
+  it('rounds half-hour time zones to the hour that starts in the chosen hour', () => {
+    // 12:00–12:59 in Kolkata (UTC+5:30) is reached at 07:00 UTC, which is 12:30 there.
+    const kolkata = { ...valid, hour: 12, timeZone: 'Asia/Kolkata' };
+    expect(utcHourFor(kolkata, new Date('2026-01-15T07:45:00Z'))).toBe(7);
+    expect(localHour(new Date('2026-01-15T07:00:00Z'), 'Asia/Kolkata')).toBe(12);
   });
 });

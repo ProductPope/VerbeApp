@@ -12,7 +12,8 @@
         "pl": {
           "text": "Prawda przydarza się idei.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -26,7 +27,8 @@
         "pl": {
           "text": "Z każdego słowa musisz wydobyć jego praktyczną wartość i wprawić je w ruch w strumieniu swojego doświadczenia.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     }

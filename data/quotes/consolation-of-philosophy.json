@@ -12,7 +12,8 @@
         "pl": {
           "text": "Nic nie jest nędzne, dopóki myśl go takim nie uczyni; i odwrotnie, każdy los jest szczęśliwy, jeśli znosi się go ze spokojem ducha.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     },
@@ -26,7 +27,8 @@
         "pl": {
           "text": "Krzywda niesie nieszczęście temu, kto ją wyrządza, nie temu, kto ją znosi.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
-          "license": "CC0-1.0"
+          "license": "CC0-1.0",
+          "status": "ai-draft"
         }
       }
     }

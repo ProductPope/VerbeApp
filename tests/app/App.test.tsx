@@ -164,6 +164,40 @@ describe('favourites and hidden quotes', () => {
     expect(status).toBeEmptyDOMElement();
   });
 
+  it('lets the undo offer go after a while, but not while it has focus', () => {
+    vi.useFakeTimers();
+    renderApp();
+    const hideFirst = () => {
+      fireEvent.click(within(articles()[0]!).getByRole('button', { name: 'Don’t show again' }));
+    };
+    const wait = (ms: number) => {
+      act(() => {
+        vi.advanceTimersByTime(ms);
+      });
+    };
+    const status = screen.getByRole('status');
+    hideFirst();
+    wait(7_900);
+    expect(status).toHaveTextContent('Quote hidden.');
+    wait(200);
+    expect(status).toBeEmptyDOMElement();
+
+    hideFirst();
+    const undo = within(status).getByRole('button', { name: 'Undo' });
+    act(() => {
+      undo.focus();
+    });
+    wait(20_000);
+    expect(status).toHaveTextContent('Quote hidden.');
+    act(() => {
+      undo.blur();
+    });
+    wait(8_000);
+    expect(status).not.toHaveTextContent('Quote hidden.');
+    // With the offer gone, the streak message that was held back can show.
+    expect(status).toHaveTextContent('Day one of your reading streak');
+  });
+
   it('restores hidden quotes from the profile', async () => {
     const { user, store } = renderApp();
     store.update((current) => ({ ...current, hidden: ['beta', 'unknown-id'] }));
@@ -247,6 +281,16 @@ describe('translation', () => {
     expect(alpha).toHaveAccessibleDescription(/Tekst alfa\./);
     const beta = articles().find((a) => a.dataset.cardId === 'beta')!;
     expect(beta).not.toHaveAccessibleDescription(/Tekst/);
+  });
+
+  it('labels an AI draft translation and leaves a reviewed one unlabelled', () => {
+    renderApp();
+    const alpha = articles().find((a) => a.dataset.cardId === 'alpha')!;
+    expect(within(alpha).getByText('AI draft translation, not yet reviewed')).toBeInTheDocument();
+    expect(alpha).toHaveAccessibleDescription(/AI draft translation/);
+    const gamma = articles().find((a) => a.dataset.cardId === 'gamma')!;
+    expect(within(gamma).getByText('Tekst gamma.')).toBeInTheDocument();
+    expect(within(gamma).queryByText(/AI draft/)).not.toBeInTheDocument();
   });
 
   it('can be switched off in the profile preferences', async () => {
@@ -460,6 +504,27 @@ describe('opening from a notification', () => {
   it('ignores an unknown quote', () => {
     renderApp('en', { initialCardId: 'missing' });
     expect(cardIds()).toHaveLength(5);
+  });
+  it('shows the notified quote first even when the catalogue is large', () => {
+    const catalog = testCatalog();
+    for (let i = 0; i < 40; i++) catalog.cards.push(card(`extra-${String(i)}`, ['philosophy']));
+    renderApp('en', { catalog, initialCardId: 'extra-39' });
+    expect(cardIds()[0]).toBe('extra-39');
+    expect(cardIds()).toHaveLength(8);
+  });
+});
+
+describe('a large catalogue', () => {
+  it('renders a few cards at a time and adds more as the reader moves on', async () => {
+    const catalog = testCatalog();
+    for (let i = 0; i < 40; i++) catalog.cards.push(card(`extra-${String(i)}`, ['philosophy']));
+    const { user } = renderApp('en', { catalog });
+    expect(articles()).toHaveLength(8);
+    articles()[0]!.focus();
+    for (let i = 0; i < 6; i++) await user.keyboard('{PageDown}');
+    expect(articles().length).toBeGreaterThan(8);
+    expect(articles().length).toBeLessThanOrEqual(16);
+    expect(new Set(cardIds()).size).toBe(cardIds().length);
   });
 });
 

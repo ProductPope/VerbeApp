@@ -13,8 +13,9 @@ your phone.
 
 Quote apps are full of misattributed and invented lines. Every quote in VerbeApp is:
 
-- **verifiable**: it links to the exact chapter of a public-domain edition (Standard Ebooks or
-  Project Gutenberg), and CI checks it appears there word for word;
+- **verifiable**: it links to the chapter (Standard Ebooks) or book (Project Gutenberg) of a
+  public-domain edition, and CI checks that its words appear there in order, with any `…`
+  leaving out no more than a short phrase and never the name of another speaker;
 - **free to use**: only works whose author and translator died more than 70 years ago;
 - **open**: plain JSON files with JSON Schemas, so anyone can add quotes through a pull request.
 
@@ -41,8 +42,9 @@ tested.
 | `data/schema/*.schema.json` | JSON Schemas for all of the above                             |
 
 English is the primary language. Translations (for now Polish) are optional per quote and always
-carry their translator and licence. The current Polish translations are AI-assisted drafts
-(CC0, labelled `VerbeApp contributors (AI-assisted draft)`); corrections are welcome.
+carry their translator, licence and review status. The current Polish translations are AI-assisted
+drafts (CC0, `"status": "ai-draft"`) that no person has reviewed yet; the app labels them as drafts
+under each quote. Reviews and corrections are welcome.
 
 ## Development
 

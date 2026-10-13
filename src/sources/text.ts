@@ -81,16 +81,63 @@ export function quoteFragments(quote: string): string[] {
     .filter((fragment) => fragment.length > 0);
 }
 
-/** True when every fragment of the quote appears in the text, in order. */
-export function containsQuote(sourceText: string, quote: string): boolean {
+/**
+ * Most characters an ellipsis may stand for. A longer omission could splice
+ * sentences from different pages, or cut out who is really speaking (e.g.
+ * "Men (says an ancient Greek sentence) are tormented…"), so such a quote
+ * must be shortened instead.
+ */
+export const MAX_OMISSION = 200;
+
+/**
+ * Finds the quote in the text: every fragment in order, with at most
+ * `maxOmission` characters left out between neighbouring fragments. Returns
+ * the omitted passages, or undefined when the quote is not there.
+ */
+export function findQuote(
+  sourceText: string,
+  quote: string,
+  maxOmission = MAX_OMISSION,
+): string[] | undefined {
   const haystack = normalizeForMatch(sourceText);
-  const fragments = quoteFragments(quote);
-  if (fragments.length === 0) return false;
-  let from = 0;
-  for (const fragment of fragments) {
-    const at = haystack.indexOf(fragment, from);
-    if (at === -1) return false;
-    from = at + fragment.length;
+  const [first, ...rest] = quoteFragments(quote);
+  if (first === undefined) return undefined;
+  // Try every place the first fragment occurs; from each, the nearest next
+  // fragment is always the best choice, so the rest can be matched greedily.
+  for (
+    let start = haystack.indexOf(first);
+    start !== -1;
+    start = haystack.indexOf(first, start + 1)
+  ) {
+    let end = start + first.length;
+    const omissions: string[] = [];
+    for (const fragment of rest) {
+      const at = haystack.indexOf(fragment, end);
+      if (at === -1 || at - end > maxOmission) break;
+      omissions.push(haystack.slice(end, at));
+      end = at + fragment.length;
+    }
+    if (omissions.length === rest.length) return omissions;
   }
-  return true;
+  return undefined;
+}
+
+/** True when the quote appears in the text (see findQuote). */
+export function containsQuote(
+  sourceText: string,
+  quote: string,
+  maxOmission = MAX_OMISSION,
+): boolean {
+  return findQuote(sourceText, quote, maxOmission) !== undefined;
+}
+
+/**
+ * Omitted words that name someone else as the speaker, e.g. "(says an
+ * ancient Greek sentence)" or a quotation mark. Leaving them out would
+ * attribute another writer's words to this author.
+ */
+const ATTRIBUTION = /\b(say|says|said|saith|quoth|according to)\b|"/;
+
+export function hidesAttribution(omission: string): boolean {
+  return ATTRIBUTION.test(omission);
 }
