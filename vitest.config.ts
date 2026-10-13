@@ -26,8 +26,9 @@ export default defineConfig({
     ],
     coverage: {
       provider: 'v8',
-      include: ['src/**/*.{ts,tsx}'],
-      exclude: ['src/app/main.tsx'],
+      include: ['src/**/*.{ts,tsx}', 'worker/src/**/*.ts'],
+      // Entry points that only wire browser APIs together; covered by the e2e tests.
+      exclude: ['src/app/main.tsx', 'src/sw/**', 'src/env.d.ts'],
       thresholds: { lines: 90, functions: 90, branches: 85, statements: 90 },
     },
   },

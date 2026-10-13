@@ -11,6 +11,10 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      // A custom service worker so that it can show the daily quote notification.
+      strategies: 'injectManifest',
+      srcDir: 'src/sw',
+      filename: 'sw.ts',
       includeAssets: ['icon.svg'],
       manifest: {
         name: 'VerbeApp',

@@ -19,6 +19,8 @@ interface FeedProps {
   autoplay: boolean;
   reducedMotion: boolean;
   random: () => number;
+  /** Card to put first when the feed opens. */
+  initialCardId?: string | undefined;
   onToggleFavorite: (id: string) => void;
   onHide: (id: string) => void;
 }
@@ -41,6 +43,12 @@ function withRound(items: FeedItem[], eligible: Card[], random: () => number): F
   return [...items, ...cards.map((card) => ({ key: `${String(round)}:${card.id}`, card }))];
 }
 
+/** Moves the requested card to the front of the first round, if it is eligible. */
+function startingWith(items: FeedItem[], id: string | undefined): FeedItem[] {
+  const chosen = items.find((item) => item.card.id === id);
+  return chosen ? [chosen, ...items.filter((item) => item !== chosen)] : items;
+}
+
 function idsOf(cards: Card[]): string {
   return cards.map((card) => card.id).join('\n');
 }
@@ -59,10 +67,13 @@ export function Feed({
   autoplay,
   reducedMotion,
   random,
+  initialCardId,
   onToggleFavorite,
   onHide,
 }: FeedProps) {
-  const [items, setItems] = useState<FeedItem[]>(() => withRound([], cards, random));
+  const [items, setItems] = useState<FeedItem[]>(() =>
+    startingWith(withRound([], cards, random), initialCardId),
+  );
   const [eligibleIds, setEligibleIds] = useState(() => idsOf(cards));
   const [active, setActive] = useState(0);
   const [interacting, setInteracting] = useState(false);
