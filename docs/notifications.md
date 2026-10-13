@@ -1,6 +1,6 @@
 # Daily quote notifications
 
-Readers can switch on one notification a day, at an hour they choose, in **Settings**. The design is
+Readers can switch on one notification a day, at an hour they choose, under **Preferences** in their profile. The design is
 explained in [ADR 0006](adr/0006-daily-quote-push-without-payload.md).
 
 ## How it works
@@ -34,7 +34,7 @@ repository owner:
 4. Run the **Deploy notification worker** workflow. It creates the KV namespace, deploys the worker,
    creates the VAPID keys once and prints the worker URL in its summary.
 5. Add that URL as the repository variable `PUSH_API_URL` and re-run **Deploy to GitHub Pages**.
-   The notification switch then appears in Settings.
+   The notification switch then appears under Preferences in the profile.
 
 The worker allows requests only from `ALLOWED_ORIGIN` in `worker/wrangler.jsonc`; change it if the
 app moves to another domain.

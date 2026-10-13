@@ -24,11 +24,14 @@ with TalkBack on Android and a keyboard on desktop.
   keyboard focus, and hidden page; restarts on touch; reading time grows with the length of the
   quote and its translation. A thin progress bar shows the time left; it is decorative
   (`aria-hidden`), since the button already conveys the state, and it disappears while paused.
-- **Settings** live in one native modal `<dialog>`: it traps focus, closes on Escape and returns
-  focus to the Settings button. The translation toggle is a checkbox with `role="switch"`.
-- **Daily notification**: a switch with its hint and any error in its accessible description; the
-  error is also announced through a status region. The hour picker appears only when the switch is
-  on.
+- **Settings** (category filters) live in one native modal `<dialog>`: it traps focus, closes on
+  Escape and returns focus to the Settings button.
+- **Profile** is a toggle button with `aria-pressed`. Its view has three labelled regions:
+  Preferences, Favourites and Hidden quotes. In Preferences the translation toggle is a checkbox
+  with `role="switch"` and the app language is a native `<select>`.
+- **Daily notification** (in Preferences): a switch with its hint and any error in its accessible
+  description; the error is also announced through a status region. The hour picker appears only
+  when the switch is on.
 - **Language**: the page `lang` follows the chosen language. Quotes are always `lang="en"`, and the
   translation under them carries `lang="pl"`, so screen readers pronounce each correctly. The
   translation is part of the article's description.

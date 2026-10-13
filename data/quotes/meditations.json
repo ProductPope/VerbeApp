@@ -7,7 +7,7 @@
       "text": "Begin the morning by saying to thyself, I shall meet with the busybody, the ungrateful, arrogant, deceitful, envious, unsocial.",
       "section": "book-2",
       "locator": "Book II",
-      "tags": ["philosophy", "self-development"],
+      "tags": ["philosophy", "self-development", "relationships"],
       "translations": {
         "pl": {
           "text": "Zaczynaj poranek, mówiąc sobie: spotkam dziś wścibskiego, niewdzięcznego, aroganckiego, podstępnego, zawistnego i nietowarzyskiego.",
@@ -21,7 +21,7 @@
       "text": "The mind converts and changes every hindrance to its activity into an aid; and so that which is a hindrance is made a furtherance to an act; and that which is an obstacle on the road helps us on this road.",
       "section": "book-5",
       "locator": "Book V",
-      "tags": ["self-development"],
+      "tags": ["self-development", "resilience"],
       "translations": {
         "pl": {
           "text": "Umysł zamienia każdą przeszkodę w swoim działaniu w pomoc; to, co przeszkadza, staje się wsparciem działania, a to, co stoi na drodze, pomaga nam iść tą drogą.",
@@ -35,7 +35,7 @@
       "text": "The best way of avenging thyself is not to become like the wrong doer.",
       "section": "book-6",
       "locator": "Book VI",
-      "tags": ["philosophy", "assertiveness"],
+      "tags": ["philosophy", "assertiveness", "relationships"],
       "translations": {
         "pl": {
           "text": "Najlepszą zemstą jest nie stać się podobnym do tego, kto wyrządził krzywdę.",
@@ -91,7 +91,7 @@
       "text": "Loss is nothing else than change.",
       "section": "book-9",
       "locator": "Book IX",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "resilience"],
       "translations": {
         "pl": {
           "text": "Strata jest niczym innym jak zmianą.",
@@ -133,7 +133,7 @@
       "text": "How ridiculous and what a stranger he is who is surprised at anything which happens in life.",
       "section": "book-12",
       "locator": "Book XII",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "resilience"],
       "translations": {
         "pl": {
           "text": "Jakże śmieszny i obcy światu jest ten, kto dziwi się czemukolwiek, co zdarza się w życiu.",
@@ -147,7 +147,7 @@
       "text": "The art of life is more like the wrestler’s art than the dancer’s, in respect of this, that it should stand ready and firm to meet onsets which are sudden and unexpected.",
       "section": "book-7",
       "locator": "Book VII",
-      "tags": ["self-development"],
+      "tags": ["self-development", "resilience"],
       "translations": {
         "pl": {
           "text": "Sztuka życia bardziej przypomina sztukę zapaśnika niż tancerza: trzeba stać gotowym i mocno, by przyjąć ataki nagłe i niespodziewane.",
@@ -245,7 +245,7 @@
       "text": "Set thyself in motion, if it is in thy power, and do not look about thee to see if anyone will observe it… but be content if the smallest thing goes on well, and consider such an event to be no small matter.",
       "section": "book-9",
       "locator": "Book IX",
-      "tags": ["productivity"],
+      "tags": ["productivity", "courage"],
       "translations": {
         "pl": {
           "text": "Rusz się, jeśli to w twojej mocy, i nie rozglądaj się, czy ktoś to zauważy… lecz ciesz się, jeśli najmniejsza rzecz idzie dobrze, i nie uważaj tego za drobiazg.",
@@ -259,7 +259,7 @@
       "text": "It is in our power to have no opinion about a thing, and not to be disturbed in our soul; for things themselves have no natural power to form our judgements.",
       "section": "book-6",
       "locator": "Book VI",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "resilience"],
       "translations": {
         "pl": {
           "text": "W naszej mocy jest nie mieć o czymś zdania i nie niepokoić się w duszy, bo same rzeczy nie mają mocy kształtowania naszych sądów.",
@@ -273,7 +273,7 @@
       "text": "Why dost thou not rather act than complain?",
       "section": "book-8",
       "locator": "Book VIII",
-      "tags": ["productivity", "assertiveness"],
+      "tags": ["productivity", "assertiveness", "courage"],
       "translations": {
         "pl": {
           "text": "Czemu raczej nie działasz, zamiast narzekać?",
@@ -287,7 +287,7 @@
       "text": "It is in thy power to do it or to say it, and do not make excuses that thou art hindered.",
       "section": "book-10",
       "locator": "Book X",
-      "tags": ["productivity"],
+      "tags": ["productivity", "courage"],
       "translations": {
         "pl": {
           "text": "W twojej mocy jest to zrobić albo powiedzieć; nie wymawiaj się, że coś ci przeszkadza.",
@@ -301,7 +301,7 @@
       "text": "For we are made for cooperation, like feet, like hands, like eyelids, like the rows of the upper and lower teeth.",
       "section": "book-2",
       "locator": "Book II",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "relationships"],
       "translations": {
         "pl": {
           "text": "Jesteśmy bowiem stworzeni do współpracy, jak stopy, jak dłonie, jak powieki, jak rzędy górnych i dolnych zębów.",
@@ -315,7 +315,7 @@
       "text": "Throwing away idle hopes, come to thy own aid, if thou carest at all for thyself, while it is in thy power.",
       "section": "book-3",
       "locator": "Book III",
-      "tags": ["self-development", "productivity"],
+      "tags": ["self-development", "productivity", "courage"],
       "translations": {
         "pl": {
           "text": "Porzuć próżne nadzieje i przyjdź sobie z pomocą, jeśli w ogóle dbasz o siebie, póki to w twojej mocy.",
@@ -329,7 +329,7 @@
       "text": "What need is there of suspicious fear, since it is in thy power to inquire what ought to be done?",
       "section": "book-10",
       "locator": "Book X",
-      "tags": ["assertiveness"],
+      "tags": ["assertiveness", "courage"],
       "translations": {
         "pl": {
           "text": "Po co podejrzliwy lęk, skoro w twojej mocy jest zbadać, co należy zrobić?",
@@ -375,6 +375,76 @@
       "translations": {
         "pl": {
           "text": "Czyż nie lepiej korzystać z tego, co w twojej mocy, jak człowiek wolny, niż niewolniczo i nikczemnie pożądać tego, co w twojej mocy nie jest?",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "be-like-promontory",
+      "text": "Be like the promontory against which the waves continually break, but it stands firm and tames the fury of the water around it.",
+      "section": "book-4",
+      "locator": "Book IV",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Bądź jak cypel, o który nieustannie rozbijają się fale, a on stoi niewzruszenie i uśmierza wokół siebie wściekłość wody.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "bear-it-nobly-good-fortune",
+      "text": "Remember too on every occasion which leads thee to vexation to apply this principle: not that this is a misfortune, but that to bear it nobly is good fortune.",
+      "section": "book-4",
+      "locator": "Book IV",
+      "tags": ["resilience", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Pamiętaj też przy każdej okazji, która wprawia cię w rozdrażnienie, by stosować tę zasadę: to nie jest nieszczęście, ale znieść to szlachetnie jest szczęściem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "think-of-what-thou-hast",
+      "text": "Think not so much of what thou hast not as of what thou hast: but of the things which thou hast select the best, and then reflect how eagerly they would have been sought, if thou hadst them not.",
+      "section": "book-7",
+      "locator": "Book VII",
+      "tags": ["happiness"],
+      "translations": {
+        "pl": {
+          "text": "Myśl nie tyle o tym, czego nie masz, ile o tym, co masz; z tego, co masz, wybierz to, co najlepsze, i pomyśl, jak gorliwie byś tego szukał, gdybyś tego nie miał.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "very-little-happy-life",
+      "text": "Very little indeed is necessary for living a happy life.",
+      "section": "book-7",
+      "locator": "Book VII",
+      "tags": ["happiness", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Do szczęśliwego życia potrzeba naprawdę bardzo niewiele.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "equable-flow-of-happiness",
+      "text": "Thou canst pass thy life in an equable flow of happiness, if thou canst go by the right way, and think and act in the right way.",
+      "section": "book-5",
+      "locator": "Book V",
+      "tags": ["happiness"],
+      "translations": {
+        "pl": {
+          "text": "Możesz przeżyć życie w równym nurcie szczęścia, jeśli potrafisz iść właściwą drogą oraz myśleć i działać właściwie.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }

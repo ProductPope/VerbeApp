@@ -19,7 +19,7 @@
       "id": "hatred-does-not-cease-hatred",
       "text": "For hatred does not cease by hatred at any time: hatred ceases by love, this is an old rule.",
       "locator": "Chapter I. The Twin-Verses, verse 5",
-      "tags": ["philosophy", "assertiveness"],
+      "tags": ["philosophy", "assertiveness", "relationships"],
       "translations": {
         "pl": {
           "text": "Nienawiść nigdy nie ustaje dzięki nienawiści: nienawiść ustaje dzięki miłości. To odwieczne prawo.",
@@ -45,7 +45,7 @@
       "id": "good-tame-mind",
       "text": "It is good to tame the mind, which is difficult to hold in and flighty, rushing wherever it listeth; a tamed mind brings happiness.",
       "locator": "Chapter III. Thought, verse 35",
-      "tags": ["self-development"],
+      "tags": ["self-development", "happiness"],
       "translations": {
         "pl": {
           "text": "Dobrze jest okiełznać umysł, trudny do utrzymania i niestały, pędzący, dokąd zechce; okiełznany umysł przynosi szczęście.",
@@ -84,7 +84,7 @@
       "id": "solid-rock-not-shaken",
       "text": "As a solid rock is not shaken by the wind, wise people falter not amidst blame and praise.",
       "locator": "Chapter VI. The Wise Man (Pandita), verse 81",
-      "tags": ["assertiveness"],
+      "tags": ["assertiveness", "resilience"],
       "translations": {
         "pl": {
           "text": "Jak lita skała nie drgnie na wietrze, tak mądrzy nie chwieją się wśród nagany i pochwały.",
@@ -149,7 +149,7 @@
       "id": "health-greatest-gifts",
       "text": "Health is the greatest of gifts, contentedness the best riches; trust is the best of relationships, Nirvana the highest happiness.",
       "locator": "Chapter XV. Happiness, verse 204",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "relationships", "happiness"],
       "translations": {
         "pl": {
           "text": "Zdrowie jest największym darem, zadowolenie największym bogactwem, zaufanie najlepszą więzią, nirwana najwyższym szczęściem.",
@@ -162,7 +162,7 @@
       "id": "overcome-anger-by-love",
       "text": "Let a man overcome anger by love, let him overcome evil by good; let him overcome the greedy by liberality, the liar by truth!",
       "locator": "Chapter XVII. Anger, verse 223",
-      "tags": ["self-development", "assertiveness"],
+      "tags": ["self-development", "assertiveness", "relationships"],
       "translations": {
         "pl": {
           "text": "Niech człowiek pokonuje gniew miłością, zło dobrem, chciwca hojnością, a kłamcę prawdą!",
@@ -201,7 +201,7 @@
       "id": "you-yourself-must-make-effort",
       "text": "You yourself must make an effort.",
       "locator": "Chapter XX. The Way, verse 276",
-      "tags": ["productivity", "self-development"],
+      "tags": ["productivity", "self-development", "courage"],
       "translations": {
         "pl": {
           "text": "Sam musisz podjąć wysiłek.",

@@ -175,7 +175,7 @@
       "text": "The power which resides in him is new in nature, and none but he knows what that is which he can do, nor does he know until he has tried.",
       "section": "self-reliance",
       "locator": "Self-Reliance",
-      "tags": ["self-development", "productivity"],
+      "tags": ["self-development", "productivity", "courage"],
       "translations": {
         "pl": {
           "text": "Moc, która w nim tkwi, jest nowa w przyrodzie i nikt poza nim nie wie, co potrafi zrobić; on sam też tego nie wie, dopóki nie spróbuje.",
@@ -203,7 +203,7 @@
       "text": "The only reward of virtue is virtue; the only way to have a friend is to be one.",
       "section": "friendship",
       "locator": "Friendship",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "relationships"],
       "translations": {
         "pl": {
           "text": "Jedyną nagrodą cnoty jest cnota; jedynym sposobem, by mieć przyjaciela, jest być przyjacielem.",
@@ -217,7 +217,7 @@
       "text": "Do the thing, and you shall have the Power; but they who do not the thing have not the power.",
       "section": "compensation",
       "locator": "Compensation",
-      "tags": ["productivity"],
+      "tags": ["productivity", "courage"],
       "translations": {
         "pl": {
           "text": "Zrób to, a będziesz miał moc; ci, którzy tego nie robią, mocy nie mają.",
@@ -249,6 +249,160 @@
       "translations": {
         "pl": {
           "text": "Każdy człowiek ma własne powołanie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "friend-with-whom-sincere",
+      "text": "A friend is a person with whom I may be sincere.",
+      "section": "friendship",
+      "locator": "Friendship",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Przyjaciel to ktoś, wobec kogo mogę być szczery.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "nettle-not-echo",
+      "text": "Better be a nettle in the side of your friend than his echo.",
+      "section": "friendship",
+      "locator": "Friendship",
+      "tags": ["relationships", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Lepiej być pokrzywą w boku przyjaciela niż jego echem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "happy-house-shelters-friend",
+      "text": "Happy is the house that shelters a friend!",
+      "section": "friendship",
+      "locator": "Friendship",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Szczęśliwy dom, który gości przyjaciela!",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "friendship-should-have-feet",
+      "text": "I wish that friendship should have feet, as well as eyes and eloquence.",
+      "section": "friendship",
+      "locator": "Friendship",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Chciałbym, żeby przyjaźń miała nogi, a nie tylko oczy i elokwencję.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "tough-fibre-human-heart",
+      "text": "Our friendships hurry to short and poor conclusions, because we have made them a texture of wine and dreams, instead of the tough fibre of the human heart.",
+      "section": "friendship",
+      "locator": "Friendship",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Nasze przyjaźnie spieszą ku krótkim i marnym końcom, bo utkaliśmy je z wina i marzeń zamiast z mocnego włókna ludzkiego serca.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "devout-thanksgiving-for-friends",
+      "text": "I awoke this morning with devout thanksgiving for my friends, the old and the new.",
+      "section": "friendship",
+      "locator": "Friendship",
+      "tags": ["happiness", "relationships"],
+      "translations": {
+        "pl": {
+          "text": "Obudziłem się dziś rano z głęboką wdzięcznością za moich przyjaciół, starych i nowych.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "self-trust-essence-heroism",
+      "text": "Self-trust is the essence of heroism.",
+      "section": "heroism",
+      "locator": "Heroism",
+      "tags": ["courage", "assertiveness"],
+      "translations": {
+        "pl": {
+          "text": "Zaufanie do siebie jest istotą bohaterstwa.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "heroism-is-persistency",
+      "text": "The characteristic of heroism is its persistency.",
+      "section": "heroism",
+      "locator": "Heroism",
+      "tags": ["courage"],
+      "translations": {
+        "pl": {
+          "text": "Cechą bohaterstwa jest wytrwałość.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "never-strike-sail-to-fear",
+      "text": "O friend, never strike sail to a fear!",
+      "section": "heroism",
+      "locator": "Heroism",
+      "tags": ["courage"],
+      "translations": {
+        "pl": {
+          "text": "Przyjacielu, nigdy nie zwijaj żagli przed lękiem!",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "front-worst-apprehension",
+      "text": "Let him front the object of his worst apprehension, and his stoutness will commonly make his fear groundless.",
+      "section": "prudence",
+      "locator": "Prudence",
+      "tags": ["courage"],
+      "translations": {
+        "pl": {
+          "text": "Niech stanie twarzą w twarz z tym, czego najbardziej się obawia, a jego hart zwykle sprawi, że lęk okaże się bezpodstawny.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "prudence-is-courage",
+      "text": "In regard to disagreeable and formidable things, prudence does not consist in evasion or in flight, but in courage.",
+      "section": "prudence",
+      "locator": "Prudence",
+      "tags": ["courage"],
+      "translations": {
+        "pl": {
+          "text": "Wobec rzeczy przykrych i groźnych roztropność nie polega na unikaniu ani na ucieczce, lecz na odwadze.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }

@@ -161,7 +161,7 @@
       "text": "A man is rich in proportion to the number of things which he can afford to let alone.",
       "section": "where-i-lived-and-what-i-lived-for",
       "locator": "Where I Lived, and What I Lived For",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "happiness"],
       "translations": {
         "pl": {
           "text": "Człowiek jest bogaty w takiej mierze, w jakiej może sobie pozwolić na obywanie się bez rzeczy.",
@@ -175,7 +175,7 @@
       "text": "If one advances confidently in the direction of his dreams, and endeavors to live the life which he has imagined, he will meet with a success unexpected in common hours.",
       "section": "conclusion",
       "locator": "Conclusion",
-      "tags": ["self-development"],
+      "tags": ["self-development", "courage"],
       "translations": {
         "pl": {
           "text": "Jeśli ktoś pewnie idzie w kierunku swoich marzeń i stara się żyć życiem, które sobie wyobraził, osiągnie sukces, jakiego nie spodziewał się w zwykłych godzinach.",
@@ -203,7 +203,7 @@
       "text": "Love your life, poor as it is.",
       "section": "conclusion",
       "locator": "Conclusion",
-      "tags": ["self-development"],
+      "tags": ["self-development", "happiness"],
       "translations": {
         "pl": {
           "text": "Kochaj swoje życie, choćby było ubogie.",

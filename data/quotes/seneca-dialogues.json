@@ -119,7 +119,7 @@
       "text": "The greatest remedy for anger is delay.",
       "section": "on-anger",
       "locator": "On Anger",
-      "tags": ["self-development", "assertiveness"],
+      "tags": ["self-development", "assertiveness", "relationships"],
       "translations": {
         "pl": {
           "text": "Największym lekarstwem na gniew jest zwłoka.",
@@ -133,7 +133,7 @@
       "text": "Wherever there is a human being, there is an opportunity for a benefit.",
       "section": "on-a-happy-life",
       "locator": "On a Happy Life",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "relationships"],
       "translations": {
         "pl": {
           "text": "Gdziekolwiek jest człowiek, tam jest okazja do dobrego uczynku.",
@@ -147,7 +147,7 @@
       "text": "He is happy who in his present circumstances, whatever they may be, is satisfied and on friendly terms with the conditions of his life.",
       "section": "on-a-happy-life",
       "locator": "On a Happy Life",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "happiness"],
       "translations": {
         "pl": {
           "text": "Szczęśliwy jest ten, kto w obecnym położeniu, jakiekolwiek ono jest, jest zadowolony i żyje w zgodzie z warunkami swojego życia.",
@@ -175,10 +175,262 @@
       "text": "We ought to move and not to become frozen still by fear.",
       "section": "on-peace-of-mind",
       "locator": "On Peace of Mind",
-      "tags": ["assertiveness"],
+      "tags": ["assertiveness", "courage"],
       "translations": {
         "pl": {
           "text": "Powinniśmy działać, a nie zastygać ze strachu.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "fire-tries-gold",
+      "text": "Fire tries gold, misfortune tries brave men.",
+      "section": "on-providence",
+      "locator": "On Providence",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Ogień doświadcza złota, nieszczęście doświadcza dzielnych ludzi.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "misfortune-virtues-opportunity",
+      "text": "Misfortune is virtue’s opportunity.",
+      "section": "on-providence",
+      "locator": "On Providence",
+      "tags": ["resilience", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Nieszczęście jest dla cnoty sposobnością.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "fortune-lashes-let-us-endure",
+      "text": "Fortune lashes and mangles us: well, let us endure it: it is not cruelty, it is a struggle, in which the oftener we engage the braver we shall become.",
+      "section": "on-providence",
+      "locator": "On Providence",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Los nas chłoszcze i kaleczy: cóż, znośmy to; to nie okrucieństwo, lecz zmaganie, a im częściej w nie wchodzimy, tym dzielniejsi się stajemy.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "fights-on-his-knee",
+      "text": "Unbroken prosperity cannot bear a single blow; but he who has waged an unceasing strife with his misfortunes has gained a thicker skin by his sufferings, yields to no disaster, and even though he fall yet fights on his knee.",
+      "section": "on-providence",
+      "locator": "On Providence",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Nieprzerwana pomyślność nie zniesie ani jednego ciosu; lecz kto bez ustanku zmagał się ze swoimi nieszczęściami, nabrał w cierpieniu grubszej skóry, nie ugina się przed żadną klęską, a nawet gdy upadnie, walczy dalej na kolanach.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "invulnerable-never-wounded",
+      "text": "The invulnerable is not that which is never struck, but that which is never wounded.",
+      "section": "on-the-firmness-of-the-wise-person",
+      "locator": "On the Firmness of the Wise Person",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Niezranny nie jest ten, kogo nic nigdy nie uderza, lecz ten, kogo nic nigdy nie rani.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "foreseen-blow-falls-lighter",
+      "text": "A blow which has long been foreseen falls much less heavily upon us.",
+      "section": "to-marcia-on-consolation",
+      "locator": "To Marcia, on Consolation",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Cios, który dawno przewidzieliśmy, spada na nas znacznie lżej.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "steer-our-own-course",
+      "text": "Let us, then, steer our own course, and no longer allow ourselves to be driven to leeward by the force of our misfortune.",
+      "section": "to-marcia-on-consolation",
+      "locator": "To Marcia, on Consolation",
+      "tags": ["resilience", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Sterujmy więc własnym kursem i nie pozwólmy już, by siła naszego nieszczęścia spychała nas z wiatrem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "misfortune-first-onset",
+      "text": "No one could hold out against misfortune if it permanently exercised the same force as at its first onset.",
+      "section": "on-peace-of-mind",
+      "locator": "On Peace of Mind",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Nikt nie wytrzymałby nieszczęścia, gdyby stale działało z tą samą siłą co przy pierwszym uderzeniu.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "born-for-mutual-assistance",
+      "text": "Mankind is born for mutual assistance, anger for mutual ruin: the former loves society, the latter estrangement.",
+      "section": "on-anger",
+      "locator": "On Anger",
+      "tags": ["relationships", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Ludzkość rodzi się do wzajemnej pomocy, gniew do wzajemnej zguby: ta pierwsza kocha wspólnotę, ten drugi oddalenie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "refuses-to-pardon",
+      "text": "He who refuses to pardon, how often has he begged it for himself?",
+      "section": "on-anger",
+      "locator": "On Anger",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Ten, kto odmawia przebaczenia, jakże często sam o nie prosił?",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "anger-into-friendship",
+      "text": "How can we gain more glory than by turning anger into friendship?",
+      "section": "on-anger",
+      "locator": "On Anger",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Czym możemy zdobyć więcej chwały niż zamieniając gniew w przyjaźń?",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "must-also-love-them",
+      "text": "If you wish those whom you lay under an obligation to be grateful to you, you must not merely confer benefits upon them, but you must also love them.",
+      "section": "on-benefits",
+      "locator": "On Benefits",
+      "tags": ["relationships"],
+      "translations": {
+        "pl": {
+          "text": "Jeśli chcesz, by ci, których zobowiązujesz, byli ci wdzięczni, nie wystarczy wyświadczać im dobrodziejstw: musisz ich też kochać.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "receives-benefit-with-gratitude",
+      "text": "He who receives a benefit with gratitude, repays the first instalment of it.",
+      "section": "on-benefits",
+      "locator": "On Benefits",
+      "tags": ["happiness", "relationships"],
+      "translations": {
+        "pl": {
+          "text": "Kto przyjmuje dobrodziejstwo z wdzięcznością, spłaca jego pierwszą ratę.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "jealous-and-grateful",
+      "text": "No one can at the same time be both jealous and grateful, because those who are jealous are querulous and sad, while the grateful are joyous.",
+      "section": "on-benefits",
+      "locator": "On Benefits",
+      "tags": ["happiness"],
+      "translations": {
+        "pl": {
+          "text": "Nikt nie może być jednocześnie zazdrosny i wdzięczny, bo zazdrośni są zgryźliwi i smutni, a wdzięczni radośni.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "remembrance-makes-grateful",
+      "text": "It is remembrance that makes men grateful; and the more men hope, the less they remember.",
+      "section": "on-benefits",
+      "locator": "On Benefits",
+      "tags": ["happiness"],
+      "translations": {
+        "pl": {
+          "text": "To pamięć czyni ludzi wdzięcznymi; a im więcej ludzie oczekują, tym mniej pamiętają.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "thankfulness-in-countenances",
+      "text": "No words need be used; if we only feel as we ought, our thankfulness will be shown in our countenances.",
+      "section": "on-benefits",
+      "locator": "On Benefits",
+      "tags": ["happiness", "relationships"],
+      "translations": {
+        "pl": {
+          "text": "Słowa nie są potrzebne; jeśli tylko czujemy to, co powinniśmy, wdzięczność będzie widać na naszych twarzach.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "regulate-joys-stifle-sorrows",
+      "text": "I prefer to have to regulate joys than to stifle sorrows.",
+      "section": "on-a-happy-life",
+      "locator": "On a Happy Life",
+      "tags": ["happiness"],
+      "translations": {
+        "pl": {
+          "text": "Wolę musieć miarkować radości niż tłumić smutki.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
+    },
+    {
+      "id": "pilot-in-a-storm",
+      "text": "You can judge of a pilot in a storm, of a soldier in a battle.",
+      "section": "on-providence",
+      "locator": "On Providence",
+      "tags": ["courage", "resilience"],
+      "translations": {
+        "pl": {
+          "text": "Sternika poznasz w czasie burzy, żołnierza w bitwie.",
           "translator": "VerbeApp contributors (AI-assisted draft)",
           "license": "CC0-1.0"
         }

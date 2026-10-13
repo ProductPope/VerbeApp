@@ -20,7 +20,7 @@ export default defineConfig({
         name: 'VerbeApp',
         short_name: 'VerbeApp',
         description:
-          'Wise quotes on philosophy, self-development, productivity and assertiveness, from verified sources.',
+          'Wise quotes on philosophy, self-development, productivity, assertiveness, resilience, relationships, happiness and courage, from verified sources.',
         lang: 'en',
         start_url: base,
         scope: base,

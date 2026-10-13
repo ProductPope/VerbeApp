@@ -3,7 +3,7 @@ import type { Catalog } from './catalog/catalog.js';
 import { Feed } from './components/Feed.js';
 import { Icon } from './components/Icon.js';
 import { StreakBadge, StreakCelebration } from './components/ReadingStreak.js';
-import { SavedView } from './components/SavedView.js';
+import { ProfileView } from './components/ProfileView.js';
 import { NotificationSetting } from './components/NotificationSetting.js';
 import { SettingsDialog } from './components/SettingsDialog.js';
 import { eligibleCards } from './feed/queue.js';
@@ -127,30 +127,10 @@ export function App({
         tags={catalog.tags}
         selectedTags={prefs.tags}
         language={prefs.language}
-        translation={prefs.translation}
         strings={strings}
         onTagsChange={(tags) => {
           store.update((current) => ({ ...current, tags }));
         }}
-        onLanguageChange={(language) => {
-          store.update((current) => ({ ...current, language }));
-        }}
-        onTranslationChange={(translation) => {
-          store.update((current) => ({ ...current, translation }));
-        }}
-        notification={
-          push && (
-            <NotificationSetting
-              push={push}
-              enabled={prefs.notify}
-              hour={prefs.notifyHour}
-              strings={strings}
-              onChange={(change) => {
-                store.update((current) => ({ ...current, ...change }));
-              }}
-            />
-          )
-        }
       />
       <main id="main" tabIndex={-1}>
         {view === 'feed' ? (
@@ -168,15 +148,35 @@ export function App({
             onHide={hide}
           />
         ) : (
-          <SavedView
+          <ProfileView
             cards={catalog.cards}
             favorites={prefs.favorites}
             hidden={prefs.hidden}
             language={prefs.language}
+            translation={prefs.translation}
             translationLanguage={translationLanguage}
             strings={strings}
             onToggleFavorite={toggleFavorite}
             onRestore={restore}
+            onLanguageChange={(language) => {
+              store.update((current) => ({ ...current, language }));
+            }}
+            onTranslationChange={(translation) => {
+              store.update((current) => ({ ...current, translation }));
+            }}
+            notification={
+              push && (
+                <NotificationSetting
+                  push={push}
+                  enabled={prefs.notify}
+                  hour={prefs.notifyHour}
+                  strings={strings}
+                  onChange={(change) => {
+                    store.update((current) => ({ ...current, ...change }));
+                  }}
+                />
+              )
+            }
           />
         )}
       </main>

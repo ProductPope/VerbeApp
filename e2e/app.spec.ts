@@ -19,6 +19,13 @@ async function openSettings(page: Page) {
   return dialog;
 }
 
+async function openPreferences(page: Page) {
+  await page.getByRole('button', { name: 'Your profile' }).click();
+  const preferences = page.getByRole('region', { name: 'Preferences' });
+  await expect(preferences).toBeVisible();
+  return preferences;
+}
+
 test.describe('accessibility', () => {
   for (const colorScheme of ['light', 'dark'] as const) {
     test(`has no WCAG 2.2 AA violations in the ${colorScheme} theme`, async ({ page }) => {
@@ -38,9 +45,12 @@ test.describe('accessibility', () => {
 
   test('has no violations in Polish', async ({ page }) => {
     await page.goto('./');
-    const settings = await openSettings(page);
-    await settings.getByRole('combobox', { name: 'App language' }).selectOption('pl');
+    const preferences = await openPreferences(page);
+    await preferences.getByRole('combobox', { name: 'App language' }).selectOption('pl');
     await expect(page.locator('html')).toHaveAttribute('lang', 'pl');
+    await expectNoAxeViolations(page);
+    await page.getByRole('button', { name: 'Ustawienia' }).click();
+    await expect(page.getByRole('dialog', { name: 'Ustawienia' })).toBeVisible();
     await expectNoAxeViolations(page);
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog')).toBeHidden();
@@ -85,7 +95,37 @@ test.describe('accessibility', () => {
     await expectLargeTargets();
     await openSettings(page);
     await expectLargeTargets();
+    await page.keyboard.press('Escape');
+    await openPreferences(page);
+    await expectLargeTargets();
   });
+});
+
+test.describe('layout', () => {
+  // 839 px is the Pixel 7 viewport as an installed app; 740 px leaves room for Chrome's toolbars.
+  for (const height of [839, 740]) {
+    test(`fits one ${String(height)} px high phone screen without page scrolling`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: 412, height });
+      await page.goto('./');
+      await expect(feed(page).getByRole('article').first()).toBeVisible();
+
+      const fits = () =>
+        page.evaluate(() => {
+          window.scrollTo(0, 100);
+          return {
+            overflow: document.documentElement.scrollHeight - window.innerHeight,
+            scrollY: window.scrollY,
+          };
+        });
+      expect(await fits()).toEqual({ overflow: 0, scrollY: 0 });
+
+      await page.getByRole('button', { name: 'Your profile' }).click();
+      await expect(page.getByRole('heading', { name: 'Favourites' })).toBeVisible();
+      expect(await fits()).toEqual({ overflow: 0, scrollY: 0 });
+    });
+  }
 });
 
 test.describe('feed', () => {
@@ -139,10 +179,11 @@ test.describe('feed', () => {
     const translationBox = await translation.boundingBox();
     expect(translationBox!.y).toBeGreaterThan(quoteBox!.y + quoteBox!.height);
 
-    const settings = await openSettings(page);
-    await settings.getByRole('switch', { name: 'Polish translation' }).uncheck();
-    await page.keyboard.press('Escape');
-    await expect(first.locator('.card-translation')).toHaveCount(0);
+    const preferences = await openPreferences(page);
+    await preferences.getByRole('switch', { name: 'Polish translation' }).uncheck();
+    await page.getByRole('button', { name: 'Your profile' }).click();
+    await expect(feed(page).getByRole('article').first()).toBeVisible();
+    await expect(feed(page).locator('.card-translation')).toHaveCount(0);
   });
 
   test('shows a progress bar while auto-advancing', async ({ page }) => {

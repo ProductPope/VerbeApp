@@ -5,7 +5,7 @@
     {
       "id": "name-the-feeling",
       "text": "When a feeling runs you, name it: \"this is anxiety\", \"this is anger\". Putting it into words takes some of its charge away and gives you back the choice of what to do next.",
-      "tags": ["self-development"],
+      "tags": ["self-development", "resilience"],
       "license": "CC0-1.0",
       "inspiredBy": {
         "url": "https://en.wikipedia.org/wiki/Affect_labeling",
@@ -124,7 +124,7 @@
     {
       "id": "lessons-not-regrets",
       "text": "Take the lessons from your past and leave the regrets there. Every minute spent replaying old mistakes is a minute not spent on the problem in front of you.",
-      "tags": ["self-development"],
+      "tags": ["self-development", "resilience"],
       "license": "CC0-1.0",
       "inspiredBy": {
         "url": "https://deepstash.com/",
@@ -141,7 +141,7 @@
     {
       "id": "ask-what-is-true",
       "text": "When your mind fills in a story, for example that a friend who hasn't replied is upset with you, ask: what is actually true right now? Often the only fact is that they haven't replied yet.",
-      "tags": ["self-development", "assertiveness"],
+      "tags": ["self-development", "assertiveness", "relationships"],
       "license": "CC0-1.0",
       "inspiredBy": {
         "url": "https://en.wikipedia.org/wiki/The_Four_Agreements",
@@ -158,7 +158,7 @@
     {
       "id": "not-everything-is-about-you",
       "text": "Most tones and looks that seem aimed at you come from other people's stress, tiredness or distraction. Taking less personally means carrying less that was never yours.",
-      "tags": ["self-development", "assertiveness"],
+      "tags": ["self-development", "assertiveness", "relationships"],
       "license": "CC0-1.0",
       "inspiredBy": {
         "url": "https://en.wikipedia.org/wiki/The_Four_Agreements",
@@ -175,7 +175,7 @@
     {
       "id": "distance-until-trust",
       "text": "With someone who keeps score, owes you nothing but keeps tabs on what you owe, keep a friendly distance until they earn your trust. You don't have to play a game you didn't agree to.",
-      "tags": ["assertiveness"],
+      "tags": ["assertiveness", "relationships"],
       "license": "CC0-1.0",
       "inspiredBy": {
         "url": "https://deepstash.com/",
@@ -209,7 +209,7 @@
     {
       "id": "prepare-for-luck",
       "text": "Luck is mostly preparation meeting opportunity. Learn, stay positive when things get hard, be where things happen, and act when the chance comes.",
-      "tags": ["self-development"],
+      "tags": ["self-development", "courage"],
       "license": "CC0-1.0",
       "inspiredBy": {
         "url": "https://deepstash.com/",
@@ -311,7 +311,7 @@
     {
       "id": "enjoy-the-infinite-game",
       "text": "Every goal you reach shows you the next one. Life is a game that doesn't end, so the best way to play it is to find a way to enjoy it.",
-      "tags": ["philosophy", "self-development"],
+      "tags": ["philosophy", "self-development", "happiness"],
       "license": "CC0-1.0",
       "inspiredBy": {
         "url": "https://en.wikipedia.org/wiki/Finite_and_Infinite_Games",

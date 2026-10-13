@@ -32,6 +32,38 @@
         "en": "Standing by your own judgement, speaking honestly and not living by others' opinions.",
         "pl": "Trzymanie się własnego zdania, szczera mowa i niezależność od cudzych opinii."
       }
+    },
+    {
+      "id": "resilience",
+      "label": { "en": "Resilience", "pl": "Odporność" },
+      "description": {
+        "en": "Staying calm under pressure, bearing hardship and getting back up after a setback.",
+        "pl": "Spokój pod presją, znoszenie trudności i podnoszenie się po porażce."
+      }
+    },
+    {
+      "id": "relationships",
+      "label": { "en": "Relationships", "pl": "Relacje" },
+      "description": {
+        "en": "Friendship, love, kindness and getting along with other people.",
+        "pl": "Przyjaźń, miłość, życzliwość i dobre życie z innymi ludźmi."
+      }
+    },
+    {
+      "id": "happiness",
+      "label": { "en": "Happiness & gratitude", "pl": "Szczęście i wdzięczność" },
+      "description": {
+        "en": "Contentment, cheerfulness and appreciating what you already have.",
+        "pl": "Zadowolenie, pogoda ducha i docenianie tego, co już masz."
+      }
+    },
+    {
+      "id": "courage",
+      "label": { "en": "Courage & action", "pl": "Odwaga i działanie" },
+      "description": {
+        "en": "Facing fear, taking the first step and keeping going.",
+        "pl": "Stawianie czoła lękowi, robienie pierwszego kroku i wytrwałość."
+      }
     }
   ]
 }
