@@ -280,12 +280,49 @@ select {
   border-radius: var(--radius-small);
 }
 
+/*
+ * A sliding switch drawn on a native checkbox with role="switch", so it keeps
+ * native keyboard and screen reader behaviour. The transparent border keeps the
+ * touch target at 44px tall while the visible track stays label-sized.
+ */
 .switch {
-  width: var(--target-size);
+  --switch-inset: 0.5rem;
+
+  flex: none;
+  width: calc(3rem + 2 * var(--switch-inset));
   height: var(--target-size);
   margin: 0;
-  accent-color: var(--color-accent);
+  border: var(--switch-inset) solid transparent;
+  border-radius: var(--radius-pill);
+  appearance: none;
+  background-color: var(--color-border);
+  background-clip: padding-box;
+  background-image: radial-gradient(
+    circle closest-side,
+    var(--color-surface) 70%,
+    transparent calc(70% + 1px)
+  );
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: calc(var(--target-size) - 2 * var(--switch-inset)) 100%;
   cursor: pointer;
+  transition:
+    background-color var(--duration-fast) ease,
+    background-position var(--duration-fast) ease;
+}
+
+.switch:checked {
+  background-color: var(--color-accent);
+  background-position: right center;
+}
+
+/* Windows High Contrast drops backgrounds; fall back to the native checkbox. */
+@media (forced-colors: active) {
+  .switch {
+    width: var(--target-size);
+    border: 0;
+    appearance: auto;
+  }
 }
 
 .chips {
