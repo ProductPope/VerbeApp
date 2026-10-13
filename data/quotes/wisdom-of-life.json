@@ -136,7 +136,7 @@
       "id": "others-heads-wretched-home",
       "text": "Other people's heads are a wretched place to be the home of a man's true happiness.",
       "locator": "Chapter IV. Position, Section 5: Fame",
-      "tags": ["assertiveness", "philosophy"],
+      "tags": ["assertiveness", "philosophy", "happiness"],
       "translations": {
         "pl": {
           "text": "Cudze głowy to marne miejsce na dom dla prawdziwego szczęścia człowieka.",
@@ -188,7 +188,7 @@
       "id": "riches-like-sea-water",
       "text": "Riches, one may say, are like sea-water; the more you drink the thirstier you become; and the same is true of fame.",
       "locator": "Chapter III. Property, or What a Man Has",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "happiness"],
       "translations": {
         "pl": {
           "text": "Bogactwo jest jak woda morska: im więcej jej pijesz, tym większe masz pragnienie; i tak samo jest ze sławą.",
@@ -201,7 +201,7 @@
       "id": "way-of-looking-makes-happy",
       "text": "It is not what things are objectively and in themselves, but what they are for us, in our way of looking at them, that makes us happy or the reverse.",
       "locator": "Chapter II. Personality, or What a Man Is",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "happiness"],
       "translations": {
         "pl": {
           "text": "Szczęśliwymi lub nieszczęśliwymi czyni nas nie to, czym rzeczy są obiektywnie i same w sobie, lecz to, czym są dla nas, w naszym sposobie patrzenia na nie.",
@@ -227,7 +227,7 @@
       "id": "cheerfulness-knocks-open-door",
       "text": "If cheerfulness knocks at our door, we should throw it wide open, for it never comes inopportunely.",
       "locator": "Chapter II. Personality, or What a Man Is",
-      "tags": ["self-development"],
+      "tags": ["self-development", "happiness"],
       "translations": {
         "pl": {
           "text": "Gdy pogoda ducha puka do naszych drzwi, powinniśmy otworzyć je na oścież, bo nigdy nie przychodzi nie w porę.",
@@ -240,7 +240,7 @@
       "id": "healthy-beggar-ailing-king",
       "text": "A healthy beggar is happier than an ailing king.",
       "locator": "Chapter I. Division of the Subject",
-      "tags": ["philosophy"],
+      "tags": ["philosophy", "happiness"],
       "translations": {
         "pl": {
           "text": "Zdrowy żebrak jest szczęśliwszy niż chory król.",

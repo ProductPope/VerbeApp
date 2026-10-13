@@ -323,6 +323,20 @@
           "license": "CC0-1.0"
         }
       }
+    },
+    {
+      "id": "devout-thanksgiving-for-friends",
+      "text": "I awoke this morning with devout thanksgiving for my friends, the old and the new.",
+      "section": "friendship",
+      "locator": "Friendship",
+      "tags": ["happiness", "relationships"],
+      "translations": {
+        "pl": {
+          "text": "Obudziłem się dziś rano z głęboką wdzięcznością za moich przyjaciół, starych i nowych.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0"
+        }
+      }
     }
   ]
 }

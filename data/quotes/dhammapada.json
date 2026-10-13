@@ -45,7 +45,7 @@
       "id": "good-tame-mind",
       "text": "It is good to tame the mind, which is difficult to hold in and flighty, rushing wherever it listeth; a tamed mind brings happiness.",
       "locator": "Chapter III. Thought, verse 35",
-      "tags": ["self-development"],
+      "tags": ["self-development", "happiness"],
       "translations": {
         "pl": {
           "text": "Dobrze jest okiełznać umysł, trudny do utrzymania i niestały, pędzący, dokąd zechce; okiełznany umysł przynosi szczęście.",
@@ -149,7 +149,7 @@
       "id": "health-greatest-gifts",
       "text": "Health is the greatest of gifts, contentedness the best riches; trust is the best of relationships, Nirvana the highest happiness.",
       "locator": "Chapter XV. Happiness, verse 204",
-      "tags": ["philosophy", "relationships"],
+      "tags": ["philosophy", "relationships", "happiness"],
       "translations": {
         "pl": {
           "text": "Zdrowie jest największym darem, zadowolenie największym bogactwem, zaufanie najlepszą więzią, nirwana najwyższym szczęściem.",
