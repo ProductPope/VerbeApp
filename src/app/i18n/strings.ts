@@ -14,7 +14,7 @@ const en = {
   languageLabel: 'App language',
   translationLabel: 'Polish translation',
   translationHint: 'Draft translations prepared with AI help. Corrections are welcome on GitHub.',
-  aiDraftTranslation: 'AI draft translation, not yet reviewed',
+  aiDraftTranslation: 'AI Translated',
   notificationLabel: 'Daily quote notification',
   notificationTime: 'Time',
   notificationHint: 'One quote a day at the time you choose. Only this device is notified.',
@@ -72,7 +72,7 @@ const pl: Strings = {
   translationLabel: 'Tłumaczenie na polski',
   translationHint:
     'Robocze tłumaczenia przygotowane z pomocą AI. Poprawki mile widziane na GitHubie.',
-  aiDraftTranslation: 'Robocze tłumaczenie AI, jeszcze niesprawdzone',
+  aiDraftTranslation: 'Przetłumaczone przez AI',
   notificationLabel: 'Codzienne powiadomienie z cytatem',
   notificationTime: 'Godzina',
   notificationHint:
