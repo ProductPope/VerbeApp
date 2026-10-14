@@ -27,8 +27,8 @@ jobs:
       - run: npm run build
         env:
           BASE_PATH: /${{ github.event.repository.name }}/
-          # Address of the notification worker; empty hides the notification setting.
-          VITE_PUSH_API_URL: ${{ vars.PUSH_API_URL }}
+          # Address of the notification worker (public). A repository variable overrides it, e.g. on a fork.
+          VITE_PUSH_API_URL: ${{ vars.PUSH_API_URL || 'https://verbeapp-push.marcin-piotr-wozny.workers.dev' }}
       - uses: actions/configure-pages@v6
         with:
           enablement: true
