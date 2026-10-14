@@ -48,8 +48,10 @@ repository owner:
    which overrides it) and re-run **Deploy to GitHub Pages**.
    The notification switch then appears under Preferences in the profile.
 
-The worker allows requests only from `ALLOWED_ORIGIN` in `worker/wrangler.jsonc`; change it if the
-app moves to another domain.
+The worker allows requests only from the app's origin. The deploy workflow sets it to the
+repository owner's GitHub Pages address (`https://<owner>.github.io`), so a fork works without
+changes; for a custom domain, set the repository variable `APP_ORIGIN`, e.g.
+`https://quotes.example.org`. The value in `worker/wrangler.jsonc` is only used locally.
 
 ## Testing
 

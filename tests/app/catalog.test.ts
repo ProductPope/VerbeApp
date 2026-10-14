@@ -1,6 +1,7 @@
-import { describe, expect, it } from 'vitest';
-import { buildCatalog, localized } from '../../src/app/catalog/catalog.js';
-import { catalog } from '../../src/app/catalog/load.js';
+import { describe, expect, it, vi } from 'vitest';
+import { buildCatalog, localized, type Catalog } from '../../src/app/catalog/catalog.js';
+import { CATALOG_URL, loadCatalog } from '../../src/app/catalog/load.js';
+import { catalogJson } from '../../scripts/lib/catalog-file.js';
 import { HABIT_QUOTE_ID } from '../../src/app/components/ReadingStreak.js';
 import { validDataset } from '../fixtures.js';
 
@@ -84,7 +85,33 @@ describe('localized', () => {
   });
 });
 
-describe('the bundled catalog', () => {
+const catalog = JSON.parse(await catalogJson()) as Catalog;
+
+describe('loadCatalog', () => {
+  it('fetches the catalogue file next to the app', async () => {
+    const fetchCatalog = vi.fn(() => Promise.resolve(Response.json(catalog)));
+    expect(await loadCatalog(fetchCatalog)).toEqual(catalog);
+    expect(fetchCatalog).toHaveBeenCalledWith(CATALOG_URL);
+    expect(CATALOG_URL).toBe('/catalog.json');
+  });
+
+  it('fails on an HTTP error or an unexpected format', async () => {
+    await expect(
+      loadCatalog(() => Promise.resolve(new Response(null, { status: 404 }))),
+    ).rejects.toThrow('HTTP 404');
+    await expect(loadCatalog(() => Promise.resolve(Response.json({ cards: 1 })))).rejects.toThrow(
+      'unexpected format',
+    );
+  });
+});
+
+describe('catalogJson', () => {
+  it('refuses to build from a dataset with problems', async () => {
+    await expect(catalogJson('/nonexistent')).rejects.toThrow('The dataset has problems');
+  });
+});
+
+describe('the built catalog', () => {
   it('contains every quote in data/, each with a link to its source', () => {
     expect(catalog.cards.length).toBeGreaterThanOrEqual(151);
     const quotes = catalog.cards.filter((c) => c.kind === 'quote');

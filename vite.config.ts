@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig, type Plugin } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import { CATALOG_FILE, catalogJson } from './scripts/lib/catalog-file.js';
 
 // GitHub Pages serves the app from /<repository>/; local dev serves it from /.
 const base = process.env.BASE_PATH ?? '/';
@@ -38,11 +39,46 @@ function contentSecurityPolicy(): Plugin {
   };
 }
 
+/**
+ * Builds the quote catalogue from data/ into its own file, so the quotes are
+ * not part of the JavaScript bundle. The dev server builds it per request.
+ */
+function quoteCatalog(): Plugin {
+  return {
+    name: 'quote-catalog',
+    configureServer(server) {
+      server.middlewares.use(`${base}${CATALOG_FILE}`, (_request, response, next) => {
+        catalogJson().then(
+          (json) => {
+            response.setHeader('Content-Type', 'application/json');
+            response.end(json);
+          },
+          (error: unknown) => {
+            next(error);
+          },
+        );
+      });
+    },
+    // Start downloading the catalogue alongside the JavaScript, not after it.
+    transformIndexHtml: () => [
+      {
+        tag: 'link',
+        attrs: { rel: 'preload', href: `${base}${CATALOG_FILE}`, as: 'fetch', crossorigin: '' },
+        injectTo: 'head',
+      },
+    ],
+    async generateBundle() {
+      this.emitFile({ type: 'asset', fileName: CATALOG_FILE, source: await catalogJson() });
+    },
+  };
+}
+
 export default defineConfig({
   base,
   plugins: [
     react(),
     contentSecurityPolicy(),
+    quoteCatalog(),
     VitePWA({
       registerType: 'autoUpdate',
       // A custom service worker so that it can show the daily quote notification.
@@ -50,6 +86,8 @@ export default defineConfig({
       srcDir: 'src/sw',
       filename: 'sw.ts',
       includeAssets: ['icon.svg'],
+      // The quote catalogue is JSON; precache it with the app for offline use.
+      injectManifest: { globPatterns: ['**/*.{js,css,html,json}'] },
       manifest: {
         name: 'Verbe',
         short_name: 'Verbe',

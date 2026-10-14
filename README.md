@@ -72,6 +72,27 @@ behind the design.
 3. **Daily quote**: a push notification at a time you choose, sent by a small Cloudflare Worker.
    See [docs/notifications.md](docs/notifications.md). ✅
 
+## How this project is built
+
+Verbe is developed by one person, [Marcin](https://github.com/ProductPope), working with an AI
+coding assistant (Claude Code). Most code, tests and data entries are written by the assistant
+from Marcin's requests, and he decides what is built and merged. Commits made this way carry a
+`Co-Authored-By: Claude` trailer.
+
+Because AI-written work deserves extra scepticism, the project leans on checks that do not depend
+on trusting the author:
+
+- every quote is matched word for word against its public-domain source in CI
+  (`npm run data:verify`), and copyright terms are checked from the life dates of authors and
+  translators;
+- the Polish translations are AI drafts, marked `ai-draft` in the data and labelled in the app,
+  until a person reviews them;
+- type checking, lint, unit tests with a coverage threshold, and end-to-end tests with automated
+  accessibility checks (axe) run on every pull request;
+- design decisions are recorded in [docs/adr](docs/adr).
+
+Automated checks cannot catch everything, so issues and reviews from people are very welcome.
+
 ## Licence
 
 Code: [MIT](LICENSE). Data: public domain and [CC0](data/LICENSE.md).

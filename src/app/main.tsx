@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { registerSW } from 'virtual:pwa-register';
 import { App } from './App.js';
 import { createInstallService } from './install/install.js';
-import { catalog } from './catalog/load.js';
+import { loadCatalog } from './catalog/load.js';
 import { PUSH_API_URL } from './notifications/config.js';
 import { createPushService, isPushSupported } from './notifications/push.js';
 import { createPersonalStore } from './personal/personal.js';
@@ -44,6 +44,11 @@ if (initialCardId !== undefined) {
 const root = document.getElementById('root');
 if (root) {
   const storage = localStorageOrUndefined();
+  const catalog = await loadCatalog().catch((error: unknown) => {
+    // Without quotes there is nothing to show; say so instead of a blank page.
+    root.textContent = 'Could not load the quotes. Check your connection and reload.';
+    throw error;
+  });
   createRoot(root).render(
     <StrictMode>
       <App
