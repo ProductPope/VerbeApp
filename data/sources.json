@@ -292,6 +292,54 @@
         "url": "https://www.gutenberg.org/ebooks/40461",
         "text": "https://www.gutenberg.org/cache/epub/40461/pg40461.txt"
       }
+    },
+    {
+      "id": "middlemarch",
+      "title": "Middlemarch",
+      "author": "george-eliot",
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/george-eliot/middlemarch",
+        "repository": "https://github.com/standardebooks/george-eliot_middlemarch"
+      }
+    },
+    {
+      "id": "jane-eyre",
+      "title": "Jane Eyre",
+      "author": "charlotte-bronte",
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/charlotte-bronte/jane-eyre",
+        "repository": "https://github.com/standardebooks/charlotte-bronte_jane-eyre"
+      }
+    },
+    {
+      "id": "little-women",
+      "title": "Little Women",
+      "author": "louisa-may-alcott",
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/louisa-may-alcott/little-women",
+        "repository": "https://github.com/standardebooks/louisa-may-alcott_little-women"
+      }
+    },
+    {
+      "id": "frankenstein",
+      "title": "Frankenstein",
+      "author": "mary-shelley",
+      "language": "en",
+      "license": "public-domain",
+      "edition": {
+        "publisher": "Standard Ebooks",
+        "url": "https://standardebooks.org/ebooks/mary-shelley/frankenstein",
+        "repository": "https://github.com/standardebooks/mary-shelley_frankenstein"
+      }
     }
   ]
 }

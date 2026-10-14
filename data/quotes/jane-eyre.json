@@ -1,0 +1,66 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "jane-eyre",
+  "quotes": [
+    {
+      "id": "no-bird-no-net",
+      "text": "I am no bird; and no net ensnares me; I am a free human being with an independent will.",
+      "section": "chapter-23",
+      "locator": "Chapter XXIII",
+      "tags": ["assertiveness", "courage"],
+      "translations": {
+        "pl": {
+          "text": "Nie jestem ptakiem i żadna sieć mnie nie usidli; jestem wolną istotą ludzką o niezależnej woli.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "more-solitary-more-respect",
+      "text": "The more solitary, the more friendless, the more unsustained I am, the more I will respect myself.",
+      "section": "chapter-27",
+      "locator": "Chapter XXVII",
+      "tags": ["assertiveness", "resilience"],
+      "translations": {
+        "pl": {
+          "text": "Im bardziej jestem samotna, im mniej mam przyjaciół i oparcia, tym bardziej będę siebie szanować.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "principles-for-temptation",
+      "text": "Laws and principles are not for the times when there is no temptation: they are for such moments as this, when body and soul rise in mutiny against their rigour.",
+      "section": "chapter-27",
+      "locator": "Chapter XXVII",
+      "tags": ["self-development", "resilience"],
+      "translations": {
+        "pl": {
+          "text": "Prawa i zasady nie są na czasy, gdy nie ma pokusy: są na takie chwile jak ta, gdy ciało i dusza buntują się przeciw ich surowości.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "human-beings-must-have-action",
+      "text": "It is in vain to say human beings ought to be satisfied with tranquillity: they must have action; and they will make it if they cannot find it.",
+      "section": "chapter-12",
+      "locator": "Chapter XII",
+      "tags": ["productivity", "courage"],
+      "translations": {
+        "pl": {
+          "text": "Na próżno mówić, że ludzie powinni zadowolić się spokojem: potrzebują działania i stworzą je, jeśli nie mogą go znaleźć.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    }
+  ]
+}

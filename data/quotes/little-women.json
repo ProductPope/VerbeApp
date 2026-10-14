@@ -1,0 +1,81 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "little-women",
+  "quotes": [
+    {
+      "id": "not-afraid-of-storms",
+      "text": "I’m not afraid of storms, for I’m learning how to sail my ship.",
+      "section": "chapter-44",
+      "locator": "Chapter XLIV",
+      "tags": ["resilience", "courage"],
+      "translations": {
+        "pl": {
+          "text": "Nie boję się burz, bo uczę się żeglować moim statkiem.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "work-is-wholesome",
+      "text": "Work is wholesome, and there is plenty for everyone; it keeps us from ennui and mischief, is good for health and spirits, and gives us a sense of power and independence better than money or fashion.",
+      "section": "chapter-11",
+      "locator": "Chapter XI",
+      "tags": ["productivity"],
+      "translations": {
+        "pl": {
+          "text": "Praca jest zdrowa i starczy jej dla każdego; chroni przed nudą i psotami, dobrze służy zdrowiu i nastrojowi, i daje poczucie siły i niezależności lepsze niż pieniądze czy moda.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "charm-of-power-is-modesty",
+      "text": "There is not much danger that real talent or goodness will be overlooked long; even if it is, the consciousness of possessing and using it well should satisfy one, and the great charm of all power is modesty.",
+      "section": "chapter-7",
+      "locator": "Chapter VII",
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Niewielkie jest ryzyko, że prawdziwy talent czy dobroć zostaną długo przeoczone; a nawet jeśli, świadomość, że się je ma i dobrze ich używa, powinna wystarczyć, a największym urokiem wszelkiej siły jest skromność.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "never-tired-of-trying",
+      "text": "Watch and pray, dear; never get tired of trying; and never think it is impossible to conquer your fault.",
+      "section": "chapter-8",
+      "locator": "Chapter VIII",
+      "tags": ["self-development", "resilience"],
+      "translations": {
+        "pl": {
+          "text": "Czuwaj i módl się, kochanie; nigdy nie przestawaj próbować i nigdy nie myśl, że nie da się pokonać swojej wady.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "love-only-thing-we-carry",
+      "text": "Love is the only thing that we can carry with us when we go, and it makes the end so easy.",
+      "section": "chapter-40",
+      "locator": "Chapter XL",
+      "tags": ["relationships", "mortality"],
+      "translations": {
+        "pl": {
+          "text": "Miłość to jedyne, co możemy zabrać ze sobą, gdy odchodzimy, i to ona sprawia, że koniec jest tak łagodny.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    }
+  ]
+}

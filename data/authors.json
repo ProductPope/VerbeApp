@@ -162,6 +162,42 @@
       },
       "born": 1869,
       "died": 1948
+    },
+    {
+      "id": "george-eliot",
+      "name": {
+        "en": "George Eliot",
+        "pl": "George Eliot"
+      },
+      "born": 1819,
+      "died": 1880
+    },
+    {
+      "id": "charlotte-bronte",
+      "name": {
+        "en": "Charlotte Brontë",
+        "pl": "Charlotte Brontë"
+      },
+      "born": 1816,
+      "died": 1855
+    },
+    {
+      "id": "louisa-may-alcott",
+      "name": {
+        "en": "Louisa May Alcott",
+        "pl": "Louisa May Alcott"
+      },
+      "born": 1832,
+      "died": 1888
+    },
+    {
+      "id": "mary-shelley",
+      "name": {
+        "en": "Mary Shelley",
+        "pl": "Mary Shelley"
+      },
+      "born": 1797,
+      "died": 1851
     }
   ]
 }
