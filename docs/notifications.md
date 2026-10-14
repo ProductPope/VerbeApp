@@ -44,7 +44,8 @@ repository owner:
    `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
 4. Run the **Deploy notification worker** workflow. It creates the KV namespace, deploys the worker,
    creates the VAPID keys once and prints the worker URL in its summary.
-5. Add that URL as the repository variable `PUSH_API_URL` and re-run **Deploy to GitHub Pages**.
+5. Put that URL in `.github/workflows/deploy.yml` (or set the repository variable `PUSH_API_URL`,
+   which overrides it) and re-run **Deploy to GitHub Pages**.
    The notification switch then appears under Preferences in the profile.
 
 The worker allows requests only from `ALLOWED_ORIGIN` in `worker/wrangler.jsonc`; change it if the
