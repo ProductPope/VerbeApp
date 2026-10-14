@@ -46,6 +46,81 @@
           "status": "ai-draft"
         }
       }
+    },
+    {
+      "id": "unstable-mind-prejudices",
+      "text": "The mind will ever be unstable that has only prejudices to rest on.",
+      "section": "chapter-2",
+      "locator": "Chapter II",
+      "tags": ["philosophy", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Umysł, który opiera się tylko na uprzedzeniach, zawsze będzie chwiejny.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "reforming-themselves-reform-world",
+      "text": "It is time to effect a revolution in female manners, time to restore to them their lost dignity, and make them, as a part of the human species, labour by reforming themselves to reform the world.",
+      "section": "chapter-3",
+      "locator": "Chapter III",
+      "tags": ["courage", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Czas dokonać rewolucji w obyczajach kobiet, czas przywrócić im utraconą godność i sprawić, by jako część rodzaju ludzkiego pracowały nad naprawą świata, naprawiając siebie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "earns-her-own-bread",
+      "text": "How much more respectable is the woman who earns her own bread by fulfilling any duty, than the most accomplished beauty!",
+      "section": "chapter-9",
+      "locator": "Chapter IX",
+      "tags": ["assertiveness", "productivity"],
+      "translations": {
+        "pl": {
+          "text": "O ileż bardziej godna szacunku jest kobieta, która sama zarabia na chleb, wypełniając jakąkolwiek powinność, niż najdoskonalsza piękność!",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "virtue-not-by-speculation",
+      "text": "Virtue is not to be acquired even by speculation, much less by the negative supineness that wealth naturally generates.",
+      "section": "chapter-9",
+      "locator": "Chapter IX",
+      "tags": ["self-development"],
+      "translations": {
+        "pl": {
+          "text": "Cnoty nie zdobywa się nawet rozważaniami, a tym bardziej biernym gnuśnieniem, które naturalnie rodzi bogactwo.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "love-man-as-my-fellow",
+      "text": "I love man as my fellow; but his sceptre real or usurped, extends not to me, unless the reason of an individual demands my homage; and even then the submission is to reason, and not to man.",
+      "section": "chapter-2",
+      "locator": "Chapter II",
+      "tags": ["assertiveness", "relationships"],
+      "translations": {
+        "pl": {
+          "text": "Kocham człowieka jako bliźniego; lecz jego berło, prawdziwe czy uzurpowane, nie sięga do mnie, chyba że rozum jednostki domaga się mojego hołdu; a nawet wtedy poddaję się rozumowi, nie człowiekowi.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
     }
   ]
 }

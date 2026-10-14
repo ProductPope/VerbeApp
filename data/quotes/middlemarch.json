@@ -1,0 +1,81 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "middlemarch",
+  "quotes": [
+    {
+      "id": "make-life-less-difficult",
+      "text": "What do we live for, if it is not to make life less difficult to each other?",
+      "section": "chapter-72",
+      "locator": "Chapter LXXII",
+      "tags": ["relationships", "happiness"],
+      "translations": {
+        "pl": {
+          "text": "Po co żyjemy, jeśli nie po to, by sobie nawzajem ułatwiać życie?",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "growing-good-unhistoric-acts",
+      "text": "The growing good of the world is partly dependent on unhistoric acts; and that things are not so ill with you and me as they might have been, is half owing to the number who lived faithfully a hidden life, and rest in unvisited tombs.",
+      "section": "epilogue",
+      "locator": "Finale",
+      "tags": ["philosophy", "mortality"],
+      "translations": {
+        "pl": {
+          "text": "Rosnące dobro świata zależy po części od czynów, których historia nie odnotuje; a to, że nie jest z tobą i ze mną tak źle, jak mogłoby być, zawdzięczamy w połowie tym wielu, którzy wiernie żyli ukrytym życiem i spoczywają w nieodwiedzanych grobach.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "bravery-for-nearest-neighbors",
+      "text": "People glorify all sorts of bravery except the bravery they might show on behalf of their nearest neighbors.",
+      "section": "chapter-72",
+      "locator": "Chapter LXXII",
+      "tags": ["courage", "relationships"],
+      "translations": {
+        "pl": {
+          "text": "Ludzie wysławiają wszelkie rodzaje odwagi poza tą, którą sami mogliby okazać w obronie swoich najbliższych sąsiadów.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "inward-being-outside-it",
+      "text": "There is no creature whose inward being is so strong that it is not greatly determined by what lies outside it.",
+      "section": "epilogue",
+      "locator": "Finale",
+      "tags": ["philosophy", "self-development"],
+      "translations": {
+        "pl": {
+          "text": "Nie ma istoty, której wnętrze byłoby tak silne, by nie kształtowało go w dużej mierze to, co leży poza nią.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "born-in-moral-stupidity",
+      "text": "We are all of us born in moral stupidity, taking the world as an udder to feed our supreme selves.",
+      "section": "chapter-21",
+      "locator": "Chapter XXI",
+      "tags": ["self-development", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Wszyscy rodzimy się w moralnej tępocie, traktując świat jak wymię, które ma karmić nasze wszechwładne „ja”.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    }
+  ]
+}

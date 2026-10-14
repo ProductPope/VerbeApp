@@ -1,0 +1,51 @@
+{
+  "$schema": "../schema/quote-collection.schema.json",
+  "source": "frankenstein",
+  "quotes": [
+    {
+      "id": "steady-purpose-tranquillises",
+      "text": "Nothing contributes so much to tranquillise the mind as a steady purpose—a point on which the soul may fix its intellectual eye.",
+      "section": "letter-1",
+      "locator": "Letter I",
+      "tags": ["productivity", "mindfulness"],
+      "translations": {
+        "pl": {
+          "text": "Nic tak nie uspokaja umysłu jak stały cel: punkt, na którym dusza może skupić swoje wewnętrzne spojrzenie.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "great-and-sudden-change",
+      "text": "Nothing is so painful to the human mind as a great and sudden change.",
+      "section": "chapter-23",
+      "locator": "Chapter XXIII",
+      "tags": ["resilience"],
+      "translations": {
+        "pl": {
+          "text": "Nic nie jest dla ludzkiego umysłu tak bolesne jak wielka i nagła zmiana.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    },
+    {
+      "id": "invention-out-of-chaos",
+      "text": "Invention, it must be humbly admitted, does not consist in creating out of void, but out of chaos.",
+      "section": "introduction",
+      "locator": "Introduction",
+      "tags": ["productivity", "philosophy"],
+      "translations": {
+        "pl": {
+          "text": "Trzeba pokornie przyznać, że wynalazczość nie polega na tworzeniu z pustki, lecz z chaosu.",
+          "translator": "VerbeApp contributors (AI-assisted draft)",
+          "license": "CC0-1.0",
+          "status": "ai-draft"
+        }
+      }
+    }
+  ]
+}
