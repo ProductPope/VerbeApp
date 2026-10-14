@@ -26,16 +26,22 @@ export function shuffle<T>(items: readonly T[], random: () => number): T[] {
   return result;
 }
 
-/** Cards the feed may show: not hidden, and in a selected category if any are selected. */
+/**
+ * Cards the feed may show: not hidden, in a selected category if any are
+ * selected, and only the reader's own quotes when `ownOnly` is set.
+ */
 export function eligibleCards(
   cards: readonly Card[],
   hidden: readonly string[],
   tags: readonly string[],
+  ownOnly = false,
 ) {
   const hiddenIds = new Set(hidden);
   return cards.filter(
     (card) =>
-      !hiddenIds.has(card.id) && (tags.length === 0 || card.tags.some((tag) => tags.includes(tag))),
+      !hiddenIds.has(card.id) &&
+      (!ownOnly || card.kind === 'personal') &&
+      (tags.length === 0 || card.tags.some((tag) => tags.includes(tag))),
   );
 }
 

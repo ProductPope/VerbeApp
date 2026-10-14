@@ -309,6 +309,63 @@ describe('categories', () => {
   });
 });
 
+describe('source filter', () => {
+  const mine = {
+    id: 'mine-1',
+    text: 'My own words.',
+    author: 'Me',
+    source: '',
+    language: 'en' as const,
+    tags: [],
+    added: '2026-10-13T10:00:00.000Z',
+  };
+
+  it('is offered only once the reader has quotes of their own', async () => {
+    const { user, personalStore } = renderApp();
+    const settings = await openSettings(user);
+    expect(within(settings).queryByRole('group', { name: 'Source' })).toBeNull();
+    act(() => {
+      personalStore.update(() => [mine]);
+    });
+    const group = within(settings).getByRole('group', { name: 'Source' });
+    const own = within(group).getByRole('switch', { name: 'Own' });
+    expect(own).not.toBeChecked();
+    expect(own).toHaveAccessibleDescription('Show only the quotes you added yourself.');
+  });
+
+  it('limits the feed to own quotes, and lets go when none are left', async () => {
+    const { user, store, personalStore } = renderApp();
+    act(() => {
+      personalStore.update(() => [mine]);
+    });
+    const settings = await openSettings(user);
+    await user.click(within(settings).getByRole('switch', { name: 'Own' }));
+    expect(store.get().ownOnly).toBe(true);
+    expect(new Set(cardIds())).toEqual(new Set(['mine-1']));
+    await user.click(within(settings).getByRole('switch', { name: 'Own' }));
+    expect(new Set(cardIds())).toEqual(
+      new Set(['alpha', 'beta', 'gamma', 'delta', 'epsilon', 'mine-1']),
+    );
+    await user.click(within(settings).getByRole('switch', { name: 'Own' }));
+    act(() => {
+      personalStore.update(() => []);
+    });
+    expect(within(settings).queryByRole('group', { name: 'Source' })).toBeNull();
+    expect(new Set(cardIds())).toEqual(new Set(['alpha', 'beta', 'gamma', 'delta', 'epsilon']));
+  });
+
+  it('is translated', async () => {
+    const { user, personalStore } = renderApp('pl');
+    act(() => {
+      personalStore.update(() => [mine]);
+    });
+    await user.click(screen.getByRole('button', { name: 'Ustawienia' }));
+    const settings = screen.getByRole('dialog', { name: 'Ustawienia' });
+    const group = within(settings).getByRole('group', { name: 'Źródło' });
+    expect(within(group).getByRole('switch', { name: 'Własne' })).toBeInTheDocument();
+  });
+});
+
 describe('profile', () => {
   it('opens as a modal dialog with preferences collapsed and closes with the X button', async () => {
     const { user } = renderApp();

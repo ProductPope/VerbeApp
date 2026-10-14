@@ -8,6 +8,8 @@ export interface Preferences {
   hidden: string[];
   /** Selected category ids; empty means all categories. */
   tags: string[];
+  /** Show only the reader's own quotes; applies only while they have some. */
+  ownOnly: boolean;
   autoplay: boolean;
   /** Show the Polish translation under each quote. */
   translation: boolean;
@@ -31,6 +33,7 @@ export function defaultPreferences(browserLanguage = ''): Preferences {
     favorites: [],
     hidden: [],
     tags: [],
+    ownOnly: false,
     autoplay: false,
     translation: true,
     notify: false,
@@ -61,6 +64,7 @@ export function parsePreferences(raw: string | null, fallback: Preferences): Pre
       favorites: stringArray(data.favorites),
       hidden: stringArray(data.hidden),
       tags: stringArray(data.tags),
+      ownOnly: data.ownOnly === true,
       autoplay: data.autoplay === true,
       translation: data.translation !== false,
       notify: data.notify === true,

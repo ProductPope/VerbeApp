@@ -23,6 +23,9 @@ const en = {
   notificationFailed: 'Could not change the notification. Check your connection and try again.',
   categoriesLabel: 'Categories',
   allCategories: 'All',
+  sourceLabel: 'Source',
+  ownQuotesLabel: 'Own',
+  ownQuotesHint: 'Show only the quotes you added yourself.',
   feedLabel: 'Quotes feed',
   feedHint:
     'Swipe left for the next quote. With a keyboard, use the arrow keys or Page Down and Page Up.',
@@ -181,6 +184,9 @@ const pl: Strings = {
   notificationFailed: 'Nie udało się zmienić powiadomienia. Sprawdź połączenie i spróbuj ponownie.',
   categoriesLabel: 'Kategorie',
   allCategories: 'Wszystkie',
+  sourceLabel: 'Źródło',
+  ownQuotesLabel: 'Własne',
+  ownQuotesHint: 'Pokazuj tylko cytaty dodane przez Ciebie.',
   feedLabel: 'Lista cytatów',
   feedHint:
     'Przesuń w lewo, aby zobaczyć następny cytat. Na klawiaturze użyj strzałek lub Page Down i Page Up.',

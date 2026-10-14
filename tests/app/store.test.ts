@@ -37,6 +37,7 @@ describe('parsePreferences', () => {
       favorites: ['a', 3, 'b'],
       hidden: 'nope',
       tags: ['philosophy'],
+      ownOnly: 'yes',
       autoplay: 'yes',
       translation: 'no',
       notify: 'yes',
@@ -49,6 +50,7 @@ describe('parsePreferences', () => {
       favorites: ['a', 'b'],
       hidden: [],
       tags: ['philosophy'],
+      ownOnly: false,
       autoplay: false,
       translation: true,
       notify: false,
@@ -57,6 +59,10 @@ describe('parsePreferences', () => {
       installDismissals: 0,
       installDismissedAt: null,
     });
+  });
+
+  it('remembers the own quotes filter', () => {
+    expect(parsePreferences(JSON.stringify({ ownOnly: true }), fallback).ownOnly).toBe(true);
   });
 
   it('remembers refusals of the offer to install', () => {
