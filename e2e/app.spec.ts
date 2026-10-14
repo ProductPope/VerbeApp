@@ -86,8 +86,10 @@ test.describe('accessibility', () => {
 
   test('lets keyboard users skip to the quotes and move between them', async ({ page }) => {
     await page.goto('./');
-    await page.keyboard.press('Tab');
     const skip = page.getByRole('link', { name: 'Skip to quotes' });
+    // The app renders once the quote catalogue has loaded.
+    await skip.waitFor({ state: 'attached' });
+    await page.keyboard.press('Tab');
     await expect(skip).toBeFocused();
     await expect(skip).toBeInViewport();
     await page.keyboard.press('Enter');

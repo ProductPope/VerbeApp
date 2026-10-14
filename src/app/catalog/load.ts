@@ -1,23 +1,25 @@
-import type { CollectionFile, CommunityFile, Source } from '../../data/model.js';
-import authors from '../../../data/authors.json';
-import sources from '../../../data/sources.json';
-import tags from '../../../data/tags.json';
-import { buildCatalog, type Catalog } from './catalog.js';
+import type { Catalog } from './catalog.js';
 
-// Bundled at build time. The data has already passed schema validation in CI.
-const quoteFiles = import.meta.glob<CollectionFile['collection']>('../../../data/quotes/*.json', {
-  eager: true,
-  import: 'default',
-});
-const communityFiles = import.meta.glob<CommunityFile['collection']>(
-  '../../../data/community/*.json',
-  { eager: true, import: 'default' },
-);
+/** Built from data/ at build time; see scripts/lib/catalog-file.ts. */
+export const CATALOG_URL = `${import.meta.env.BASE_URL}catalog.json`;
 
-export const catalog: Catalog = buildCatalog({
-  tags: tags.tags,
-  authors: authors.authors,
-  sources: sources.sources as Source[],
-  collections: Object.entries(quoteFiles).map(([path, collection]) => ({ path, collection })),
-  community: Object.entries(communityFiles).map(([path, collection]) => ({ path, collection })),
-});
+function isCatalog(value: unknown): value is Catalog {
+  if (typeof value !== 'object' || value === null) return false;
+  const { cards, tags } = value as Record<string, unknown>;
+  return Array.isArray(cards) && Array.isArray(tags);
+}
+
+/**
+ * Loads the quote catalogue. It is a separate file rather than part of the
+ * JavaScript, so the app starts as quickly with thousands of quotes as with
+ * a few hundred; the service worker precaches it for offline use.
+ */
+export async function loadCatalog(
+  fetchCatalog: (url: string) => Promise<Response> = (url) => fetch(url),
+): Promise<Catalog> {
+  const response = await fetchCatalog(CATALOG_URL);
+  if (!response.ok) throw new Error(`Catalogue: HTTP ${String(response.status)}`);
+  const data: unknown = await response.json();
+  if (!isCatalog(data)) throw new Error('Catalogue: unexpected format');
+  return data;
+}

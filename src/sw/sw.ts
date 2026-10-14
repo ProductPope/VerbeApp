@@ -3,10 +3,12 @@ import { clientsClaim } from 'workbox-core';
 import {
   cleanupOutdatedCaches,
   createHandlerBoundToURL,
+  matchPrecache,
   precacheAndRoute,
 } from 'workbox-precaching';
 import { NavigationRoute, registerRoute } from 'workbox-routing';
-import { catalog } from '../app/catalog/load.js';
+import type { Catalog } from '../app/catalog/catalog.js';
+import { CATALOG_URL } from '../app/catalog/load.js';
 import { PUSH_API_URL } from '../app/notifications/config.js';
 import { dailyNotification, dayKey, quoteOfTheDay } from '../app/notifications/daily.js';
 import { readSharedPrefs } from '../app/notifications/shared-prefs.js';
@@ -23,8 +25,14 @@ clientsClaim();
 
 const NOTIFICATION_TAG = 'daily-quote';
 
+/** The catalogue precached with this version of the app, or the network's. */
+async function loadCatalog(): Promise<Catalog> {
+  const response = (await matchPrecache(CATALOG_URL)) ?? (await fetch(CATALOG_URL));
+  return (await response.json()) as Catalog;
+}
+
 async function showQuoteOfTheDay(): Promise<void> {
-  const prefs = await readSharedPrefs();
+  const [prefs, catalog] = await Promise.all([readSharedPrefs(), loadCatalog()]);
   const card = quoteOfTheDay(catalog.cards, prefs, dayKey(new Date()));
   if (!card) return;
   const content = dailyNotification(
