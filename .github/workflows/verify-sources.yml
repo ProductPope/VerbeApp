@@ -24,4 +24,12 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      # Keep the downloaded editions between runs, so verification does not
+      # fail when Standard Ebooks or Project Gutenberg is briefly unreachable.
+      # Only editions missing from the cache are downloaded.
+      - uses: actions/cache@v6
+        with:
+          path: .cache/editions
+          key: editions-${{ hashFiles('data/sources.json') }}
+          restore-keys: editions-
       - run: npm run data:verify

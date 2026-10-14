@@ -58,7 +58,15 @@ jobs:
       - name: Deploy
         if: steps.configured.outputs.ready == 'true'
         working-directory: worker
-        run: $WRANGLER deploy | tee deploy.log
+        env:
+          # The app's origin: the repository variable APP_ORIGIN for a custom
+          # domain, otherwise this repository owner's GitHub Pages address.
+          APP_ORIGIN: ${{ vars.APP_ORIGIN }}
+          OWNER: ${{ github.repository_owner }}
+          REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          origin="${APP_ORIGIN:-https://${OWNER,,}.github.io}"
+          $WRANGLER deploy --var "ALLOWED_ORIGIN:$origin" --var "VAPID_SUBJECT:$REPOSITORY_URL" | tee deploy.log
       - name: Create VAPID keys once
         if: steps.configured.outputs.ready == 'true'
         working-directory: worker
