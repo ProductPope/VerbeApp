@@ -10,6 +10,9 @@ interface SettingsDialogProps {
   language: Language;
   strings: Strings;
   onTagsChange: (tags: string[]) => void;
+  /** The "own quotes only" switch; undefined hides the source filter. */
+  ownOnly?: boolean | undefined;
+  onOwnOnlyChange: (ownOnly: boolean) => void;
   ref?: Ref<HTMLDialogElement>;
 }
 
@@ -24,6 +27,8 @@ export function SettingsDialog({
   language,
   strings,
   onTagsChange,
+  ownOnly,
+  onOwnOnlyChange,
   ref,
 }: SettingsDialogProps) {
   return (
@@ -55,6 +60,30 @@ export function SettingsDialog({
             onChange={onTagsChange}
           />
         </div>
+        {ownOnly !== undefined && (
+          <div className="setting" role="group" aria-labelledby="source-label">
+            <span className="setting-label" id="source-label">
+              {strings.sourceLabel}
+            </span>
+            <div className="setting setting-row">
+              <label htmlFor="setting-own-only">{strings.ownQuotesLabel}</label>
+              <input
+                id="setting-own-only"
+                className="switch"
+                type="checkbox"
+                role="switch"
+                checked={ownOnly}
+                aria-describedby="setting-own-only-hint"
+                onChange={(event) => {
+                  onOwnOnlyChange(event.target.checked);
+                }}
+              />
+              <p className="setting-hint" id="setting-own-only-hint">
+                {strings.ownQuotesHint}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </dialog>
   );

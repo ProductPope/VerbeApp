@@ -139,7 +139,9 @@ export function App({
   }, [language, translation, hidden, tags, notifyHour]);
 
   const cards = [...catalog.cards, ...personal.map(personalCard)];
-  const eligible = eligibleCards(cards, prefs.hidden, prefs.tags);
+  // The source filter only exists while the reader has quotes of their own.
+  const hasPersonal = personal.length > 0;
+  const eligible = eligibleCards(cards, prefs.hidden, prefs.tags, hasPersonal && prefs.ownOnly);
   const translationLanguage = prefs.translation ? TRANSLATION_LANGUAGE : undefined;
   const habitQuote = catalog.cards.find((card) => card.id === HABIT_QUOTE_ID);
 
@@ -326,6 +328,10 @@ export function App({
         strings={strings}
         onTagsChange={(tags) => {
           store.update((current) => ({ ...current, tags }));
+        }}
+        ownOnly={hasPersonal ? prefs.ownOnly : undefined}
+        onOwnOnlyChange={(ownOnly) => {
+          store.update((current) => ({ ...current, ownOnly }));
         }}
       />
       <ProfileDialog

@@ -39,6 +39,17 @@ describe('eligibleCards', () => {
     expect(eligibleCards(cards, [], ['productivity']).map((c) => c.id)).toEqual(['b']);
     expect(eligibleCards(cards, [], []).map((c) => c.id)).toEqual(['a', 'b', 'c']);
   });
+
+  it("keeps only the reader's own quotes when asked, alongside the other filters", () => {
+    const mixed = [
+      ...cards,
+      card('mine-1', ['philosophy'], { kind: 'personal' }),
+      card('mine-2', ['productivity'], { kind: 'personal' }),
+    ];
+    expect(eligibleCards(mixed, [], [], true).map((c) => c.id)).toEqual(['mine-1', 'mine-2']);
+    expect(eligibleCards(mixed, ['mine-2'], [], true).map((c) => c.id)).toEqual(['mine-1']);
+    expect(eligibleCards(mixed, [], ['productivity'], true).map((c) => c.id)).toEqual(['mine-2']);
+  });
 });
 
 describe('nextRound', () => {
