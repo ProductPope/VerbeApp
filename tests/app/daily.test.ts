@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { dailyNotification, dayKey, quoteOfTheDay } from '../../src/app/notifications/daily.js';
 import { parseSharedPrefs } from '../../src/app/notifications/shared-prefs.js';
 import { testCatalog } from './fixtures.js';
+import { STRINGS } from '../../src/app/i18n/strings.js';
 
 const { cards } = testCatalog();
 const noFilters = { hidden: [], tags: [] };
@@ -52,18 +53,37 @@ describe('quoteOfTheDay', () => {
 describe('dailyNotification', () => {
   const alpha = cards.find((card) => card.id === 'alpha')!;
 
-  it('titles the notification with the author and adds the translation', () => {
-    expect(dailyNotification(alpha, 'pl', 'pl')).toEqual({
-      title: 'Marek Aureliusz',
-      body: 'Text of alpha.\n\nTekst alfa.',
-      quoteId: 'alpha',
-    });
+  it('invites the reader to open the app without giving the quote away', () => {
+    const notification = dailyNotification(alpha, 'en', '2026-10-13');
+    expect(notification.title).toBe(STRINGS.en.notificationTitle);
+    expect(STRINGS.en.notificationInvites).toContain(notification.body);
+    expect(notification.body).not.toContain('Text of alpha');
+    expect(notification.title).not.toContain('Marcus Aurelius');
+    expect(notification.quoteId).toBe('alpha');
   });
 
-  it('leaves the translation out when it is off or missing', () => {
-    expect(dailyNotification(alpha, 'en', undefined).body).toBe('Text of alpha.');
-    const beta = cards.find((card) => card.id === 'beta')!;
-    expect(dailyNotification(beta, 'en', 'pl').body).toBe('Text of beta.');
+  it('speaks the app language', () => {
+    const notification = dailyNotification(alpha, 'pl', '2026-10-13');
+    expect(notification.title).toBe('Twoja myśl na dziś czeka');
+    expect(STRINGS.pl.notificationInvites).toContain(notification.body);
+  });
+
+  it('keeps one invitation all day and varies it across days', () => {
+    expect(dailyNotification(alpha, 'en', '2026-10-13').body).toBe(
+      dailyNotification(alpha, 'en', '2026-10-13').body,
+    );
+    const bodies = new Set(
+      Array.from(
+        { length: 14 },
+        (_, day) =>
+          dailyNotification(alpha, 'en', `2026-10-${String(day + 1).padStart(2, '0')}`).body,
+      ),
+    );
+    expect(bodies.size).toBeGreaterThan(1);
+  });
+
+  it('has the same number of invitations in every language', () => {
+    expect(STRINGS.pl.notificationInvites).toHaveLength(STRINGS.en.notificationInvites.length);
   });
 });
 

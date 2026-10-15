@@ -12,7 +12,6 @@ import { CATALOG_URL } from '../app/catalog/load.js';
 import { PUSH_API_URL } from '../app/notifications/config.js';
 import { dailyNotification, dayKey, quoteOfTheDay } from '../app/notifications/daily.js';
 import { readSharedPrefs } from '../app/notifications/shared-prefs.js';
-import { TRANSLATION_LANGUAGE } from '../app/i18n/strings.js';
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -31,28 +30,25 @@ async function loadCatalog(): Promise<Catalog> {
   return (await response.json()) as Catalog;
 }
 
-async function showQuoteOfTheDay(): Promise<void> {
+async function showDailyInvite(): Promise<void> {
   const [prefs, catalog] = await Promise.all([readSharedPrefs(), loadCatalog()]);
-  const card = quoteOfTheDay(catalog.cards, prefs, dayKey(new Date()));
+  const day = dayKey(new Date());
+  const card = quoteOfTheDay(catalog.cards, prefs, day);
   if (!card) return;
-  const content = dailyNotification(
-    card,
-    prefs.language,
-    prefs.translation ? TRANSLATION_LANGUAGE : undefined,
-  );
+  const content = dailyNotification(card, prefs.language, day);
   await self.registration.showNotification(content.title, {
     body: content.body,
     tag: NOTIFICATION_TAG,
     icon: 'icon-192.png',
     badge: 'icon-192.png',
-    lang: 'en',
+    lang: prefs.language,
     data: { quoteId: content.quoteId },
   });
 }
 
-// The push carries no data: every push means "show today's quote".
+// The push carries no data: every push means "invite the reader to today's quote".
 self.addEventListener('push', (event) => {
-  event.waitUntil(showQuoteOfTheDay());
+  event.waitUntil(showDailyInvite());
 });
 
 self.addEventListener('notificationclick', (event) => {

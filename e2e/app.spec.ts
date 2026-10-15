@@ -360,12 +360,14 @@ test.describe('your own quotes', () => {
 });
 
 test.describe('reading streak', () => {
-  test('counts today after 30 seconds in the app and remembers it', async ({ page }) => {
+  test('counts today after 10 seconds in the app and remembers it', async ({ page }) => {
     await page.clock.install({ time: new Date(2026, 9, 13, 9, 0) });
     await page.goto('./');
     const badge = page.locator('.streak');
     await expect(badge).toContainText('Reading streak: 0 days in a row');
-    await page.clock.runFor(31_000);
+    await page.clock.runFor(8_000);
+    await expect(badge).toContainText('Reading streak: 0 days in a row');
+    await page.clock.runFor(3_000);
     await expect(badge).toContainText('Reading streak: 1 day in a row');
     await expect(page.getByRole('status')).toContainText('Day one of your reading streak.');
     await expectNoAxeViolations(page);
@@ -394,7 +396,7 @@ test.describe('reading streak', () => {
 
     const newer = await context.newPage();
     await newer.goto('./');
-    await context.clock.runFor(31_000);
+    await context.clock.runFor(11_000);
     await expect(newer.locator('.streak')).toContainText('Reading streak: 1 day in a row');
 
     await setHidden(older, false);
@@ -472,7 +474,7 @@ test.describe('installable app', () => {
     expect(manifest.icons.some((icon) => icon.purpose === 'maskable')).toBe(true);
   });
 
-  test('shows the quote of the day when a push arrives and opens it on tap', async ({
+  test("invites the reader in when a push arrives and opens today's quote on tap", async ({
     page,
     context,
   }) => {
@@ -509,7 +511,7 @@ test.describe('installable app', () => {
       }
       return null;
     });
-    expect(notification?.title).toBeTruthy();
+    expect(notification?.title).toBe('Your thought for today is waiting');
     expect(notification?.body.length).toBeGreaterThan(10);
     expect(notification?.tag).toBe('daily-quote');
 

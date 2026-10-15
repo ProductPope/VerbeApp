@@ -1,7 +1,7 @@
 import { createLocalStore, type LocalStore } from '../storage/local-store.js';
 
 /** Time the app must be open and visible on a day for that day to count. */
-export const DAILY_GOAL_MS = 30_000;
+export const DAILY_GOAL_MS = 10_000;
 
 export const STREAK_STORAGE_KEY = 'verbeapp:streak:v1';
 

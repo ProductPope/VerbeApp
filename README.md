@@ -25,7 +25,7 @@ A full-screen deck of quote cards: swipe left for the next one, save favourites 
 don't want to see again. Each English quote shows its Polish translation underneath (switch it off
 under Preferences in your profile, next to the app language; category filters are in Settings). Optional auto-advance turns the
 feed into a slideshow with a progress bar, and pauses whenever you interact. A reading streak next
-to the title counts the days in a row you spent at least 30 seconds with the app. You can also add
+to the title counts the days in a row you spent at least 10 seconds with the app. You can also add
 your own quotes in your profile; they join the feed labelled "Your quote" and can be backed up to a
 file. Many quotes at once can come from a CSV file (columns `text`, `author`, `source`, `language`,
 `categories`; the app explains the format and offers a template). Everything you choose or add stays on your device, and the app works offline.
@@ -69,7 +69,8 @@ behind the design.
 1. **Quote dataset**: schema, validation and source verification. ✅
 2. **App**: installable PWA with a full-screen card feed, favourites and hidden quotes,
    category filter and English/Polish switch, built to WCAG 2.2 AA on a token-based design system. ✅
-3. **Daily quote**: a push notification at a time you choose, sent by a small Cloudflare Worker.
+3. **Daily reminder**: a push notification at a time you choose that invites you to open the app
+   (the quote itself waits inside), sent by a small Cloudflare Worker.
    See [docs/notifications.md](docs/notifications.md). ✅
 
 ## How this project is built

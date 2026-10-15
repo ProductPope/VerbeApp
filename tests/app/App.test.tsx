@@ -632,7 +632,7 @@ describe('daily notification', () => {
     const push = fakePush();
     const { user, store } = renderApp('en', { push });
     const settings = await openPreferences(user);
-    const toggle = within(settings).getByRole('switch', { name: 'Daily quote notification' });
+    const toggle = within(settings).getByRole('switch', { name: 'Daily reminder' });
     expect(toggle).not.toBeChecked();
     expect(within(settings).queryByRole('combobox', { name: 'Time' })).toBeNull();
 
@@ -656,7 +656,7 @@ describe('daily notification', () => {
     push.subscribe.mockRejectedValueOnce(new Error('offline'));
     const { user, store } = renderApp('en', { push });
     const settings = await openPreferences(user);
-    const toggle = within(settings).getByRole('switch', { name: 'Daily quote notification' });
+    const toggle = within(settings).getByRole('switch', { name: 'Daily reminder' });
 
     await user.click(toggle);
     expect(toggle).not.toBeChecked();
@@ -716,11 +716,11 @@ describe('reading streak', () => {
     setHidden(false);
   });
 
-  it('counts today after 30 seconds in the app and celebrates it once', () => {
+  it('counts today after 10 seconds in the app and celebrates it once', () => {
     vi.useFakeTimers({ now: new Date(2026, 9, 13, 9, 0) });
     const { streakStore } = renderApp();
     const badge = screen.getByRole('button', { name: 'Reading streak: 0 days in a row' });
-    advanceBy(29_000);
+    advanceBy(9_000);
     expect(streakStore.get().count).toBe(0);
     expect(within(badge).getByText(/Reading streak: 0/)).toBeInTheDocument();
     advanceBy(1_000);
@@ -742,7 +742,7 @@ describe('reading streak', () => {
     );
     renderApp('pl-PL');
     expect(screen.getByText('Seria czytania: 4 dni z rzędu')).toBeInTheDocument();
-    advanceBy(30_000);
+    advanceBy(10_000);
     expect(screen.getByText('Seria czytania: 5 dni z rzędu')).toBeInTheDocument();
     expect(screen.getByRole('status')).toHaveTextContent('5 dni z rzędu. Brawo!');
   });
@@ -760,13 +760,13 @@ describe('reading streak', () => {
   it('does not count time while the app is hidden', () => {
     vi.useFakeTimers({ now: new Date(2026, 9, 13, 9, 0) });
     const { streakStore } = renderApp();
-    advanceBy(20_000);
+    advanceBy(5_000);
     setHidden(true);
     advanceBy(120_000);
     expect(streakStore.get().count).toBe(0);
     setHidden(false);
-    advanceBy(9_000);
-    expect(streakStore.get()).toMatchObject({ count: 0, activeMs: 29_000 });
+    advanceBy(4_000);
+    expect(streakStore.get()).toMatchObject({ count: 0, activeMs: 9_000 });
     advanceBy(1_000);
     expect(streakStore.get().count).toBe(1);
   });

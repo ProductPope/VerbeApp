@@ -16,7 +16,9 @@ no backend and should keep what it learns about readers to a minimum.
   come, using the device's IANA time zone so daylight saving time is handled.
 - **The push is empty.** The service worker (`src/sw/sw.ts`) already holds the whole catalogue,
   so it picks the quote of the day itself (`quoteOfTheDay`: the same quote all day, respecting the
-  reader's hidden quotes and categories) and shows it. This avoids payload encryption and means the
+  reader's hidden quotes and categories). The notification carries only an invitation to open the
+  app, in the app language; the quote stays for the app, which a tap opens on it (changed
+  2026-10-15 at the owner's request). This avoids payload encryption and means the
   server never learns anything about the reader's preferences.
 - **The server stores only** the browser's push endpoint, the hour and the time zone, as metadata
   in Workers KV keyed by the SHA-256 of the endpoint. Endpoints the push service reports as gone
