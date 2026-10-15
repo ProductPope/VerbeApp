@@ -123,15 +123,17 @@ export function StreakCelebration({
   const [seenDay, setSeenDay] = useState(lastDay);
   const fresh = lastDay !== seenDay;
 
+  // The message waits while another notice holds the status region, and then
+  // stays its full time.
   useEffect(() => {
-    if (!fresh) return;
+    if (!fresh || suppressed) return;
     const timer = setTimeout(() => {
       setSeenDay(lastDay);
     }, CELEBRATION_MS);
     return () => {
       clearTimeout(timer);
     };
-  }, [fresh, lastDay]);
+  }, [fresh, lastDay, suppressed]);
 
   if (!fresh || suppressed) return null;
   return <p className="toast toast-plain">{strings.streakReached(days)}</p>;

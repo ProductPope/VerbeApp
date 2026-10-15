@@ -29,20 +29,20 @@ describe('dayOf and previousDay', () => {
 
 describe('recordActiveTime', () => {
   it('adds up short visits on the same day until the goal is reached', () => {
-    let streak = recordActiveTime(EMPTY_STREAK, '2026-10-13', 10_000);
-    expect(streak).toEqual({ count: 0, lastDay: null, activeDay: '2026-10-13', activeMs: 10_000 });
-    streak = recordActiveTime(streak, '2026-10-13', DAILY_GOAL_MS - 10_001);
+    let streak = recordActiveTime(EMPTY_STREAK, '2026-10-13', 4_000);
+    expect(streak).toEqual({ count: 0, lastDay: null, activeDay: '2026-10-13', activeMs: 4_000 });
+    streak = recordActiveTime(streak, '2026-10-13', DAILY_GOAL_MS - 4_001);
     expect(streak.count).toBe(0);
     streak = recordActiveTime(streak, '2026-10-13', 1);
     expect(streak).toMatchObject({ count: 1, lastDay: '2026-10-13' });
   });
 
   it('starts each day from zero', () => {
-    const streak = recordActiveTime(EMPTY_STREAK, '2026-10-12', 20_000);
-    expect(recordActiveTime(streak, '2026-10-13', 20_000)).toMatchObject({
+    const streak = recordActiveTime(EMPTY_STREAK, '2026-10-12', 6_000);
+    expect(recordActiveTime(streak, '2026-10-13', 6_000)).toMatchObject({
       count: 0,
       activeDay: '2026-10-13',
-      activeMs: 20_000,
+      activeMs: 6_000,
     });
   });
 

@@ -1,6 +1,6 @@
-import { localized, type Card } from '../catalog/catalog.js';
+import type { Card } from '../catalog/catalog.js';
 import { eligibleCards, seededRandom } from '../feed/queue.js';
-import type { Language } from '../i18n/strings.js';
+import { STRINGS, type Language } from '../i18n/strings.js';
 
 /** The calendar day on the reader's clock, e.g. 2026-10-13. */
 export function dayKey(date: Date, timeZone?: string): string {
@@ -44,16 +44,17 @@ export interface DailyNotification {
   quoteId: string;
 }
 
-export function dailyNotification(
-  card: Card,
-  language: Language,
-  translationLanguage: Language | undefined,
-): DailyNotification {
-  const translation =
-    translationLanguage === undefined ? undefined : card.translations[translationLanguage];
+/**
+ * The daily nudge: an invitation to open the app, without the quote itself,
+ * so the quote is read in the app. The invitation changes from day to day;
+ * the quote id lets a tap open the app on today's quote.
+ */
+export function dailyNotification(card: Card, language: Language, day: string): DailyNotification {
+  const strings = STRINGS[language];
+  const invites = strings.notificationInvites;
   return {
-    title: localized(card.author, language),
-    body: translation === undefined ? card.text : `${card.text}\n\n${translation}`,
+    title: strings.notificationTitle,
+    body: invites[hashString(`invite:${day}`) % invites.length] ?? '',
     quoteId: card.id,
   };
 }

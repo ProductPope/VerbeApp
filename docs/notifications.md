@@ -12,8 +12,9 @@ explained in [ADR 0006](adr/0006-daily-quote-push-without-payload.md).
    each run reads only its own bucket and the two next to it (a daylight saving change moves a
    device by an hour; the run that notices it moves the device to its new bucket).
 3. The service worker (`src/sw/sw.ts`) picks the quote of the day from the bundled catalogue,
-   skipping the reader's hidden quotes and keeping to their categories, and shows it. Tapping the
-   notification opens the app on that quote.
+   skipping the reader's hidden quotes and keeping to their categories, and shows a short
+   invitation in the app language (`dailyNotification`) without the quote itself, so the quote is
+   read in the app. Tapping the notification opens the app on that quote.
 
 ## Privacy
 

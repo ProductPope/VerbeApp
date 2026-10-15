@@ -15,9 +15,18 @@ const en = {
   translationLabel: 'Polish translation',
   translationHint: 'Draft translations prepared with AI help. Corrections are welcome on GitHub.',
   aiDraftTranslation: 'AI Translated',
-  notificationLabel: 'Daily quote notification',
+  notificationLabel: 'Daily reminder',
   notificationTime: 'Time',
-  notificationHint: 'One quote a day at the time you choose. Only this device is notified.',
+  notificationHint:
+    'A short nudge to open Verbe once a day, at the time you choose. Only this device is notified.',
+  /** Daily notification copy; it invites the reader in and keeps the quote for the app. */
+  notificationTitle: 'Your thought for today is waiting',
+  notificationInvites: [
+    'Take a minute for one wise thought.',
+    'A new quote is ready. Open Verbe and read it.',
+    'Pause for a moment and see what today brings.',
+    'One good sentence can change the day. Come and read it.',
+  ] as readonly string[],
   notificationBlocked:
     'Notifications are blocked. Allow them for this site in your browser settings.',
   notificationFailed: 'Could not change the notification. Check your connection and try again.',
@@ -140,7 +149,7 @@ const en = {
   streakHabit:
     'Habits shape who we become. A few quiet minutes with a good thought every day do more than a long read once in a while.',
   streakHow:
-    'A day counts after 30 seconds in the app. Come back tomorrow to keep the flame alight.',
+    'A day counts after 10 seconds in the app. Come back tomorrow to keep the flame alight.',
   installHeading: 'Install Verbe',
   installOffer: 'Keep Verbe on your home screen: a wise thought in one tap, even offline.',
   installAccept: 'Install',
@@ -175,10 +184,17 @@ const pl: Strings = {
   translationHint:
     'Robocze tłumaczenia przygotowane z pomocą AI. Poprawki mile widziane na GitHubie.',
   aiDraftTranslation: 'Przetłumaczone przez AI',
-  notificationLabel: 'Codzienne powiadomienie z cytatem',
+  notificationLabel: 'Codzienne przypomnienie',
   notificationTime: 'Godzina',
   notificationHint:
-    'Jeden cytat dziennie o wybranej godzinie. Powiadomienie dostaje tylko to urządzenie.',
+    'Krótka zachęta, żeby raz dziennie zajrzeć do Verbe, o wybranej godzinie. Powiadomienie dostaje tylko to urządzenie.',
+  notificationTitle: 'Twoja myśl na dziś czeka',
+  notificationInvites: [
+    'Znajdź minutę na jedną mądrą myśl.',
+    'Nowy cytat jest gotowy. Otwórz Verbe i przeczytaj go.',
+    'Zatrzymaj się na chwilę i zobacz, co przynosi dziś.',
+    'Jedno dobre zdanie potrafi zmienić dzień. Wejdź i przeczytaj.',
+  ],
   notificationBlocked:
     'Powiadomienia są zablokowane. Zezwól na nie dla tej strony w ustawieniach przeglądarki.',
   notificationFailed: 'Nie udało się zmienić powiadomienia. Sprawdź połączenie i spróbuj ponownie.',
@@ -294,7 +310,7 @@ const pl: Strings = {
   streakDays: (days: number) => `${String(days)} ${days === 1 ? 'dzień' : 'dni'} z rzędu`,
   streakHabit:
     'To nawyki nas kształtują. Kilka spokojnych minut z dobrą myślą każdego dnia daje więcej niż długa lektura od święta.',
-  streakHow: 'Dzień liczy się po 30 sekundach w aplikacji. Wróć jutro, żeby płomień nie zgasł.',
+  streakHow: 'Dzień liczy się po 10 sekundach w aplikacji. Wróć jutro, żeby płomień nie zgasł.',
   installHeading: 'Zainstaluj Verbe',
   installOffer: 'Dodaj Verbe do ekranu głównego: mądra myśl jednym dotknięciem, także offline.',
   installAccept: 'Zainstaluj',

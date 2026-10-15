@@ -10,7 +10,8 @@ opening the app by accident should not count as reading.
 
 ## Decision
 
-- **A day counts after 30 seconds of visible time.** Time adds up across visits on the same
+- **A day counts after 10 seconds of visible time** (30 seconds at first; shortened on
+  2026-10-15 at the owner's request so a quick look on the phone is enough). Time adds up across visits on the same
   calendar day; time while the page is hidden (another app, locked screen) or while the device
   sleeps and timers stall is not counted.
 - **Days follow the reader's local calendar.** A streak survives until a whole day is missed, so
